@@ -1,0 +1,107 @@
+t=2018-08-27T18:45:39-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T18:45:58-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T18:50:12-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T18:50:56-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T21:03:55-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T21:04:36-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:53927\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T21:10:25-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T21:12:30-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T21:24:53-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T21:27:27-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T21:31:21-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T21:33:43-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T21:33:49-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T21:36:57-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T21:37:50-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T21:39:31-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T21:43:45-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T21:46:48-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T21:47:54-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T21:48:04-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:59456\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T21:48:05-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:59462\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T21:48:06-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:59464\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T21:48:06-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:59468\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T21:48:06-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:59470\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T21:48:17-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T21:48:20-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:59504\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T21:48:25-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:59516\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T21:48:53-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T21:49:02-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:59596\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T21:49:24-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T21:49:28-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:59652\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T21:49:44-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T21:49:50-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:59703\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T21:49:51-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:59707\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T21:49:51-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:59709\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T21:56:46-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T21:56:50-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:60594\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T21:59:47-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T21:59:52-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:60976\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T22:00:08-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:00:12-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:61018\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T22:00:46-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:00:51-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:61108\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T22:00:58-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:01:01-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:61132\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T22:01:49-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:01:57-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:61253\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T22:07:20-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:07:26-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:07:29-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:61960\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T22:08:21-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:62071\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T22:08:22-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:62075\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T22:08:43-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:08:48-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:62132\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T22:08:59-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:62157\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T22:11:16-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:12:47-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:17:31-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:17:39-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:63244\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T22:18:42-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:18:54-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:21:12-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:21:20-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:21:32-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:24:19-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:28:38-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:28:42-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:64671\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T22:29:25-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:64764\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T22:29:55-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:30:01-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:64839\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T22:31:13-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:31:22-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:65014\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T22:31:50-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:31:54-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:32:06-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:65108\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T22:33:29-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:33:33-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:65304\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T22:35:02-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:35:08-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:65500\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T22:35:27-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:35:39-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:36:28-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:36:54-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:37:30-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:37:43-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:49452\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T22:38:05-0700 lvl=info msg=List       api=signer type=request metadata="{\"remote\":\"127.0.0.1:49499\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}"
+t=2018-08-27T22:38:24-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:38:28-0700 lvl=info msg=List       api=signer type=request metadata="{\"remote\":\"127.0.0.1:49551\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}"
+t=2018-08-27T22:38:31-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:49557\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T22:38:58-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:49617\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T22:39:21-0700 lvl=info msg=List       api=signer type=request metadata="{\"remote\":\"127.0.0.1:49663\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}"
+t=2018-08-27T22:39:34-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:39:37-0700 lvl=info msg=List       api=signer type=request metadata="{\"remote\":\"127.0.0.1:49699\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}"
+t=2018-08-27T22:41:02-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:41:06-0700 lvl=info msg=List       api=signer type=request metadata="{\"remote\":\"127.0.0.1:49895\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}"
+t=2018-08-27T22:41:09-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:49903\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T22:42:27-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:42:31-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:50077\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T22:42:46-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:42:50-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:50117\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T22:42:51-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:50124\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T22:43:05-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:43:08-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:50163\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T22:44:18-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-27T22:44:21-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:50315\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-27T22:44:27-0700 lvl=info msg=List       api=signer type=request metadata="{\"remote\":\"127.0.0.1:50331\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}"
+t=2018-08-27T22:46:51-0700 lvl=info msg=Configured api=signer audit log=audit.log
