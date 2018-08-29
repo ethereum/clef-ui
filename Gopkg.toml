@@ -30,5 +30,9 @@
   unused-packages = true
 
 [[constraint]]
-  name = "github.com/gorilla/rpc"
-  version = "1.1.0"
+  name = "github.com/ethereum/go-ethereum"
+  version = "1.8.14"
+
+[[constraint]]
+  name = "github.com/powerman/rpc-codec"
+  version = "1.0.0"

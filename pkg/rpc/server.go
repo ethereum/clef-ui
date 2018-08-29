@@ -1,224 +1,99 @@
 package rpc
 
 import (
-  "bufio"
-  "context"
-  "encoding/json"
-  // "fmt"
-  "log"
-  "io"
-  "reflect"
-  "os/exec"
-  "os"
-  // "net/rpc"
-  // "net/rpc/jsonrpc"
+	"context"
+	"log"
+	"io"
+	"os"
+
+	"net/rpc"
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"github.com/powerman/rpc-codec/jsonrpc2"
+	"sync"
 )
 
-const ClefServiceName = "clef"
-
-type RawParamsRpc struct {
-  Jsonrpc   string
-  Method    string
-  Id        *json.RawMessage
-  Params    *json.RawMessage
-  Raw       []byte
-}
-
 type Server struct {
-  serviceMap *serviceMap
 }
 
 func NewServer() *Server {
-  sMap := &serviceMap{}
-  if err := sMap.register(&RpcHandlers{}, ClefServiceName); err != nil {
-    panic(err)
-  }
-
-  return &Server{
-    serviceMap: sMap,
-  }
+	return &Server{}
 }
 
-func checkError(err error) {
-  if err != nil {
-    log.Fatalf("Error: %s", err)
-  }
+type RWCloseCombiner struct {
+	mtx         sync.Mutex
+	w           io.Writer
+	Buf         *bytes.Buffer
+	newDataChan chan bool
 }
 
-func StartClef() (io.WriteCloser, io.ReadCloser, io.ReadCloser) {
-  cmd := exec.Command(
-    "/Users/chikeichan/Projects/ethereum/go-ethereum/build/bin/clef",
-    "--rpc",
-    "--4bytedb",
-    "/Users/chikeichan/Projects/ethereum/go-ethereum/cmd/clef/4byte.json",
-    "--stdio-ui",
-    "--ipcdisable",
-  )
+func NewRWCloseCombiner(w io.Writer) *RWCloseCombiner {
+	var buf bytes.Buffer
 
-  // Create stdout, stderr streams of type io.Reader
-  stdout, err := cmd.StdoutPipe()
-  checkError(err)
-  stderr, err := cmd.StderrPipe()
-  checkError(err)
-  stdin, err := cmd.StdinPipe()
-  checkError(err)
-
-  // Start command
-  err = cmd.Start()
-  checkError(err)
-
-  return stdin, stdout, stderr
+	return &RWCloseCombiner{
+		w:   w,
+		Buf: &buf,
+	}
 }
 
-func (s *Server) scanStdout(ctx context.Context, incomingRpcChannel chan RawParamsRpc, stdout io.ReadCloser) {
-  // var allText []string
-  var done = false
-  // var j Rpc
-
-  buff := bufio.NewScanner(stdout)
-
-  go func() {
-    <-ctx.Done()
-    log.Print("Stopped scanning Standard Output for new rpc request.")
-    done = true
-  }()
-
-  // Iterate over buff and append content to the slice
-  for !done && buff.Scan() {
-      j := RawParamsRpc{}
-      j.Raw = []byte(buff.Text())
-      err := json.Unmarshal([]byte(buff.Text()), &j)
-      checkError(err)
-      log.Printf("Incoming RPC Request: %d - %+v\n", j.Id, j.Method)
-      
-      // allText = append(allText, buff.Text()+"\n")
-      incomingRpcChannel <- j
-  }
+func (rwc *RWCloseCombiner) Read(p []byte) (int, error) {
+	rwc.mtx.Lock()
+	defer rwc.mtx.Unlock()
+	return rwc.Buf.Read(p)
 }
 
-func (s *Server) handleRpc(ctx context.Context, incomingRpcChannel chan RawParamsRpc) {
-  done := false
+func (rwc *RWCloseCombiner) Write(p []byte) (int, error) {
+	rwc.mtx.Lock()
+	defer rwc.mtx.Unlock()
+	return rwc.w.Write(p)
+}
 
-  go func() {
-    <-ctx.Done()
-    log.Print("Stopped incoming rpc request handlers.")
-    done = true
-  }()
+func (rwc *RWCloseCombiner) Close() error {
+	return nil
+}
 
-  for !done {
-    rpc := <-incomingRpcChannel
-    serviceSpec, methodSpec, err := s.serviceMap.get(ClefServiceName, rpc.Method)
-    if err != nil {
-      panic(err)
-    }
+func (s *Server) handleRpc(ctx context.Context, incomingRpcChannel chan []byte, stdin io.Writer, stdout io.Reader) {
+	done := false
 
-    args := reflect.New(methodSpec.argsType)
-    err = json.Unmarshal(rpc.Raw, args.Interface())
-    if err != nil {
-      panic(err)
-    }
-    reply := reflect.New(methodSpec.replyType)
-  errValue := methodSpec.method.Func.Call([]reflect.Value{
-    serviceSpec.rcvr,
-    args,
-    reply,
-  })
-  // Cast the result to error if needed.
-  var errResult error
-  errInter := errValue[0].Interface()
-  if errInter != nil {
-    errResult = errInter.(error)
-  }
-  // Prevents Internet Explorer from MIME-sniffing a response away
-  // from the declared content-type
-  // Encode the response.
-  if errResult == nil {
-    log.Println(reply)
-  } else {
-    log.Println(errResult)
-  }
-  }
+	go func() {
+		<-ctx.Done()
+		log.Print("Stopped incoming rpc request handlers.")
+		done = true
+	}()
+
+	rpc.Register(&ClefService{})
+	rwc := NewRWCloseCombiner(stdin)
+	enc := json.NewEncoder(rwc.Buf)
+	dec := json.NewDecoder(stdout)
+	ready := make(chan bool)
+
+	go func() {
+		for !done {
+			var v map[string]interface{}
+			if err := dec.Decode(&v); err != nil {
+				log.Panic(err)
+			}
+			method, ok := v["method"]
+			if !ok {
+				panic("need method")
+			}
+			v["method"] = fmt.Sprintf("%s.%s", "ClefService", method)
+			if err := enc.Encode(&v); err != nil {
+				log.Panic(err)
+			}
+			ready <- true
+		}
+	}()
+
+	<-ready
+	go jsonrpc2.ServeConnContext(ctx, rwc)
 }
 
 func (s *Server) ListenStdIO(ctx context.Context, stdin io.WriteCloser, stdout io.ReadCloser, stderr io.ReadCloser) {
-  incomingRpcChannel := make(chan RawParamsRpc)
+	incomingRpcChannel := make(chan []byte)
 
-  // Non-blockingly echo command output to terminal
-  go io.Copy(os.Stderr, stderr)
-  go s.scanStdout(ctx, incomingRpcChannel, stdout)
-  go s.handleRpc(ctx, incomingRpcChannel)
-  // rpc := new(Rpc)
-  // err := json.NewDecoder(r.Body).Decode(rpc)
-
-
-
-  // Get service method to be called.
-  // method, errMethod := codecReq.Method()
-  // if errMethod != nil {
-  //   codecReq.WriteError(w, 400, errMethod)
-  //   return
-  // }
-  // serviceSpec, methodSpec, errGet := s.services.get(method)
-  // if errGet != nil {
-  //   codecReq.WriteError(w, 400, errGet)
-  //   return
-  // }
-  // // Decode the args.
-  // args := reflect.New(methodSpec.argsType)
-  // if errRead := codecReq.ReadRequest(args.Interface()); errRead != nil {
-  //   codecReq.WriteError(w, 400, errRead)
-  //   return
-  // }
-
-  // // Call the registered Intercept Function
-  // if s.interceptFunc != nil {
-  //   req := s.interceptFunc(&RequestInfo{
-  //     Request: r,
-  //     Method:  method,
-  //   })
-  //   if req != nil {
-  //     r = req
-  //   }
-  // }
-  // // Call the registered Before Function
-  // if s.beforeFunc != nil {
-  //   s.beforeFunc(&RequestInfo{
-  //     Request: r,
-  //     Method:  method,
-  //   })
-  // }
-
-  // // Call the service method.
-  // reply := reflect.New(methodSpec.replyType)
-  // errValue := methodSpec.method.Func.Call([]reflect.Value{
-  //   serviceSpec.rcvr,
-  //   reflect.ValueOf(r),
-  //   args,
-  //   reply,
-  // })
-  // // Cast the result to error if needed.
-  // var errResult error
-  // errInter := errValue[0].Interface()
-  // if errInter != nil {
-  //   errResult = errInter.(error)
-  // }
-  // // Prevents Internet Explorer from MIME-sniffing a response away
-  // // from the declared content-type
-  // w.Header().Set("x-content-type-options", "nosniff")
-  // // Encode the response.
-  // if errResult == nil {
-  //   codecReq.WriteResponse(w, reply.Interface())
-  // } else {
-  //   codecReq.WriteError(w, 400, errResult)
-  // }
-
-  // // Call the registered After Function
-  // if s.afterFunc != nil {
-  //   s.afterFunc(&RequestInfo{
-  //     Request:    r,
-  //     Method:     method,
-  //     Error:      errResult,
-  //     StatusCode: 200,
-  //   })
-  // }
+	// Non-blockingly echo command output to terminal
+	go io.Copy(os.Stderr, stderr)
+	go s.handleRpc(ctx, incomingRpcChannel, stdin, stdout)
 }
