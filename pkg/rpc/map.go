@@ -9,7 +9,6 @@ import (
   "fmt"
   "net/http"
   "reflect"
-  "strings"
   "sync"
   "unicode"
   "unicode/utf8"
@@ -76,7 +75,6 @@ func (m *serviceMap) register(rcvr interface{}, name string) error {
     if method.PkgPath != "" {
       continue
     }
-    // Method needs four ins: receiver, *http.Request, *args, *reply.
     // [NEW] Method needs three ins: receiver, *args, *reply.
     if mtype.NumIn() != 3 {
       continue
@@ -128,20 +126,16 @@ func (m *serviceMap) register(rcvr interface{}, name string) error {
 // get returns a registered service given a method name.
 //
 // The method name uses a dotted notation as in "Service.Method".
-func (m *serviceMap) get(method string) (*service, *serviceMethod, error) {
-  parts := strings.Split(method, ".")
-  if len(parts) != 2 {
-    err := fmt.Errorf("rpc: service/method request ill-formed: %q", method)
-    return nil, nil, err
-  }
+func (m *serviceMap) get(serviceName string, method string) (*service, *serviceMethod, error) {
   m.mutex.Lock()
-  service := m.services[parts[0]]
+  fmt.Println(m.services)
+  service := m.services[serviceName]
   m.mutex.Unlock()
   if service == nil {
-    err := fmt.Errorf("rpc: can't find service %q", method)
+    err := fmt.Errorf("rpc: can't find service %q", serviceName)
     return nil, nil, err
   }
-  serviceMethod := service.methods[parts[1]]
+  serviceMethod := service.methods[method]
   if serviceMethod == nil {
     err := fmt.Errorf("rpc: can't find method %q", method)
     return nil, nil, err
