@@ -2,15 +2,15 @@ package rpc
 
 import (
 	"context"
-	"log"
+	"github.com/powerman/rpc-codec/jsonrpc2"
 	"io"
+	"log"
 	"os"
 
-	"net/rpc"
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/powerman/rpc-codec/jsonrpc2"
+	"net/rpc"
 	"sync"
 )
 
@@ -40,6 +40,9 @@ func NewRWCloseCombiner(w io.Writer) *RWCloseCombiner {
 func (rwc *RWCloseCombiner) Read(p []byte) (int, error) {
 	rwc.mtx.Lock()
 	defer rwc.mtx.Unlock()
+	if len(rwc.Buf.String()) == 0 {
+		return 0, nil
+	}
 	return rwc.Buf.Read(p)
 }
 
@@ -80,6 +83,7 @@ func (s *Server) handleRpc(ctx context.Context, incomingRpcChannel chan []byte, 
 				panic("need method")
 			}
 			v["method"] = fmt.Sprintf("%s.%s", "ClefService", method)
+			log.Println(method)
 			if err := enc.Encode(&v); err != nil {
 				log.Panic(err)
 			}
@@ -87,8 +91,17 @@ func (s *Server) handleRpc(ctx context.Context, incomingRpcChannel chan []byte, 
 		}
 	}()
 
+	//go func() {
+	//	for !done {
+	//		<-ready
+	//		log.Println("ready channel receive")
+	//		jsonrpc2.ServeConnContext(ctx, rwc)
+	//	}
+	//}()
+
 	<-ready
-	go jsonrpc2.ServeConnContext(ctx, rwc)
+	log.Println("ready channel receive")
+	jsonrpc2.ServeConnContext(ctx, rwc)
 }
 
 func (s *Server) ListenStdIO(ctx context.Context, stdin io.WriteCloser, stdout io.ReadCloser, stderr io.ReadCloser) {

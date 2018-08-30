@@ -1,0 +1,102 @@
+t=2018-08-29T21:34:49-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T21:34:56-0700 lvl=info msg=Sign                                                                                        api=signer type=request metadata="{\"remote\":\"127.0.0.1:58349\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T21:38:25-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T21:38:34-0700 lvl=info msg=Sign                                                                                        api=signer type=request metadata="{\"remote\":\"127.0.0.1:58801\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T21:43:17-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T21:43:25-0700 lvl=info msg=Sign                                                                                        api=signer type=request metadata="{\"remote\":\"127.0.0.1:59403\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T21:44:43-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T21:44:49-0700 lvl=info msg=Sign                                                                                        api=signer type=request metadata="{\"remote\":\"127.0.0.1:59579\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T21:48:47-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T21:52:27-0700 lvl=info msg=Sign                                                                                        api=signer type=request metadata="{\"remote\":\"127.0.0.1:60531\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T21:53:36-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T21:53:42-0700 lvl=info msg=Sign                                                                                        api=signer type=request metadata="{\"remote\":\"127.0.0.1:60691\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T21:53:43-0700 lvl=info msg=Sign                                                                                        api=signer type=request metadata="{\"remote\":\"127.0.0.1:60693\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T21:53:44-0700 lvl=info msg=Sign                                                                                        api=signer type=request metadata="{\"remote\":\"127.0.0.1:60697\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T21:53:44-0700 lvl=info msg=Sign                                                                                        api=signer type=request metadata="{\"remote\":\"127.0.0.1:60701\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T21:53:45-0700 lvl=info msg=Sign                                                                                        api=signer type=request metadata="{\"remote\":\"127.0.0.1:60703\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T21:54:17-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T21:54:23-0700 lvl=info msg=Sign                                                                                        api=signer type=request metadata="{\"remote\":\"127.0.0.1:60785\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T21:54:24-0700 lvl=info msg=Sign                                                                                        api=signer type=request metadata="{\"remote\":\"127.0.0.1:60791\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T21:56:08-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T21:57:03-0700 lvl=info msg=List                                                                                        api=signer type=request metadata="{\"remote\":\"127.0.0.1:61118\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}"
+t=2018-08-29T21:57:05-0700 lvl=info msg=Sign                                                                                        api=signer type=request metadata="{\"remote\":\"127.0.0.1:61124\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T21:58:53-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T21:58:59-0700 lvl=info msg=List                                                                                        api=signer type=request metadata="{\"remote\":\"127.0.0.1:61365\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}"
+t=2018-08-29T21:59:06-0700 lvl=info msg=Sign                                                                                        api=signer type=request metadata="{\"remote\":\"127.0.0.1:61379\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T22:02:28-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T22:02:36-0700 lvl=info msg=List                                                                                        api=signer type=request metadata="{\"remote\":\"127.0.0.1:61817\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}"
+t=2018-08-29T22:11:44-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T22:11:58-0700 lvl=info msg=List                                                                                        api=signer type=request metadata="{\"remote\":\"127.0.0.1:62969\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}"
+t=2018-08-29T22:40:30-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T22:40:37-0700 lvl=info msg=List                                                                                        api=signer type=request metadata="{\"remote\":\"127.0.0.1:63807\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}"
+t=2018-08-29T22:41:48-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T22:41:53-0700 lvl=info msg=List                                                                                        api=signer type=request metadata="{\"remote\":\"127.0.0.1:63965\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}"
+t=2018-08-29T22:43:11-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T22:43:16-0700 lvl=info msg=List                                                                                        api=signer type=request metadata="{\"remote\":\"127.0.0.1:64142\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}"
+t=2018-08-29T22:43:16-0700 lvl=info msg=List                                                                                        api=signer type=response data=
+t=2018-08-29T22:45:29-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T22:46:05-0700 lvl=info msg=Sign                                                                                        api=signer type=request metadata="{\"remote\":\"127.0.0.1:64490\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T22:46:05-0700 lvl=info msg=Sign                                                                                        api=signer type=response data=         error="Request denied"
+t=2018-08-29T22:46:17-0700 lvl=info msg=List                                                                                        api=signer type=request  metadata="{\"remote\":\"127.0.0.1:64490\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}"
+t=2018-08-29T22:46:17-0700 lvl=info msg=List                                                                                        api=signer type=response data=
+t=2018-08-29T22:47:21-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T22:47:33-0700 lvl=info msg=Sign                                                                                        api=signer type=request metadata="{\"remote\":\"127.0.0.1:64677\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T22:47:33-0700 lvl=info msg=Sign                                                                                        api=signer type=response data=         error="Request denied"
+t=2018-08-29T22:50:24-0700 lvl=info msg=Configured                                                                                  api=signer audit log=audit.log
+t=2018-08-29T22:53:10-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T22:53:19-0700 lvl=info msg=Sign                                                                                        api=signer type=request metadata="{\"remote\":\"127.0.0.1:65386\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T22:55:18-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T22:56:36-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T23:11:55-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T23:12:06-0700 lvl=info msg=Sign                                                                                        api=signer type=request metadata="{\"remote\":\"127.0.0.1:51348\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T23:13:38-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T23:13:42-0700 lvl=info msg=Sign                                                                                        api=signer type=request metadata="{\"remote\":\"127.0.0.1:51547\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T23:16:03-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T23:16:28-0700 lvl=info msg=Sign                                                                                        api=signer type=request metadata="{\"remote\":\"127.0.0.1:51888\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T23:19:26-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T23:25:43-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T23:27:22-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T23:27:35-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:53258\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T23:27:35-0700 lvl=info msg=Sign       api=signer type=response data=         error="Request denied"
+t=2018-08-29T23:29:33-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T23:29:52-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:53543\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T23:30:59-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T23:31:21-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:53727\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T23:31:21-0700 lvl=info msg=Sign       api=signer type=response data=         error="Request denied"
+t=2018-08-29T23:32:15-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T23:32:20-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:53851\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T23:32:20-0700 lvl=info msg=Sign       api=signer type=response data=         error="Request denied"
+t=2018-08-29T23:32:22-0700 lvl=info msg=List       api=signer type=request  metadata="{\"remote\":\"127.0.0.1:53851\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}"
+t=2018-08-29T23:33:02-0700 lvl=info msg=Sign       api=signer type=request  metadata="{\"remote\":\"127.0.0.1:53942\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T23:34:00-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T23:34:13-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:54091\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T23:34:34-0700 lvl=info msg=Sign                                                                                        api=signer type=request metadata="{\"remote\":\"127.0.0.1:54135\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T23:35:57-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T23:36:12-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:54341\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T23:37:01-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T23:37:16-0700 lvl=info msg=List       api=signer type=request metadata="{\"remote\":\"127.0.0.1:54475\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}"
+t=2018-08-29T23:38:51-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T23:40:01-0700 lvl=info msg=List       api=signer type=request metadata="{\"remote\":\"127.0.0.1:54817\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}"
+t=2018-08-29T23:40:13-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:54843\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T23:40:25-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T23:40:31-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:54883\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T23:41:25-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T23:41:32-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:55009\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T23:41:32-0700 lvl=info msg=Sign       api=signer type=response data=         error="Request denied"
+t=2018-08-29T23:41:53-0700 lvl=info msg=List       api=signer type=request  metadata="{\"remote\":\"127.0.0.1:55009\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}"
+t=2018-08-29T23:42:54-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T23:43:04-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:55208\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T23:43:04-0700 lvl=info msg=Sign       api=signer type=response data=         error="Request denied"
+t=2018-08-29T23:43:05-0700 lvl=info msg=Sign       api=signer type=request  metadata="{\"remote\":\"127.0.0.1:55208\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T23:44:52-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T23:45:26-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:55501\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T23:45:26-0700 lvl=info msg=Sign       api=signer type=response data=         error="Request denied"
+t=2018-08-29T23:45:27-0700 lvl=info msg=Sign       api=signer type=request  metadata="{\"remote\":\"127.0.0.1:55501\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T23:47:03-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T23:50:18-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:56106\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T23:50:18-0700 lvl=info msg=Sign       api=signer type=response data=         error="Request denied"
+t=2018-08-29T23:50:45-0700 lvl=info msg=Sign       api=signer type=request  metadata="{\"remote\":\"127.0.0.1:56106\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T23:51:59-0700 lvl=info msg=Configured api=signer audit log=audit.log
+t=2018-08-29T23:53:49-0700 lvl=info msg=Sign       api=signer type=request metadata="{\"remote\":\"127.0.0.1:56542\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
+t=2018-08-29T23:53:49-0700 lvl=info msg=Sign       api=signer type=response data=         error="Request denied"
+t=2018-08-29T23:53:54-0700 lvl=info msg=Sign       api=signer type=request  metadata="{\"remote\":\"127.0.0.1:56542\",\"local\":\"localhost:8550\",\"scheme\":\"HTTP/1.1\"}" addr="0x9ab95a4082e537e5e6f82fcff41996077143029c [chksum INVALID]" data=aabbccdd
