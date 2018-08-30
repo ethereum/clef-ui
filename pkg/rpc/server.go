@@ -72,7 +72,8 @@ func (s *Server) handleRpc(ctx context.Context, incomingRpcChannel chan []byte, 
 		for !done {
 			var v map[string]interface{}
 			if err := dec.Decode(&v); err != nil {
-				log.Panic(err)
+				log.Println("Failed to decode JSON:", err)
+				continue
 			}
 			method, ok := v["method"]
 			if !ok {

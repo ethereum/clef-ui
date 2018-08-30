@@ -2,6 +2,14 @@
 
 
 [[projects]]
+  branch = "master"
+  digest = "1:f14d1b50e0075fb00177f12a96dd7addf93d1e2883c25befd17285b779549795"
+  name = "github.com/gopherjs/gopherjs"
+  packages = ["js"]
+  pruneopts = "UT"
+  revision = "0210a2f0f73c96103378b0b935f39868e5731809"
+
+[[projects]]
   digest = "1:a8a633510a8566261a472b01fb6e722d1e9307b3e620e7a2d3aeb8857dfeaff7"
   name = "github.com/powerman/rpc-codec"
   packages = ["jsonrpc2"]
@@ -9,9 +17,32 @@
   revision = "3e1ab3b635b7b0d5f771028cd45aa9a827fd9f31"
   version = "v1.0.0"
 
+[[projects]]
+  branch = "master"
+  digest = "1:761ce547c4870c778fbfca68516e476922f1637aa34abbff56445c8a5dec9626"
+  name = "github.com/therecipe/qt"
+  packages = [
+    ".",
+    "core",
+    "gui",
+    "network",
+    "qml",
+    "quick",
+    "quickcontrols2",
+    "widgets",
+  ]
+  pruneopts = "UT"
+  revision = "3cb140eaf569f42241c0d8c0ca4574f7b640fa34"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  input-imports = ["github.com/powerman/rpc-codec/jsonrpc2"]
+  input-imports = [
+    "github.com/powerman/rpc-codec/jsonrpc2",
+    "github.com/therecipe/qt/core",
+    "github.com/therecipe/qt/quick",
+    "github.com/therecipe/qt/quickcontrols2",
+    "github.com/therecipe/qt/widgets",
+  ]
   solver-name = "gps-cdcl"
   solver-version = 1

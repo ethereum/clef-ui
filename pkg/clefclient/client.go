@@ -5,11 +5,11 @@ import (
 	"os/exec"
 	"path"
 	"io"
+	"context"
 	"log"
-	"github.com/therecipe/qt/core"
 )
 
-func StartClef() (io.WriteCloser, io.ReadCloser, io.ReadCloser, error) {
+func StartClef(ctx context.Context) (io.WriteCloser, io.ReadCloser, io.ReadCloser, error) {
 	goPath := os.Getenv("GOPATH")
 	cmd := exec.Command(
 		path.Join(goPath, "bin", "clef"),
@@ -36,9 +36,18 @@ func StartClef() (io.WriteCloser, io.ReadCloser, io.ReadCloser, error) {
 
 	// Start command
 	err = cmd.Start()
+	if err != nil {
+		return nil, nil, nil, err
+	}
 
-	p := &core.QProcess{}
-	log.Print(p)
+	go func() {
+		<-ctx.Done()
+		log.Println("Terminating clef.")
+		err := cmd.Process.Signal(os.Interrupt)
+		if err != nil {
+			log.Println("Failed to terminate Clef cleanly:", err)
+		}
+	}()
 
 	return stdin, stdout, stderr, nil
 }
