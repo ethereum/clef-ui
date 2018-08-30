@@ -2,14 +2,6 @@
 
 
 [[projects]]
-  branch = "master"
-  digest = "1:12bde6a6c4f8baf5c73732678fe7c3c069e2cbd95bf081fb552ec6b7ecfd4198"
-  name = "github.com/kyokan/clef-signer"
-  packages = ["pkg/rpc"]
-  pruneopts = "UT"
-  revision = "b9fee5fbd27526bfa19c7e574451b58e12e17f27"
-
-[[projects]]
   digest = "1:a8a633510a8566261a472b01fb6e722d1e9307b3e620e7a2d3aeb8857dfeaff7"
   name = "github.com/powerman/rpc-codec"
   packages = ["jsonrpc2"]
@@ -20,9 +12,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  input-imports = [
-    "github.com/kyokan/clef-signer/pkg/rpc",
-    "github.com/powerman/rpc-codec/jsonrpc2",
-  ]
+  input-imports = ["github.com/powerman/rpc-codec/jsonrpc2"]
   solver-name = "gps-cdcl"
   solver-version = 1

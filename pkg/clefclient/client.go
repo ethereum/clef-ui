@@ -5,6 +5,8 @@ import (
 	"os/exec"
 	"path"
 	"io"
+	"log"
+	"github.com/therecipe/qt/core"
 )
 
 func StartClef() (io.WriteCloser, io.ReadCloser, io.ReadCloser, error) {
@@ -34,6 +36,9 @@ func StartClef() (io.WriteCloser, io.ReadCloser, io.ReadCloser, error) {
 
 	// Start command
 	err = cmd.Start()
+
+	p := &core.QProcess{}
+	log.Print(p)
 
 	return stdin, stdout, stderr, nil
 }

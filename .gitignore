@@ -18,3 +18,5 @@
 
 build
 vendor
+cmd/clefui/darwin/
+cmd/clefui/deploy/
