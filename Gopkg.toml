@@ -36,3 +36,7 @@
 [[constraint]]
   name = "github.com/powerman/rpc-codec"
   version = "1.0.0"
+
+[[constraint]]
+  name = "github.com/therecipe/qt"
+  revision = "3cb140eaf569f42241c0d8c0ca4574f7b640fa34"

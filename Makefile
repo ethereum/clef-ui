@@ -1,5 +1,5 @@
 deps: dep-tools
-	@dep ensure -ve
+	@dep ensure -v
 
 dep-tools:
 	go get -u github.com/ethereum/go-ethereum
