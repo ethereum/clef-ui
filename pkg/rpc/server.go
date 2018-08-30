@@ -56,7 +56,7 @@ func (rwc *RWCloseCombiner) Close() error {
 	return nil
 }
 
-func (s *Server) handleRpc(ctx context.Context, incomingRpcChannel chan []byte, stdin io.Writer, stdout io.Reader) {
+func (s *Server) handleRpc(ctx context.Context, stdin io.Writer, stdout io.Reader) {
 	done := false
 
 	go func() {
@@ -69,13 +69,9 @@ func (s *Server) handleRpc(ctx context.Context, incomingRpcChannel chan []byte, 
 	rwc := NewRWCloseCombiner(stdin)
 	enc := json.NewEncoder(rwc.Buf)
 	dec := json.NewDecoder(stdout)
-	ready := make(chan bool)
 
 	go func() {
-		shouldNotify := true
-
 		for !done {
-			log.Println("Read a thing")
 			var v map[string]interface{}
 			if err := dec.Decode(&v); err != nil {
 				log.Println("Failed to decode JSON:", err)
@@ -83,7 +79,8 @@ func (s *Server) handleRpc(ctx context.Context, incomingRpcChannel chan []byte, 
 			}
 			method, ok := v["method"]
 			if !ok {
-				panic("need method")
+				log.Printf("Need Method.")
+				continue
 			}
 			v["method"] = fmt.Sprintf("%s.%s", "ClefService", method)
 			log.Println(method)
@@ -91,25 +88,15 @@ func (s *Server) handleRpc(ctx context.Context, incomingRpcChannel chan []byte, 
 				log.Println("Failed to encode JSON:", err)
 				continue
 			}
-
-			if !shouldNotify {
-				continue
-			}
-
-			ready <- true
-			shouldNotify = false
 		}
 	}()
 
-	<-ready
 	log.Println("ready channel receive")
 	go jsonrpc2.ServeConnContext(ctx, rwc)
 }
 
 func (s *Server) ListenStdIO(ctx context.Context, stdin io.WriteCloser, stdout io.ReadCloser, stderr io.ReadCloser) {
-	incomingRpcChannel := make(chan []byte)
-
 	// Non-blockingly echo command output to terminal
 	go io.Copy(os.Stderr, stderr)
-	go s.handleRpc(ctx, incomingRpcChannel, stdin, stdout)
+	go s.handleRpc(ctx, stdin, stdout)
 }

@@ -22,3 +22,4 @@ cmd/clefui/darwin/
 cmd/clefui/deploy/
 .idea
 *.iml
+audit.log

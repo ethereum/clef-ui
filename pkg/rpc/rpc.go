@@ -22,7 +22,7 @@ type OnSignerStartupReply struct {
 }
 
 type ApproveListingArgs struct {
-
+	Address			string
 }
 
 type ApproveListingReply struct {
@@ -36,18 +36,18 @@ func (c *ClefService) OnSignerStartup(params []*OnSignerStartupParam, _ *struct{
 	return nil
 }
 
-func (c *ClefService) ApproveListing(args *ApproveListingArgs, reply *ApproveListingReply) error {
+func (c *ClefService) ApproveListing(args []*ApproveListingArgs, reply *ApproveListingReply) error {
 	fmt.Println("hihihihihihihi")
 	return nil
 }
 
-type ApproveSignDataParams struct {
+type ApproveSignDataParam struct {
 	Address 		string `json:"address"`
 	Raw_data		string `json:"raw_data"`
 	Message			string `json:"message"`
 }
 
-func (c *ClefService) ApproveSignData(params []*ApproveSignDataParams, _ *struct{}) error {
+func (c *ClefService) ApproveSignData(params []*ApproveSignDataParam, _ *struct{}) error {
 	fmt.Println(params[0])
 	return nil
 }
