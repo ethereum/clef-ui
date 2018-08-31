@@ -2,9 +2,18 @@ package rpc
 
 import (
 	"fmt"
+	"github.com/kyokan/clef-ui/internal/ui"
+	"log"
 )
 
 type ClefService struct {
+	ui 		ui.ClefUI
+}
+
+type Meta struct {
+	Transport 		string `json:"scheme"`
+	Remote 			string `json:"remote"`
+	Local 			string `json:"local"`
 }
 
 type OnSignerStartupInfo struct {
@@ -45,10 +54,36 @@ type ApproveSignDataParam struct {
 	Address 		string `json:"address"`
 	Raw_data		string `json:"raw_data"`
 	Message			string `json:"message"`
+	Hash 			string `json:"hash"`
+	Meta 			Meta `json:"meta"`
 }
 
-func (c *ClefService) ApproveSignData(params []*ApproveSignDataParam, _ *struct{}) error {
-	fmt.Println(params[0])
+func (c *ClefService) ApproveSignData(params []*ApproveSignDataParam, reply *ApproveListingReply) error {
+	//c.ui.Channel <- map[string]string{
+	//c.ui.Channel <- map[string]string{
+	p := map[string]string{
+		"address": params[0].Address,
+		"hash": params[0].Hash,
+		"message": params[0].Message,
+		"raw_data": params[0].Raw_data,
+		"transport": params[0].Meta.Transport,
+		"remote": params[0].Meta.Remote,
+		"local": params[0].Meta.Local,
+	}
+
+	ch := make(chan map[string]string)
+	r := ui.RpcRequest{
+		Params: p,
+		Channel: ch,
+	}
+
+	c.ui.Channel <- r
+
+	res := <-ch
+	log.Println("New Response!")
+	reply.Approved = res["approved"] == "true"
+	reply.Password = res["password"]
+
 	return nil
 }
 

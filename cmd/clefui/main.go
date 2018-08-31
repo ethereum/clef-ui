@@ -1,13 +1,13 @@
 package main
 
 import (
-	"os"
 	"context"
-	"os/signal"
 	"log"
+	"os"
+	"os/signal"
 
-	"github.com/kyokan/clef-ui/pkg/rpc"
 	"github.com/kyokan/clef-ui/pkg/clefclient"
+	"github.com/kyokan/clef-ui/pkg/rpc"
 	"github.com/kyokan/clef-ui/internal/ui"
 )
 
@@ -25,8 +25,10 @@ func main() {
 		return
 	}
 
+	clefUi := ui.NewClefUI(ctx, stopChan)
+
 	server := rpc.NewServer()
-	server.ListenStdIO(ctx, stdin, stdout, stderr)
+	server.ListenStdIO(ctx, stdin, stdout, stderr, clefUi)
 
 	// Watch for os interrupt
 	go func() {
@@ -41,7 +43,10 @@ func main() {
 		}
 	}()
 
-	ui.Start(ctx, stopChan)
+	//ui.Start(ctx, stopChan)
+	log.Println("Start App Exec")
+	clefUi.View.Show()
+	clefUi.App.Exec()
 	// Exit when done
 	<-done
 }

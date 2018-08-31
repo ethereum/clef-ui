@@ -23,3 +23,7 @@ cmd/clefui/deploy/
 .idea
 *.iml
 audit.log
+*.cpp
+moc.*
+*.h
+moc_cgo_darwin_darwin_amd64.*

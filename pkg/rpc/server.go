@@ -2,6 +2,7 @@ package rpc
 
 import (
 	"context"
+	"github.com/kyokan/clef-ui/internal/ui"
 	"github.com/powerman/rpc-codec/jsonrpc2"
 	"io"
 	"log"
@@ -14,8 +15,7 @@ import (
 	"sync"
 )
 
-type Server struct {
-}
+type Server struct {}
 
 func NewServer() *Server {
 	return &Server{}
@@ -42,6 +42,8 @@ func (rwc *RWCloseCombiner) Read(p []byte) (int, error) {
 	defer rwc.mtx.Unlock()
 	if rwc.Buf.Len() == 0 {
 		return 0, nil
+	} else {
+		log.Println(rwc.Buf.String())
 	}
 	return rwc.Buf.Read(p)
 }
@@ -56,7 +58,7 @@ func (rwc *RWCloseCombiner) Close() error {
 	return nil
 }
 
-func (s *Server) handleRpc(ctx context.Context, stdin io.Writer, stdout io.Reader) {
+func (s *Server) handleRpc(ctx context.Context, stdin io.Writer, stdout io.Reader, clefUi ui.ClefUI) {
 	done := false
 
 	go func() {
@@ -65,7 +67,9 @@ func (s *Server) handleRpc(ctx context.Context, stdin io.Writer, stdout io.Reade
 		done = true
 	}()
 
-	rpc.Register(&ClefService{})
+	rpc.Register(&ClefService{
+		ui: clefUi,
+	})
 	rwc := NewRWCloseCombiner(stdin)
 	enc := json.NewEncoder(rwc.Buf)
 	dec := json.NewDecoder(stdout)
@@ -95,8 +99,8 @@ func (s *Server) handleRpc(ctx context.Context, stdin io.Writer, stdout io.Reade
 	go jsonrpc2.ServeConnContext(ctx, rwc)
 }
 
-func (s *Server) ListenStdIO(ctx context.Context, stdin io.WriteCloser, stdout io.ReadCloser, stderr io.ReadCloser) {
+func (s *Server) ListenStdIO(ctx context.Context, stdin io.WriteCloser, stdout io.ReadCloser, stderr io.ReadCloser, clefUi *ui.ClefUI) {
 	// Non-blockingly echo command output to terminal
 	go io.Copy(os.Stderr, stderr)
-	go s.handleRpc(ctx, stdin, stdout)
+	go s.handleRpc(ctx, stdin, stdout, *clefUi)
 }
