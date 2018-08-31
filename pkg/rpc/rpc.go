@@ -3,7 +3,6 @@ package rpc
 import (
 	"fmt"
 	"github.com/kyokan/clef-ui/internal/ui"
-	"log"
 )
 
 type ClefService struct {
@@ -75,14 +74,16 @@ func (c *ClefService) ApproveSignData(params []*ApproveSignDataParam, reply *App
 	r := ui.RpcRequest{
 		Params: p,
 		Channel: ch,
+		Method: "ApproveSignData",
 	}
 
 	c.ui.Channel <- r
 
 	res := <-ch
-	log.Println("New Response!")
 	reply.Approved = res["approved"] == "true"
 	reply.Password = res["password"]
+
+	c.ui.Channel <- ui.RpcRequest{ Method: "" }
 
 	return nil
 }

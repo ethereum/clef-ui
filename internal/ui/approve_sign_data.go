@@ -61,7 +61,7 @@ func (c *ApproveSignDataUI) addButtons (wrapper *widgets.QWidget) {
 	row.SetLayout(box)
 	wrapper.Layout().AddWidget(row)
 
-	decline := widgets.NewQPushButton2("remove last item", nil)
+	decline := widgets.NewQPushButton2("Reject", nil)
 	decline.ConnectClicked(func(bool) {
 		c.responseChannel <- map[string]string{
 			"approved": "false",
@@ -70,7 +70,7 @@ func (c *ApproveSignDataUI) addButtons (wrapper *widgets.QWidget) {
 	})
 	row.Layout().AddWidget(decline)
 
-	approve := widgets.NewQPushButton2("remove last item", nil)
+	approve := widgets.NewQPushButton2("Approve", nil)
 	approve.ConnectClicked(func(bool) {
 		c.responseChannel <- map[string]string{
 			"approved": "true",

@@ -1,18 +1,18 @@
 package ui
 
 import (
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/widgets"
-	"os"
-	"github.com/therecipe/qt/quickcontrols2"
 	"context"
-	//"runtime"
+	"github.com/therecipe/qt/core"
+	"github.com/therecipe/qt/quickcontrols2"
+	"github.com/therecipe/qt/widgets"
 	"log"
+	"os"
 )
 
 type RpcRequest struct {
 	Params 		map[string]string
 	Channel 	chan map[string]string
+	Method 		string
 }
 
 type ClefUI struct {
@@ -46,12 +46,13 @@ func NewGethDirUI() *widgets.QWidget {
 
 func NewClefUI(ctx context.Context, stopChan chan bool) *ClefUI {
 	uiChannel := make(chan RpcRequest)
+
 	// enable high dpi scaling
 	// useful for devices with high pixel density displays
 	// such as smartphones, retina displays, ...
 	core.QCoreApplication_SetAttribute(core.Qt__AA_EnableHighDpiScaling, true)
 	core.QCoreApplication_SetApplicationName("Clef")
-	// needs to be called once before you can start using QML/Quick
+
 	app := widgets.NewQApplication(len(os.Args), os.Args)
 	view := widgets.NewQMainWindow(nil, 0)
 	view.SetWindowTitle(core.QCoreApplication_ApplicationName())
@@ -73,15 +74,6 @@ func NewClefUI(ctx context.Context, stopChan chan bool) *ClefUI {
 	// Default, Fusion, Imagine, Universal
 	quickcontrols2.QQuickStyle_SetStyle("Material")
 
-	// create the quick view
-	// with a minimum size of 250*200
-	// set the window title to "Hello QML/Quick Example"
-	// and let the root item of the view resize itself to the size of the view automatically
-	//view := quick.NewQQuickView(nil)
-	//view.SetMinimumSize(core.NewQSize2(250, 200))
-	//view.SetResizeMode(quick.QQuickView__SizeRootObjectToView)
-	//view.SetTitle("Hello QML/Quick Example")
-
 	c := &ClefUI{
 		App:     app,
 		View:    view,
@@ -91,19 +83,26 @@ func NewClefUI(ctx context.Context, stopChan chan bool) *ClefUI {
 	go func() {
 		for {
 			req := <-uiChannel
-			view.SetWindowTitle("Approve Sign Data")
+			log.Println(req)
+			switch req.Method {
+			case "ApproveSignData":
+				view.SetWindowTitle("Approve Sign Data")
 
-			approveSignDataView.SetFrom(req.Params["address"])
-			approveSignDataView.SetMessage(req.Params["message"])
-			approveSignDataView.SetEndpoint(req.Params["local"])
-			approveSignDataView.SetRawData(req.Params["raw_data"])
-			approveSignDataView.SetRemote(req.Params["remote"])
-			approveSignDataView.SetTransport(req.Params["transport"])
-			approveSignDataView.SetTxHash(req.Params["hash"])
-			approveSignDataView.SetResponseChannel(req.Channel)
+				approveSignDataView.SetFrom(req.Params["address"])
+				approveSignDataView.SetMessage(req.Params["message"])
+				approveSignDataView.SetEndpoint(req.Params["local"])
+				approveSignDataView.SetRawData(req.Params["raw_data"])
+				approveSignDataView.SetRemote(req.Params["remote"])
+				approveSignDataView.SetTransport(req.Params["transport"])
+				approveSignDataView.SetTxHash(req.Params["hash"])
+				approveSignDataView.SetResponseChannel(req.Channel)
 
-			gethDirView.Hide()
-			approveSignDataView.UI.Show()
+				gethDirView.Hide()
+				approveSignDataView.UI.Show()
+			default:
+				view.SetWindowTitle("Clef")
+				approveSignDataView.UI.Hide()
+			}
 		}
 	}()
 
