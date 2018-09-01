@@ -9,6 +9,12 @@ import (
 	"os"
 )
 
+const (
+	Default string = ""
+	ApproveSignData string	= "ApproveSignData"
+	OnSignerStartup string = "OnSignerStartup"
+)
+
 type RpcRequest struct {
 	Params 		map[string]string
 	Channel 	chan map[string]string
@@ -16,36 +22,15 @@ type RpcRequest struct {
 }
 
 type ClefUI struct {
-	App 	*widgets.QApplication
-	View 	*widgets.QMainWindow
-	Channel chan RpcRequest
+	App 				*widgets.QApplication
+	Mainw 				*widgets.QMainWindow
+	currentView 		string
+	IncomingRequest	 	chan RpcRequest
+	views 				map[string]interface{}
 }
 
-func NewGethDirUI() *widgets.QWidget {
-	// Create View Widget
-	view := widgets.NewQWidget(nil, 0)
-	view.SetLayout(widgets.NewQVBoxLayout())
-
-	// Create Input
-	input := widgets.NewQLineEdit(nil)
-	input.SetPlaceholderText("Write something ...")
-
-	// Create Submit Button
-	button := widgets.NewQPushButton2("Submit", nil)
-	button.ConnectClicked(func(bool) {
-		log.Println("I am clicked")
-	})
-
-	// Add widgets to view
-	view.Layout().AddWidget(input)
-	view.Layout().AddWidget(button)
-	view.Hide()
-
-	return view
-}
-
-func NewClefUI(ctx context.Context, stopChan chan bool) *ClefUI {
-	uiChannel := make(chan RpcRequest)
+func (c *ClefUI) initApp() {
+	incomingRequest := make(chan RpcRequest)
 
 	// enable high dpi scaling
 	// useful for devices with high pixel density displays
@@ -54,54 +39,63 @@ func NewClefUI(ctx context.Context, stopChan chan bool) *ClefUI {
 	core.QCoreApplication_SetApplicationName("Clef")
 
 	app := widgets.NewQApplication(len(os.Args), os.Args)
-	view := widgets.NewQMainWindow(nil, 0)
-	view.SetWindowTitle(core.QCoreApplication_ApplicationName())
-	view.SetStyleSheetDefault("background-color: #ecf0f1;")
+	mainw := widgets.NewQMainWindow(nil, 0)
+	mainw.SetWindowTitle(core.QCoreApplication_ApplicationName())
+	mainw.SetStyleSheetDefault("background-color: #ecf0f1;")
 
 	widget := widgets.NewQWidget(nil, 0)
 	widget.SetLayout(widgets.NewQVBoxLayout())
 
-	gethDirView := NewGethDirUI()
-	approveSignDataView := NewApproveSignDataUI()
-	widget.Layout().AddWidget(gethDirView)
-	widget.Layout().AddWidget(approveSignDataView.UI)
-
-	view.SetCentralWidget(widget)
-
+	mainw.SetCentralWidget(widget)
+	mainw.Show()
 
 	// use the material style
 	// the other inbuild styles are:
 	// Default, Fusion, Imagine, Universal
 	quickcontrols2.QQuickStyle_SetStyle("Material")
 
-	c := &ClefUI{
-		App:     app,
-		View:    view,
-		Channel: uiChannel,
-	}
+	c.App = app
+	c.Mainw = mainw
+	c.IncomingRequest = incomingRequest
+}
+
+func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
+	c := &ClefUI{}
+	c.initApp()
+
+	login := NewLoginUI()
+	approvesigndata := NewApproveSignDataUI()
+
+	c.Mainw.Layout().AddWidget(login)
+	c.Mainw.Layout().AddWidget(approvesigndata.UI)
 
 	go func() {
 		for {
-			req := <-uiChannel
+			req := <-c.IncomingRequest
 			log.Println(req)
 			switch req.Method {
-			case "ApproveSignData":
-				view.SetWindowTitle("Approve Sign Data")
+			case ApproveSignData:
+				c.Mainw.SetWindowTitle("Sign Data")
 
-				approveSignDataView.SetFrom(req.Params["address"])
-				approveSignDataView.SetMessage(req.Params["message"])
-				approveSignDataView.SetEndpoint(req.Params["local"])
-				approveSignDataView.SetRawData(req.Params["raw_data"])
-				approveSignDataView.SetRemote(req.Params["remote"])
-				approveSignDataView.SetTransport(req.Params["transport"])
-				approveSignDataView.SetTxHash(req.Params["hash"])
-				approveSignDataView.SetResponseChannel(req.Channel)
+				approvesigndata.SetFrom(req.Params["address"])
+				approvesigndata.SetMessage(req.Params["message"])
+				approvesigndata.SetEndpoint(req.Params["local"])
+				approvesigndata.SetRawData(req.Params["raw_data"])
+				approvesigndata.SetRemote(req.Params["remote"])
+				approvesigndata.SetTransport(req.Params["transport"])
+				approvesigndata.SetTxHash(req.Params["hash"])
+				approvesigndata.SetResponseChannel(req.Channel)
 
-				gethDirView.Hide()
-				approveSignDataView.UI.Show()
+				login.Hide()
+				approvesigndata.UI.Show()
+			case OnSignerStartup:
+				c.Mainw.SetWindowTitle("Start Clef")
+				login.Show()
+				approvesigndata.UI.Hide()
 			default:
-				view.SetWindowTitle("Clef")
-				approveSignDataView.UI.Hide()
+				c.Mainw.SetWindowTitle("Clef")
+				login.Hide()
+				approvesigndata.UI.Hide()
 			}
 		}
 	}()
@@ -112,11 +106,11 @@ func NewClefUI(ctx context.Context, stopChan chan bool) *ClefUI {
 		if didQuit {
 			return
 		}
-		app.Quit()
+		c.App.Quit()
 	}()
-	app.ConnectLastWindowClosed(func() {
+	c.App.ConnectLastWindowClosed(func() {
 		didQuit = true
-		stopChan <- true
+		uiClose <- true
 	})
 
 	return c

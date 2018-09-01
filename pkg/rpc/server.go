@@ -2,80 +2,47 @@ package rpc
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
 	"github.com/kyokan/clef-ui/internal/ui"
 	"github.com/powerman/rpc-codec/jsonrpc2"
 	"io"
 	"log"
-	"os"
-
-	"bytes"
-	"encoding/json"
-	"fmt"
 	"net/rpc"
-	"sync"
 )
 
-type Server struct {}
-
-func NewServer() *Server {
-	return &Server{}
+type Server struct {
+	ctx          context.Context
+	stdin        io.Writer
+	stdout       io.Reader
+	stopHandling bool
 }
 
-type RWCloseCombiner struct {
-	mtx         sync.Mutex
-	w           io.Writer
-	Buf         *bytes.Buffer
-	newDataChan chan bool
-}
-
-func NewRWCloseCombiner(w io.Writer) *RWCloseCombiner {
-	var buf bytes.Buffer
-
-	return &RWCloseCombiner{
-		w:   w,
-		Buf: &buf,
+func NewServer(ctx context.Context, stdin io.Writer, stdout io.Reader) *Server {
+	s := &Server{
+		ctx:ctx,
+		stdin:stdin,
+		stdout:stdout,
 	}
-}
-
-func (rwc *RWCloseCombiner) Read(p []byte) (int, error) {
-	rwc.mtx.Lock()
-	defer rwc.mtx.Unlock()
-	if rwc.Buf.Len() == 0 {
-		return 0, nil
-	} else {
-		log.Println(rwc.Buf.String())
-	}
-	return rwc.Buf.Read(p)
-}
-
-func (rwc *RWCloseCombiner) Write(p []byte) (int, error) {
-	rwc.mtx.Lock()
-	defer rwc.mtx.Unlock()
-	return rwc.w.Write(p)
-}
-
-func (rwc *RWCloseCombiner) Close() error {
-	return nil
-}
-
-func (s *Server) handleRpc(ctx context.Context, stdin io.Writer, stdout io.Reader, clefUi ui.ClefUI) {
-	done := false
 
 	go func() {
-		<-ctx.Done()
-		log.Print("Stopped incoming rpc request handlers.")
-		done = true
+		<-s.ctx.Done()
+		log.Println("Stopped RPC Request Handling.")
+		s.stopHandling = true
 	}()
 
-	rpc.Register(&ClefService{
-		ui: clefUi,
-	})
-	rwc := NewRWCloseCombiner(stdin)
+	return s
+}
+
+func (s *Server) Start(clefUI ui.ClefUI) {
+	rpc.Register(&ClefService{ ui: clefUI })
+	rwc := NewRWCloseCombiner(s.stdin)
 	enc := json.NewEncoder(rwc.Buf)
-	dec := json.NewDecoder(stdout)
+	dec := json.NewDecoder(s.stdout)
 
 	go func() {
-		for !done {
+		for !s.stopHandling {
+			// Decode JSON
 			var v map[string]interface{}
 			if err := dec.Decode(&v); err != nil {
 				log.Println("Failed to decode JSON:", err)
@@ -83,11 +50,14 @@ func (s *Server) handleRpc(ctx context.Context, stdin io.Writer, stdout io.Reade
 			}
 			method, ok := v["method"]
 			if !ok {
-				log.Printf("Need Method.")
+				log.Printf("No RPC method found in JSON.")
 				continue
 			}
+
+			// Change method name from "RPCMethodName" to "ClefService.RPCMethodName"
+			// The jsonrpc2 library we use expect a dot-separated method name
 			v["method"] = fmt.Sprintf("%s.%s", "ClefService", method)
-			log.Println(method)
+			log.Printf("Incoming RPC Request - %v", method)
 			if err := enc.Encode(&v); err != nil {
 				log.Println("Failed to encode JSON:", err)
 				continue
@@ -95,12 +65,5 @@ func (s *Server) handleRpc(ctx context.Context, stdin io.Writer, stdout io.Reade
 		}
 	}()
 
-	log.Println("ready channel receive")
-	go jsonrpc2.ServeConnContext(ctx, rwc)
-}
-
-func (s *Server) ListenStdIO(ctx context.Context, stdin io.WriteCloser, stdout io.ReadCloser, stderr io.ReadCloser, clefUi *ui.ClefUI) {
-	// Non-blockingly echo command output to terminal
-	go io.Copy(os.Stderr, stderr)
-	go s.handleRpc(ctx, stdin, stdout, *clefUi)
+	go jsonrpc2.ServeConnContext(s.ctx, rwc)
 }

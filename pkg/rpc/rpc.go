@@ -41,6 +41,11 @@ type ApproveListingReply struct {
 func (c *ClefService) OnSignerStartup(params []*OnSignerStartupParam, _ *struct{}) error {
 	//fmt.Println(params[0].Info.Extapi_http)
 	fmt.Println("hihihihihihihi")
+	r := ui.RpcRequest{
+		Method: ui.OnSignerStartup,
+	}
+
+	c.ui.IncomingRequest <- r
 	return nil
 }
 
@@ -74,16 +79,16 @@ func (c *ClefService) ApproveSignData(params []*ApproveSignDataParam, reply *App
 	r := ui.RpcRequest{
 		Params: p,
 		Channel: ch,
-		Method: "ApproveSignData",
+		Method: ui.ApproveSignData,
 	}
 
-	c.ui.Channel <- r
+	c.ui.IncomingRequest <- r
 
 	res := <-ch
 	reply.Approved = res["approved"] == "true"
 	reply.Password = res["password"]
 
-	c.ui.Channel <- ui.RpcRequest{ Method: "" }
+	c.ui.IncomingRequest <- ui.RpcRequest{ Method: "" }
 
 	return nil
 }

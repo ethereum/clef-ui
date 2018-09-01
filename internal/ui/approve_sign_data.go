@@ -96,13 +96,8 @@ func NewApproveSignDataUI() *ApproveSignDataUI {
 	addTitleLabel(widget, "Request Info")
 
 	setRemote := addNewRow(widget,"Remote", "")
-	setRemote("127.0.0.1:123")
-
 	setTransport := addNewRow(widget,"Transport", "")
-	setTransport("127.0.0.1:123")
-
 	setEndpoint := addNewRow(widget,"Local Endpoint", "")
-	setEndpoint("127.0.0.1:123")
 
 	addTitleLabel(widget, "Transaction Info")
 

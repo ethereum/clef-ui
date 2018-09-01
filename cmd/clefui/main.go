@@ -2,51 +2,60 @@ package main
 
 import (
 	"context"
+	"github.com/kyokan/clef-ui/internal/ui"
+	"github.com/kyokan/clef-ui/pkg/clefclient"
+	"github.com/kyokan/clef-ui/pkg/rpc"
+	"io"
 	"log"
 	"os"
 	"os/signal"
-
-	"github.com/kyokan/clef-ui/pkg/clefclient"
-	"github.com/kyokan/clef-ui/pkg/rpc"
-	"github.com/kyokan/clef-ui/internal/ui"
 )
 
 func main() {
+	// Make all the channels
+	uiClose := make(chan bool)
+	appCancel := make(chan os.Signal, 1)
+	readyToClose := make(chan bool)
+
+	// notify appCancel channel on Ctrl + C
+	signal.Notify(appCancel, os.Interrupt)
+
 	// trap Ctrl+C and call cancel on the context
 	ctx, cancel := context.WithCancel(context.Background())
-	stopChan := make(chan bool)
-	cancelChannel := make(chan os.Signal, 1)
-	done := make(chan bool)
-	signal.Notify(cancelChannel, os.Interrupt)
 
+	// Start Clef Client
 	stdin, stdout, stderr, err := clefclient.StartClef(ctx)
 	if err != nil {
 		log.Panicf("Cannot start clef: %s", err)
 		return
 	}
 
-	clefUi := ui.NewClefUI(ctx, stopChan)
+	// Just Copy stderr to terminal for now
+	// TODO: Handle Standard Error properly
+	go io.Copy(os.Stderr, stderr)
 
-	server := rpc.NewServer()
-	server.ListenStdIO(ctx, stdin, stdout, stderr, clefUi)
+	clefUi := ui.NewClefUI(ctx, uiClose)
+
+	server := rpc.NewServer(ctx, stdin, stdout)
+	server.Start(*clefUi)
 
 	// Watch for os interrupt
 	go func() {
 		select {
-		case <-cancelChannel:
+		case <-appCancel:
 			cancel()
-			signal.Stop(cancelChannel)
-			done <- true
-		case <-stopChan:
+			signal.Stop(appCancel)
+			readyToClose <- true
+		case <-uiClose:
 			cancel()
-			done <- true
+			readyToClose <- true
 		}
 	}()
 
 	//ui.Start(ctx, stopChan)
-	log.Println("Start App Exec")
-	clefUi.View.Show()
+
 	clefUi.App.Exec()
 	// Exit when done
-	<-done
+	<-readyToClose
+	log.Println("Clef UI is terminated.")
 }
