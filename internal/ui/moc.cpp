@@ -6,63 +6,42 @@
 #include "moc.h"
 #include "_cgo_export.h"
 
-#include <QAction>
-#include <QActionEvent>
+#include <QAbstractItemModel>
+#include <QAbstractListModel>
 #include <QByteArray>
 #include <QCamera>
 #include <QCameraImageCapture>
 #include <QChildEvent>
-#include <QCloseEvent>
-#include <QContextMenuEvent>
 #include <QDBusPendingCall>
 #include <QDBusPendingCallWatcher>
-#include <QDrag>
-#include <QDragEnterEvent>
-#include <QDragLeaveEvent>
-#include <QDragMoveEvent>
-#include <QDropEvent>
 #include <QEvent>
 #include <QExtensionFactory>
 #include <QExtensionManager>
-#include <QFocusEvent>
 #include <QGraphicsObject>
 #include <QGraphicsWidget>
-#include <QHideEvent>
-#include <QIcon>
-#include <QInputMethod>
-#include <QInputMethodEvent>
-#include <QKeyEvent>
-#include <QLabel>
+#include <QHash>
 #include <QLayout>
+#include <QMap>
 #include <QMediaPlaylist>
 #include <QMediaRecorder>
 #include <QMetaMethod>
-#include <QMouseEvent>
-#include <QMoveEvent>
-#include <QMovie>
+#include <QMimeData>
+#include <QModelIndex>
 #include <QObject>
 #include <QOffscreenSurface>
 #include <QPaintDevice>
 #include <QPaintDeviceWindow>
-#include <QPaintEngine>
-#include <QPaintEvent>
-#include <QPainter>
 #include <QPdfWriter>
-#include <QPicture>
-#include <QPixmap>
-#include <QPoint>
+#include <QPersistentModelIndex>
 #include <QQuickItem>
 #include <QRadioData>
-#include <QResizeEvent>
-#include <QShowEvent>
 #include <QSize>
 #include <QString>
-#include <QTabletEvent>
 #include <QTime>
 #include <QTimer>
 #include <QTimerEvent>
 #include <QVariant>
-#include <QWheelEvent>
+#include <QVector>
 #include <QWidget>
 #include <QWindow>
 
@@ -155,103 +134,92 @@ void CtxObject721036_CtxObject721036_QRegisterMetaTypes() {
 	qRegisterMetaType<QString>();
 }
 
-class CustomLabel721036: public QLabel
+class CustomListModel721036: public QAbstractListModel
 {
 Q_OBJECT
 public:
-	CustomLabel721036(QWidget *parent = Q_NULLPTR, Qt::WindowFlags fo = Qt::WindowFlags()) : QLabel(parent, fo) {qRegisterMetaType<quintptr>("quintptr");CustomLabel721036_CustomLabel721036_QRegisterMetaType();CustomLabel721036_CustomLabel721036_QRegisterMetaTypes();callbackCustomLabel721036_Constructor(this);};
-	CustomLabel721036(const QString &text, QWidget *parent = Q_NULLPTR, Qt::WindowFlags fo = Qt::WindowFlags()) : QLabel(text, parent, fo) {qRegisterMetaType<quintptr>("quintptr");CustomLabel721036_CustomLabel721036_QRegisterMetaType();CustomLabel721036_CustomLabel721036_QRegisterMetaTypes();callbackCustomLabel721036_Constructor(this);};
-	void Signal_UpdateText(QString v0) { QByteArray tea1dd7 = v0.toUtf8(); Moc_PackedString v0Packed = { const_cast<char*>(tea1dd7.prepend("WHITESPACE").constData()+10), tea1dd7.size()-10 };callbackCustomLabel721036_UpdateText(this, v0Packed); };
-	 ~CustomLabel721036() { callbackCustomLabel721036_DestroyCustomLabel(this); };
-	bool event(QEvent * e) { return callbackCustomLabel721036_Event(this, e) != 0; };
-	bool focusNextPrevChild(bool next) { return callbackCustomLabel721036_FocusNextPrevChild(this, next) != 0; };
+	CustomListModel721036(QObject *parent = Q_NULLPTR) : QAbstractListModel(parent) {qRegisterMetaType<quintptr>("quintptr");CustomListModel721036_CustomListModel721036_QRegisterMetaType();CustomListModel721036_CustomListModel721036_QRegisterMetaTypes();callbackCustomListModel721036_Constructor(this);};
+	void Signal_Remove() { callbackCustomListModel721036_Remove(this); };
+	void Signal_Add(QList<QVariant> obj) { callbackCustomListModel721036_Add(this, ({ QList<QVariant>* tmpValue = new QList<QVariant>(obj); Moc_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_Edit(QString address, QString checked) { QByteArray tc66218 = address.toUtf8(); Moc_PackedString addressPacked = { const_cast<char*>(tc66218.prepend("WHITESPACE").constData()+10), tc66218.size()-10 };QByteArray t75e4ae = checked.toUtf8(); Moc_PackedString checkedPacked = { const_cast<char*>(t75e4ae.prepend("WHITESPACE").constData()+10), t75e4ae.size()-10 };callbackCustomListModel721036_Edit(this, addressPacked, checkedPacked); };
+	 ~CustomListModel721036() { callbackCustomListModel721036_DestroyCustomListModel(this); };
+	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackCustomListModel721036_DropMimeData(this, const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
 	
-	void changeEvent(QEvent * ev) { callbackCustomLabel721036_ChangeEvent(this, ev); };
-	void clear() { callbackCustomLabel721036_Clear(this); };
-	void contextMenuEvent(QContextMenuEvent * ev) { callbackCustomLabel721036_ContextMenuEvent(this, ev); };
-	void focusInEvent(QFocusEvent * ev) { callbackCustomLabel721036_FocusInEvent(this, ev); };
-	void focusOutEvent(QFocusEvent * ev) { callbackCustomLabel721036_FocusOutEvent(this, ev); };
-	void keyPressEvent(QKeyEvent * ev) { callbackCustomLabel721036_KeyPressEvent(this, ev); };
-	void Signal_LinkActivated(const QString & link) { QByteArray t4f0aa5 = link.toUtf8(); Moc_PackedString linkPacked = { const_cast<char*>(t4f0aa5.prepend("WHITESPACE").constData()+10), t4f0aa5.size()-10 };callbackCustomLabel721036_LinkActivated(this, linkPacked); };
-	void Signal_LinkHovered(const QString & link) { QByteArray t4f0aa5 = link.toUtf8(); Moc_PackedString linkPacked = { const_cast<char*>(t4f0aa5.prepend("WHITESPACE").constData()+10), t4f0aa5.size()-10 };callbackCustomLabel721036_LinkHovered(this, linkPacked); };
-	void mouseMoveEvent(QMouseEvent * ev) { callbackCustomLabel721036_MouseMoveEvent(this, ev); };
-	void mousePressEvent(QMouseEvent * ev) { callbackCustomLabel721036_MousePressEvent(this, ev); };
-	void mouseReleaseEvent(QMouseEvent * ev) { callbackCustomLabel721036_MouseReleaseEvent(this, ev); };
-	void paintEvent(QPaintEvent * vqp) { callbackCustomLabel721036_PaintEvent(this, vqp); };
-	void setMovie(QMovie * movie) { callbackCustomLabel721036_SetMovie(this, movie); };
-	void setNum(double num) { callbackCustomLabel721036_SetNum2(this, num); };
-	void setNum(int num) { callbackCustomLabel721036_SetNum(this, num); };
-	void setPicture(const QPicture & picture) { callbackCustomLabel721036_SetPicture(this, const_cast<QPicture*>(&picture)); };
-	void setPixmap(const QPixmap & vqp) { callbackCustomLabel721036_SetPixmap(this, const_cast<QPixmap*>(&vqp)); };
-	void setText(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); Moc_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackCustomLabel721036_SetText(this, vqsPacked); };
-	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackCustomLabel721036_MinimumSizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
-	QSize sizeHint() const { return *static_cast<QSize*>(callbackCustomLabel721036_SizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
+	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackCustomListModel721036_Index(const_cast<void*>(static_cast<const void*>(this)), row, column, const_cast<QModelIndex*>(&parent))); };
+	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackCustomListModel721036_Sibling(const_cast<void*>(static_cast<const void*>(this)), row, column, const_cast<QModelIndex*>(&idx))); };
+	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackCustomListModel721036_Flags(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
 	
-	int heightForWidth(int w) const { return callbackCustomLabel721036_HeightForWidth(const_cast<void*>(static_cast<const void*>(this)), w); };
-	bool close() { return callbackCustomLabel721036_Close(this) != 0; };
-	void actionEvent(QActionEvent * event) { callbackCustomLabel721036_ActionEvent(this, event); };
-	void closeEvent(QCloseEvent * event) { callbackCustomLabel721036_CloseEvent(this, event); };
-	void Signal_CustomContextMenuRequested(const QPoint & pos) { callbackCustomLabel721036_CustomContextMenuRequested(this, const_cast<QPoint*>(&pos)); };
-	void dragEnterEvent(QDragEnterEvent * event) { callbackCustomLabel721036_DragEnterEvent(this, event); };
-	void dragLeaveEvent(QDragLeaveEvent * event) { callbackCustomLabel721036_DragLeaveEvent(this, event); };
-	void dragMoveEvent(QDragMoveEvent * event) { callbackCustomLabel721036_DragMoveEvent(this, event); };
-	void dropEvent(QDropEvent * event) { callbackCustomLabel721036_DropEvent(this, event); };
-	void enterEvent(QEvent * event) { callbackCustomLabel721036_EnterEvent(this, event); };
-	void hide() { callbackCustomLabel721036_Hide(this); };
-	void hideEvent(QHideEvent * event) { callbackCustomLabel721036_HideEvent(this, event); };
-	void inputMethodEvent(QInputMethodEvent * event) { callbackCustomLabel721036_InputMethodEvent(this, event); };
-	void keyReleaseEvent(QKeyEvent * event) { callbackCustomLabel721036_KeyReleaseEvent(this, event); };
-	void leaveEvent(QEvent * event) { callbackCustomLabel721036_LeaveEvent(this, event); };
-	void lower() { callbackCustomLabel721036_Lower(this); };
-	void mouseDoubleClickEvent(QMouseEvent * event) { callbackCustomLabel721036_MouseDoubleClickEvent(this, event); };
-	void moveEvent(QMoveEvent * event) { callbackCustomLabel721036_MoveEvent(this, event); };
-	void raise() { callbackCustomLabel721036_Raise(this); };
-	void repaint() { callbackCustomLabel721036_Repaint(this); };
-	void resizeEvent(QResizeEvent * event) { callbackCustomLabel721036_ResizeEvent(this, event); };
-	void setDisabled(bool disable) { callbackCustomLabel721036_SetDisabled(this, disable); };
-	void setEnabled(bool vbo) { callbackCustomLabel721036_SetEnabled(this, vbo); };
-	void setFocus() { callbackCustomLabel721036_SetFocus2(this); };
-	void setHidden(bool hidden) { callbackCustomLabel721036_SetHidden(this, hidden); };
-	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); Moc_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackCustomLabel721036_SetStyleSheet(this, styleSheetPacked); };
-	void setVisible(bool visible) { callbackCustomLabel721036_SetVisible(this, visible); };
-	void setWindowModified(bool vbo) { callbackCustomLabel721036_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); Moc_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackCustomLabel721036_SetWindowTitle(this, vqsPacked); };
-	void show() { callbackCustomLabel721036_Show(this); };
-	void showEvent(QShowEvent * event) { callbackCustomLabel721036_ShowEvent(this, event); };
-	void showFullScreen() { callbackCustomLabel721036_ShowFullScreen(this); };
-	void showMaximized() { callbackCustomLabel721036_ShowMaximized(this); };
-	void showMinimized() { callbackCustomLabel721036_ShowMinimized(this); };
-	void showNormal() { callbackCustomLabel721036_ShowNormal(this); };
-	void tabletEvent(QTabletEvent * event) { callbackCustomLabel721036_TabletEvent(this, event); };
-	void update() { callbackCustomLabel721036_Update(this); };
-	void updateMicroFocus() { callbackCustomLabel721036_UpdateMicroFocus(this); };
-	void wheelEvent(QWheelEvent * event) { callbackCustomLabel721036_WheelEvent(this, event); };
-	void Signal_WindowIconChanged(const QIcon & icon) { callbackCustomLabel721036_WindowIconChanged(this, const_cast<QIcon*>(&icon)); };
-	void Signal_WindowTitleChanged(const QString & title) { QByteArray t3c6de1 = title.toUtf8(); Moc_PackedString titlePacked = { const_cast<char*>(t3c6de1.prepend("WHITESPACE").constData()+10), t3c6de1.size()-10 };callbackCustomLabel721036_WindowTitleChanged(this, titlePacked); };
-	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackCustomLabel721036_PaintEngine(const_cast<void*>(static_cast<const void*>(this)))); };
-	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackCustomLabel721036_InputMethodQuery(const_cast<void*>(static_cast<const void*>(this)), query)); };
-	bool hasHeightForWidth() const { return callbackCustomLabel721036_HasHeightForWidth(const_cast<void*>(static_cast<const void*>(this))) != 0; };
-	int metric(QPaintDevice::PaintDeviceMetric m) const { return callbackCustomLabel721036_Metric(const_cast<void*>(static_cast<const void*>(this)), m); };
-	void initPainter(QPainter * painter) const { callbackCustomLabel721036_InitPainter(const_cast<void*>(static_cast<const void*>(this)), painter); };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackCustomLabel721036_EventFilter(this, watched, event) != 0; };
-	void childEvent(QChildEvent * event) { callbackCustomLabel721036_ChildEvent(this, event); };
-	void connectNotify(const QMetaMethod & sign) { callbackCustomLabel721036_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackCustomLabel721036_CustomEvent(this, event); };
-	void deleteLater() { callbackCustomLabel721036_DeleteLater(this); };
-	void Signal_Destroyed(QObject * obj) { callbackCustomLabel721036_Destroyed(this, obj); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackCustomLabel721036_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); Moc_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackCustomLabel721036_ObjectNameChanged(this, objectNamePacked); };
-	void timerEvent(QTimerEvent * event) { callbackCustomLabel721036_TimerEvent(this, event); };
+	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackCustomListModel721036_InsertColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackCustomListModel721036_InsertRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackCustomListModel721036_MoveColumns(this, const_cast<QModelIndex*>(&sourceParent), sourceColumn, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
+	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackCustomListModel721036_MoveRows(this, const_cast<QModelIndex*>(&sourceParent), sourceRow, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
+	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackCustomListModel721036_RemoveColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackCustomListModel721036_RemoveRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackCustomListModel721036_SetData(this, const_cast<QModelIndex*>(&index), const_cast<QVariant*>(&value), role) != 0; };
+	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackCustomListModel721036_SetHeaderData(this, section, orientation, const_cast<QVariant*>(&value), role) != 0; };
+	bool setItemData(const QModelIndex & index, const QMap<int, QVariant> & roles) { return callbackCustomListModel721036_SetItemData(this, const_cast<QModelIndex*>(&index), ({ QMap<int, QVariant>* tmpValue = const_cast<QMap<int, QVariant>*>(&roles); Moc_PackedList { tmpValue, tmpValue->size() }; })) != 0; };
+	bool submit() { return callbackCustomListModel721036_Submit(this) != 0; };
+	void Signal_ColumnsAboutToBeInserted(const QModelIndex & parent, int first, int last) { callbackCustomListModel721036_ColumnsAboutToBeInserted(this, const_cast<QModelIndex*>(&parent), first, last); };
+	void Signal_ColumnsAboutToBeMoved(const QModelIndex & sourceParent, int sourceStart, int sourceEnd, const QModelIndex & destinationParent, int destinationColumn) { callbackCustomListModel721036_ColumnsAboutToBeMoved(this, const_cast<QModelIndex*>(&sourceParent), sourceStart, sourceEnd, const_cast<QModelIndex*>(&destinationParent), destinationColumn); };
+	void Signal_ColumnsAboutToBeRemoved(const QModelIndex & parent, int first, int last) { callbackCustomListModel721036_ColumnsAboutToBeRemoved(this, const_cast<QModelIndex*>(&parent), first, last); };
+	void Signal_ColumnsInserted(const QModelIndex & parent, int first, int last) { callbackCustomListModel721036_ColumnsInserted(this, const_cast<QModelIndex*>(&parent), first, last); };
+	void Signal_ColumnsMoved(const QModelIndex & parent, int start, int end, const QModelIndex & destination, int column) { callbackCustomListModel721036_ColumnsMoved(this, const_cast<QModelIndex*>(&parent), start, end, const_cast<QModelIndex*>(&destination), column); };
+	void Signal_ColumnsRemoved(const QModelIndex & parent, int first, int last) { callbackCustomListModel721036_ColumnsRemoved(this, const_cast<QModelIndex*>(&parent), first, last); };
+	void Signal_DataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackCustomListModel721036_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = const_cast<QVector<int>*>(&roles); Moc_PackedList { tmpValue, tmpValue->size() }; })); };
+	void fetchMore(const QModelIndex & parent) { callbackCustomListModel721036_FetchMore(this, const_cast<QModelIndex*>(&parent)); };
+	void Signal_HeaderDataChanged(Qt::Orientation orientation, int first, int last) { callbackCustomListModel721036_HeaderDataChanged(this, orientation, first, last); };
+	void Signal_LayoutAboutToBeChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackCustomListModel721036_LayoutAboutToBeChanged(this, ({ QList<QPersistentModelIndex>* tmpValue = const_cast<QList<QPersistentModelIndex>*>(&parents); Moc_PackedList { tmpValue, tmpValue->size() }; }), hint); };
+	void Signal_LayoutChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackCustomListModel721036_LayoutChanged(this, ({ QList<QPersistentModelIndex>* tmpValue = const_cast<QList<QPersistentModelIndex>*>(&parents); Moc_PackedList { tmpValue, tmpValue->size() }; }), hint); };
+	void Signal_ModelAboutToBeReset() { callbackCustomListModel721036_ModelAboutToBeReset(this); };
+	void Signal_ModelReset() { callbackCustomListModel721036_ModelReset(this); };
+	void resetInternalData() { callbackCustomListModel721036_ResetInternalData(this); };
+	void revert() { callbackCustomListModel721036_Revert(this); };
+	void Signal_RowsAboutToBeInserted(const QModelIndex & parent, int start, int end) { callbackCustomListModel721036_RowsAboutToBeInserted(this, const_cast<QModelIndex*>(&parent), start, end); };
+	void Signal_RowsAboutToBeMoved(const QModelIndex & sourceParent, int sourceStart, int sourceEnd, const QModelIndex & destinationParent, int destinationRow) { callbackCustomListModel721036_RowsAboutToBeMoved(this, const_cast<QModelIndex*>(&sourceParent), sourceStart, sourceEnd, const_cast<QModelIndex*>(&destinationParent), destinationRow); };
+	void Signal_RowsAboutToBeRemoved(const QModelIndex & parent, int first, int last) { callbackCustomListModel721036_RowsAboutToBeRemoved(this, const_cast<QModelIndex*>(&parent), first, last); };
+	void Signal_RowsInserted(const QModelIndex & parent, int first, int last) { callbackCustomListModel721036_RowsInserted(this, const_cast<QModelIndex*>(&parent), first, last); };
+	void Signal_RowsMoved(const QModelIndex & parent, int start, int end, const QModelIndex & destination, int row) { callbackCustomListModel721036_RowsMoved(this, const_cast<QModelIndex*>(&parent), start, end, const_cast<QModelIndex*>(&destination), row); };
+	void Signal_RowsRemoved(const QModelIndex & parent, int first, int last) { callbackCustomListModel721036_RowsRemoved(this, const_cast<QModelIndex*>(&parent), first, last); };
+	void sort(int column, Qt::SortOrder order) { callbackCustomListModel721036_Sort(this, column, order); };
+	QHash<int, QByteArray> roleNames() const { return ({ QHash<int, QByteArray>* tmpP = static_cast<QHash<int, QByteArray>*>(callbackCustomListModel721036_RoleNames(const_cast<void*>(static_cast<const void*>(this)))); QHash<int, QByteArray> tmpV = *tmpP; tmpP->~QHash(); free(tmpP); tmpV; }); };
+	QMap<int, QVariant> itemData(const QModelIndex & index) const { return ({ QMap<int, QVariant>* tmpP = static_cast<QMap<int, QVariant>*>(callbackCustomListModel721036_ItemData(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); QMap<int, QVariant> tmpV = *tmpP; tmpP->~QMap(); free(tmpP); tmpV; }); };
+	QMimeData * mimeData(const QModelIndexList & indexes) const { return static_cast<QMimeData*>(callbackCustomListModel721036_MimeData(const_cast<void*>(static_cast<const void*>(this)), ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(indexes); Moc_PackedList { tmpValue, tmpValue->size() }; }))); };
+	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackCustomListModel721036_Buddy(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
+	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackCustomListModel721036_Parent(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
+	QList<QModelIndex> match(const QModelIndex & start, int role, const QVariant & value, int hits, Qt::MatchFlags flags) const { return ({ QList<QModelIndex>* tmpP = static_cast<QList<QModelIndex>*>(callbackCustomListModel721036_Match(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&start), role, const_cast<QVariant*>(&value), hits, flags)); QList<QModelIndex> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
+	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackCustomListModel721036_Span(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
+	QStringList mimeTypes() const { return ({ Moc_PackedString tempVal = callbackCustomListModel721036_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QVariant data(const QModelIndex & index, int role) const { return *static_cast<QVariant*>(callbackCustomListModel721036_Data(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index), role)); };
+	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackCustomListModel721036_HeaderData(const_cast<void*>(static_cast<const void*>(this)), section, orientation, role)); };
+	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackCustomListModel721036_SupportedDragActions(const_cast<void*>(static_cast<const void*>(this)))); };
+	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackCustomListModel721036_SupportedDropActions(const_cast<void*>(static_cast<const void*>(this)))); };
+	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackCustomListModel721036_CanDropMimeData(const_cast<void*>(static_cast<const void*>(this)), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool canFetchMore(const QModelIndex & parent) const { return callbackCustomListModel721036_CanFetchMore(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&parent)) != 0; };
+	bool hasChildren(const QModelIndex & parent) const { return callbackCustomListModel721036_HasChildren(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&parent)) != 0; };
+	int columnCount(const QModelIndex & parent) const { return callbackCustomListModel721036_ColumnCount(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&parent)); };
+	int rowCount(const QModelIndex & parent) const { return callbackCustomListModel721036_RowCount(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&parent)); };
+	bool event(QEvent * e) { return callbackCustomListModel721036_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackCustomListModel721036_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackCustomListModel721036_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackCustomListModel721036_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackCustomListModel721036_CustomEvent(this, event); };
+	void deleteLater() { callbackCustomListModel721036_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackCustomListModel721036_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackCustomListModel721036_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); Moc_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackCustomListModel721036_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackCustomListModel721036_TimerEvent(this, event); };
 signals:
-	void updateText(QString v0);
+	void remove();
+	void add(QList<QVariant> obj);
+	void edit(QString address, QString checked);
 public slots:
 private:
 };
 
-Q_DECLARE_METATYPE(CustomLabel721036*)
+Q_DECLARE_METATYPE(CustomListModel721036*)
 
 
-void CustomLabel721036_CustomLabel721036_QRegisterMetaTypes() {
+void CustomListModel721036_CustomListModel721036_QRegisterMetaTypes() {
 }
 
 void CtxObject721036_ConnectClicked(void* ptr)
@@ -714,548 +682,716 @@ void CtxObject721036_TimerEventDefault(void* ptr, void* event)
 
 
 
-void CustomLabel721036_ConnectUpdateText(void* ptr)
+void CustomListModel721036_ConnectRemove(void* ptr)
 {
-	QObject::connect(static_cast<CustomLabel721036*>(ptr), static_cast<void (CustomLabel721036::*)(QString)>(&CustomLabel721036::updateText), static_cast<CustomLabel721036*>(ptr), static_cast<void (CustomLabel721036::*)(QString)>(&CustomLabel721036::Signal_UpdateText));
+	QObject::connect(static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)()>(&CustomListModel721036::remove), static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)()>(&CustomListModel721036::Signal_Remove));
 }
 
-void CustomLabel721036_DisconnectUpdateText(void* ptr)
+void CustomListModel721036_DisconnectRemove(void* ptr)
 {
-	QObject::disconnect(static_cast<CustomLabel721036*>(ptr), static_cast<void (CustomLabel721036::*)(QString)>(&CustomLabel721036::updateText), static_cast<CustomLabel721036*>(ptr), static_cast<void (CustomLabel721036::*)(QString)>(&CustomLabel721036::Signal_UpdateText));
+	QObject::disconnect(static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)()>(&CustomListModel721036::remove), static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)()>(&CustomListModel721036::Signal_Remove));
 }
 
-void CustomLabel721036_UpdateText(void* ptr, struct Moc_PackedString v0)
+void CustomListModel721036_Remove(void* ptr)
 {
-	static_cast<CustomLabel721036*>(ptr)->updateText(QString::fromUtf8(v0.data, v0.len));
+	static_cast<CustomListModel721036*>(ptr)->remove();
 }
 
-int CustomLabel721036_CustomLabel721036_QRegisterMetaType()
+void CustomListModel721036_ConnectAdd(void* ptr)
 {
-	return qRegisterMetaType<CustomLabel721036*>();
+	QObject::connect(static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(QList<QVariant>)>(&CustomListModel721036::add), static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(QList<QVariant>)>(&CustomListModel721036::Signal_Add));
 }
 
-int CustomLabel721036_CustomLabel721036_QRegisterMetaType2(char* typeName)
+void CustomListModel721036_DisconnectAdd(void* ptr)
 {
-	return qRegisterMetaType<CustomLabel721036*>(const_cast<const char*>(typeName));
+	QObject::disconnect(static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(QList<QVariant>)>(&CustomListModel721036::add), static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(QList<QVariant>)>(&CustomListModel721036::Signal_Add));
 }
 
-int CustomLabel721036_CustomLabel721036_QmlRegisterType()
+void CustomListModel721036_Add(void* ptr, void* obj)
+{
+	static_cast<CustomListModel721036*>(ptr)->add(({ QList<QVariant>* tmpP = static_cast<QList<QVariant>*>(obj); QList<QVariant> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }));
+}
+
+void CustomListModel721036_ConnectEdit(void* ptr)
+{
+	QObject::connect(static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(QString, QString)>(&CustomListModel721036::edit), static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(QString, QString)>(&CustomListModel721036::Signal_Edit));
+}
+
+void CustomListModel721036_DisconnectEdit(void* ptr)
+{
+	QObject::disconnect(static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(QString, QString)>(&CustomListModel721036::edit), static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(QString, QString)>(&CustomListModel721036::Signal_Edit));
+}
+
+void CustomListModel721036_Edit(void* ptr, struct Moc_PackedString address, struct Moc_PackedString checked)
+{
+	static_cast<CustomListModel721036*>(ptr)->edit(QString::fromUtf8(address.data, address.len), QString::fromUtf8(checked.data, checked.len));
+}
+
+int CustomListModel721036_CustomListModel721036_QRegisterMetaType()
+{
+	return qRegisterMetaType<CustomListModel721036*>();
+}
+
+int CustomListModel721036_CustomListModel721036_QRegisterMetaType2(char* typeName)
+{
+	return qRegisterMetaType<CustomListModel721036*>(const_cast<const char*>(typeName));
+}
+
+int CustomListModel721036_CustomListModel721036_QmlRegisterType()
 {
 #ifdef QT_QML_LIB
-	return qmlRegisterType<CustomLabel721036>();
+	return qmlRegisterType<CustomListModel721036>();
 #else
 	return 0;
 #endif
 }
 
-int CustomLabel721036_CustomLabel721036_QmlRegisterType2(char* uri, int versionMajor, int versionMinor, char* qmlName)
+int CustomListModel721036_CustomListModel721036_QmlRegisterType2(char* uri, int versionMajor, int versionMinor, char* qmlName)
 {
 #ifdef QT_QML_LIB
-	return qmlRegisterType<CustomLabel721036>(const_cast<const char*>(uri), versionMajor, versionMinor, const_cast<const char*>(qmlName));
+	return qmlRegisterType<CustomListModel721036>(const_cast<const char*>(uri), versionMajor, versionMinor, const_cast<const char*>(qmlName));
 #else
 	return 0;
 #endif
 }
 
-void* CustomLabel721036___addActions_actions_atList(void* ptr, int i)
+int CustomListModel721036_____setItemData_roles_keyList_atList(void* ptr, int i)
 {
-	return ({QAction * tmp = static_cast<QList<QAction *>*>(ptr)->at(i); if (i == static_cast<QList<QAction *>*>(ptr)->size()-1) { static_cast<QList<QAction *>*>(ptr)->~QList(); free(ptr); }; tmp; });
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void CustomLabel721036___addActions_actions_setList(void* ptr, void* i)
+void CustomListModel721036_____setItemData_roles_keyList_setList(void* ptr, int i)
 {
-	static_cast<QList<QAction *>*>(ptr)->append(static_cast<QAction*>(i));
+	static_cast<QList<int>*>(ptr)->append(i);
 }
 
-void* CustomLabel721036___addActions_actions_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QAction *>();
-}
-
-void* CustomLabel721036___insertActions_actions_atList(void* ptr, int i)
-{
-	return ({QAction * tmp = static_cast<QList<QAction *>*>(ptr)->at(i); if (i == static_cast<QList<QAction *>*>(ptr)->size()-1) { static_cast<QList<QAction *>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void CustomLabel721036___insertActions_actions_setList(void* ptr, void* i)
-{
-	static_cast<QList<QAction *>*>(ptr)->append(static_cast<QAction*>(i));
-}
-
-void* CustomLabel721036___insertActions_actions_newList(void* ptr)
+void* CustomListModel721036_____setItemData_roles_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QAction *>();
+	return new QList<int>();
 }
 
-void* CustomLabel721036___actions_atList(void* ptr, int i)
+int CustomListModel721036_____roleNames_keyList_atList(void* ptr, int i)
 {
-	return ({QAction * tmp = static_cast<QList<QAction *>*>(ptr)->at(i); if (i == static_cast<QList<QAction *>*>(ptr)->size()-1) { static_cast<QList<QAction *>*>(ptr)->~QList(); free(ptr); }; tmp; });
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void CustomLabel721036___actions_setList(void* ptr, void* i)
+void CustomListModel721036_____roleNames_keyList_setList(void* ptr, int i)
 {
-	static_cast<QList<QAction *>*>(ptr)->append(static_cast<QAction*>(i));
+	static_cast<QList<int>*>(ptr)->append(i);
 }
 
-void* CustomLabel721036___actions_newList(void* ptr)
+void* CustomListModel721036_____roleNames_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QAction *>();
+	return new QList<int>();
 }
 
-void* CustomLabel721036___dynamicPropertyNames_atList(void* ptr, int i)
+int CustomListModel721036_____itemData_keyList_atList(void* ptr, int i)
+{
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void CustomListModel721036_____itemData_keyList_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* CustomListModel721036_____itemData_keyList_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<int>();
+}
+
+void* CustomListModel721036___setItemData_roles_atList(void* ptr, int v, int i)
+{
+	return new QVariant(({ QVariant tmp = static_cast<QMap<int, QVariant>*>(ptr)->value(v); if (i == static_cast<QMap<int, QVariant>*>(ptr)->size()-1) { static_cast<QMap<int, QVariant>*>(ptr)->~QMap(); free(ptr); }; tmp; }));
+}
+
+void CustomListModel721036___setItemData_roles_setList(void* ptr, int key, void* i)
+{
+	static_cast<QMap<int, QVariant>*>(ptr)->insert(key, *static_cast<QVariant*>(i));
+}
+
+void* CustomListModel721036___setItemData_roles_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QMap<int, QVariant>();
+}
+
+struct Moc_PackedList CustomListModel721036___setItemData_roles_keyList(void* ptr)
+{
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); Moc_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* CustomListModel721036___changePersistentIndexList_from_atList(void* ptr, int i)
+{
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void CustomListModel721036___changePersistentIndexList_from_setList(void* ptr, void* i)
+{
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+}
+
+void* CustomListModel721036___changePersistentIndexList_from_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QModelIndex>();
+}
+
+void* CustomListModel721036___changePersistentIndexList_to_atList(void* ptr, int i)
+{
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void CustomListModel721036___changePersistentIndexList_to_setList(void* ptr, void* i)
+{
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+}
+
+void* CustomListModel721036___changePersistentIndexList_to_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QModelIndex>();
+}
+
+int CustomListModel721036___dataChanged_roles_atList(void* ptr, int i)
+{
+	return ({int tmp = static_cast<QVector<int>*>(ptr)->at(i); if (i == static_cast<QVector<int>*>(ptr)->size()-1) { static_cast<QVector<int>*>(ptr)->~QVector(); free(ptr); }; tmp; });
+}
+
+void CustomListModel721036___dataChanged_roles_setList(void* ptr, int i)
+{
+	static_cast<QVector<int>*>(ptr)->append(i);
+}
+
+void* CustomListModel721036___dataChanged_roles_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QVector<int>();
+}
+
+void* CustomListModel721036___layoutAboutToBeChanged_parents_atList(void* ptr, int i)
+{
+	return new QPersistentModelIndex(({QPersistentModelIndex tmp = static_cast<QList<QPersistentModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QPersistentModelIndex>*>(ptr)->size()-1) { static_cast<QList<QPersistentModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void CustomListModel721036___layoutAboutToBeChanged_parents_setList(void* ptr, void* i)
+{
+	static_cast<QList<QPersistentModelIndex>*>(ptr)->append(*static_cast<QPersistentModelIndex*>(i));
+}
+
+void* CustomListModel721036___layoutAboutToBeChanged_parents_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QPersistentModelIndex>();
+}
+
+void* CustomListModel721036___layoutChanged_parents_atList(void* ptr, int i)
+{
+	return new QPersistentModelIndex(({QPersistentModelIndex tmp = static_cast<QList<QPersistentModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QPersistentModelIndex>*>(ptr)->size()-1) { static_cast<QList<QPersistentModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void CustomListModel721036___layoutChanged_parents_setList(void* ptr, void* i)
+{
+	static_cast<QList<QPersistentModelIndex>*>(ptr)->append(*static_cast<QPersistentModelIndex*>(i));
+}
+
+void* CustomListModel721036___layoutChanged_parents_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QPersistentModelIndex>();
+}
+
+void* CustomListModel721036___roleNames_atList(void* ptr, int v, int i)
+{
+	return new QByteArray(({ QByteArray tmp = static_cast<QHash<int, QByteArray>*>(ptr)->value(v); if (i == static_cast<QHash<int, QByteArray>*>(ptr)->size()-1) { static_cast<QHash<int, QByteArray>*>(ptr)->~QHash(); free(ptr); }; tmp; }));
+}
+
+void CustomListModel721036___roleNames_setList(void* ptr, int key, void* i)
+{
+	static_cast<QHash<int, QByteArray>*>(ptr)->insert(key, *static_cast<QByteArray*>(i));
+}
+
+void* CustomListModel721036___roleNames_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QHash<int, QByteArray>();
+}
+
+struct Moc_PackedList CustomListModel721036___roleNames_keyList(void* ptr)
+{
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QHash<int, QByteArray>*>(ptr)->keys()); Moc_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* CustomListModel721036___itemData_atList(void* ptr, int v, int i)
+{
+	return new QVariant(({ QVariant tmp = static_cast<QMap<int, QVariant>*>(ptr)->value(v); if (i == static_cast<QMap<int, QVariant>*>(ptr)->size()-1) { static_cast<QMap<int, QVariant>*>(ptr)->~QMap(); free(ptr); }; tmp; }));
+}
+
+void CustomListModel721036___itemData_setList(void* ptr, int key, void* i)
+{
+	static_cast<QMap<int, QVariant>*>(ptr)->insert(key, *static_cast<QVariant*>(i));
+}
+
+void* CustomListModel721036___itemData_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QMap<int, QVariant>();
+}
+
+struct Moc_PackedList CustomListModel721036___itemData_keyList(void* ptr)
+{
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); Moc_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* CustomListModel721036___mimeData_indexes_atList(void* ptr, int i)
+{
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void CustomListModel721036___mimeData_indexes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+}
+
+void* CustomListModel721036___mimeData_indexes_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QModelIndex>();
+}
+
+void* CustomListModel721036___match_atList(void* ptr, int i)
+{
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void CustomListModel721036___match_setList(void* ptr, void* i)
+{
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+}
+
+void* CustomListModel721036___match_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QModelIndex>();
+}
+
+void* CustomListModel721036___persistentIndexList_atList(void* ptr, int i)
+{
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void CustomListModel721036___persistentIndexList_setList(void* ptr, void* i)
+{
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+}
+
+void* CustomListModel721036___persistentIndexList_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QModelIndex>();
+}
+
+int CustomListModel721036_____doSetRoleNames_roleNames_keyList_atList(void* ptr, int i)
+{
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void CustomListModel721036_____doSetRoleNames_roleNames_keyList_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* CustomListModel721036_____doSetRoleNames_roleNames_keyList_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<int>();
+}
+
+int CustomListModel721036_____setRoleNames_roleNames_keyList_atList(void* ptr, int i)
+{
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void CustomListModel721036_____setRoleNames_roleNames_keyList_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* CustomListModel721036_____setRoleNames_roleNames_keyList_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<int>();
+}
+
+void* CustomListModel721036___dynamicPropertyNames_atList(void* ptr, int i)
 {
 	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void CustomLabel721036___dynamicPropertyNames_setList(void* ptr, void* i)
+void CustomListModel721036___dynamicPropertyNames_setList(void* ptr, void* i)
 {
 	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
 }
 
-void* CustomLabel721036___dynamicPropertyNames_newList(void* ptr)
+void* CustomListModel721036___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QByteArray>();
 }
 
-void* CustomLabel721036___findChildren_atList2(void* ptr, int i)
+void* CustomListModel721036___findChildren_atList2(void* ptr, int i)
 {
 	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void CustomLabel721036___findChildren_setList2(void* ptr, void* i)
+void CustomListModel721036___findChildren_setList2(void* ptr, void* i)
 {
 	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* CustomLabel721036___findChildren_newList2(void* ptr)
+void* CustomListModel721036___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
 }
 
-void* CustomLabel721036___findChildren_atList3(void* ptr, int i)
+void* CustomListModel721036___findChildren_atList3(void* ptr, int i)
 {
 	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void CustomLabel721036___findChildren_setList3(void* ptr, void* i)
+void CustomListModel721036___findChildren_setList3(void* ptr, void* i)
 {
 	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* CustomLabel721036___findChildren_newList3(void* ptr)
+void* CustomListModel721036___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
 }
 
-void* CustomLabel721036___findChildren_atList(void* ptr, int i)
+void* CustomListModel721036___findChildren_atList(void* ptr, int i)
 {
 	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void CustomLabel721036___findChildren_setList(void* ptr, void* i)
+void CustomListModel721036___findChildren_setList(void* ptr, void* i)
 {
 	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* CustomLabel721036___findChildren_newList(void* ptr)
+void* CustomListModel721036___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
 }
 
-void* CustomLabel721036___children_atList(void* ptr, int i)
+void* CustomListModel721036___children_atList(void* ptr, int i)
 {
 	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void CustomLabel721036___children_setList(void* ptr, void* i)
+void CustomListModel721036___children_setList(void* ptr, void* i)
 {
 	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* CustomLabel721036___children_newList(void* ptr)
+void* CustomListModel721036___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject *>();
 }
 
-void* CustomLabel721036_NewCustomLabel(void* parent, long long fo)
+void* CustomListModel721036___add_obj_atList(void* ptr, int i)
 {
-		return new CustomLabel721036(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(fo));
+	return new QVariant(({QVariant tmp = static_cast<QList<QVariant>*>(ptr)->at(i); if (i == static_cast<QList<QVariant>*>(ptr)->size()-1) { static_cast<QList<QVariant>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void* CustomLabel721036_NewCustomLabel2(struct Moc_PackedString text, void* parent, long long fo)
+void CustomListModel721036___add_obj_setList(void* ptr, void* i)
 {
-		return new CustomLabel721036(QString::fromUtf8(text.data, text.len), static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(fo));
+	static_cast<QList<QVariant>*>(ptr)->append(*static_cast<QVariant*>(i));
 }
 
-void CustomLabel721036_DestroyCustomLabel(void* ptr)
+void* CustomListModel721036___add_obj_newList(void* ptr)
 {
-	static_cast<CustomLabel721036*>(ptr)->~CustomLabel721036();
+	Q_UNUSED(ptr);
+	return new QList<QVariant>();
 }
 
-void CustomLabel721036_DestroyCustomLabelDefault(void* ptr)
+void* CustomListModel721036_NewCustomListModel(void* parent)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new CustomListModel721036(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new CustomListModel721036(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new CustomListModel721036(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new CustomListModel721036(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new CustomListModel721036(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new CustomListModel721036(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new CustomListModel721036(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new CustomListModel721036(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new CustomListModel721036(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new CustomListModel721036(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new CustomListModel721036(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new CustomListModel721036(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new CustomListModel721036(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new CustomListModel721036(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new CustomListModel721036(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new CustomListModel721036(static_cast<QWindow*>(parent));
+	} else {
+		return new CustomListModel721036(static_cast<QObject*>(parent));
+	}
+}
+
+void CustomListModel721036_DestroyCustomListModel(void* ptr)
+{
+	static_cast<CustomListModel721036*>(ptr)->~CustomListModel721036();
+}
+
+void CustomListModel721036_DestroyCustomListModelDefault(void* ptr)
 {
 	Q_UNUSED(ptr);
 
 }
 
-char CustomLabel721036_EventDefault(void* ptr, void* e)
+char CustomListModel721036_DropMimeDataDefault(void* ptr, void* data, long long action, int row, int column, void* parent)
 {
-	return static_cast<CustomLabel721036*>(ptr)->QLabel::event(static_cast<QEvent*>(e));
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::dropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
 }
 
-char CustomLabel721036_FocusNextPrevChildDefault(void* ptr, char next)
+void* CustomListModel721036_IndexDefault(void* ptr, int row, int column, void* parent)
 {
-	return static_cast<CustomLabel721036*>(ptr)->QLabel::focusNextPrevChild(next != 0);
+	return new QModelIndex(static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::index(row, column, *static_cast<QModelIndex*>(parent)));
 }
 
-void CustomLabel721036_ChangeEventDefault(void* ptr, void* ev)
+void* CustomListModel721036_SiblingDefault(void* ptr, int row, int column, void* idx)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::changeEvent(static_cast<QEvent*>(ev));
+	return new QModelIndex(static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::sibling(row, column, *static_cast<QModelIndex*>(idx)));
 }
 
-void CustomLabel721036_ClearDefault(void* ptr)
+long long CustomListModel721036_FlagsDefault(void* ptr, void* index)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::clear();
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::flags(*static_cast<QModelIndex*>(index));
 }
 
-void CustomLabel721036_ContextMenuEventDefault(void* ptr, void* ev)
-{
-	static_cast<CustomLabel721036*>(ptr)->QLabel::contextMenuEvent(static_cast<QContextMenuEvent*>(ev));
-}
-
-void CustomLabel721036_FocusInEventDefault(void* ptr, void* ev)
-{
-	static_cast<CustomLabel721036*>(ptr)->QLabel::focusInEvent(static_cast<QFocusEvent*>(ev));
-}
-
-void CustomLabel721036_FocusOutEventDefault(void* ptr, void* ev)
-{
-	static_cast<CustomLabel721036*>(ptr)->QLabel::focusOutEvent(static_cast<QFocusEvent*>(ev));
-}
-
-void CustomLabel721036_KeyPressEventDefault(void* ptr, void* ev)
-{
-	static_cast<CustomLabel721036*>(ptr)->QLabel::keyPressEvent(static_cast<QKeyEvent*>(ev));
-}
-
-void CustomLabel721036_MouseMoveEventDefault(void* ptr, void* ev)
-{
-	static_cast<CustomLabel721036*>(ptr)->QLabel::mouseMoveEvent(static_cast<QMouseEvent*>(ev));
-}
-
-void CustomLabel721036_MousePressEventDefault(void* ptr, void* ev)
-{
-	static_cast<CustomLabel721036*>(ptr)->QLabel::mousePressEvent(static_cast<QMouseEvent*>(ev));
-}
-
-void CustomLabel721036_MouseReleaseEventDefault(void* ptr, void* ev)
-{
-	static_cast<CustomLabel721036*>(ptr)->QLabel::mouseReleaseEvent(static_cast<QMouseEvent*>(ev));
-}
-
-void CustomLabel721036_PaintEventDefault(void* ptr, void* vqp)
-{
-	static_cast<CustomLabel721036*>(ptr)->QLabel::paintEvent(static_cast<QPaintEvent*>(vqp));
-}
-
-void CustomLabel721036_SetMovieDefault(void* ptr, void* movie)
-{
-	static_cast<CustomLabel721036*>(ptr)->QLabel::setMovie(static_cast<QMovie*>(movie));
-}
-
-void CustomLabel721036_SetNum2Default(void* ptr, double num)
-{
-	static_cast<CustomLabel721036*>(ptr)->QLabel::setNum(num);
-}
-
-void CustomLabel721036_SetNumDefault(void* ptr, int num)
-{
-	static_cast<CustomLabel721036*>(ptr)->QLabel::setNum(num);
-}
-
-void CustomLabel721036_SetPictureDefault(void* ptr, void* picture)
-{
-	static_cast<CustomLabel721036*>(ptr)->QLabel::setPicture(*static_cast<QPicture*>(picture));
-}
-
-void CustomLabel721036_SetPixmapDefault(void* ptr, void* vqp)
-{
-	static_cast<CustomLabel721036*>(ptr)->QLabel::setPixmap(*static_cast<QPixmap*>(vqp));
-}
-
-void CustomLabel721036_SetTextDefault(void* ptr, struct Moc_PackedString vqs)
-{
-	static_cast<CustomLabel721036*>(ptr)->QLabel::setText(QString::fromUtf8(vqs.data, vqs.len));
-}
-
-void* CustomLabel721036_MinimumSizeHintDefault(void* ptr)
-{
-	return ({ QSize tmpValue = static_cast<CustomLabel721036*>(ptr)->QLabel::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-}
-
-void* CustomLabel721036_SizeHintDefault(void* ptr)
-{
-	return ({ QSize tmpValue = static_cast<CustomLabel721036*>(ptr)->QLabel::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-}
-
-
-
-int CustomLabel721036_HeightForWidthDefault(void* ptr, int w)
-{
-	return static_cast<CustomLabel721036*>(ptr)->QLabel::heightForWidth(w);
-}
-
-char CustomLabel721036_CloseDefault(void* ptr)
-{
-	return static_cast<CustomLabel721036*>(ptr)->QLabel::close();
-}
-
-void CustomLabel721036_ActionEventDefault(void* ptr, void* event)
-{
-	static_cast<CustomLabel721036*>(ptr)->QLabel::actionEvent(static_cast<QActionEvent*>(event));
-}
-
-void CustomLabel721036_CloseEventDefault(void* ptr, void* event)
-{
-	static_cast<CustomLabel721036*>(ptr)->QLabel::closeEvent(static_cast<QCloseEvent*>(event));
-}
-
-void CustomLabel721036_DragEnterEventDefault(void* ptr, void* event)
-{
-	static_cast<CustomLabel721036*>(ptr)->QLabel::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
-}
-
-void CustomLabel721036_DragLeaveEventDefault(void* ptr, void* event)
-{
-	static_cast<CustomLabel721036*>(ptr)->QLabel::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
-}
-
-void CustomLabel721036_DragMoveEventDefault(void* ptr, void* event)
-{
-	static_cast<CustomLabel721036*>(ptr)->QLabel::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
-}
-
-void CustomLabel721036_DropEventDefault(void* ptr, void* event)
-{
-	static_cast<CustomLabel721036*>(ptr)->QLabel::dropEvent(static_cast<QDropEvent*>(event));
-}
 
-void CustomLabel721036_EnterEventDefault(void* ptr, void* event)
-{
-	static_cast<CustomLabel721036*>(ptr)->QLabel::enterEvent(static_cast<QEvent*>(event));
-}
 
-void CustomLabel721036_HideDefault(void* ptr)
+char CustomListModel721036_InsertColumnsDefault(void* ptr, int column, int count, void* parent)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::hide();
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::insertColumns(column, count, *static_cast<QModelIndex*>(parent));
 }
 
-void CustomLabel721036_HideEventDefault(void* ptr, void* event)
+char CustomListModel721036_InsertRowsDefault(void* ptr, int row, int count, void* parent)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::hideEvent(static_cast<QHideEvent*>(event));
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::insertRows(row, count, *static_cast<QModelIndex*>(parent));
 }
 
-void CustomLabel721036_InputMethodEventDefault(void* ptr, void* event)
+char CustomListModel721036_MoveColumnsDefault(void* ptr, void* sourceParent, int sourceColumn, int count, void* destinationParent, int destinationChild)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::moveColumns(*static_cast<QModelIndex*>(sourceParent), sourceColumn, count, *static_cast<QModelIndex*>(destinationParent), destinationChild);
 }
 
-void CustomLabel721036_KeyReleaseEventDefault(void* ptr, void* event)
+char CustomListModel721036_MoveRowsDefault(void* ptr, void* sourceParent, int sourceRow, int count, void* destinationParent, int destinationChild)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::moveRows(*static_cast<QModelIndex*>(sourceParent), sourceRow, count, *static_cast<QModelIndex*>(destinationParent), destinationChild);
 }
 
-void CustomLabel721036_LeaveEventDefault(void* ptr, void* event)
+char CustomListModel721036_RemoveColumnsDefault(void* ptr, int column, int count, void* parent)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::leaveEvent(static_cast<QEvent*>(event));
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::removeColumns(column, count, *static_cast<QModelIndex*>(parent));
 }
 
-void CustomLabel721036_LowerDefault(void* ptr)
+char CustomListModel721036_RemoveRowsDefault(void* ptr, int row, int count, void* parent)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::lower();
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::removeRows(row, count, *static_cast<QModelIndex*>(parent));
 }
 
-void CustomLabel721036_MouseDoubleClickEventDefault(void* ptr, void* event)
+char CustomListModel721036_SetDataDefault(void* ptr, void* index, void* value, int role)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::setData(*static_cast<QModelIndex*>(index), *static_cast<QVariant*>(value), role);
 }
 
-void CustomLabel721036_MoveEventDefault(void* ptr, void* event)
+char CustomListModel721036_SetHeaderDataDefault(void* ptr, int section, long long orientation, void* value, int role)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::moveEvent(static_cast<QMoveEvent*>(event));
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::setHeaderData(section, static_cast<Qt::Orientation>(orientation), *static_cast<QVariant*>(value), role);
 }
 
-void CustomLabel721036_RaiseDefault(void* ptr)
+char CustomListModel721036_SetItemDataDefault(void* ptr, void* index, void* roles)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::raise();
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::setItemData(*static_cast<QModelIndex*>(index), *static_cast<QMap<int, QVariant>*>(roles));
 }
 
-void CustomLabel721036_RepaintDefault(void* ptr)
+char CustomListModel721036_SubmitDefault(void* ptr)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::repaint();
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::submit();
 }
 
-void CustomLabel721036_ResizeEventDefault(void* ptr, void* event)
+void CustomListModel721036_FetchMoreDefault(void* ptr, void* parent)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::resizeEvent(static_cast<QResizeEvent*>(event));
+	static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::fetchMore(*static_cast<QModelIndex*>(parent));
 }
 
-void CustomLabel721036_SetDisabledDefault(void* ptr, char disable)
+void CustomListModel721036_ResetInternalDataDefault(void* ptr)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::setDisabled(disable != 0);
+	static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::resetInternalData();
 }
 
-void CustomLabel721036_SetEnabledDefault(void* ptr, char vbo)
+void CustomListModel721036_RevertDefault(void* ptr)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::setEnabled(vbo != 0);
+	static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::revert();
 }
 
-void CustomLabel721036_SetFocus2Default(void* ptr)
+void CustomListModel721036_SortDefault(void* ptr, int column, long long order)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::setFocus();
+	static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::sort(column, static_cast<Qt::SortOrder>(order));
 }
 
-void CustomLabel721036_SetHiddenDefault(void* ptr, char hidden)
+struct Moc_PackedList CustomListModel721036_RoleNamesDefault(void* ptr)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::setHidden(hidden != 0);
+	return ({ QHash<int, QByteArray>* tmpValue = new QHash<int, QByteArray>(static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::roleNames()); Moc_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-void CustomLabel721036_SetStyleSheetDefault(void* ptr, struct Moc_PackedString styleSheet)
+struct Moc_PackedList CustomListModel721036_ItemDataDefault(void* ptr, void* index)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
+	return ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::itemData(*static_cast<QModelIndex*>(index))); Moc_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-void CustomLabel721036_SetVisibleDefault(void* ptr, char visible)
+void* CustomListModel721036_MimeDataDefault(void* ptr, void* indexes)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::setVisible(visible != 0);
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::mimeData(({ QList<QModelIndex>* tmpP = static_cast<QList<QModelIndex>*>(indexes); QList<QModelIndex> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }));
 }
 
-void CustomLabel721036_SetWindowModifiedDefault(void* ptr, char vbo)
+void* CustomListModel721036_BuddyDefault(void* ptr, void* index)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::setWindowModified(vbo != 0);
+	return new QModelIndex(static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::buddy(*static_cast<QModelIndex*>(index)));
 }
 
-void CustomLabel721036_SetWindowTitleDefault(void* ptr, struct Moc_PackedString vqs)
+void* CustomListModel721036_ParentDefault(void* ptr, void* index)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
+	return new QModelIndex(static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::parent(*static_cast<QModelIndex*>(index)));
 }
 
-void CustomLabel721036_ShowDefault(void* ptr)
+struct Moc_PackedList CustomListModel721036_MatchDefault(void* ptr, void* start, int role, void* value, int hits, long long flags)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::show();
+	return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); Moc_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-void CustomLabel721036_ShowEventDefault(void* ptr, void* event)
+void* CustomListModel721036_SpanDefault(void* ptr, void* index)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::showEvent(static_cast<QShowEvent*>(event));
+	return ({ QSize tmpValue = static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
-void CustomLabel721036_ShowFullScreenDefault(void* ptr)
+struct Moc_PackedString CustomListModel721036_MimeTypesDefault(void* ptr)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::showFullScreen();
+	return ({ QByteArray t9c6749 = static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::mimeTypes().join("|").toUtf8(); Moc_PackedString { const_cast<char*>(t9c6749.prepend("WHITESPACE").constData()+10), t9c6749.size()-10 }; });
 }
 
-void CustomLabel721036_ShowMaximizedDefault(void* ptr)
+void* CustomListModel721036_DataDefault(void* ptr, void* index, int role)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::showMaximized();
-}
+	Q_UNUSED(ptr);
+	Q_UNUSED(index);
+	Q_UNUSED(role);
 
-void CustomLabel721036_ShowMinimizedDefault(void* ptr)
-{
-	static_cast<CustomLabel721036*>(ptr)->QLabel::showMinimized();
 }
 
-void CustomLabel721036_ShowNormalDefault(void* ptr)
+void* CustomListModel721036_HeaderDataDefault(void* ptr, int section, long long orientation, int role)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::showNormal();
+	return new QVariant(static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::headerData(section, static_cast<Qt::Orientation>(orientation), role));
 }
 
-void CustomLabel721036_TabletEventDefault(void* ptr, void* event)
+long long CustomListModel721036_SupportedDragActionsDefault(void* ptr)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::tabletEvent(static_cast<QTabletEvent*>(event));
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::supportedDragActions();
 }
 
-void CustomLabel721036_UpdateDefault(void* ptr)
+long long CustomListModel721036_SupportedDropActionsDefault(void* ptr)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::update();
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::supportedDropActions();
 }
 
-void CustomLabel721036_UpdateMicroFocusDefault(void* ptr)
+char CustomListModel721036_CanDropMimeDataDefault(void* ptr, void* data, long long action, int row, int column, void* parent)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::updateMicroFocus();
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::canDropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
 }
 
-void CustomLabel721036_WheelEventDefault(void* ptr, void* event)
+char CustomListModel721036_CanFetchMoreDefault(void* ptr, void* parent)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::wheelEvent(static_cast<QWheelEvent*>(event));
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::canFetchMore(*static_cast<QModelIndex*>(parent));
 }
 
-void* CustomLabel721036_PaintEngineDefault(void* ptr)
+char CustomListModel721036_HasChildrenDefault(void* ptr, void* parent)
 {
-	return static_cast<CustomLabel721036*>(ptr)->QLabel::paintEngine();
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::hasChildren(*static_cast<QModelIndex*>(parent));
 }
 
-void* CustomLabel721036_InputMethodQueryDefault(void* ptr, long long query)
+int CustomListModel721036_ColumnCountDefault(void* ptr, void* parent)
 {
-	return new QVariant(static_cast<CustomLabel721036*>(ptr)->QLabel::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::columnCount(*static_cast<QModelIndex*>(parent));
 }
 
-char CustomLabel721036_HasHeightForWidthDefault(void* ptr)
+int CustomListModel721036_RowCountDefault(void* ptr, void* parent)
 {
-	return static_cast<CustomLabel721036*>(ptr)->QLabel::hasHeightForWidth();
-}
+	Q_UNUSED(ptr);
+	Q_UNUSED(parent);
 
-int CustomLabel721036_MetricDefault(void* ptr, long long m)
-{
-	return static_cast<CustomLabel721036*>(ptr)->QLabel::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
 }
 
-void CustomLabel721036_InitPainterDefault(void* ptr, void* painter)
+char CustomListModel721036_EventDefault(void* ptr, void* e)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::initPainter(static_cast<QPainter*>(painter));
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::event(static_cast<QEvent*>(e));
 }
 
-char CustomLabel721036_EventFilterDefault(void* ptr, void* watched, void* event)
+char CustomListModel721036_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<CustomLabel721036*>(ptr)->QLabel::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
-void CustomLabel721036_ChildEventDefault(void* ptr, void* event)
+void CustomListModel721036_ChildEventDefault(void* ptr, void* event)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::childEvent(static_cast<QChildEvent*>(event));
+	static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::childEvent(static_cast<QChildEvent*>(event));
 }
 
-void CustomLabel721036_ConnectNotifyDefault(void* ptr, void* sign)
+void CustomListModel721036_ConnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::connectNotify(*static_cast<QMetaMethod*>(sign));
+	static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-void CustomLabel721036_CustomEventDefault(void* ptr, void* event)
+void CustomListModel721036_CustomEventDefault(void* ptr, void* event)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::customEvent(static_cast<QEvent*>(event));
+	static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::customEvent(static_cast<QEvent*>(event));
 }
 
-void CustomLabel721036_DeleteLaterDefault(void* ptr)
+void CustomListModel721036_DeleteLaterDefault(void* ptr)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::deleteLater();
+	static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::deleteLater();
 }
 
-void CustomLabel721036_DisconnectNotifyDefault(void* ptr, void* sign)
+void CustomListModel721036_DisconnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-void CustomLabel721036_TimerEventDefault(void* ptr, void* event)
+void CustomListModel721036_TimerEventDefault(void* ptr, void* event)
 {
-	static_cast<CustomLabel721036*>(ptr)->QLabel::timerEvent(static_cast<QTimerEvent*>(event));
+	static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 #include "moc_moc.h"

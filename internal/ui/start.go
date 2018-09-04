@@ -2,6 +2,7 @@ package ui
 
 import (
 	"context"
+	"github.com/kyokan/clef-ui/internal/params"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quickcontrols2"
 	"github.com/therecipe/qt/widgets"
@@ -21,16 +22,28 @@ type RpcRequest struct {
 	Method 		string
 }
 
+type ApproveSignDataRequest struct {
+	Params 		[]*params.ApproveSignDataParams
+	Response 	chan map[string]string
+}
+
+type ApproveListingRequest struct {
+	Params 		[]*params.ApproveListingParams
+	Response 	chan map[string]string
+}
+
 type ClefUI struct {
-	App 				*widgets.QApplication
-	Mainw 				*widgets.QMainWindow
-	currentView 		string
-	IncomingRequest	 	chan RpcRequest
-	views 				map[string]interface{}
+	App 					*widgets.QApplication
+	Mainw 					*widgets.QWidget
+	currentView 			string
+	//IncomingRequest	 		chan RpcRequest
+	ApproveListingRequest 	chan ApproveListingRequest
+	ApproveSignDataRequest 	chan ApproveSignDataRequest
+	views 					map[string]interface{}
 }
 
 func (c *ClefUI) initApp() {
-	incomingRequest := make(chan RpcRequest)
+	//incomingRequest := make(chan RpcRequest)
 
 	// enable high dpi scaling
 	// useful for devices with high pixel density displays
@@ -55,8 +68,10 @@ func (c *ClefUI) initApp() {
 	quickcontrols2.QQuickStyle_SetStyle("Material")
 
 	c.App = app
-	c.Mainw = mainw
-	c.IncomingRequest = incomingRequest
+	c.Mainw = widget
+	//c.IncomingRequest = incomingRequest
+	c.ApproveListingRequest = make(chan ApproveListingRequest)
+	c.ApproveSignDataRequest = make(chan ApproveSignDataRequest)
 }
 
 func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
@@ -65,40 +80,50 @@ func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
 
 	login := NewLoginUI()
 	approvesigndata := NewApproveSignDataUI()
+	approvelisting := NewApproveListingUI()
 
 	c.Mainw.Layout().AddWidget(login)
 	c.Mainw.Layout().AddWidget(approvesigndata.UI)
+	c.Mainw.Layout().AddWidget(approvelisting.UI)
+	c.Mainw.Resize2(400, 680)
 
 	go func() {
 		for {
-			req := <-c.IncomingRequest
-			log.Println(req)
-			c.Mainw.Resize2(400, 680)
-			switch req.Method {
-			case ApproveSignData:
+			select {
+			case req := <-c.ApproveListingRequest:
+				log.Println(req.Params[0].Accounts[0].Address)
+				param := req.Params[0]
+
+				co := approvelisting.ContextObject
+				co.SetTransport(param.Meta.Transport)
+				co.SetRemote(param.Meta.Remote)
+				co.SetEndpoint(param.Meta.Local)
+
+
+				login.Hide()
+				approvesigndata.UI.Hide()
+				approvelisting.UI.Show()
+				log.Println("Show ApproveListing")
+			case req := <-c.ApproveSignDataRequest:
 				c.Mainw.SetWindowTitle("Sign Data")
+				data := req.Params
+				param := data[0]
 
 				co := approvesigndata.ContextObject
-				co.SetTransport(req.Params["transport"])
-				co.SetRemote(req.Params["remote"])
-				co.SetHash(req.Params["hash"])
-				co.SetMessage(req.Params["message"])
-				co.SetRawData(req.Params["raw_data"])
-				co.SetEndpoint(req.Params["local"])
-				co.SetFrom(req.Params["address"])
+				co.SetTransport(param.Meta.Transport)
+				co.SetRemote(param.Meta.Remote)
+				co.SetEndpoint(param.Meta.Local)
+
+				co.SetHash(param.Hash)
+				co.SetMessage(param.Message)
+				co.SetRawData(param.Raw_data)
+				co.SetFrom(param.Address)
 
 				co.ClickResponse(req.Response)
 				login.Hide()
+				approvelisting.UI.Hide()
 				approvesigndata.UI.Show()
-
-			case OnSignerStartup:
-				c.Mainw.SetWindowTitle("Start Clef")
-				login.Show()
-				approvesigndata.UI.Hide()
-			default:
-				c.Mainw.SetWindowTitle("Clef")
-				login.Show()
-				approvesigndata.UI.Hide()
+				log.Println("Show ApproveSignData")
 			}
 		}
 	}()

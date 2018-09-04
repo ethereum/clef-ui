@@ -3,14 +3,8 @@ package ui
 import (
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quick"
-	"github.com/therecipe/qt/widgets"
+	"log"
 )
-
-type CustomLabel struct {
-	widgets.QLabel
-
-	_ func(string) `signal:"updateText,auto(this.QLabel.setText)"` //TODO: support this.setText as well
-}
 
 type ApproveSignDataUI struct {
 	UI 					*quick.QQuickWidget
@@ -34,6 +28,7 @@ type CtxObject struct {
 }
 
 func (t *CtxObject) clicked(b int) {
+	log.Println(b)
 	t.answer = b
 }
 
@@ -74,6 +69,6 @@ func NewApproveSignDataUI() *ApproveSignDataUI {
 	}
 
 	widget.RootContext().SetContextProperty("ctxObject", c)
-
+	widget.Hide()
 	return v
 }

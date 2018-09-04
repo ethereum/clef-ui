@@ -2,6 +2,7 @@ package rpc
 
 import (
 	"fmt"
+	"github.com/kyokan/clef-ui/internal/params"
 	"github.com/kyokan/clef-ui/internal/ui"
 )
 
@@ -9,86 +10,47 @@ type ClefService struct {
 	ui 		ui.ClefUI
 }
 
-type Meta struct {
-	Transport 		string `json:"scheme"`
-	Remote 			string `json:"remote"`
-	Local 			string `json:"local"`
-}
-
-type OnSignerStartupInfo struct {
-	Extapi_http    string `json:"extapi_http"`
-	Extapi_ipc     string `json:"extapi_ipc"`
-	Extapi_version string `json:"extapi_version"`
-	Intapi_version string `json:"intapi_version"`
-}
-
-type OnSignerStartupParam struct {
-	Info *OnSignerStartupInfo `json:"info"`
-}
-
-type OnSignerStartupReply struct {
-}
-
-type ApproveListingArgs struct {
-	Address			string
-}
-
-type ApproveListingReply struct {
+type ClefResponse struct {
 	Approved		bool
 	Password		string
 }
 
-func (c *ClefService) OnSignerStartup(params []*OnSignerStartupParam, _ *struct{}) error {
+func (c *ClefService) OnSignerStartup(params []*params.OnSignerStartupParam, _ *struct{}) error {
 	//fmt.Println(params[0].Info.Extapi_http)
 	fmt.Println("hihihihihihihi")
-	r := ui.RpcRequest{
-		Method: ui.OnSignerStartup,
-	}
+	//r := ui.RpcRequest{
+	//	Method: ui.OnSignerStartup,
+	//}
 
-	c.ui.IncomingRequest <- r
+	//c.ui.IncomingRequest <- r
 	return nil
 }
 
-func (c *ClefService) ApproveListing(args []*ApproveListingArgs, reply *ApproveListingReply) error {
-	fmt.Println("hihihihihihihi")
-	return nil
-}
-
-type ApproveSignDataParam struct {
-	Address 		string `json:"address"`
-	Raw_data		string `json:"raw_data"`
-	Message			string `json:"message"`
-	Hash 			string `json:"hash"`
-	Meta 			Meta `json:"meta"`
-}
-
-func (c *ClefService) ApproveSignData(params []*ApproveSignDataParam, reply *ApproveListingReply) error {
-	//c.ui.Channel <- map[string]string{
-	//c.ui.Channel <- map[string]string{
-	p := map[string]string{
-		"address": params[0].Address,
-		"hash": params[0].Hash,
-		"message": params[0].Message,
-		"raw_data": params[0].Raw_data,
-		"transport": params[0].Meta.Transport,
-		"remote": params[0].Meta.Remote,
-		"local": params[0].Meta.Local,
-	}
-
+func (c *ClefService) ApproveListing(params []*params.ApproveListingParams, reply *ClefResponse) error {
 	ch := make(chan map[string]string)
-	r := ui.RpcRequest{
-		Params: p,
+	r := ui.ApproveListingRequest{
+		Params: params,
 		Response: ch,
-		Method: ui.ApproveSignData,
 	}
 
-	c.ui.IncomingRequest <- r
+	c.ui.ApproveListingRequest <- r
+	return nil
+}
+
+func (c *ClefService) ApproveSignData(params []*params.ApproveSignDataParams, reply *ClefResponse) error {
+	ch := make(chan map[string]string)
+	r := ui.ApproveSignDataRequest{
+		Params: params,
+		Response: ch,
+	}
+
+	c.ui.ApproveSignDataRequest <- r
 
 	res := <-ch
 	reply.Approved = res["approved"] == "true"
 	reply.Password = res["password"]
 
-	c.ui.IncomingRequest <- ui.RpcRequest{ Method: "" }
+	//c.ui.IncomingRequest <- ui.RpcRequest{ Method: "" }
 
 	return nil
 }
