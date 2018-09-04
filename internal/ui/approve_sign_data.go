@@ -2,6 +2,7 @@ package ui
 
 import (
 	"github.com/therecipe/qt/core"
+	"github.com/therecipe/qt/quick"
 	"github.com/therecipe/qt/widgets"
 )
 
@@ -12,114 +13,67 @@ type CustomLabel struct {
 }
 
 type ApproveSignDataUI struct {
-	UI 					*widgets.QWidget
-	SetRemote			func(string)
-	SetTransport		func(string)
-	SetEndpoint			func(string)
-	SetFrom				func(string)
-	SetMessage			func(string)
-	SetTxHash			func(string)
-	SetRawData			func(string)
-	responseChannel		chan map[string]string
+	UI 					*quick.QQuickWidget
+	ContextObject		*CtxObject
 }
 
-func addNewRow(wrapper *widgets.QWidget, key string, value string) (updateText func(string)) {
-	row := widgets.NewQWidget(nil, 0)
-	box := widgets.NewQHBoxLayout()
-	box.SetContentsMargins(8, 8, 0, 0)
-	row.SetLayout(box)
+type CtxObject struct {
+	core.QObject
 
-	keyLabel := NewCustomLabel(nil, 0)
-	keyLabel.SetAlignment(core.Qt__AlignLeft)
-	keyLabel.UpdateText(key)
-	//keyLabel.SetStyleSheetDefault("margin: 0px;")
+	_ string `property:"remote"`
+	_ string `property:"transport"`
+	_ string `property:"endpoint"`
+	_ string `property:"from"`
+	_ string `property:"message"`
+	_ string `property:"rawData"`
+	_ string `property:"hash"`
 
-	valueLabel := NewCustomLabel(nil, 0)
-	valueLabel.SetAlignment(core.Qt__AlignLeft)
-	valueLabel.UpdateText(value)
-	//valueLabel.SetStyleSheetDefault("margin: 0px;")
+	_ func(b int) `signal:"clicked,auto"`
 
-	row.Layout().AddWidget(keyLabel)
-	row.Layout().AddWidget(valueLabel)
-	wrapper.Layout().AddWidget(row)
-
-	return valueLabel.UpdateText
+	answer 		int
 }
 
-func addTitleLabel(wrapper *widgets.QWidget, title string) {
-	requestInfoHeaderLabel := NewCustomLabel(nil, 0)
-	requestInfoHeaderLabel.SetAlignment(core.Qt__AlignLeft)
-	requestInfoHeaderLabel.UpdateText(title)
-	requestInfoHeaderLabel.SetStyleSheetDefault("font-weight: bold;")
-	wrapper.Layout().AddWidget(requestInfoHeaderLabel)
+func (t *CtxObject) clicked(b int) {
+	t.answer = b
 }
 
-func (c *ApproveSignDataUI) addButtons (wrapper *widgets.QWidget) {
-	row := widgets.NewQWidget(nil, 0)
-	box := widgets.NewQHBoxLayout()
-	box.SetContentsMargins(0, 0, 0, 0)
-	row.SetLayout(box)
-	wrapper.Layout().AddWidget(row)
+func (t *CtxObject) Reset() {
+	t.answer = 0
+}
 
-	decline := widgets.NewQPushButton2("Reject", nil)
-	decline.ConnectClicked(func(bool) {
-		c.responseChannel <- map[string]string{
-			"approved": "false",
-			"password": "",
+func (t *CtxObject) ClickResponse(res chan map[string]string) {
+	go func() {
+		done := false
+		for !done {
+			if t.answer != 0 {
+				done = true
+				if t.answer == 1 {
+					res <- map[string]string{
+						"approved": "false",
+						"password": "",
+					}
+				} else if t.answer == 2 {
+					res <- map[string]string{
+						"approved": "true",
+						"password": "asdfasdf",
+					}
+				}
+				t.Reset()
+			}
 		}
-	})
-	row.Layout().AddWidget(decline)
-
-	approve := widgets.NewQPushButton2("Approve", nil)
-	approve.ConnectClicked(func(bool) {
-		c.responseChannel <- map[string]string{
-			"approved": "true",
-			"password": "asdfasdf",
-		}
-	})
-
-	row.Show()
-
-	row.Layout().AddWidget(approve)
-}
-
-func (c *ApproveSignDataUI) SetResponseChannel (responseChannel chan map[string]string) {
-	c.responseChannel = responseChannel
+	}()
 }
 
 func NewApproveSignDataUI() *ApproveSignDataUI {
-	widget := widgets.NewQWidget(nil, 0)
-	widget.SetLayout(widgets.NewQVBoxLayout())
-	widget.SetMinimumSize2(400, 0)
-	widget.SetStyleSheetDefault("background-color: #ecf0f1;")
-
-	addTitleLabel(widget, "Request Info")
-
-	setRemote := addNewRow(widget,"Remote", "")
-	setTransport := addNewRow(widget,"Transport", "")
-	setEndpoint := addNewRow(widget,"Local Endpoint", "")
-
-	addTitleLabel(widget, "Transaction Info")
-
-	setFrom := addNewRow(widget,"Address", "")
-	setTxHash := addNewRow(widget,"Hash", "")
-	setMessage := addNewRow(widget,"Message", "")
-	setRawData := addNewRow(widget,"Raw Data", "")
-
-	widget.Hide()
-
-	view := &ApproveSignDataUI{
+	widget := quick.NewQQuickWidget(nil)
+	widget.SetSource(core.NewQUrl3("qrc:/qml/approve_sign_data.qml", 0))
+	c := NewCtxObject(nil)
+	v := &ApproveSignDataUI{
 		UI: widget,
-		SetRemote: setRemote,
-		SetTransport: setTransport,
-		SetEndpoint: setEndpoint,
-		SetFrom: setFrom,
-		SetMessage: setMessage,
-		SetTxHash: setTxHash,
-		SetRawData: setRawData,
+		ContextObject: c,
 	}
 
-	view.addButtons(widget)
+	widget.RootContext().SetContextProperty("ctxObject", c)
 
-	return view
+	return v
 }

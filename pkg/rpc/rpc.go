@@ -78,7 +78,7 @@ func (c *ClefService) ApproveSignData(params []*ApproveSignDataParam, reply *App
 	ch := make(chan map[string]string)
 	r := ui.RpcRequest{
 		Params: p,
-		Channel: ch,
+		Response: ch,
 		Method: ui.ApproveSignData,
 	}
 

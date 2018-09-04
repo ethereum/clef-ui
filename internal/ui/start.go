@@ -17,7 +17,7 @@ const (
 
 type RpcRequest struct {
 	Params 		map[string]string
-	Channel 	chan map[string]string
+	Response 	chan map[string]string
 	Method 		string
 }
 
@@ -73,28 +73,31 @@ func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
 		for {
 			req := <-c.IncomingRequest
 			log.Println(req)
+			c.Mainw.Resize2(400, 680)
 			switch req.Method {
 			case ApproveSignData:
 				c.Mainw.SetWindowTitle("Sign Data")
 
-				approvesigndata.SetFrom(req.Params["address"])
-				approvesigndata.SetMessage(req.Params["message"])
-				approvesigndata.SetEndpoint(req.Params["local"])
-				approvesigndata.SetRawData(req.Params["raw_data"])
-				approvesigndata.SetRemote(req.Params["remote"])
-				approvesigndata.SetTransport(req.Params["transport"])
-				approvesigndata.SetTxHash(req.Params["hash"])
-				approvesigndata.SetResponseChannel(req.Channel)
+				co := approvesigndata.ContextObject
+				co.SetTransport(req.Params["transport"])
+				co.SetRemote(req.Params["remote"])
+				co.SetHash(req.Params["hash"])
+				co.SetMessage(req.Params["message"])
+				co.SetRawData(req.Params["raw_data"])
+				co.SetEndpoint(req.Params["local"])
+				co.SetFrom(req.Params["address"])
 
+				co.ClickResponse(req.Response)
 				login.Hide()
 				approvesigndata.UI.Show()
+
 			case OnSignerStartup:
 				c.Mainw.SetWindowTitle("Start Clef")
 				login.Show()
 				approvesigndata.UI.Hide()
 			default:
 				c.Mainw.SetWindowTitle("Clef")
-				login.Hide()
+				login.Show()
 				approvesigndata.UI.Hide()
 			}
 		}
