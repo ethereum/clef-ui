@@ -23,7 +23,7 @@ func NewLoginUI() *widgets.QWidget {
 	// Add widgets to widget
 	widget.Layout().AddWidget(input)
 	widget.Layout().AddWidget(button)
-	widget.SetFixedSize2(400, 400)
+	//widget.SetFixedSize2(400, 400)
 	widget.Show()
 
 	return widget

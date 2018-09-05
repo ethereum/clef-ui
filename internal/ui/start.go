@@ -55,9 +55,12 @@ func (c *ClefUI) initApp() {
 	mainw.SetWindowTitle(core.QCoreApplication_ApplicationName())
 	mainw.SetStyleSheetDefault("background-color: #ecf0f1;")
 
-	widget := widgets.NewQWidget(nil, 0)
-	widget.SetLayout(widgets.NewQVBoxLayout())
 
+	widget := widgets.NewQWidget(nil, 0)
+	box := widgets.NewQVBoxLayout()
+	box.SetSpacing(0)
+	box.SetContentsMargins(0,0,0,0)
+	widget.SetLayout(box)
 	mainw.SetCentralWidget(widget)
 
 	mainw.Show()
@@ -85,6 +88,7 @@ func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
 	c.Mainw.Layout().AddWidget(login)
 	c.Mainw.Layout().AddWidget(approvesigndata.UI)
 	c.Mainw.Layout().AddWidget(approvelisting.UI)
+	c.Mainw.SetFixedSize2(400, 680	)
 
 	go func() {
 		for {

@@ -3,7 +3,6 @@ package ui
 import (
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quick"
-	"log"
 )
 
 type ApproveSignDataUI struct {
@@ -28,7 +27,6 @@ type ApproveSignDataCtx struct {
 }
 
 func (t *ApproveSignDataCtx) clicked(b int) {
-	log.Println(b)
 	t.answer = b
 }
 
@@ -69,7 +67,7 @@ func NewApproveSignDataUI() *ApproveSignDataUI {
 	}
 
 	widget.RootContext().SetContextProperty("ctxObject", c)
-	widget.SetResizeMode(quick.QQuickWidget__SizeViewToRootObject)
+	widget.SetResizeMode(quick.QQuickWidget__SizeRootObjectToView)
 	widget.Hide()
 	return v
 }

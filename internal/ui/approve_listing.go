@@ -4,7 +4,6 @@ import (
 	"github.com/kyokan/clef-ui/internal/params"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quick"
-	"log"
 )
 
 type ApproveListingUI struct {
@@ -107,7 +106,6 @@ func (m *CustomListModel) add(account params.ApproveListingAccount) {
 }
 
 func (t *CustomListModel) clicked(b int) {
-	log.Println(b)
 	t.answer = b
 }
 
@@ -155,10 +153,10 @@ func NewApproveListingUI() *ApproveListingUI {
 		ContextObject: c,
 		AccountListModel: m,
 	}
-
+	widget.SetStyleSheet("margin: 0;")
 	widget.RootContext().SetContextProperty("ctxObject", c)
 	widget.RootContext().SetContextProperty(	"myModel", m)
-	widget.SetResizeMode(quick.QQuickWidget__SizeViewToRootObject)
+	widget.SetResizeMode(quick.QQuickWidget__SizeRootObjectToView)
 	widget.Hide()
 	return v
 }
