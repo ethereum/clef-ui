@@ -30,6 +30,28 @@ func (c *ClefService) OnSignerStartup(params []*params.OnSignerStartupParam, _ *
 	return nil
 }
 
+func (c *ClefService) ApproveTx(p []*params.ApproveTxParams, reply *params.ApproveTxResponse) error {
+	ch := make(chan params.ApproveTxResponse)
+	r := ui.ApproveTxRequest{
+		Params: p,
+		Response: ch,
+	}
+
+	c.ui.ApproveTxRequest <- r
+	res := <-ch
+
+	if !res.Approved {
+		reply.Transaction = p[0].Transaction
+		reply.Approved = res.Approved
+	} else {
+		reply.Transaction = res.Transaction
+		reply.Approved = res.Approved
+		reply.Password = res.Password
+	}
+
+	return nil
+}
+
 func (c *ClefService) ApproveListing(p []*params.ApproveListingParams, reply *AccountListResponse) error {
 	ch := make(chan []params.ApproveListingAccount)
 	r := ui.ApproveListingRequest{

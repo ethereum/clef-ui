@@ -46,92 +46,6 @@
 #include <QWindow>
 
 
-class ApproveListingCtx721036: public QObject
-{
-Q_OBJECT
-Q_PROPERTY(QString remote READ remote WRITE setRemote NOTIFY remoteChanged)
-Q_PROPERTY(QString transport READ transport WRITE setTransport NOTIFY transportChanged)
-Q_PROPERTY(QString endpoint READ endpoint WRITE setEndpoint NOTIFY endpointChanged)
-Q_PROPERTY(QString from READ from WRITE setFrom NOTIFY fromChanged)
-Q_PROPERTY(QString message READ message WRITE setMessage NOTIFY messageChanged)
-Q_PROPERTY(QString rawData READ rawData WRITE setRawData NOTIFY rawDataChanged)
-Q_PROPERTY(QString hash READ hash WRITE setHash NOTIFY hashChanged)
-public:
-	ApproveListingCtx721036(QObject *parent = Q_NULLPTR) : QObject(parent) {qRegisterMetaType<quintptr>("quintptr");ApproveListingCtx721036_ApproveListingCtx721036_QRegisterMetaType();ApproveListingCtx721036_ApproveListingCtx721036_QRegisterMetaTypes();callbackApproveListingCtx721036_Constructor(this);};
-	QString remote() { return ({ Moc_PackedString tempVal = callbackApproveListingCtx721036_Remote(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	void setRemote(QString remote) { QByteArray t41ffe5 = remote.toUtf8(); Moc_PackedString remotePacked = { const_cast<char*>(t41ffe5.prepend("WHITESPACE").constData()+10), t41ffe5.size()-10 };callbackApproveListingCtx721036_SetRemote(this, remotePacked); };
-	void Signal_RemoteChanged(QString remote) { QByteArray t41ffe5 = remote.toUtf8(); Moc_PackedString remotePacked = { const_cast<char*>(t41ffe5.prepend("WHITESPACE").constData()+10), t41ffe5.size()-10 };callbackApproveListingCtx721036_RemoteChanged(this, remotePacked); };
-	QString transport() { return ({ Moc_PackedString tempVal = callbackApproveListingCtx721036_Transport(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	void setTransport(QString transport) { QByteArray ta8e601 = transport.toUtf8(); Moc_PackedString transportPacked = { const_cast<char*>(ta8e601.prepend("WHITESPACE").constData()+10), ta8e601.size()-10 };callbackApproveListingCtx721036_SetTransport(this, transportPacked); };
-	void Signal_TransportChanged(QString transport) { QByteArray ta8e601 = transport.toUtf8(); Moc_PackedString transportPacked = { const_cast<char*>(ta8e601.prepend("WHITESPACE").constData()+10), ta8e601.size()-10 };callbackApproveListingCtx721036_TransportChanged(this, transportPacked); };
-	QString endpoint() { return ({ Moc_PackedString tempVal = callbackApproveListingCtx721036_Endpoint(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	void setEndpoint(QString endpoint) { QByteArray te13fe4 = endpoint.toUtf8(); Moc_PackedString endpointPacked = { const_cast<char*>(te13fe4.prepend("WHITESPACE").constData()+10), te13fe4.size()-10 };callbackApproveListingCtx721036_SetEndpoint(this, endpointPacked); };
-	void Signal_EndpointChanged(QString endpoint) { QByteArray te13fe4 = endpoint.toUtf8(); Moc_PackedString endpointPacked = { const_cast<char*>(te13fe4.prepend("WHITESPACE").constData()+10), te13fe4.size()-10 };callbackApproveListingCtx721036_EndpointChanged(this, endpointPacked); };
-	QString from() { return ({ Moc_PackedString tempVal = callbackApproveListingCtx721036_From(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	void setFrom(QString from) { QByteArray t0b1e95 = from.toUtf8(); Moc_PackedString fromPacked = { const_cast<char*>(t0b1e95.prepend("WHITESPACE").constData()+10), t0b1e95.size()-10 };callbackApproveListingCtx721036_SetFrom(this, fromPacked); };
-	void Signal_FromChanged(QString from) { QByteArray t0b1e95 = from.toUtf8(); Moc_PackedString fromPacked = { const_cast<char*>(t0b1e95.prepend("WHITESPACE").constData()+10), t0b1e95.size()-10 };callbackApproveListingCtx721036_FromChanged(this, fromPacked); };
-	QString message() { return ({ Moc_PackedString tempVal = callbackApproveListingCtx721036_Message(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	void setMessage(QString message) { QByteArray t6f9b9a = message.toUtf8(); Moc_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackApproveListingCtx721036_SetMessage(this, messagePacked); };
-	void Signal_MessageChanged(QString message) { QByteArray t6f9b9a = message.toUtf8(); Moc_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackApproveListingCtx721036_MessageChanged(this, messagePacked); };
-	QString rawData() { return ({ Moc_PackedString tempVal = callbackApproveListingCtx721036_RawData(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	void setRawData(QString rawData) { QByteArray tcacc10 = rawData.toUtf8(); Moc_PackedString rawDataPacked = { const_cast<char*>(tcacc10.prepend("WHITESPACE").constData()+10), tcacc10.size()-10 };callbackApproveListingCtx721036_SetRawData(this, rawDataPacked); };
-	void Signal_RawDataChanged(QString rawData) { QByteArray tcacc10 = rawData.toUtf8(); Moc_PackedString rawDataPacked = { const_cast<char*>(tcacc10.prepend("WHITESPACE").constData()+10), tcacc10.size()-10 };callbackApproveListingCtx721036_RawDataChanged(this, rawDataPacked); };
-	QString hash() { return ({ Moc_PackedString tempVal = callbackApproveListingCtx721036_Hash(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	void setHash(QString hash) { QByteArray t2346ad = hash.toUtf8(); Moc_PackedString hashPacked = { const_cast<char*>(t2346ad.prepend("WHITESPACE").constData()+10), t2346ad.size()-10 };callbackApproveListingCtx721036_SetHash(this, hashPacked); };
-	void Signal_HashChanged(QString hash) { QByteArray t2346ad = hash.toUtf8(); Moc_PackedString hashPacked = { const_cast<char*>(t2346ad.prepend("WHITESPACE").constData()+10), t2346ad.size()-10 };callbackApproveListingCtx721036_HashChanged(this, hashPacked); };
-	 ~ApproveListingCtx721036() { callbackApproveListingCtx721036_DestroyApproveListingCtx(this); };
-	bool event(QEvent * e) { return callbackApproveListingCtx721036_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackApproveListingCtx721036_EventFilter(this, watched, event) != 0; };
-	
-	void childEvent(QChildEvent * event) { callbackApproveListingCtx721036_ChildEvent(this, event); };
-	void connectNotify(const QMetaMethod & sign) { callbackApproveListingCtx721036_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackApproveListingCtx721036_CustomEvent(this, event); };
-	void deleteLater() { callbackApproveListingCtx721036_DeleteLater(this); };
-	void Signal_Destroyed(QObject * obj) { callbackApproveListingCtx721036_Destroyed(this, obj); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackApproveListingCtx721036_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); Moc_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackApproveListingCtx721036_ObjectNameChanged(this, objectNamePacked); };
-	void timerEvent(QTimerEvent * event) { callbackApproveListingCtx721036_TimerEvent(this, event); };
-	
-	QString remoteDefault() { return _remote; };
-	void setRemoteDefault(QString p) { if (p != _remote) { _remote = p; remoteChanged(_remote); } };
-	QString transportDefault() { return _transport; };
-	void setTransportDefault(QString p) { if (p != _transport) { _transport = p; transportChanged(_transport); } };
-	QString endpointDefault() { return _endpoint; };
-	void setEndpointDefault(QString p) { if (p != _endpoint) { _endpoint = p; endpointChanged(_endpoint); } };
-	QString fromDefault() { return _from; };
-	void setFromDefault(QString p) { if (p != _from) { _from = p; fromChanged(_from); } };
-	QString messageDefault() { return _message; };
-	void setMessageDefault(QString p) { if (p != _message) { _message = p; messageChanged(_message); } };
-	QString rawDataDefault() { return _rawData; };
-	void setRawDataDefault(QString p) { if (p != _rawData) { _rawData = p; rawDataChanged(_rawData); } };
-	QString hashDefault() { return _hash; };
-	void setHashDefault(QString p) { if (p != _hash) { _hash = p; hashChanged(_hash); } };
-signals:
-	void remoteChanged(QString remote);
-	void transportChanged(QString transport);
-	void endpointChanged(QString endpoint);
-	void fromChanged(QString from);
-	void messageChanged(QString message);
-	void rawDataChanged(QString rawData);
-	void hashChanged(QString hash);
-public slots:
-private:
-	QString _remote;
-	QString _transport;
-	QString _endpoint;
-	QString _from;
-	QString _message;
-	QString _rawData;
-	QString _hash;
-};
-
-Q_DECLARE_METATYPE(ApproveListingCtx721036*)
-
-
-void ApproveListingCtx721036_ApproveListingCtx721036_QRegisterMetaTypes() {
-	qRegisterMetaType<QString>();
-}
-
 class ApproveSignDataCtx721036: public QObject
 {
 Q_OBJECT
@@ -217,6 +131,118 @@ Q_DECLARE_METATYPE(ApproveSignDataCtx721036*)
 
 
 void ApproveSignDataCtx721036_ApproveSignDataCtx721036_QRegisterMetaTypes() {
+	qRegisterMetaType<QString>();
+}
+
+class ApproveTxCtx721036: public QObject
+{
+Q_OBJECT
+Q_PROPERTY(QString remote READ remote WRITE setRemote NOTIFY remoteChanged)
+Q_PROPERTY(QString transport READ transport WRITE setTransport NOTIFY transportChanged)
+Q_PROPERTY(QString endpoint READ endpoint WRITE setEndpoint NOTIFY endpointChanged)
+Q_PROPERTY(QString data READ data WRITE setData NOTIFY dataChanged)
+Q_PROPERTY(QString from READ from WRITE setFrom NOTIFY fromChanged)
+Q_PROPERTY(QString to READ to WRITE setTo NOTIFY toChanged)
+Q_PROPERTY(QString gas READ gas WRITE setGas NOTIFY gasChanged)
+Q_PROPERTY(QString gasPrice READ gasPrice WRITE setGasPrice NOTIFY gasPriceChanged)
+Q_PROPERTY(QString nonce READ nonce WRITE setNonce NOTIFY nonceChanged)
+Q_PROPERTY(QString value READ value WRITE setValue NOTIFY valueChanged)
+public:
+	ApproveTxCtx721036(QObject *parent = Q_NULLPTR) : QObject(parent) {qRegisterMetaType<quintptr>("quintptr");ApproveTxCtx721036_ApproveTxCtx721036_QRegisterMetaType();ApproveTxCtx721036_ApproveTxCtx721036_QRegisterMetaTypes();callbackApproveTxCtx721036_Constructor(this);};
+	void Signal_Clicked(qint32 b) { callbackApproveTxCtx721036_Clicked(this, b); };
+	QString remote() { return ({ Moc_PackedString tempVal = callbackApproveTxCtx721036_Remote(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	void setRemote(QString remote) { QByteArray t41ffe5 = remote.toUtf8(); Moc_PackedString remotePacked = { const_cast<char*>(t41ffe5.prepend("WHITESPACE").constData()+10), t41ffe5.size()-10 };callbackApproveTxCtx721036_SetRemote(this, remotePacked); };
+	void Signal_RemoteChanged(QString remote) { QByteArray t41ffe5 = remote.toUtf8(); Moc_PackedString remotePacked = { const_cast<char*>(t41ffe5.prepend("WHITESPACE").constData()+10), t41ffe5.size()-10 };callbackApproveTxCtx721036_RemoteChanged(this, remotePacked); };
+	QString transport() { return ({ Moc_PackedString tempVal = callbackApproveTxCtx721036_Transport(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	void setTransport(QString transport) { QByteArray ta8e601 = transport.toUtf8(); Moc_PackedString transportPacked = { const_cast<char*>(ta8e601.prepend("WHITESPACE").constData()+10), ta8e601.size()-10 };callbackApproveTxCtx721036_SetTransport(this, transportPacked); };
+	void Signal_TransportChanged(QString transport) { QByteArray ta8e601 = transport.toUtf8(); Moc_PackedString transportPacked = { const_cast<char*>(ta8e601.prepend("WHITESPACE").constData()+10), ta8e601.size()-10 };callbackApproveTxCtx721036_TransportChanged(this, transportPacked); };
+	QString endpoint() { return ({ Moc_PackedString tempVal = callbackApproveTxCtx721036_Endpoint(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	void setEndpoint(QString endpoint) { QByteArray te13fe4 = endpoint.toUtf8(); Moc_PackedString endpointPacked = { const_cast<char*>(te13fe4.prepend("WHITESPACE").constData()+10), te13fe4.size()-10 };callbackApproveTxCtx721036_SetEndpoint(this, endpointPacked); };
+	void Signal_EndpointChanged(QString endpoint) { QByteArray te13fe4 = endpoint.toUtf8(); Moc_PackedString endpointPacked = { const_cast<char*>(te13fe4.prepend("WHITESPACE").constData()+10), te13fe4.size()-10 };callbackApproveTxCtx721036_EndpointChanged(this, endpointPacked); };
+	QString data() { return ({ Moc_PackedString tempVal = callbackApproveTxCtx721036_Data(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	void setData(QString data) { QByteArray ta17c9a = data.toUtf8(); Moc_PackedString dataPacked = { const_cast<char*>(ta17c9a.prepend("WHITESPACE").constData()+10), ta17c9a.size()-10 };callbackApproveTxCtx721036_SetData(this, dataPacked); };
+	void Signal_DataChanged(QString data) { QByteArray ta17c9a = data.toUtf8(); Moc_PackedString dataPacked = { const_cast<char*>(ta17c9a.prepend("WHITESPACE").constData()+10), ta17c9a.size()-10 };callbackApproveTxCtx721036_DataChanged(this, dataPacked); };
+	QString from() { return ({ Moc_PackedString tempVal = callbackApproveTxCtx721036_From(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	void setFrom(QString from) { QByteArray t0b1e95 = from.toUtf8(); Moc_PackedString fromPacked = { const_cast<char*>(t0b1e95.prepend("WHITESPACE").constData()+10), t0b1e95.size()-10 };callbackApproveTxCtx721036_SetFrom(this, fromPacked); };
+	void Signal_FromChanged(QString from) { QByteArray t0b1e95 = from.toUtf8(); Moc_PackedString fromPacked = { const_cast<char*>(t0b1e95.prepend("WHITESPACE").constData()+10), t0b1e95.size()-10 };callbackApproveTxCtx721036_FromChanged(this, fromPacked); };
+	QString to() { return ({ Moc_PackedString tempVal = callbackApproveTxCtx721036_To(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	void setTo(QString to) { QByteArray t4374aa = to.toUtf8(); Moc_PackedString toPacked = { const_cast<char*>(t4374aa.prepend("WHITESPACE").constData()+10), t4374aa.size()-10 };callbackApproveTxCtx721036_SetTo(this, toPacked); };
+	void Signal_ToChanged(QString to) { QByteArray t4374aa = to.toUtf8(); Moc_PackedString toPacked = { const_cast<char*>(t4374aa.prepend("WHITESPACE").constData()+10), t4374aa.size()-10 };callbackApproveTxCtx721036_ToChanged(this, toPacked); };
+	QString gas() { return ({ Moc_PackedString tempVal = callbackApproveTxCtx721036_Gas(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	void setGas(QString gas) { QByteArray tfacafa = gas.toUtf8(); Moc_PackedString gasPacked = { const_cast<char*>(tfacafa.prepend("WHITESPACE").constData()+10), tfacafa.size()-10 };callbackApproveTxCtx721036_SetGas(this, gasPacked); };
+	void Signal_GasChanged(QString gas) { QByteArray tfacafa = gas.toUtf8(); Moc_PackedString gasPacked = { const_cast<char*>(tfacafa.prepend("WHITESPACE").constData()+10), tfacafa.size()-10 };callbackApproveTxCtx721036_GasChanged(this, gasPacked); };
+	QString gasPrice() { return ({ Moc_PackedString tempVal = callbackApproveTxCtx721036_GasPrice(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	void setGasPrice(QString gasPrice) { QByteArray t72824c = gasPrice.toUtf8(); Moc_PackedString gasPricePacked = { const_cast<char*>(t72824c.prepend("WHITESPACE").constData()+10), t72824c.size()-10 };callbackApproveTxCtx721036_SetGasPrice(this, gasPricePacked); };
+	void Signal_GasPriceChanged(QString gasPrice) { QByteArray t72824c = gasPrice.toUtf8(); Moc_PackedString gasPricePacked = { const_cast<char*>(t72824c.prepend("WHITESPACE").constData()+10), t72824c.size()-10 };callbackApproveTxCtx721036_GasPriceChanged(this, gasPricePacked); };
+	QString nonce() { return ({ Moc_PackedString tempVal = callbackApproveTxCtx721036_Nonce(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	void setNonce(QString nonce) { QByteArray t49afa7 = nonce.toUtf8(); Moc_PackedString noncePacked = { const_cast<char*>(t49afa7.prepend("WHITESPACE").constData()+10), t49afa7.size()-10 };callbackApproveTxCtx721036_SetNonce(this, noncePacked); };
+	void Signal_NonceChanged(QString nonce) { QByteArray t49afa7 = nonce.toUtf8(); Moc_PackedString noncePacked = { const_cast<char*>(t49afa7.prepend("WHITESPACE").constData()+10), t49afa7.size()-10 };callbackApproveTxCtx721036_NonceChanged(this, noncePacked); };
+	QString value() { return ({ Moc_PackedString tempVal = callbackApproveTxCtx721036_Value(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	void setValue(QString value) { QByteArray tf32b67 = value.toUtf8(); Moc_PackedString valuePacked = { const_cast<char*>(tf32b67.prepend("WHITESPACE").constData()+10), tf32b67.size()-10 };callbackApproveTxCtx721036_SetValue(this, valuePacked); };
+	void Signal_ValueChanged(QString value) { QByteArray tf32b67 = value.toUtf8(); Moc_PackedString valuePacked = { const_cast<char*>(tf32b67.prepend("WHITESPACE").constData()+10), tf32b67.size()-10 };callbackApproveTxCtx721036_ValueChanged(this, valuePacked); };
+	 ~ApproveTxCtx721036() { callbackApproveTxCtx721036_DestroyApproveTxCtx(this); };
+	bool event(QEvent * e) { return callbackApproveTxCtx721036_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackApproveTxCtx721036_EventFilter(this, watched, event) != 0; };
+	
+	void childEvent(QChildEvent * event) { callbackApproveTxCtx721036_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackApproveTxCtx721036_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackApproveTxCtx721036_CustomEvent(this, event); };
+	void deleteLater() { callbackApproveTxCtx721036_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackApproveTxCtx721036_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackApproveTxCtx721036_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); Moc_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackApproveTxCtx721036_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackApproveTxCtx721036_TimerEvent(this, event); };
+	
+	QString remoteDefault() { return _remote; };
+	void setRemoteDefault(QString p) { if (p != _remote) { _remote = p; remoteChanged(_remote); } };
+	QString transportDefault() { return _transport; };
+	void setTransportDefault(QString p) { if (p != _transport) { _transport = p; transportChanged(_transport); } };
+	QString endpointDefault() { return _endpoint; };
+	void setEndpointDefault(QString p) { if (p != _endpoint) { _endpoint = p; endpointChanged(_endpoint); } };
+	QString dataDefault() { return _data; };
+	void setDataDefault(QString p) { if (p != _data) { _data = p; dataChanged(_data); } };
+	QString fromDefault() { return _from; };
+	void setFromDefault(QString p) { if (p != _from) { _from = p; fromChanged(_from); } };
+	QString toDefault() { return _to; };
+	void setToDefault(QString p) { if (p != _to) { _to = p; toChanged(_to); } };
+	QString gasDefault() { return _gas; };
+	void setGasDefault(QString p) { if (p != _gas) { _gas = p; gasChanged(_gas); } };
+	QString gasPriceDefault() { return _gasPrice; };
+	void setGasPriceDefault(QString p) { if (p != _gasPrice) { _gasPrice = p; gasPriceChanged(_gasPrice); } };
+	QString nonceDefault() { return _nonce; };
+	void setNonceDefault(QString p) { if (p != _nonce) { _nonce = p; nonceChanged(_nonce); } };
+	QString valueDefault() { return _value; };
+	void setValueDefault(QString p) { if (p != _value) { _value = p; valueChanged(_value); } };
+signals:
+	void clicked(qint32 b);
+	void remoteChanged(QString remote);
+	void transportChanged(QString transport);
+	void endpointChanged(QString endpoint);
+	void dataChanged(QString data);
+	void fromChanged(QString from);
+	void toChanged(QString to);
+	void gasChanged(QString gas);
+	void gasPriceChanged(QString gasPrice);
+	void nonceChanged(QString nonce);
+	void valueChanged(QString value);
+public slots:
+private:
+	QString _remote;
+	QString _transport;
+	QString _endpoint;
+	QString _data;
+	QString _from;
+	QString _to;
+	QString _gas;
+	QString _gasPrice;
+	QString _nonce;
+	QString _value;
+};
+
+Q_DECLARE_METATYPE(ApproveTxCtx721036*)
+
+
+void ApproveTxCtx721036_ApproveTxCtx721036_QRegisterMetaTypes() {
 	qRegisterMetaType<QString>();
 }
 
@@ -308,6 +334,92 @@ Q_DECLARE_METATYPE(CustomListModel721036*)
 
 
 void CustomListModel721036_CustomListModel721036_QRegisterMetaTypes() {
+}
+
+class ApproveListingCtx721036: public QObject
+{
+Q_OBJECT
+Q_PROPERTY(QString remote READ remote WRITE setRemote NOTIFY remoteChanged)
+Q_PROPERTY(QString transport READ transport WRITE setTransport NOTIFY transportChanged)
+Q_PROPERTY(QString endpoint READ endpoint WRITE setEndpoint NOTIFY endpointChanged)
+Q_PROPERTY(QString from READ from WRITE setFrom NOTIFY fromChanged)
+Q_PROPERTY(QString message READ message WRITE setMessage NOTIFY messageChanged)
+Q_PROPERTY(QString rawData READ rawData WRITE setRawData NOTIFY rawDataChanged)
+Q_PROPERTY(QString hash READ hash WRITE setHash NOTIFY hashChanged)
+public:
+	ApproveListingCtx721036(QObject *parent = Q_NULLPTR) : QObject(parent) {qRegisterMetaType<quintptr>("quintptr");ApproveListingCtx721036_ApproveListingCtx721036_QRegisterMetaType();ApproveListingCtx721036_ApproveListingCtx721036_QRegisterMetaTypes();callbackApproveListingCtx721036_Constructor(this);};
+	QString remote() { return ({ Moc_PackedString tempVal = callbackApproveListingCtx721036_Remote(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	void setRemote(QString remote) { QByteArray t41ffe5 = remote.toUtf8(); Moc_PackedString remotePacked = { const_cast<char*>(t41ffe5.prepend("WHITESPACE").constData()+10), t41ffe5.size()-10 };callbackApproveListingCtx721036_SetRemote(this, remotePacked); };
+	void Signal_RemoteChanged(QString remote) { QByteArray t41ffe5 = remote.toUtf8(); Moc_PackedString remotePacked = { const_cast<char*>(t41ffe5.prepend("WHITESPACE").constData()+10), t41ffe5.size()-10 };callbackApproveListingCtx721036_RemoteChanged(this, remotePacked); };
+	QString transport() { return ({ Moc_PackedString tempVal = callbackApproveListingCtx721036_Transport(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	void setTransport(QString transport) { QByteArray ta8e601 = transport.toUtf8(); Moc_PackedString transportPacked = { const_cast<char*>(ta8e601.prepend("WHITESPACE").constData()+10), ta8e601.size()-10 };callbackApproveListingCtx721036_SetTransport(this, transportPacked); };
+	void Signal_TransportChanged(QString transport) { QByteArray ta8e601 = transport.toUtf8(); Moc_PackedString transportPacked = { const_cast<char*>(ta8e601.prepend("WHITESPACE").constData()+10), ta8e601.size()-10 };callbackApproveListingCtx721036_TransportChanged(this, transportPacked); };
+	QString endpoint() { return ({ Moc_PackedString tempVal = callbackApproveListingCtx721036_Endpoint(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	void setEndpoint(QString endpoint) { QByteArray te13fe4 = endpoint.toUtf8(); Moc_PackedString endpointPacked = { const_cast<char*>(te13fe4.prepend("WHITESPACE").constData()+10), te13fe4.size()-10 };callbackApproveListingCtx721036_SetEndpoint(this, endpointPacked); };
+	void Signal_EndpointChanged(QString endpoint) { QByteArray te13fe4 = endpoint.toUtf8(); Moc_PackedString endpointPacked = { const_cast<char*>(te13fe4.prepend("WHITESPACE").constData()+10), te13fe4.size()-10 };callbackApproveListingCtx721036_EndpointChanged(this, endpointPacked); };
+	QString from() { return ({ Moc_PackedString tempVal = callbackApproveListingCtx721036_From(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	void setFrom(QString from) { QByteArray t0b1e95 = from.toUtf8(); Moc_PackedString fromPacked = { const_cast<char*>(t0b1e95.prepend("WHITESPACE").constData()+10), t0b1e95.size()-10 };callbackApproveListingCtx721036_SetFrom(this, fromPacked); };
+	void Signal_FromChanged(QString from) { QByteArray t0b1e95 = from.toUtf8(); Moc_PackedString fromPacked = { const_cast<char*>(t0b1e95.prepend("WHITESPACE").constData()+10), t0b1e95.size()-10 };callbackApproveListingCtx721036_FromChanged(this, fromPacked); };
+	QString message() { return ({ Moc_PackedString tempVal = callbackApproveListingCtx721036_Message(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	void setMessage(QString message) { QByteArray t6f9b9a = message.toUtf8(); Moc_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackApproveListingCtx721036_SetMessage(this, messagePacked); };
+	void Signal_MessageChanged(QString message) { QByteArray t6f9b9a = message.toUtf8(); Moc_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackApproveListingCtx721036_MessageChanged(this, messagePacked); };
+	QString rawData() { return ({ Moc_PackedString tempVal = callbackApproveListingCtx721036_RawData(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	void setRawData(QString rawData) { QByteArray tcacc10 = rawData.toUtf8(); Moc_PackedString rawDataPacked = { const_cast<char*>(tcacc10.prepend("WHITESPACE").constData()+10), tcacc10.size()-10 };callbackApproveListingCtx721036_SetRawData(this, rawDataPacked); };
+	void Signal_RawDataChanged(QString rawData) { QByteArray tcacc10 = rawData.toUtf8(); Moc_PackedString rawDataPacked = { const_cast<char*>(tcacc10.prepend("WHITESPACE").constData()+10), tcacc10.size()-10 };callbackApproveListingCtx721036_RawDataChanged(this, rawDataPacked); };
+	QString hash() { return ({ Moc_PackedString tempVal = callbackApproveListingCtx721036_Hash(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	void setHash(QString hash) { QByteArray t2346ad = hash.toUtf8(); Moc_PackedString hashPacked = { const_cast<char*>(t2346ad.prepend("WHITESPACE").constData()+10), t2346ad.size()-10 };callbackApproveListingCtx721036_SetHash(this, hashPacked); };
+	void Signal_HashChanged(QString hash) { QByteArray t2346ad = hash.toUtf8(); Moc_PackedString hashPacked = { const_cast<char*>(t2346ad.prepend("WHITESPACE").constData()+10), t2346ad.size()-10 };callbackApproveListingCtx721036_HashChanged(this, hashPacked); };
+	 ~ApproveListingCtx721036() { callbackApproveListingCtx721036_DestroyApproveListingCtx(this); };
+	bool event(QEvent * e) { return callbackApproveListingCtx721036_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackApproveListingCtx721036_EventFilter(this, watched, event) != 0; };
+	
+	void childEvent(QChildEvent * event) { callbackApproveListingCtx721036_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackApproveListingCtx721036_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackApproveListingCtx721036_CustomEvent(this, event); };
+	void deleteLater() { callbackApproveListingCtx721036_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackApproveListingCtx721036_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackApproveListingCtx721036_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); Moc_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackApproveListingCtx721036_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackApproveListingCtx721036_TimerEvent(this, event); };
+	
+	QString remoteDefault() { return _remote; };
+	void setRemoteDefault(QString p) { if (p != _remote) { _remote = p; remoteChanged(_remote); } };
+	QString transportDefault() { return _transport; };
+	void setTransportDefault(QString p) { if (p != _transport) { _transport = p; transportChanged(_transport); } };
+	QString endpointDefault() { return _endpoint; };
+	void setEndpointDefault(QString p) { if (p != _endpoint) { _endpoint = p; endpointChanged(_endpoint); } };
+	QString fromDefault() { return _from; };
+	void setFromDefault(QString p) { if (p != _from) { _from = p; fromChanged(_from); } };
+	QString messageDefault() { return _message; };
+	void setMessageDefault(QString p) { if (p != _message) { _message = p; messageChanged(_message); } };
+	QString rawDataDefault() { return _rawData; };
+	void setRawDataDefault(QString p) { if (p != _rawData) { _rawData = p; rawDataChanged(_rawData); } };
+	QString hashDefault() { return _hash; };
+	void setHashDefault(QString p) { if (p != _hash) { _hash = p; hashChanged(_hash); } };
+signals:
+	void remoteChanged(QString remote);
+	void transportChanged(QString transport);
+	void endpointChanged(QString endpoint);
+	void fromChanged(QString from);
+	void messageChanged(QString message);
+	void rawDataChanged(QString rawData);
+	void hashChanged(QString hash);
+public slots:
+private:
+	QString _remote;
+	QString _transport;
+	QString _endpoint;
+	QString _from;
+	QString _message;
+	QString _rawData;
+	QString _hash;
+};
+
+Q_DECLARE_METATYPE(ApproveListingCtx721036*)
+
+
+void ApproveListingCtx721036_ApproveListingCtx721036_QRegisterMetaTypes() {
+	qRegisterMetaType<QString>();
 }
 
 struct Moc_PackedString ApproveListingCtx721036_Remote(void* ptr)
@@ -1211,6 +1323,571 @@ void ApproveSignDataCtx721036_DisconnectNotifyDefault(void* ptr, void* sign)
 void ApproveSignDataCtx721036_TimerEventDefault(void* ptr, void* event)
 {
 	static_cast<ApproveSignDataCtx721036*>(ptr)->QObject::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+
+
+void ApproveTxCtx721036_ConnectClicked(void* ptr)
+{
+	QObject::connect(static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(qint32)>(&ApproveTxCtx721036::clicked), static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(qint32)>(&ApproveTxCtx721036::Signal_Clicked));
+}
+
+void ApproveTxCtx721036_DisconnectClicked(void* ptr)
+{
+	QObject::disconnect(static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(qint32)>(&ApproveTxCtx721036::clicked), static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(qint32)>(&ApproveTxCtx721036::Signal_Clicked));
+}
+
+void ApproveTxCtx721036_Clicked(void* ptr, int b)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->clicked(b);
+}
+
+struct Moc_PackedString ApproveTxCtx721036_Remote(void* ptr)
+{
+	return ({ QByteArray t90f7f1 = static_cast<ApproveTxCtx721036*>(ptr)->remote().toUtf8(); Moc_PackedString { const_cast<char*>(t90f7f1.prepend("WHITESPACE").constData()+10), t90f7f1.size()-10 }; });
+}
+
+struct Moc_PackedString ApproveTxCtx721036_RemoteDefault(void* ptr)
+{
+	return ({ QByteArray t5fca0a = static_cast<ApproveTxCtx721036*>(ptr)->remoteDefault().toUtf8(); Moc_PackedString { const_cast<char*>(t5fca0a.prepend("WHITESPACE").constData()+10), t5fca0a.size()-10 }; });
+}
+
+void ApproveTxCtx721036_SetRemote(void* ptr, struct Moc_PackedString remote)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->setRemote(QString::fromUtf8(remote.data, remote.len));
+}
+
+void ApproveTxCtx721036_SetRemoteDefault(void* ptr, struct Moc_PackedString remote)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->setRemoteDefault(QString::fromUtf8(remote.data, remote.len));
+}
+
+void ApproveTxCtx721036_ConnectRemoteChanged(void* ptr)
+{
+	QObject::connect(static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::remoteChanged), static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::Signal_RemoteChanged));
+}
+
+void ApproveTxCtx721036_DisconnectRemoteChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::remoteChanged), static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::Signal_RemoteChanged));
+}
+
+void ApproveTxCtx721036_RemoteChanged(void* ptr, struct Moc_PackedString remote)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->remoteChanged(QString::fromUtf8(remote.data, remote.len));
+}
+
+struct Moc_PackedString ApproveTxCtx721036_Transport(void* ptr)
+{
+	return ({ QByteArray te6d44f = static_cast<ApproveTxCtx721036*>(ptr)->transport().toUtf8(); Moc_PackedString { const_cast<char*>(te6d44f.prepend("WHITESPACE").constData()+10), te6d44f.size()-10 }; });
+}
+
+struct Moc_PackedString ApproveTxCtx721036_TransportDefault(void* ptr)
+{
+	return ({ QByteArray t09c1b3 = static_cast<ApproveTxCtx721036*>(ptr)->transportDefault().toUtf8(); Moc_PackedString { const_cast<char*>(t09c1b3.prepend("WHITESPACE").constData()+10), t09c1b3.size()-10 }; });
+}
+
+void ApproveTxCtx721036_SetTransport(void* ptr, struct Moc_PackedString transport)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->setTransport(QString::fromUtf8(transport.data, transport.len));
+}
+
+void ApproveTxCtx721036_SetTransportDefault(void* ptr, struct Moc_PackedString transport)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->setTransportDefault(QString::fromUtf8(transport.data, transport.len));
+}
+
+void ApproveTxCtx721036_ConnectTransportChanged(void* ptr)
+{
+	QObject::connect(static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::transportChanged), static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::Signal_TransportChanged));
+}
+
+void ApproveTxCtx721036_DisconnectTransportChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::transportChanged), static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::Signal_TransportChanged));
+}
+
+void ApproveTxCtx721036_TransportChanged(void* ptr, struct Moc_PackedString transport)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->transportChanged(QString::fromUtf8(transport.data, transport.len));
+}
+
+struct Moc_PackedString ApproveTxCtx721036_Endpoint(void* ptr)
+{
+	return ({ QByteArray taa8e81 = static_cast<ApproveTxCtx721036*>(ptr)->endpoint().toUtf8(); Moc_PackedString { const_cast<char*>(taa8e81.prepend("WHITESPACE").constData()+10), taa8e81.size()-10 }; });
+}
+
+struct Moc_PackedString ApproveTxCtx721036_EndpointDefault(void* ptr)
+{
+	return ({ QByteArray t2b1328 = static_cast<ApproveTxCtx721036*>(ptr)->endpointDefault().toUtf8(); Moc_PackedString { const_cast<char*>(t2b1328.prepend("WHITESPACE").constData()+10), t2b1328.size()-10 }; });
+}
+
+void ApproveTxCtx721036_SetEndpoint(void* ptr, struct Moc_PackedString endpoint)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->setEndpoint(QString::fromUtf8(endpoint.data, endpoint.len));
+}
+
+void ApproveTxCtx721036_SetEndpointDefault(void* ptr, struct Moc_PackedString endpoint)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->setEndpointDefault(QString::fromUtf8(endpoint.data, endpoint.len));
+}
+
+void ApproveTxCtx721036_ConnectEndpointChanged(void* ptr)
+{
+	QObject::connect(static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::endpointChanged), static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::Signal_EndpointChanged));
+}
+
+void ApproveTxCtx721036_DisconnectEndpointChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::endpointChanged), static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::Signal_EndpointChanged));
+}
+
+void ApproveTxCtx721036_EndpointChanged(void* ptr, struct Moc_PackedString endpoint)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->endpointChanged(QString::fromUtf8(endpoint.data, endpoint.len));
+}
+
+struct Moc_PackedString ApproveTxCtx721036_Data(void* ptr)
+{
+	return ({ QByteArray t8072b7 = static_cast<ApproveTxCtx721036*>(ptr)->data().toUtf8(); Moc_PackedString { const_cast<char*>(t8072b7.prepend("WHITESPACE").constData()+10), t8072b7.size()-10 }; });
+}
+
+struct Moc_PackedString ApproveTxCtx721036_DataDefault(void* ptr)
+{
+	return ({ QByteArray t04fe35 = static_cast<ApproveTxCtx721036*>(ptr)->dataDefault().toUtf8(); Moc_PackedString { const_cast<char*>(t04fe35.prepend("WHITESPACE").constData()+10), t04fe35.size()-10 }; });
+}
+
+void ApproveTxCtx721036_SetData(void* ptr, struct Moc_PackedString data)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->setData(QString::fromUtf8(data.data, data.len));
+}
+
+void ApproveTxCtx721036_SetDataDefault(void* ptr, struct Moc_PackedString data)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->setDataDefault(QString::fromUtf8(data.data, data.len));
+}
+
+void ApproveTxCtx721036_ConnectDataChanged(void* ptr)
+{
+	QObject::connect(static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::dataChanged), static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::Signal_DataChanged));
+}
+
+void ApproveTxCtx721036_DisconnectDataChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::dataChanged), static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::Signal_DataChanged));
+}
+
+void ApproveTxCtx721036_DataChanged(void* ptr, struct Moc_PackedString data)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->dataChanged(QString::fromUtf8(data.data, data.len));
+}
+
+struct Moc_PackedString ApproveTxCtx721036_From(void* ptr)
+{
+	return ({ QByteArray tc27f9b = static_cast<ApproveTxCtx721036*>(ptr)->from().toUtf8(); Moc_PackedString { const_cast<char*>(tc27f9b.prepend("WHITESPACE").constData()+10), tc27f9b.size()-10 }; });
+}
+
+struct Moc_PackedString ApproveTxCtx721036_FromDefault(void* ptr)
+{
+	return ({ QByteArray t805f9b = static_cast<ApproveTxCtx721036*>(ptr)->fromDefault().toUtf8(); Moc_PackedString { const_cast<char*>(t805f9b.prepend("WHITESPACE").constData()+10), t805f9b.size()-10 }; });
+}
+
+void ApproveTxCtx721036_SetFrom(void* ptr, struct Moc_PackedString from)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->setFrom(QString::fromUtf8(from.data, from.len));
+}
+
+void ApproveTxCtx721036_SetFromDefault(void* ptr, struct Moc_PackedString from)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->setFromDefault(QString::fromUtf8(from.data, from.len));
+}
+
+void ApproveTxCtx721036_ConnectFromChanged(void* ptr)
+{
+	QObject::connect(static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::fromChanged), static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::Signal_FromChanged));
+}
+
+void ApproveTxCtx721036_DisconnectFromChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::fromChanged), static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::Signal_FromChanged));
+}
+
+void ApproveTxCtx721036_FromChanged(void* ptr, struct Moc_PackedString from)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->fromChanged(QString::fromUtf8(from.data, from.len));
+}
+
+struct Moc_PackedString ApproveTxCtx721036_To(void* ptr)
+{
+	return ({ QByteArray t6e4b06 = static_cast<ApproveTxCtx721036*>(ptr)->to().toUtf8(); Moc_PackedString { const_cast<char*>(t6e4b06.prepend("WHITESPACE").constData()+10), t6e4b06.size()-10 }; });
+}
+
+struct Moc_PackedString ApproveTxCtx721036_ToDefault(void* ptr)
+{
+	return ({ QByteArray t7ceec8 = static_cast<ApproveTxCtx721036*>(ptr)->toDefault().toUtf8(); Moc_PackedString { const_cast<char*>(t7ceec8.prepend("WHITESPACE").constData()+10), t7ceec8.size()-10 }; });
+}
+
+void ApproveTxCtx721036_SetTo(void* ptr, struct Moc_PackedString to)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->setTo(QString::fromUtf8(to.data, to.len));
+}
+
+void ApproveTxCtx721036_SetToDefault(void* ptr, struct Moc_PackedString to)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->setToDefault(QString::fromUtf8(to.data, to.len));
+}
+
+void ApproveTxCtx721036_ConnectToChanged(void* ptr)
+{
+	QObject::connect(static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::toChanged), static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::Signal_ToChanged));
+}
+
+void ApproveTxCtx721036_DisconnectToChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::toChanged), static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::Signal_ToChanged));
+}
+
+void ApproveTxCtx721036_ToChanged(void* ptr, struct Moc_PackedString to)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->toChanged(QString::fromUtf8(to.data, to.len));
+}
+
+struct Moc_PackedString ApproveTxCtx721036_Gas(void* ptr)
+{
+	return ({ QByteArray t3b252a = static_cast<ApproveTxCtx721036*>(ptr)->gas().toUtf8(); Moc_PackedString { const_cast<char*>(t3b252a.prepend("WHITESPACE").constData()+10), t3b252a.size()-10 }; });
+}
+
+struct Moc_PackedString ApproveTxCtx721036_GasDefault(void* ptr)
+{
+	return ({ QByteArray tdee409 = static_cast<ApproveTxCtx721036*>(ptr)->gasDefault().toUtf8(); Moc_PackedString { const_cast<char*>(tdee409.prepend("WHITESPACE").constData()+10), tdee409.size()-10 }; });
+}
+
+void ApproveTxCtx721036_SetGas(void* ptr, struct Moc_PackedString gas)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->setGas(QString::fromUtf8(gas.data, gas.len));
+}
+
+void ApproveTxCtx721036_SetGasDefault(void* ptr, struct Moc_PackedString gas)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->setGasDefault(QString::fromUtf8(gas.data, gas.len));
+}
+
+void ApproveTxCtx721036_ConnectGasChanged(void* ptr)
+{
+	QObject::connect(static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::gasChanged), static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::Signal_GasChanged));
+}
+
+void ApproveTxCtx721036_DisconnectGasChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::gasChanged), static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::Signal_GasChanged));
+}
+
+void ApproveTxCtx721036_GasChanged(void* ptr, struct Moc_PackedString gas)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->gasChanged(QString::fromUtf8(gas.data, gas.len));
+}
+
+struct Moc_PackedString ApproveTxCtx721036_GasPrice(void* ptr)
+{
+	return ({ QByteArray te19d41 = static_cast<ApproveTxCtx721036*>(ptr)->gasPrice().toUtf8(); Moc_PackedString { const_cast<char*>(te19d41.prepend("WHITESPACE").constData()+10), te19d41.size()-10 }; });
+}
+
+struct Moc_PackedString ApproveTxCtx721036_GasPriceDefault(void* ptr)
+{
+	return ({ QByteArray tef8e7f = static_cast<ApproveTxCtx721036*>(ptr)->gasPriceDefault().toUtf8(); Moc_PackedString { const_cast<char*>(tef8e7f.prepend("WHITESPACE").constData()+10), tef8e7f.size()-10 }; });
+}
+
+void ApproveTxCtx721036_SetGasPrice(void* ptr, struct Moc_PackedString gasPrice)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->setGasPrice(QString::fromUtf8(gasPrice.data, gasPrice.len));
+}
+
+void ApproveTxCtx721036_SetGasPriceDefault(void* ptr, struct Moc_PackedString gasPrice)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->setGasPriceDefault(QString::fromUtf8(gasPrice.data, gasPrice.len));
+}
+
+void ApproveTxCtx721036_ConnectGasPriceChanged(void* ptr)
+{
+	QObject::connect(static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::gasPriceChanged), static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::Signal_GasPriceChanged));
+}
+
+void ApproveTxCtx721036_DisconnectGasPriceChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::gasPriceChanged), static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::Signal_GasPriceChanged));
+}
+
+void ApproveTxCtx721036_GasPriceChanged(void* ptr, struct Moc_PackedString gasPrice)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->gasPriceChanged(QString::fromUtf8(gasPrice.data, gasPrice.len));
+}
+
+struct Moc_PackedString ApproveTxCtx721036_Nonce(void* ptr)
+{
+	return ({ QByteArray t532f58 = static_cast<ApproveTxCtx721036*>(ptr)->nonce().toUtf8(); Moc_PackedString { const_cast<char*>(t532f58.prepend("WHITESPACE").constData()+10), t532f58.size()-10 }; });
+}
+
+struct Moc_PackedString ApproveTxCtx721036_NonceDefault(void* ptr)
+{
+	return ({ QByteArray tf1f93d = static_cast<ApproveTxCtx721036*>(ptr)->nonceDefault().toUtf8(); Moc_PackedString { const_cast<char*>(tf1f93d.prepend("WHITESPACE").constData()+10), tf1f93d.size()-10 }; });
+}
+
+void ApproveTxCtx721036_SetNonce(void* ptr, struct Moc_PackedString nonce)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->setNonce(QString::fromUtf8(nonce.data, nonce.len));
+}
+
+void ApproveTxCtx721036_SetNonceDefault(void* ptr, struct Moc_PackedString nonce)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->setNonceDefault(QString::fromUtf8(nonce.data, nonce.len));
+}
+
+void ApproveTxCtx721036_ConnectNonceChanged(void* ptr)
+{
+	QObject::connect(static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::nonceChanged), static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::Signal_NonceChanged));
+}
+
+void ApproveTxCtx721036_DisconnectNonceChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::nonceChanged), static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::Signal_NonceChanged));
+}
+
+void ApproveTxCtx721036_NonceChanged(void* ptr, struct Moc_PackedString nonce)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->nonceChanged(QString::fromUtf8(nonce.data, nonce.len));
+}
+
+struct Moc_PackedString ApproveTxCtx721036_Value(void* ptr)
+{
+	return ({ QByteArray te5a3fa = static_cast<ApproveTxCtx721036*>(ptr)->value().toUtf8(); Moc_PackedString { const_cast<char*>(te5a3fa.prepend("WHITESPACE").constData()+10), te5a3fa.size()-10 }; });
+}
+
+struct Moc_PackedString ApproveTxCtx721036_ValueDefault(void* ptr)
+{
+	return ({ QByteArray t9772be = static_cast<ApproveTxCtx721036*>(ptr)->valueDefault().toUtf8(); Moc_PackedString { const_cast<char*>(t9772be.prepend("WHITESPACE").constData()+10), t9772be.size()-10 }; });
+}
+
+void ApproveTxCtx721036_SetValue(void* ptr, struct Moc_PackedString value)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->setValue(QString::fromUtf8(value.data, value.len));
+}
+
+void ApproveTxCtx721036_SetValueDefault(void* ptr, struct Moc_PackedString value)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->setValueDefault(QString::fromUtf8(value.data, value.len));
+}
+
+void ApproveTxCtx721036_ConnectValueChanged(void* ptr)
+{
+	QObject::connect(static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::valueChanged), static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::Signal_ValueChanged));
+}
+
+void ApproveTxCtx721036_DisconnectValueChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::valueChanged), static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString)>(&ApproveTxCtx721036::Signal_ValueChanged));
+}
+
+void ApproveTxCtx721036_ValueChanged(void* ptr, struct Moc_PackedString value)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->valueChanged(QString::fromUtf8(value.data, value.len));
+}
+
+int ApproveTxCtx721036_ApproveTxCtx721036_QRegisterMetaType()
+{
+	return qRegisterMetaType<ApproveTxCtx721036*>();
+}
+
+int ApproveTxCtx721036_ApproveTxCtx721036_QRegisterMetaType2(char* typeName)
+{
+	return qRegisterMetaType<ApproveTxCtx721036*>(const_cast<const char*>(typeName));
+}
+
+int ApproveTxCtx721036_ApproveTxCtx721036_QmlRegisterType()
+{
+#ifdef QT_QML_LIB
+	return qmlRegisterType<ApproveTxCtx721036>();
+#else
+	return 0;
+#endif
+}
+
+int ApproveTxCtx721036_ApproveTxCtx721036_QmlRegisterType2(char* uri, int versionMajor, int versionMinor, char* qmlName)
+{
+#ifdef QT_QML_LIB
+	return qmlRegisterType<ApproveTxCtx721036>(const_cast<const char*>(uri), versionMajor, versionMinor, const_cast<const char*>(qmlName));
+#else
+	return 0;
+#endif
+}
+
+void* ApproveTxCtx721036___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void ApproveTxCtx721036___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* ApproveTxCtx721036___dynamicPropertyNames_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QByteArray>();
+}
+
+void* ApproveTxCtx721036___findChildren_atList2(void* ptr, int i)
+{
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void ApproveTxCtx721036___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* ApproveTxCtx721036___findChildren_newList2(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject*>();
+}
+
+void* ApproveTxCtx721036___findChildren_atList3(void* ptr, int i)
+{
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void ApproveTxCtx721036___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* ApproveTxCtx721036___findChildren_newList3(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject*>();
+}
+
+void* ApproveTxCtx721036___findChildren_atList(void* ptr, int i)
+{
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void ApproveTxCtx721036___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* ApproveTxCtx721036___findChildren_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject*>();
+}
+
+void* ApproveTxCtx721036___children_atList(void* ptr, int i)
+{
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void ApproveTxCtx721036___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* ApproveTxCtx721036___children_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject *>();
+}
+
+void* ApproveTxCtx721036_NewApproveTxCtx(void* parent)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new ApproveTxCtx721036(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new ApproveTxCtx721036(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new ApproveTxCtx721036(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new ApproveTxCtx721036(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new ApproveTxCtx721036(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new ApproveTxCtx721036(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new ApproveTxCtx721036(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new ApproveTxCtx721036(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new ApproveTxCtx721036(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new ApproveTxCtx721036(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new ApproveTxCtx721036(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new ApproveTxCtx721036(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new ApproveTxCtx721036(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new ApproveTxCtx721036(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new ApproveTxCtx721036(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new ApproveTxCtx721036(static_cast<QWindow*>(parent));
+	} else {
+		return new ApproveTxCtx721036(static_cast<QObject*>(parent));
+	}
+}
+
+void ApproveTxCtx721036_DestroyApproveTxCtx(void* ptr)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->~ApproveTxCtx721036();
+}
+
+void ApproveTxCtx721036_DestroyApproveTxCtxDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
+char ApproveTxCtx721036_EventDefault(void* ptr, void* e)
+{
+	return static_cast<ApproveTxCtx721036*>(ptr)->QObject::event(static_cast<QEvent*>(e));
+}
+
+char ApproveTxCtx721036_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+	return static_cast<ApproveTxCtx721036*>(ptr)->QObject::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
+void ApproveTxCtx721036_ChildEventDefault(void* ptr, void* event)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->QObject::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void ApproveTxCtx721036_ConnectNotifyDefault(void* ptr, void* sign)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->QObject::connectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void ApproveTxCtx721036_CustomEventDefault(void* ptr, void* event)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->QObject::customEvent(static_cast<QEvent*>(event));
+}
+
+void ApproveTxCtx721036_DeleteLaterDefault(void* ptr)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->QObject::deleteLater();
+}
+
+void ApproveTxCtx721036_DisconnectNotifyDefault(void* ptr, void* sign)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->QObject::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void ApproveTxCtx721036_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->QObject::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 

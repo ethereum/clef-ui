@@ -31,6 +31,34 @@ type OnSignerStartupParam struct {
 type OnSignerStartupReply struct {
 }
 
+type Transaction struct {
+	Data 		string `json:"data"`
+	From 		string `json:"from"`
+	Gas 		string `json:"gas"`
+	GasPrice 	string `json:"gasPrice"`
+	Input 		string `json:"input"`
+	Nonce 		string `json:"nonce"`
+	To 			string `json:"to"`
+	Value 		string `json:"value"`
+}
+
+type CallInfo struct {
+	Message 	string `json:"message"`
+	Type 		string `json:"type"`
+}
+
+type ApproveTxParams struct {
+	Meta 			Meta `json:"meta"`
+	Transaction 	Transaction `json:"transaction"`
+	Call_info 		[]CallInfo `json:"call_info"`
+}
+
+type ApproveTxResponse struct {
+	Approved 		bool
+	Password 		string
+	Transaction 	Transaction
+}
+
 
 type ApproveSignDataParams struct {
 	Address 		string `json:"address"`

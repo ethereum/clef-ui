@@ -31,6 +31,11 @@ type ApproveListingRequest struct {
 	Response 	chan []params.ApproveListingAccount
 }
 
+type ApproveTxRequest struct {
+	Params 		[]*params.ApproveTxParams
+	Response 	chan params.ApproveTxResponse
+}
+
 type ClefUI struct {
 	App 					*widgets.QApplication
 	Mainw 					*widgets.QWidget
@@ -38,6 +43,7 @@ type ClefUI struct {
 	//IncomingRequest	 		chan RpcRequest
 	ApproveListingRequest 	chan ApproveListingRequest
 	ApproveSignDataRequest 	chan ApproveSignDataRequest
+	ApproveTxRequest 		chan ApproveTxRequest
 	views 					map[string]interface{}
 }
 
@@ -75,6 +81,7 @@ func (c *ClefUI) initApp() {
 	//c.IncomingRequest = incomingRequest
 	c.ApproveListingRequest = make(chan ApproveListingRequest)
 	c.ApproveSignDataRequest = make(chan ApproveSignDataRequest)
+	c.ApproveTxRequest = make(chan ApproveTxRequest)
 }
 
 func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
@@ -84,10 +91,12 @@ func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
 	login := NewLoginUI()
 	approvesigndata := NewApproveSignDataUI()
 	approvelisting := NewApproveListingUI()
+	approvetx := NewApproveTxUI()
 
 	c.Mainw.Layout().AddWidget(login)
 	c.Mainw.Layout().AddWidget(approvesigndata.UI)
 	c.Mainw.Layout().AddWidget(approvelisting.UI)
+	c.Mainw.Layout().AddWidget(approvetx.UI)
 	c.Mainw.SetFixedSize2(400, 680	)
 
 	go func() {
@@ -112,6 +121,7 @@ func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
 
 				login.Hide()
 				approvesigndata.UI.Hide()
+				approvetx.UI.Hide()
 				approvelisting.UI.Show()
 			case req := <-c.ApproveSignDataRequest:
 				c.Mainw.SetWindowTitle("Sign Data")
@@ -131,7 +141,32 @@ func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
 				co.ClickResponse(req.Response)
 				login.Hide()
 				approvelisting.UI.Hide()
+				approvetx.UI.Hide()
 				approvesigndata.UI.Show()
+			case req := <-c.ApproveTxRequest:
+				c.Mainw.SetWindowTitle("Send Transaction")
+				data := req.Params
+				param := data[0]
+
+				co := approvetx.ContextObject
+				co.SetTransport(param.Meta.Transport)
+				co.SetRemote(param.Meta.Remote)
+				co.SetEndpoint(param.Meta.Local)
+				co.SetFrom(param.Transaction.From)
+				co.SetData(param.Transaction.Data)
+				co.SetTo(param.Transaction.To)
+				co.SetGas(param.Transaction.Gas)
+				co.SetGasPrice(param.Transaction.GasPrice)
+				co.SetValue(param.Transaction.Value)
+				co.SetNonce(param.Transaction.Nonce)
+				co.formData = param.Transaction
+				co.ClickResponse(req.Response)
+
+
+				login.Hide()
+				approvelisting.UI.Hide()
+				approvesigndata.UI.Hide()
+				approvetx.UI.Show()
 			}
 		}
 	}()

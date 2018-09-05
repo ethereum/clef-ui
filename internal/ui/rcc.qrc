@@ -2,5 +2,6 @@
 <qresource>
 <file>qml/approve_listing.qml</file>
 <file>qml/approve_sign_data.qml</file>
+<file>qml/approve_tx.qml</file>
 </qresource>
 </RCC>
