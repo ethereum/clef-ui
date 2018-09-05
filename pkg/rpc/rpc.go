@@ -15,6 +15,10 @@ type ClefResponse struct {
 	Password		string
 }
 
+type AccountListResponse struct {
+	Accounts 		[]params.ApproveListingAccount
+}
+
 func (c *ClefService) OnSignerStartup(params []*params.OnSignerStartupParam, _ *struct{}) error {
 	//fmt.Println(params[0].Info.Extapi_http)
 	fmt.Println("hihihihihihihi")
@@ -26,14 +30,19 @@ func (c *ClefService) OnSignerStartup(params []*params.OnSignerStartupParam, _ *
 	return nil
 }
 
-func (c *ClefService) ApproveListing(params []*params.ApproveListingParams, reply *ClefResponse) error {
-	ch := make(chan map[string]string)
+func (c *ClefService) ApproveListing(p []*params.ApproveListingParams, reply *AccountListResponse) error {
+	ch := make(chan []params.ApproveListingAccount)
 	r := ui.ApproveListingRequest{
-		Params: params,
+		Params: p,
 		Response: ch,
 	}
 
 	c.ui.ApproveListingRequest <- r
+
+	res := <-ch
+	reply.Accounts = res
+	//reply.Password = res["password"]
+
 	return nil
 }
 

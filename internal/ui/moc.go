@@ -10,6 +10,7 @@ import (
 	"strings"
 	"unsafe"
 
+	custom_params_aaf9d9m "github.com/kyokan/clef-ui/internal/params"
 	"github.com/therecipe/qt"
 	std_core "github.com/therecipe/qt/core"
 )
@@ -74,46 +75,6 @@ func NewApproveListingCtxFromPointer(ptr unsafe.Pointer) (n *ApproveListingCtx) 
 func callbackApproveListingCtx721036_Constructor(ptr unsafe.Pointer) {
 	this := NewApproveListingCtxFromPointer(ptr)
 	qt.Register(ptr, this)
-	this.ConnectClicked(this.clicked)
-}
-
-//export callbackApproveListingCtx721036_Clicked
-func callbackApproveListingCtx721036_Clicked(ptr unsafe.Pointer, b C.int) {
-	if signal := qt.GetSignal(ptr, "clicked"); signal != nil {
-		signal.(func(int))(int(int32(b)))
-	}
-
-}
-
-func (ptr *ApproveListingCtx) ConnectClicked(f func(b int)) {
-	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "clicked") {
-			C.ApproveListingCtx721036_ConnectClicked(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "clicked"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "clicked", func(b int) {
-				signal.(func(int))(b)
-				f(b)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "clicked", f)
-		}
-	}
-}
-
-func (ptr *ApproveListingCtx) DisconnectClicked() {
-	if ptr.Pointer() != nil {
-		C.ApproveListingCtx721036_DisconnectClicked(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "clicked")
-	}
-}
-
-func (ptr *ApproveListingCtx) Clicked(b int) {
-	if ptr.Pointer() != nil {
-		C.ApproveListingCtx721036_Clicked(ptr.Pointer(), C.int(int32(b)))
-	}
 }
 
 //export callbackApproveListingCtx721036_Remote
@@ -2958,6 +2919,7 @@ func callbackCustomListModel721036_Constructor(ptr unsafe.Pointer) {
 	qt.Register(ptr, this)
 	this.ConnectClear(this.clear)
 	this.ConnectAdd(this.add)
+	this.ConnectClicked(this.clicked)
 	this.init()
 }
 
@@ -3001,14 +2963,19 @@ func (ptr *CustomListModel) Clear() {
 }
 
 //export callbackCustomListModel721036_Add
-func callbackCustomListModel721036_Add(ptr unsafe.Pointer, address C.struct_Moc_PackedString, selected C.char) {
+func callbackCustomListModel721036_Add(ptr unsafe.Pointer, account C.uintptr_t) {
+	var accountD custom_params_aaf9d9m.ApproveListingAccount
+	if accountI, ok := qt.ReceiveTemp(unsafe.Pointer(uintptr(account))); ok {
+		qt.UnregisterTemp(unsafe.Pointer(uintptr(account)))
+		accountD = accountI.(custom_params_aaf9d9m.ApproveListingAccount)
+	}
 	if signal := qt.GetSignal(ptr, "add"); signal != nil {
-		signal.(func(string, bool))(cGoUnpackString(address), int8(selected) != 0)
+		signal.(func(custom_params_aaf9d9m.ApproveListingAccount))(accountD)
 	}
 
 }
 
-func (ptr *CustomListModel) ConnectAdd(f func(address string, selected bool)) {
+func (ptr *CustomListModel) ConnectAdd(f func(account custom_params_aaf9d9m.ApproveListingAccount)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "add") {
@@ -3016,9 +2983,9 @@ func (ptr *CustomListModel) ConnectAdd(f func(address string, selected bool)) {
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "add"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "add", func(address string, selected bool) {
-				signal.(func(string, bool))(address, selected)
-				f(address, selected)
+			qt.ConnectSignal(ptr.Pointer(), "add", func(account custom_params_aaf9d9m.ApproveListingAccount) {
+				signal.(func(custom_params_aaf9d9m.ApproveListingAccount))(account)
+				f(account)
 			})
 		} else {
 			qt.ConnectSignal(ptr.Pointer(), "add", f)
@@ -3033,14 +3000,49 @@ func (ptr *CustomListModel) DisconnectAdd() {
 	}
 }
 
-func (ptr *CustomListModel) Add(address string, selected bool) {
+func (ptr *CustomListModel) Add(account custom_params_aaf9d9m.ApproveListingAccount) {
 	if ptr.Pointer() != nil {
-		var addressC *C.char
-		if address != "" {
-			addressC = C.CString(address)
-			defer C.free(unsafe.Pointer(addressC))
+		qt.RegisterTemp(unsafe.Pointer(&account), account)
+		C.CustomListModel721036_Add(ptr.Pointer(), C.uintptr_t(uintptr(unsafe.Pointer(&account))))
+	}
+}
+
+//export callbackCustomListModel721036_Clicked
+func callbackCustomListModel721036_Clicked(ptr unsafe.Pointer, b C.int) {
+	if signal := qt.GetSignal(ptr, "clicked"); signal != nil {
+		signal.(func(int))(int(int32(b)))
+	}
+
+}
+
+func (ptr *CustomListModel) ConnectClicked(f func(b int)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "clicked") {
+			C.CustomListModel721036_ConnectClicked(ptr.Pointer())
 		}
-		C.CustomListModel721036_Add(ptr.Pointer(), C.struct_Moc_PackedString{data: addressC, len: C.longlong(len(address))}, C.char(int8(qt.GoBoolToInt(selected))))
+
+		if signal := qt.LendSignal(ptr.Pointer(), "clicked"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "clicked", func(b int) {
+				signal.(func(int))(b)
+				f(b)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "clicked", f)
+		}
+	}
+}
+
+func (ptr *CustomListModel) DisconnectClicked() {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036_DisconnectClicked(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "clicked")
+	}
+}
+
+func (ptr *CustomListModel) Clicked(b int) {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036_Clicked(ptr.Pointer(), C.int(int32(b)))
 	}
 }
 

@@ -28,7 +28,7 @@ type ApproveSignDataRequest struct {
 
 type ApproveListingRequest struct {
 	Params 		[]*params.ApproveListingParams
-	Response 	chan map[string]string
+	Response 	chan []params.ApproveListingAccount
 }
 
 type ClefUI struct {
@@ -59,6 +59,7 @@ func (c *ClefUI) initApp() {
 	widget.SetLayout(widgets.NewQVBoxLayout())
 
 	mainw.SetCentralWidget(widget)
+
 	mainw.Show()
 
 	// use the material style
@@ -97,13 +98,13 @@ func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
 				co.SetRemote(param.Meta.Remote)
 				co.SetEndpoint(param.Meta.Local)
 
-
 				model := approvelisting.AccountListModel
 				model.Clear()
 
 				for _, account := range param.Accounts {
-					model.Add(account.Address, true)
+					model.Add(account)
 				}
+				model.ClickResponse(req.Response)
 
 				login.Hide()
 				approvesigndata.UI.Hide()

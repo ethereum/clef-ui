@@ -1,6 +1,7 @@
 package ui
 
 import (
+	"github.com/kyokan/clef-ui/internal/params"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quick"
 	"log"
@@ -23,41 +24,7 @@ type ApproveListingCtx struct {
 	_ string `property:"rawData"`
 	_ string `property:"hash"`
 
-	_ func(b int) `signal:"clicked,auto"`
-
 	answer 		int
-}
-
-func (t *ApproveListingCtx) clicked(b int) {
-	log.Println(b)
-	t.answer = b
-}
-
-func (t *ApproveListingCtx) Reset() {
-	t.answer = 0
-}
-
-func (t *ApproveListingCtx) ClickResponse(res chan map[string]string) {
-	go func() {
-		done := false
-		for !done {
-			if t.answer != 0 {
-				done = true
-				if t.answer == 1 {
-					res <- map[string]string{
-						"approved": "false",
-						"password": "",
-					}
-				} else if t.answer == 2 {
-					res <- map[string]string{
-						"approved": "true",
-						"password": "asdfasdf",
-					}
-				}
-				t.Reset()
-			}
-		}
-	}()
 }
 
 func init() {CustomListModel_QmlRegisterType2("CustomQmlTypes", 1, 0, "CustomListModel")}
@@ -78,13 +45,16 @@ type CustomListModel struct {
 	_ func() `constructor:"init"`
 
 	_ func()                                 	`signal:"clear,auto"`
-	_ func(address string, selected bool)        `signal:"add,auto"`
+	_ func(account params.ApproveListingAccount)        `signal:"add,auto"`
 
-	modelData []AccountListItem
+	modelData []params.ApproveListingAccount
+	answer 	int
+	_ func(b int) `signal:"clicked,auto"`
+
 }
 
 func (m *CustomListModel) init() {
-	m.modelData = []AccountListItem{}
+	m.modelData = []params.ApproveListingAccount{}
 
 	m.ConnectRoleNames(m.roleNames)
 	m.ConnectRowCount(m.rowCount)
@@ -111,11 +81,11 @@ func (m *CustomListModel) data(index *core.QModelIndex, role int) *core.QVariant
 	item := m.modelData[index.Row()]
 
 	if role == int(Address) {
-		return core.NewQVariant14(item.address)
+		return core.NewQVariant14(item.Address)
 	}
 
 	if role == int(Checked) {
-		return core.NewQVariant11(item.selected)
+		return core.NewQVariant11(true)
 	}
 
 	return core.NewQVariant()
@@ -123,15 +93,42 @@ func (m *CustomListModel) data(index *core.QModelIndex, role int) *core.QVariant
 
 func (m*CustomListModel) clear() {
 	m.BeginResetModel()
-	m.modelData = []AccountListItem{}
+	m.modelData = []params.ApproveListingAccount{}
 	m.EndResetModel()
 }
 
-func (m *CustomListModel) add(address string, selected bool) {
+func (m *CustomListModel) add(account params.ApproveListingAccount) {
 	m.BeginInsertRows(core.NewQModelIndex(), len(m.modelData), len(m.modelData))
-	m.modelData = append(m.modelData, AccountListItem{address, selected})
+	m.modelData = append(m.modelData, account)
 	m.EndInsertRows()
 }
+
+func (t *CustomListModel) clicked(b int) {
+	log.Println(b)
+	t.answer = b
+}
+
+func (t *CustomListModel) Reset() {
+	t.answer = 0
+}
+
+func (t *CustomListModel) ClickResponse(res chan []params.ApproveListingAccount) {
+	go func() {
+		done := false
+		for !done {
+			if t.answer != 0 {
+				done = true
+				if t.answer == 1 {
+					res <- []params.ApproveListingAccount{}
+				} else if t.answer == 2 {
+					res <- t.modelData
+				}
+				t.Reset()
+			}
+		}
+	}()
+}
+
 
 func NewApproveListingUI() *ApproveListingUI {
 	widget := quick.NewQQuickWidget(nil)

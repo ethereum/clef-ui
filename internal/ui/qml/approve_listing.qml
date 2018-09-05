@@ -268,7 +268,7 @@ Item {
                 y: 8
                 height: 69
                 width: 188
-                onClicked: ctxObject.clicked(1)
+                onClicked: myModel.clicked(1)
                 contentItem: Text {
                     x: 0
                     y: 0
@@ -303,7 +303,7 @@ Item {
                 y: 8
                 height: 69
                 width: 188
-                onClicked: ctxObject.clicked(2)
+                onClicked: myModel.clicked(2)
                 contentItem: Text {
                     x: 0
                     y: 0

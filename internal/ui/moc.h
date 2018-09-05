@@ -19,9 +19,6 @@ extern "C" {
 
 struct Moc_PackedString { char* data; long long len; };
 struct Moc_PackedList { void* data; long long len; };
-void ApproveListingCtx721036_ConnectClicked(void* ptr);
-void ApproveListingCtx721036_DisconnectClicked(void* ptr);
-void ApproveListingCtx721036_Clicked(void* ptr, int b);
 struct Moc_PackedString ApproveListingCtx721036_Remote(void* ptr);
 struct Moc_PackedString ApproveListingCtx721036_RemoteDefault(void* ptr);
 void ApproveListingCtx721036_SetRemote(void* ptr, struct Moc_PackedString remote);
@@ -190,7 +187,10 @@ void CustomListModel721036_DisconnectClear(void* ptr);
 void CustomListModel721036_Clear(void* ptr);
 void CustomListModel721036_ConnectAdd(void* ptr);
 void CustomListModel721036_DisconnectAdd(void* ptr);
-void CustomListModel721036_Add(void* ptr, struct Moc_PackedString address, char selected);
+void CustomListModel721036_Add(void* ptr, uintptr_t account);
+void CustomListModel721036_ConnectClicked(void* ptr);
+void CustomListModel721036_DisconnectClicked(void* ptr);
+void CustomListModel721036_Clicked(void* ptr, int b);
 int CustomListModel721036_CustomListModel721036_QRegisterMetaType();
 int CustomListModel721036_CustomListModel721036_QRegisterMetaType2(char* typeName);
 int CustomListModel721036_CustomListModel721036_QmlRegisterType();
