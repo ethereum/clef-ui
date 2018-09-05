@@ -1,21 +1,75 @@
 package ui
 
 import (
-	"fmt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quick"
+	"log"
 )
 
 type ApproveListingUI struct {
 	UI 					*quick.QQuickWidget
-	ContextObject		*CtxObject
+	ContextObject		*ApproveListingCtx
+	AccountListModel 	*CustomListModel
 }
 
-func init() { CustomListModel_QmlRegisterType2("CustomQmlTypes", 1, 0, "CustomListModel") }
+type ApproveListingCtx struct {
+	core.QObject
 
-type ListItem struct {
-	Address string
-	checked string
+	_ string `property:"remote"`
+	_ string `property:"transport"`
+	_ string `property:"endpoint"`
+	_ string `property:"from"`
+	_ string `property:"message"`
+	_ string `property:"rawData"`
+	_ string `property:"hash"`
+
+	_ func(b int) `signal:"clicked,auto"`
+
+	answer 		int
+}
+
+func (t *ApproveListingCtx) clicked(b int) {
+	log.Println(b)
+	t.answer = b
+}
+
+func (t *ApproveListingCtx) Reset() {
+	t.answer = 0
+}
+
+func (t *ApproveListingCtx) ClickResponse(res chan map[string]string) {
+	go func() {
+		done := false
+		for !done {
+			if t.answer != 0 {
+				done = true
+				if t.answer == 1 {
+					res <- map[string]string{
+						"approved": "false",
+						"password": "",
+					}
+				} else if t.answer == 2 {
+					res <- map[string]string{
+						"approved": "true",
+						"password": "asdfasdf",
+					}
+				}
+				t.Reset()
+			}
+		}
+	}()
+}
+
+func init() {CustomListModel_QmlRegisterType2("CustomQmlTypes", 1, 0, "CustomListModel")}
+
+const (
+	Address = int(core.Qt__UserRole) + 1<<iota
+	Checked
+)
+
+type AccountListItem struct {
+	address string
+	selected bool
 }
 
 type CustomListModel struct {
@@ -23,17 +77,18 @@ type CustomListModel struct {
 
 	_ func() `constructor:"init"`
 
-	_ func()                                  `signal:"remove,auto"`
-	_ func(obj []*core.QVariant)              `signal:"add,auto"`
-	_ func(address string, checked string) `signal:"edit,auto"`
+	_ func()                                 	`signal:"clear,auto"`
+	_ func(address string, selected bool)        `signal:"add,auto"`
 
-	modelData []ListItem
+	modelData []AccountListItem
 }
 
 func (m *CustomListModel) init() {
-	m.modelData = []ListItem{{"john", "doe"}, {"john", "bob"}}
+	m.modelData = []AccountListItem{}
 
+	m.ConnectRoleNames(m.roleNames)
 	m.ConnectRowCount(m.rowCount)
+	m.ConnectColumnCount(m.columnCount)
 	m.ConnectData(m.data)
 }
 
@@ -41,49 +96,58 @@ func (m *CustomListModel) rowCount(*core.QModelIndex) int {
 	return len(m.modelData)
 }
 
+func (m *CustomListModel) columnCount(*core.QModelIndex) int {
+	return 2
+}
+
+func (m *CustomListModel) roleNames() map[int]*core.QByteArray {
+	return map[int]*core.QByteArray{
+		Address: core.NewQByteArray2("address", -1),
+		Checked:  core.NewQByteArray2("selected", -1),
+	}
+}
+
 func (m *CustomListModel) data(index *core.QModelIndex, role int) *core.QVariant {
-	if role != int(core.Qt__DisplayRole) {
-		return core.NewQVariant()
-	}
-
 	item := m.modelData[index.Row()]
-	return core.NewQVariant14(fmt.Sprintf("%v %v", item.Address, item.checked))
-}
 
-func (m *CustomListModel) remove() {
-	if len(m.modelData) == 0 {
-		return
+	if role == int(Address) {
+		return core.NewQVariant14(item.address)
 	}
-	m.BeginRemoveRows(core.NewQModelIndex(), len(m.modelData)-1, len(m.modelData)-1)
-	m.modelData = m.modelData[:len(m.modelData)-1]
-	m.EndRemoveRows()
+
+	if role == int(Checked) {
+		return core.NewQVariant11(item.selected)
+	}
+
+	return core.NewQVariant()
 }
 
-func (m *CustomListModel) add(item []*core.QVariant) {
+func (m*CustomListModel) clear() {
+	m.BeginResetModel()
+	m.modelData = []AccountListItem{}
+	m.EndResetModel()
+}
+
+func (m *CustomListModel) add(address string, selected bool) {
 	m.BeginInsertRows(core.NewQModelIndex(), len(m.modelData), len(m.modelData))
-	m.modelData = append(m.modelData, ListItem{item[0].ToString(), item[1].ToString()})
+	m.modelData = append(m.modelData, AccountListItem{address, selected})
 	m.EndInsertRows()
-}
-
-func (m *CustomListModel) edit(address string, checked string) {
-	if len(m.modelData) == 0 {
-		return
-	}
-	m.modelData[len(m.modelData)-1] = ListItem{address, checked}
-	m.DataChanged(m.Index(len(m.modelData)-1, 0, core.NewQModelIndex()), m.Index(len(m.modelData)-1, 0, core.NewQModelIndex()), []int{int(core.Qt__DisplayRole)})
 }
 
 func NewApproveListingUI() *ApproveListingUI {
 	widget := quick.NewQQuickWidget(nil)
 	widget.SetSource(core.NewQUrl3("qrc:/qml/approve_listing.qml", 0))
-	c := NewCtxObject(nil)
+	c := NewApproveListingCtx(nil)
+	m := NewCustomListModel(nil)
 	v := &ApproveListingUI{
 		UI: widget,
 		ContextObject: c,
+		AccountListModel: m,
 	}
 
 	widget.RootContext().SetContextProperty("ctxObject", c)
-	widget.Show()
+	widget.RootContext().SetContextProperty(	"myModel", m)
+	widget.SetResizeMode(quick.QQuickWidget__SizeViewToRootObject)
+	widget.Hide()
 	return v
 }
 

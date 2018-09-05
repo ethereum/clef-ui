@@ -215,21 +215,38 @@ Item {
                     height: 296
                     z: 1
                     highlightRangeMode: ListView.NoHighlightRange
-                    model: CustomListModel{}
+                    model: myModel
+//                    model: ListModel {
+//                        ListElement {
+//                            address: "0x1b4gs6f"
+//                            selected: true
+//                        }
+//                    }
                     delegate: Item {
-                        x: 5
-                        width: 80
+                        x: 0
+                        width: 368
                         height: 40
                         Row {
                             id: row1
                             CheckBox {
-                                text: Address
+                                display: AbstractButton.IconOnly
+                                enabled: false
+                                hoverEnabled: false
+                                focusPolicy: Qt.StrongFocus
                                 font.pointSize: 12
                                 font.capitalization: Font.MixedCase
                                 font.family: "Courier"
-//                                checked: listView.model.modelData.checked
+                                checked: selected
+                                checkable: false
                             }
-                            spacing: 10
+                            Text {
+                                text: address
+                                font.pointSize: 12
+                                height: 40
+                                verticalAlignment: Text.AlignVCenter
+                                horizontalAlignment: Text.AlignLeft
+                                font.family: "Courier"
+                            }
                         }
                     }
                 }
@@ -243,6 +260,7 @@ Item {
             width: 400
             height: 85
             color: "#ffffff"
+
 
             Button {
                 id: control
@@ -316,3 +334,8 @@ Item {
 
     }
 }
+
+/*##^## Designer {
+    D{i:16;invisible:true}
+}
+ ##^##*/

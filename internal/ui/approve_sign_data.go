@@ -8,10 +8,10 @@ import (
 
 type ApproveSignDataUI struct {
 	UI 					*quick.QQuickWidget
-	ContextObject		*CtxObject
+	ContextObject		*ApproveSignDataCtx
 }
 
-type CtxObject struct {
+type ApproveSignDataCtx struct {
 	core.QObject
 
 	_ string `property:"remote"`
@@ -27,16 +27,16 @@ type CtxObject struct {
 	answer 		int
 }
 
-func (t *CtxObject) clicked(b int) {
+func (t *ApproveSignDataCtx) clicked(b int) {
 	log.Println(b)
 	t.answer = b
 }
 
-func (t *CtxObject) Reset() {
+func (t *ApproveSignDataCtx) Reset() {
 	t.answer = 0
 }
 
-func (t *CtxObject) ClickResponse(res chan map[string]string) {
+func (t *ApproveSignDataCtx) ClickResponse(res chan map[string]string) {
 	go func() {
 		done := false
 		for !done {
@@ -62,13 +62,14 @@ func (t *CtxObject) ClickResponse(res chan map[string]string) {
 func NewApproveSignDataUI() *ApproveSignDataUI {
 	widget := quick.NewQQuickWidget(nil)
 	widget.SetSource(core.NewQUrl3("qrc:/qml/approve_sign_data.qml", 0))
-	c := NewCtxObject(nil)
+	c := NewApproveSignDataCtx(nil)
 	v := &ApproveSignDataUI{
 		UI: widget,
 		ContextObject: c,
 	}
 
 	widget.RootContext().SetContextProperty("ctxObject", c)
+	widget.SetResizeMode(quick.QQuickWidget__SizeViewToRootObject)
 	widget.Hide()
 	return v
 }

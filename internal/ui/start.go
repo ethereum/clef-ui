@@ -6,7 +6,6 @@ import (
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quickcontrols2"
 	"github.com/therecipe/qt/widgets"
-	"log"
 	"os"
 )
 
@@ -65,7 +64,7 @@ func (c *ClefUI) initApp() {
 	// use the material style
 	// the other inbuild styles are:
 	// Default, Fusion, Imagine, Universal
-	quickcontrols2.QQuickStyle_SetStyle("Material")
+	quickcontrols2.QQuickStyle_SetStyle("Default")
 
 	c.App = app
 	c.Mainw = widget
@@ -85,13 +84,12 @@ func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
 	c.Mainw.Layout().AddWidget(login)
 	c.Mainw.Layout().AddWidget(approvesigndata.UI)
 	c.Mainw.Layout().AddWidget(approvelisting.UI)
-	c.Mainw.Resize2(400, 680)
 
 	go func() {
 		for {
 			select {
 			case req := <-c.ApproveListingRequest:
-				log.Println(req.Params[0].Accounts[0].Address)
+				c.Mainw.SetWindowTitle("Account Listing")
 				param := req.Params[0]
 
 				co := approvelisting.ContextObject
@@ -100,10 +98,16 @@ func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
 				co.SetEndpoint(param.Meta.Local)
 
 
+				model := approvelisting.AccountListModel
+				model.Clear()
+
+				for _, account := range param.Accounts {
+					model.Add(account.Address, true)
+				}
+
 				login.Hide()
 				approvesigndata.UI.Hide()
 				approvelisting.UI.Show()
-				log.Println("Show ApproveListing")
 			case req := <-c.ApproveSignDataRequest:
 				c.Mainw.SetWindowTitle("Sign Data")
 				data := req.Params
@@ -123,7 +127,6 @@ func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
 				login.Hide()
 				approvelisting.UI.Hide()
 				approvesigndata.UI.Show()
-				log.Println("Show ApproveSignData")
 			}
 		}
 	}()
