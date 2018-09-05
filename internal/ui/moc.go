@@ -2920,6 +2920,7 @@ func callbackCustomListModel721036_Constructor(ptr unsafe.Pointer) {
 	this.ConnectClear(this.clear)
 	this.ConnectAdd(this.add)
 	this.ConnectClicked(this.clicked)
+	this.ConnectOnCheckStateChanged(this.onCheckStateChanged)
 	this.init()
 }
 
@@ -3043,6 +3044,45 @@ func (ptr *CustomListModel) DisconnectClicked() {
 func (ptr *CustomListModel) Clicked(b int) {
 	if ptr.Pointer() != nil {
 		C.CustomListModel721036_Clicked(ptr.Pointer(), C.int(int32(b)))
+	}
+}
+
+//export callbackCustomListModel721036_OnCheckStateChanged
+func callbackCustomListModel721036_OnCheckStateChanged(ptr unsafe.Pointer, i C.int, checked C.char) {
+	if signal := qt.GetSignal(ptr, "onCheckStateChanged"); signal != nil {
+		signal.(func(int, bool))(int(int32(i)), int8(checked) != 0)
+	}
+
+}
+
+func (ptr *CustomListModel) ConnectOnCheckStateChanged(f func(i int, checked bool)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "onCheckStateChanged") {
+			C.CustomListModel721036_ConnectOnCheckStateChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "onCheckStateChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "onCheckStateChanged", func(i int, checked bool) {
+				signal.(func(int, bool))(i, checked)
+				f(i, checked)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "onCheckStateChanged", f)
+		}
+	}
+}
+
+func (ptr *CustomListModel) DisconnectOnCheckStateChanged() {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036_DisconnectOnCheckStateChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "onCheckStateChanged")
+	}
+}
+
+func (ptr *CustomListModel) OnCheckStateChanged(i int, checked bool) {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036_OnCheckStateChanged(ptr.Pointer(), C.int(int32(i)), C.char(int8(qt.GoBoolToInt(checked))))
 	}
 }
 

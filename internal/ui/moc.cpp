@@ -228,6 +228,7 @@ public:
 	void Signal_Clear() { callbackCustomListModel721036_Clear(this); };
 	void Signal_Add(quintptr account) { callbackCustomListModel721036_Add(this, account); };
 	void Signal_Clicked(qint32 b) { callbackCustomListModel721036_Clicked(this, b); };
+	void Signal_OnCheckStateChanged(qint32 i, bool checked) { callbackCustomListModel721036_OnCheckStateChanged(this, i, checked); };
 	 ~CustomListModel721036() { callbackCustomListModel721036_DestroyCustomListModel(this); };
 	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackCustomListModel721036_DropMimeData(this, const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
 	
@@ -298,6 +299,7 @@ signals:
 	void clear();
 	void add(quintptr account);
 	void clicked(qint32 b);
+	void onCheckStateChanged(qint32 i, bool checked);
 public slots:
 private:
 };
@@ -1256,6 +1258,21 @@ void CustomListModel721036_DisconnectClicked(void* ptr)
 void CustomListModel721036_Clicked(void* ptr, int b)
 {
 	static_cast<CustomListModel721036*>(ptr)->clicked(b);
+}
+
+void CustomListModel721036_ConnectOnCheckStateChanged(void* ptr)
+{
+	QObject::connect(static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(qint32, bool)>(&CustomListModel721036::onCheckStateChanged), static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(qint32, bool)>(&CustomListModel721036::Signal_OnCheckStateChanged));
+}
+
+void CustomListModel721036_DisconnectOnCheckStateChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(qint32, bool)>(&CustomListModel721036::onCheckStateChanged), static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(qint32, bool)>(&CustomListModel721036::Signal_OnCheckStateChanged));
+}
+
+void CustomListModel721036_OnCheckStateChanged(void* ptr, int i, char checked)
+{
+	static_cast<CustomListModel721036*>(ptr)->onCheckStateChanged(i, checked != 0);
 }
 
 int CustomListModel721036_CustomListModel721036_QRegisterMetaType()

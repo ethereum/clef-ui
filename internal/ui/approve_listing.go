@@ -42,19 +42,21 @@ type AccountListItem struct {
 type CustomListModel struct {
 	core.QAbstractListModel
 
-	_ func() `constructor:"init"`
+	_ func() 										`constructor:"init"`
+	_ func()                                 		`signal:"clear,auto"`
+	_ func(account params.ApproveListingAccount)    `signal:"add,auto"`
+	_ func(b int) 									`signal:"clicked,auto"`
+	_ func(i int, checked bool) 					`signal:"onCheckStateChanged,auto"`
 
-	_ func()                                 	`signal:"clear,auto"`
-	_ func(account params.ApproveListingAccount)        `signal:"add,auto"`
-
-	modelData []params.ApproveListingAccount
-	answer 	int
-	_ func(b int) `signal:"clicked,auto"`
+	modelData 										[]params.ApproveListingAccount
+	checkState										map[int]bool
+	answer 											int
 
 }
 
 func (m *CustomListModel) init() {
 	m.modelData = []params.ApproveListingAccount{}
+	m.checkState = map[int]bool{}
 
 	m.ConnectRoleNames(m.roleNames)
 	m.ConnectRowCount(m.rowCount)
@@ -94,6 +96,7 @@ func (m *CustomListModel) data(index *core.QModelIndex, role int) *core.QVariant
 func (m*CustomListModel) clear() {
 	m.BeginResetModel()
 	m.modelData = []params.ApproveListingAccount{}
+	m.checkState = map[int]bool{}
 	m.EndResetModel()
 }
 
@@ -112,6 +115,10 @@ func (t *CustomListModel) Reset() {
 	t.answer = 0
 }
 
+func (t *CustomListModel) onCheckStateChanged(i int, checked bool) {
+	t.checkState[i] = checked
+}
+
 func (t *CustomListModel) ClickResponse(res chan []params.ApproveListingAccount) {
 	go func() {
 		done := false
@@ -121,7 +128,15 @@ func (t *CustomListModel) ClickResponse(res chan []params.ApproveListingAccount)
 				if t.answer == 1 {
 					res <- []params.ApproveListingAccount{}
 				} else if t.answer == 2 {
-					res <- t.modelData
+					accounts := make([]params.ApproveListingAccount, 0)
+
+					for i, account := range t.modelData {
+						if t.checkState[i] {
+							accounts = append(accounts, account)
+						}
+					}
+
+					res <- accounts
 				}
 				t.Reset()
 			}

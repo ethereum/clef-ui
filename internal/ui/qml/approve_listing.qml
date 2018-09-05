@@ -230,14 +230,12 @@ Item {
                             id: row1
                             CheckBox {
                                 display: AbstractButton.IconOnly
-                                enabled: false
-                                hoverEnabled: false
                                 focusPolicy: Qt.StrongFocus
                                 font.pointSize: 12
                                 font.capitalization: Font.MixedCase
                                 font.family: "Courier"
                                 checked: selected
-                                checkable: false
+                                onCheckStateChanged: myModel.onCheckStateChanged(index, checked)
                             }
                             Text {
                                 text: address
