@@ -46,94 +46,6 @@
 #include <QWindow>
 
 
-class ApproveSignDataCtx721036: public QObject
-{
-Q_OBJECT
-Q_PROPERTY(QString remote READ remote WRITE setRemote NOTIFY remoteChanged)
-Q_PROPERTY(QString transport READ transport WRITE setTransport NOTIFY transportChanged)
-Q_PROPERTY(QString endpoint READ endpoint WRITE setEndpoint NOTIFY endpointChanged)
-Q_PROPERTY(QString from READ from WRITE setFrom NOTIFY fromChanged)
-Q_PROPERTY(QString message READ message WRITE setMessage NOTIFY messageChanged)
-Q_PROPERTY(QString rawData READ rawData WRITE setRawData NOTIFY rawDataChanged)
-Q_PROPERTY(QString hash READ hash WRITE setHash NOTIFY hashChanged)
-public:
-	ApproveSignDataCtx721036(QObject *parent = Q_NULLPTR) : QObject(parent) {qRegisterMetaType<quintptr>("quintptr");ApproveSignDataCtx721036_ApproveSignDataCtx721036_QRegisterMetaType();ApproveSignDataCtx721036_ApproveSignDataCtx721036_QRegisterMetaTypes();callbackApproveSignDataCtx721036_Constructor(this);};
-	void Signal_Clicked(qint32 b) { callbackApproveSignDataCtx721036_Clicked(this, b); };
-	QString remote() { return ({ Moc_PackedString tempVal = callbackApproveSignDataCtx721036_Remote(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	void setRemote(QString remote) { QByteArray t41ffe5 = remote.toUtf8(); Moc_PackedString remotePacked = { const_cast<char*>(t41ffe5.prepend("WHITESPACE").constData()+10), t41ffe5.size()-10 };callbackApproveSignDataCtx721036_SetRemote(this, remotePacked); };
-	void Signal_RemoteChanged(QString remote) { QByteArray t41ffe5 = remote.toUtf8(); Moc_PackedString remotePacked = { const_cast<char*>(t41ffe5.prepend("WHITESPACE").constData()+10), t41ffe5.size()-10 };callbackApproveSignDataCtx721036_RemoteChanged(this, remotePacked); };
-	QString transport() { return ({ Moc_PackedString tempVal = callbackApproveSignDataCtx721036_Transport(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	void setTransport(QString transport) { QByteArray ta8e601 = transport.toUtf8(); Moc_PackedString transportPacked = { const_cast<char*>(ta8e601.prepend("WHITESPACE").constData()+10), ta8e601.size()-10 };callbackApproveSignDataCtx721036_SetTransport(this, transportPacked); };
-	void Signal_TransportChanged(QString transport) { QByteArray ta8e601 = transport.toUtf8(); Moc_PackedString transportPacked = { const_cast<char*>(ta8e601.prepend("WHITESPACE").constData()+10), ta8e601.size()-10 };callbackApproveSignDataCtx721036_TransportChanged(this, transportPacked); };
-	QString endpoint() { return ({ Moc_PackedString tempVal = callbackApproveSignDataCtx721036_Endpoint(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	void setEndpoint(QString endpoint) { QByteArray te13fe4 = endpoint.toUtf8(); Moc_PackedString endpointPacked = { const_cast<char*>(te13fe4.prepend("WHITESPACE").constData()+10), te13fe4.size()-10 };callbackApproveSignDataCtx721036_SetEndpoint(this, endpointPacked); };
-	void Signal_EndpointChanged(QString endpoint) { QByteArray te13fe4 = endpoint.toUtf8(); Moc_PackedString endpointPacked = { const_cast<char*>(te13fe4.prepend("WHITESPACE").constData()+10), te13fe4.size()-10 };callbackApproveSignDataCtx721036_EndpointChanged(this, endpointPacked); };
-	QString from() { return ({ Moc_PackedString tempVal = callbackApproveSignDataCtx721036_From(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	void setFrom(QString from) { QByteArray t0b1e95 = from.toUtf8(); Moc_PackedString fromPacked = { const_cast<char*>(t0b1e95.prepend("WHITESPACE").constData()+10), t0b1e95.size()-10 };callbackApproveSignDataCtx721036_SetFrom(this, fromPacked); };
-	void Signal_FromChanged(QString from) { QByteArray t0b1e95 = from.toUtf8(); Moc_PackedString fromPacked = { const_cast<char*>(t0b1e95.prepend("WHITESPACE").constData()+10), t0b1e95.size()-10 };callbackApproveSignDataCtx721036_FromChanged(this, fromPacked); };
-	QString message() { return ({ Moc_PackedString tempVal = callbackApproveSignDataCtx721036_Message(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	void setMessage(QString message) { QByteArray t6f9b9a = message.toUtf8(); Moc_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackApproveSignDataCtx721036_SetMessage(this, messagePacked); };
-	void Signal_MessageChanged(QString message) { QByteArray t6f9b9a = message.toUtf8(); Moc_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackApproveSignDataCtx721036_MessageChanged(this, messagePacked); };
-	QString rawData() { return ({ Moc_PackedString tempVal = callbackApproveSignDataCtx721036_RawData(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	void setRawData(QString rawData) { QByteArray tcacc10 = rawData.toUtf8(); Moc_PackedString rawDataPacked = { const_cast<char*>(tcacc10.prepend("WHITESPACE").constData()+10), tcacc10.size()-10 };callbackApproveSignDataCtx721036_SetRawData(this, rawDataPacked); };
-	void Signal_RawDataChanged(QString rawData) { QByteArray tcacc10 = rawData.toUtf8(); Moc_PackedString rawDataPacked = { const_cast<char*>(tcacc10.prepend("WHITESPACE").constData()+10), tcacc10.size()-10 };callbackApproveSignDataCtx721036_RawDataChanged(this, rawDataPacked); };
-	QString hash() { return ({ Moc_PackedString tempVal = callbackApproveSignDataCtx721036_Hash(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	void setHash(QString hash) { QByteArray t2346ad = hash.toUtf8(); Moc_PackedString hashPacked = { const_cast<char*>(t2346ad.prepend("WHITESPACE").constData()+10), t2346ad.size()-10 };callbackApproveSignDataCtx721036_SetHash(this, hashPacked); };
-	void Signal_HashChanged(QString hash) { QByteArray t2346ad = hash.toUtf8(); Moc_PackedString hashPacked = { const_cast<char*>(t2346ad.prepend("WHITESPACE").constData()+10), t2346ad.size()-10 };callbackApproveSignDataCtx721036_HashChanged(this, hashPacked); };
-	 ~ApproveSignDataCtx721036() { callbackApproveSignDataCtx721036_DestroyApproveSignDataCtx(this); };
-	bool event(QEvent * e) { return callbackApproveSignDataCtx721036_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackApproveSignDataCtx721036_EventFilter(this, watched, event) != 0; };
-	
-	void childEvent(QChildEvent * event) { callbackApproveSignDataCtx721036_ChildEvent(this, event); };
-	void connectNotify(const QMetaMethod & sign) { callbackApproveSignDataCtx721036_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackApproveSignDataCtx721036_CustomEvent(this, event); };
-	void deleteLater() { callbackApproveSignDataCtx721036_DeleteLater(this); };
-	void Signal_Destroyed(QObject * obj) { callbackApproveSignDataCtx721036_Destroyed(this, obj); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackApproveSignDataCtx721036_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); Moc_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackApproveSignDataCtx721036_ObjectNameChanged(this, objectNamePacked); };
-	void timerEvent(QTimerEvent * event) { callbackApproveSignDataCtx721036_TimerEvent(this, event); };
-	
-	QString remoteDefault() { return _remote; };
-	void setRemoteDefault(QString p) { if (p != _remote) { _remote = p; remoteChanged(_remote); } };
-	QString transportDefault() { return _transport; };
-	void setTransportDefault(QString p) { if (p != _transport) { _transport = p; transportChanged(_transport); } };
-	QString endpointDefault() { return _endpoint; };
-	void setEndpointDefault(QString p) { if (p != _endpoint) { _endpoint = p; endpointChanged(_endpoint); } };
-	QString fromDefault() { return _from; };
-	void setFromDefault(QString p) { if (p != _from) { _from = p; fromChanged(_from); } };
-	QString messageDefault() { return _message; };
-	void setMessageDefault(QString p) { if (p != _message) { _message = p; messageChanged(_message); } };
-	QString rawDataDefault() { return _rawData; };
-	void setRawDataDefault(QString p) { if (p != _rawData) { _rawData = p; rawDataChanged(_rawData); } };
-	QString hashDefault() { return _hash; };
-	void setHashDefault(QString p) { if (p != _hash) { _hash = p; hashChanged(_hash); } };
-signals:
-	void clicked(qint32 b);
-	void remoteChanged(QString remote);
-	void transportChanged(QString transport);
-	void endpointChanged(QString endpoint);
-	void fromChanged(QString from);
-	void messageChanged(QString message);
-	void rawDataChanged(QString rawData);
-	void hashChanged(QString hash);
-public slots:
-private:
-	QString _remote;
-	QString _transport;
-	QString _endpoint;
-	QString _from;
-	QString _message;
-	QString _rawData;
-	QString _hash;
-};
-
-Q_DECLARE_METATYPE(ApproveSignDataCtx721036*)
-
-
-void ApproveSignDataCtx721036_ApproveSignDataCtx721036_QRegisterMetaTypes() {
-	qRegisterMetaType<QString>();
-}
-
 class ApproveTxCtx721036: public QObject
 {
 Q_OBJECT
@@ -419,6 +331,94 @@ Q_DECLARE_METATYPE(ApproveListingCtx721036*)
 
 
 void ApproveListingCtx721036_ApproveListingCtx721036_QRegisterMetaTypes() {
+	qRegisterMetaType<QString>();
+}
+
+class ApproveSignDataCtx721036: public QObject
+{
+Q_OBJECT
+Q_PROPERTY(QString remote READ remote WRITE setRemote NOTIFY remoteChanged)
+Q_PROPERTY(QString transport READ transport WRITE setTransport NOTIFY transportChanged)
+Q_PROPERTY(QString endpoint READ endpoint WRITE setEndpoint NOTIFY endpointChanged)
+Q_PROPERTY(QString from READ from WRITE setFrom NOTIFY fromChanged)
+Q_PROPERTY(QString message READ message WRITE setMessage NOTIFY messageChanged)
+Q_PROPERTY(QString rawData READ rawData WRITE setRawData NOTIFY rawDataChanged)
+Q_PROPERTY(QString hash READ hash WRITE setHash NOTIFY hashChanged)
+public:
+	ApproveSignDataCtx721036(QObject *parent = Q_NULLPTR) : QObject(parent) {qRegisterMetaType<quintptr>("quintptr");ApproveSignDataCtx721036_ApproveSignDataCtx721036_QRegisterMetaType();ApproveSignDataCtx721036_ApproveSignDataCtx721036_QRegisterMetaTypes();callbackApproveSignDataCtx721036_Constructor(this);};
+	void Signal_Clicked(qint32 b) { callbackApproveSignDataCtx721036_Clicked(this, b); };
+	QString remote() { return ({ Moc_PackedString tempVal = callbackApproveSignDataCtx721036_Remote(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	void setRemote(QString remote) { QByteArray t41ffe5 = remote.toUtf8(); Moc_PackedString remotePacked = { const_cast<char*>(t41ffe5.prepend("WHITESPACE").constData()+10), t41ffe5.size()-10 };callbackApproveSignDataCtx721036_SetRemote(this, remotePacked); };
+	void Signal_RemoteChanged(QString remote) { QByteArray t41ffe5 = remote.toUtf8(); Moc_PackedString remotePacked = { const_cast<char*>(t41ffe5.prepend("WHITESPACE").constData()+10), t41ffe5.size()-10 };callbackApproveSignDataCtx721036_RemoteChanged(this, remotePacked); };
+	QString transport() { return ({ Moc_PackedString tempVal = callbackApproveSignDataCtx721036_Transport(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	void setTransport(QString transport) { QByteArray ta8e601 = transport.toUtf8(); Moc_PackedString transportPacked = { const_cast<char*>(ta8e601.prepend("WHITESPACE").constData()+10), ta8e601.size()-10 };callbackApproveSignDataCtx721036_SetTransport(this, transportPacked); };
+	void Signal_TransportChanged(QString transport) { QByteArray ta8e601 = transport.toUtf8(); Moc_PackedString transportPacked = { const_cast<char*>(ta8e601.prepend("WHITESPACE").constData()+10), ta8e601.size()-10 };callbackApproveSignDataCtx721036_TransportChanged(this, transportPacked); };
+	QString endpoint() { return ({ Moc_PackedString tempVal = callbackApproveSignDataCtx721036_Endpoint(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	void setEndpoint(QString endpoint) { QByteArray te13fe4 = endpoint.toUtf8(); Moc_PackedString endpointPacked = { const_cast<char*>(te13fe4.prepend("WHITESPACE").constData()+10), te13fe4.size()-10 };callbackApproveSignDataCtx721036_SetEndpoint(this, endpointPacked); };
+	void Signal_EndpointChanged(QString endpoint) { QByteArray te13fe4 = endpoint.toUtf8(); Moc_PackedString endpointPacked = { const_cast<char*>(te13fe4.prepend("WHITESPACE").constData()+10), te13fe4.size()-10 };callbackApproveSignDataCtx721036_EndpointChanged(this, endpointPacked); };
+	QString from() { return ({ Moc_PackedString tempVal = callbackApproveSignDataCtx721036_From(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	void setFrom(QString from) { QByteArray t0b1e95 = from.toUtf8(); Moc_PackedString fromPacked = { const_cast<char*>(t0b1e95.prepend("WHITESPACE").constData()+10), t0b1e95.size()-10 };callbackApproveSignDataCtx721036_SetFrom(this, fromPacked); };
+	void Signal_FromChanged(QString from) { QByteArray t0b1e95 = from.toUtf8(); Moc_PackedString fromPacked = { const_cast<char*>(t0b1e95.prepend("WHITESPACE").constData()+10), t0b1e95.size()-10 };callbackApproveSignDataCtx721036_FromChanged(this, fromPacked); };
+	QString message() { return ({ Moc_PackedString tempVal = callbackApproveSignDataCtx721036_Message(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	void setMessage(QString message) { QByteArray t6f9b9a = message.toUtf8(); Moc_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackApproveSignDataCtx721036_SetMessage(this, messagePacked); };
+	void Signal_MessageChanged(QString message) { QByteArray t6f9b9a = message.toUtf8(); Moc_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackApproveSignDataCtx721036_MessageChanged(this, messagePacked); };
+	QString rawData() { return ({ Moc_PackedString tempVal = callbackApproveSignDataCtx721036_RawData(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	void setRawData(QString rawData) { QByteArray tcacc10 = rawData.toUtf8(); Moc_PackedString rawDataPacked = { const_cast<char*>(tcacc10.prepend("WHITESPACE").constData()+10), tcacc10.size()-10 };callbackApproveSignDataCtx721036_SetRawData(this, rawDataPacked); };
+	void Signal_RawDataChanged(QString rawData) { QByteArray tcacc10 = rawData.toUtf8(); Moc_PackedString rawDataPacked = { const_cast<char*>(tcacc10.prepend("WHITESPACE").constData()+10), tcacc10.size()-10 };callbackApproveSignDataCtx721036_RawDataChanged(this, rawDataPacked); };
+	QString hash() { return ({ Moc_PackedString tempVal = callbackApproveSignDataCtx721036_Hash(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	void setHash(QString hash) { QByteArray t2346ad = hash.toUtf8(); Moc_PackedString hashPacked = { const_cast<char*>(t2346ad.prepend("WHITESPACE").constData()+10), t2346ad.size()-10 };callbackApproveSignDataCtx721036_SetHash(this, hashPacked); };
+	void Signal_HashChanged(QString hash) { QByteArray t2346ad = hash.toUtf8(); Moc_PackedString hashPacked = { const_cast<char*>(t2346ad.prepend("WHITESPACE").constData()+10), t2346ad.size()-10 };callbackApproveSignDataCtx721036_HashChanged(this, hashPacked); };
+	 ~ApproveSignDataCtx721036() { callbackApproveSignDataCtx721036_DestroyApproveSignDataCtx(this); };
+	bool event(QEvent * e) { return callbackApproveSignDataCtx721036_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackApproveSignDataCtx721036_EventFilter(this, watched, event) != 0; };
+	
+	void childEvent(QChildEvent * event) { callbackApproveSignDataCtx721036_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackApproveSignDataCtx721036_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackApproveSignDataCtx721036_CustomEvent(this, event); };
+	void deleteLater() { callbackApproveSignDataCtx721036_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackApproveSignDataCtx721036_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackApproveSignDataCtx721036_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); Moc_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackApproveSignDataCtx721036_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackApproveSignDataCtx721036_TimerEvent(this, event); };
+	
+	QString remoteDefault() { return _remote; };
+	void setRemoteDefault(QString p) { if (p != _remote) { _remote = p; remoteChanged(_remote); } };
+	QString transportDefault() { return _transport; };
+	void setTransportDefault(QString p) { if (p != _transport) { _transport = p; transportChanged(_transport); } };
+	QString endpointDefault() { return _endpoint; };
+	void setEndpointDefault(QString p) { if (p != _endpoint) { _endpoint = p; endpointChanged(_endpoint); } };
+	QString fromDefault() { return _from; };
+	void setFromDefault(QString p) { if (p != _from) { _from = p; fromChanged(_from); } };
+	QString messageDefault() { return _message; };
+	void setMessageDefault(QString p) { if (p != _message) { _message = p; messageChanged(_message); } };
+	QString rawDataDefault() { return _rawData; };
+	void setRawDataDefault(QString p) { if (p != _rawData) { _rawData = p; rawDataChanged(_rawData); } };
+	QString hashDefault() { return _hash; };
+	void setHashDefault(QString p) { if (p != _hash) { _hash = p; hashChanged(_hash); } };
+signals:
+	void clicked(qint32 b);
+	void remoteChanged(QString remote);
+	void transportChanged(QString transport);
+	void endpointChanged(QString endpoint);
+	void fromChanged(QString from);
+	void messageChanged(QString message);
+	void rawDataChanged(QString rawData);
+	void hashChanged(QString hash);
+public slots:
+private:
+	QString _remote;
+	QString _transport;
+	QString _endpoint;
+	QString _from;
+	QString _message;
+	QString _rawData;
+	QString _hash;
+};
+
+Q_DECLARE_METATYPE(ApproveSignDataCtx721036*)
+
+
+void ApproveSignDataCtx721036_ApproveSignDataCtx721036_QRegisterMetaTypes() {
 	qRegisterMetaType<QString>();
 }
 
