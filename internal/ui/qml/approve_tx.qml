@@ -219,6 +219,7 @@ Item {
                     horizontalAlignment: Text.AlignLeft
                     verticalAlignment: Text.AlignHCenter
                     font.pixelSize: 12
+                    onTextChanged: ctxObject.edited("from", text)
                 }
             }
 
@@ -349,6 +350,7 @@ Item {
                     horizontalAlignment: Text.AlignLeft
                     font.family: "Courier"
                     verticalAlignment: Text.AlignHCenter
+                    onTextChanged: ctxObject.edited("to", text)
                 }
             }
         }
@@ -392,6 +394,7 @@ Item {
                     horizontalAlignment: Text.AlignLeft
                     font.family: "Courier"
                     verticalAlignment: Text.AlignHCenter
+                    onTextChanged: ctxObject.edited("value", text)
                 }
             }
         }
@@ -435,6 +438,7 @@ Item {
                     horizontalAlignment: Text.AlignLeft
                     font.family: "Courier"
                     verticalAlignment: Text.AlignHCenter
+                    onTextChanged: ctxObject.edited("gas", text)
                 }
             }
         }
@@ -478,6 +482,7 @@ Item {
                     horizontalAlignment: Text.AlignLeft
                     font.family: "Courier"
                     verticalAlignment: Text.AlignHCenter
+                    onTextChanged: ctxObject.edited("gasPrice", text)
                 }
             }
         }
@@ -521,6 +526,7 @@ Item {
                     horizontalAlignment: Text.AlignLeft
                     font.family: "Courier"
                     verticalAlignment: Text.AlignHCenter
+                    onTextChanged: ctxObject.edited("nonce", text)
                 }
             }
         }
@@ -563,6 +569,7 @@ Item {
                     text: ctxObject.data
                     font.pointSize: 12
                     font.family: "Courier"
+                    onTextChanged: ctxObject.edited("data", text)
                 }
             }
         }

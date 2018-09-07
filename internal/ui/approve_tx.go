@@ -28,6 +28,7 @@ type ApproveTxCtx struct {
 	_ string `property:"value"`
 
 	_ func(b int) `signal:"clicked,auto"`
+	_ func(s string, v string) `signal:"edited,auto"`
 
 	answer 		int
 	formData 	params.Transaction
@@ -37,13 +38,48 @@ func (t *ApproveTxCtx) init() {
 	t.formData = params.Transaction{}
 }
 
+func (t *ApproveTxCtx) SetTransaction(tx params.Transaction) {
+	t.SetData(tx.Data)
+	t.SetNonce(tx.Nonce)
+	t.SetValue(tx.Value)
+	t.SetGas(tx.Gas)
+	t.SetGasPrice(tx.GasPrice)
+	t.SetFrom(tx.From)
+	t.SetTo(tx.To)
+}
+
 func (t *ApproveTxCtx) clicked(b int) {
 	t.answer = b
 }
 
 func (t *ApproveTxCtx) Reset() {
 	t.answer = 0
-	t.formData = params.Transaction{}
+	t.SetData("")
+	t.SetNonce("")
+	t.SetValue("")
+	t.SetGas("")
+	t.SetGasPrice("")
+	t.SetFrom("")
+	t.SetTo("")
+}
+
+func (t *ApproveTxCtx) edited(name string, value string) {
+	switch name {
+	case "data":
+		t.SetData(value)
+	case "nonce":
+		t.SetNonce(value)
+	case "from":
+		t.SetFrom(value)
+	case "to":
+		t.SetTo(value)
+	case "gas":
+		t.SetGas(value)
+	case "gasPrice":
+		t.SetGasPrice(value)
+	case "value":
+		t.SetValue(value)
+	}
 }
 
 func (t *ApproveTxCtx) ClickResponse(reply *params.ApproveTxResponse, response chan bool) {
@@ -52,16 +88,25 @@ func (t *ApproveTxCtx) ClickResponse(reply *params.ApproveTxResponse, response c
 		for !done {
 			if t.answer != 0 {
 				done = true
+				reply.Transaction = params.Transaction{
+					Data: t.Data(),
+					Nonce: t.Nonce(),
+					Value: t.Value(),
+					Gas: t.Gas(),
+					GasPrice: t.GasPrice(),
+					From: t.From(),
+					To: t.To(),
+				}
+
 				if t.answer == 1 {
 					reply.Approved = false
-					reply.Transaction = t.formData
 					response <- true
 				} else if t.answer == 2 {
-					reply.Transaction = t.formData
 					reply.Approved = true
 					reply.Password = "asdfasdf"
 					response <- true
 				}
+
 				t.Reset()
 			}
 		}

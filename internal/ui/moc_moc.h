@@ -923,8 +923,8 @@ void ApproveSignDataCtx721036::hashChanged(QString _t1)
     QMetaObject::activate(this, &staticMetaObject, 7, _a);
 }
 struct qt_meta_stringdata_ApproveTxCtx721036_t {
-    QByteArrayData data[24];
-    char stringdata0[228];
+    QByteArrayData data[27];
+    char stringdata0[239];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -937,30 +937,33 @@ QT_MOC_LITERAL(0, 0, 18), // "ApproveTxCtx721036"
 QT_MOC_LITERAL(1, 19, 7), // "clicked"
 QT_MOC_LITERAL(2, 27, 0), // ""
 QT_MOC_LITERAL(3, 28, 1), // "b"
-QT_MOC_LITERAL(4, 30, 13), // "remoteChanged"
-QT_MOC_LITERAL(5, 44, 6), // "remote"
-QT_MOC_LITERAL(6, 51, 16), // "transportChanged"
-QT_MOC_LITERAL(7, 68, 9), // "transport"
-QT_MOC_LITERAL(8, 78, 15), // "endpointChanged"
-QT_MOC_LITERAL(9, 94, 8), // "endpoint"
-QT_MOC_LITERAL(10, 103, 11), // "dataChanged"
-QT_MOC_LITERAL(11, 115, 4), // "data"
-QT_MOC_LITERAL(12, 120, 11), // "fromChanged"
-QT_MOC_LITERAL(13, 132, 4), // "from"
-QT_MOC_LITERAL(14, 137, 9), // "toChanged"
-QT_MOC_LITERAL(15, 147, 2), // "to"
-QT_MOC_LITERAL(16, 150, 10), // "gasChanged"
-QT_MOC_LITERAL(17, 161, 3), // "gas"
-QT_MOC_LITERAL(18, 165, 15), // "gasPriceChanged"
-QT_MOC_LITERAL(19, 181, 8), // "gasPrice"
-QT_MOC_LITERAL(20, 190, 12), // "nonceChanged"
-QT_MOC_LITERAL(21, 203, 5), // "nonce"
-QT_MOC_LITERAL(22, 209, 12), // "valueChanged"
-QT_MOC_LITERAL(23, 222, 5) // "value"
+QT_MOC_LITERAL(4, 30, 6), // "edited"
+QT_MOC_LITERAL(5, 37, 1), // "s"
+QT_MOC_LITERAL(6, 39, 1), // "v"
+QT_MOC_LITERAL(7, 41, 13), // "remoteChanged"
+QT_MOC_LITERAL(8, 55, 6), // "remote"
+QT_MOC_LITERAL(9, 62, 16), // "transportChanged"
+QT_MOC_LITERAL(10, 79, 9), // "transport"
+QT_MOC_LITERAL(11, 89, 15), // "endpointChanged"
+QT_MOC_LITERAL(12, 105, 8), // "endpoint"
+QT_MOC_LITERAL(13, 114, 11), // "dataChanged"
+QT_MOC_LITERAL(14, 126, 4), // "data"
+QT_MOC_LITERAL(15, 131, 11), // "fromChanged"
+QT_MOC_LITERAL(16, 143, 4), // "from"
+QT_MOC_LITERAL(17, 148, 9), // "toChanged"
+QT_MOC_LITERAL(18, 158, 2), // "to"
+QT_MOC_LITERAL(19, 161, 10), // "gasChanged"
+QT_MOC_LITERAL(20, 172, 3), // "gas"
+QT_MOC_LITERAL(21, 176, 15), // "gasPriceChanged"
+QT_MOC_LITERAL(22, 192, 8), // "gasPrice"
+QT_MOC_LITERAL(23, 201, 12), // "nonceChanged"
+QT_MOC_LITERAL(24, 214, 5), // "nonce"
+QT_MOC_LITERAL(25, 220, 12), // "valueChanged"
+QT_MOC_LITERAL(26, 233, 5) // "value"
 
     },
-    "ApproveTxCtx721036\0clicked\0\0b\0"
-    "remoteChanged\0remote\0transportChanged\0"
+    "ApproveTxCtx721036\0clicked\0\0b\0edited\0"
+    "s\0v\0remoteChanged\0remote\0transportChanged\0"
     "transport\0endpointChanged\0endpoint\0"
     "dataChanged\0data\0fromChanged\0from\0"
     "toChanged\0to\0gasChanged\0gas\0gasPriceChanged\0"
@@ -975,53 +978,54 @@ static const uint qt_meta_data_ApproveTxCtx721036[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      11,   14, // methods
-      10,  102, // properties
+      12,   14, // methods
+      10,  112, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-      11,       // signalCount
+      12,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   69,    2, 0x06 /* Public */,
-       4,    1,   72,    2, 0x06 /* Public */,
-       6,    1,   75,    2, 0x06 /* Public */,
-       8,    1,   78,    2, 0x06 /* Public */,
-      10,    1,   81,    2, 0x06 /* Public */,
-      12,    1,   84,    2, 0x06 /* Public */,
-      14,    1,   87,    2, 0x06 /* Public */,
-      16,    1,   90,    2, 0x06 /* Public */,
-      18,    1,   93,    2, 0x06 /* Public */,
-      20,    1,   96,    2, 0x06 /* Public */,
-      22,    1,   99,    2, 0x06 /* Public */,
+       1,    1,   74,    2, 0x06 /* Public */,
+       4,    2,   77,    2, 0x06 /* Public */,
+       7,    1,   82,    2, 0x06 /* Public */,
+       9,    1,   85,    2, 0x06 /* Public */,
+      11,    1,   88,    2, 0x06 /* Public */,
+      13,    1,   91,    2, 0x06 /* Public */,
+      15,    1,   94,    2, 0x06 /* Public */,
+      17,    1,   97,    2, 0x06 /* Public */,
+      19,    1,  100,    2, 0x06 /* Public */,
+      21,    1,  103,    2, 0x06 /* Public */,
+      23,    1,  106,    2, 0x06 /* Public */,
+      25,    1,  109,    2, 0x06 /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Int,    3,
-    QMetaType::Void, QMetaType::QString,    5,
-    QMetaType::Void, QMetaType::QString,    7,
-    QMetaType::Void, QMetaType::QString,    9,
-    QMetaType::Void, QMetaType::QString,   11,
-    QMetaType::Void, QMetaType::QString,   13,
-    QMetaType::Void, QMetaType::QString,   15,
-    QMetaType::Void, QMetaType::QString,   17,
-    QMetaType::Void, QMetaType::QString,   19,
-    QMetaType::Void, QMetaType::QString,   21,
-    QMetaType::Void, QMetaType::QString,   23,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,    5,    6,
+    QMetaType::Void, QMetaType::QString,    8,
+    QMetaType::Void, QMetaType::QString,   10,
+    QMetaType::Void, QMetaType::QString,   12,
+    QMetaType::Void, QMetaType::QString,   14,
+    QMetaType::Void, QMetaType::QString,   16,
+    QMetaType::Void, QMetaType::QString,   18,
+    QMetaType::Void, QMetaType::QString,   20,
+    QMetaType::Void, QMetaType::QString,   22,
+    QMetaType::Void, QMetaType::QString,   24,
+    QMetaType::Void, QMetaType::QString,   26,
 
  // properties: name, type, flags
-       5, QMetaType::QString, 0x00495103,
-       7, QMetaType::QString, 0x00495103,
-       9, QMetaType::QString, 0x00495103,
-      11, QMetaType::QString, 0x00495103,
-      13, QMetaType::QString, 0x00495103,
-      15, QMetaType::QString, 0x00495103,
-      17, QMetaType::QString, 0x00495103,
-      19, QMetaType::QString, 0x00495103,
-      21, QMetaType::QString, 0x00495103,
-      23, QMetaType::QString, 0x00495103,
+       8, QMetaType::QString, 0x00495103,
+      10, QMetaType::QString, 0x00495103,
+      12, QMetaType::QString, 0x00495103,
+      14, QMetaType::QString, 0x00495103,
+      16, QMetaType::QString, 0x00495103,
+      18, QMetaType::QString, 0x00495103,
+      20, QMetaType::QString, 0x00495103,
+      22, QMetaType::QString, 0x00495103,
+      24, QMetaType::QString, 0x00495103,
+      26, QMetaType::QString, 0x00495103,
 
  // properties: notify_signal_id
-       1,
        2,
        3,
        4,
@@ -1031,6 +1035,7 @@ static const uint qt_meta_data_ApproveTxCtx721036[] = {
        8,
        9,
       10,
+      11,
 
        0        // eod
 };
@@ -1042,16 +1047,17 @@ void ApproveTxCtx721036::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->clicked((*reinterpret_cast< qint32(*)>(_a[1]))); break;
-        case 1: _t->remoteChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 2: _t->transportChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 3: _t->endpointChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 4: _t->dataChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 5: _t->fromChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 6: _t->toChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 7: _t->gasChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 8: _t->gasPriceChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 9: _t->nonceChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 10: _t->valueChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 1: _t->edited((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2]))); break;
+        case 2: _t->remoteChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 3: _t->transportChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 4: _t->endpointChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 5: _t->dataChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 6: _t->fromChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 7: _t->toChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 8: _t->gasChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 9: _t->gasPriceChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 10: _t->nonceChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 11: _t->valueChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -1064,72 +1070,79 @@ void ApproveTxCtx721036::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
             }
         }
         {
-            using _t = void (ApproveTxCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::remoteChanged)) {
+            using _t = void (ApproveTxCtx721036::*)(QString , QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::edited)) {
                 *result = 1;
                 return;
             }
         }
         {
             using _t = void (ApproveTxCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::transportChanged)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::remoteChanged)) {
                 *result = 2;
                 return;
             }
         }
         {
             using _t = void (ApproveTxCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::endpointChanged)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::transportChanged)) {
                 *result = 3;
                 return;
             }
         }
         {
             using _t = void (ApproveTxCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::dataChanged)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::endpointChanged)) {
                 *result = 4;
                 return;
             }
         }
         {
             using _t = void (ApproveTxCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::fromChanged)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::dataChanged)) {
                 *result = 5;
                 return;
             }
         }
         {
             using _t = void (ApproveTxCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::toChanged)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::fromChanged)) {
                 *result = 6;
                 return;
             }
         }
         {
             using _t = void (ApproveTxCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::gasChanged)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::toChanged)) {
                 *result = 7;
                 return;
             }
         }
         {
             using _t = void (ApproveTxCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::gasPriceChanged)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::gasChanged)) {
                 *result = 8;
                 return;
             }
         }
         {
             using _t = void (ApproveTxCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::nonceChanged)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::gasPriceChanged)) {
                 *result = 9;
                 return;
             }
         }
         {
             using _t = void (ApproveTxCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::valueChanged)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::nonceChanged)) {
                 *result = 10;
+                return;
+            }
+        }
+        {
+            using _t = void (ApproveTxCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::valueChanged)) {
+                *result = 11;
                 return;
             }
         }
@@ -1199,13 +1212,13 @@ int ApproveTxCtx721036::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 11)
+        if (_id < 12)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 11;
+        _id -= 12;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 11)
+        if (_id < 12)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 11;
+        _id -= 12;
     }
 #ifndef QT_NO_PROPERTIES
    else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
@@ -1235,73 +1248,80 @@ void ApproveTxCtx721036::clicked(qint32 _t1)
 }
 
 // SIGNAL 1
-void ApproveTxCtx721036::remoteChanged(QString _t1)
+void ApproveTxCtx721036::edited(QString _t1, QString _t2)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
     QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 
 // SIGNAL 2
-void ApproveTxCtx721036::transportChanged(QString _t1)
+void ApproveTxCtx721036::remoteChanged(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 
 // SIGNAL 3
-void ApproveTxCtx721036::endpointChanged(QString _t1)
+void ApproveTxCtx721036::transportChanged(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 3, _a);
 }
 
 // SIGNAL 4
-void ApproveTxCtx721036::dataChanged(QString _t1)
+void ApproveTxCtx721036::endpointChanged(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 4, _a);
 }
 
 // SIGNAL 5
-void ApproveTxCtx721036::fromChanged(QString _t1)
+void ApproveTxCtx721036::dataChanged(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 5, _a);
 }
 
 // SIGNAL 6
-void ApproveTxCtx721036::toChanged(QString _t1)
+void ApproveTxCtx721036::fromChanged(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 6, _a);
 }
 
 // SIGNAL 7
-void ApproveTxCtx721036::gasChanged(QString _t1)
+void ApproveTxCtx721036::toChanged(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 7, _a);
 }
 
 // SIGNAL 8
-void ApproveTxCtx721036::gasPriceChanged(QString _t1)
+void ApproveTxCtx721036::gasChanged(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 8, _a);
 }
 
 // SIGNAL 9
-void ApproveTxCtx721036::nonceChanged(QString _t1)
+void ApproveTxCtx721036::gasPriceChanged(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 9, _a);
 }
 
 // SIGNAL 10
-void ApproveTxCtx721036::valueChanged(QString _t1)
+void ApproveTxCtx721036::nonceChanged(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 10, _a);
+}
+
+// SIGNAL 11
+void ApproveTxCtx721036::valueChanged(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 11, _a);
 }
 struct qt_meta_stringdata_CustomListModel721036_t {
     QByteArrayData data[11];

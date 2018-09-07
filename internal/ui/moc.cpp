@@ -312,6 +312,7 @@ Q_PROPERTY(QString value READ value WRITE setValue NOTIFY valueChanged)
 public:
 	ApproveTxCtx721036(QObject *parent = Q_NULLPTR) : QObject(parent) {qRegisterMetaType<quintptr>("quintptr");ApproveTxCtx721036_ApproveTxCtx721036_QRegisterMetaType();ApproveTxCtx721036_ApproveTxCtx721036_QRegisterMetaTypes();callbackApproveTxCtx721036_Constructor(this);};
 	void Signal_Clicked(qint32 b) { callbackApproveTxCtx721036_Clicked(this, b); };
+	void Signal_Edited(QString s, QString v) { QByteArray ta0f149 = s.toUtf8(); Moc_PackedString sPacked = { const_cast<char*>(ta0f149.prepend("WHITESPACE").constData()+10), ta0f149.size()-10 };QByteArray t7a38d8 = v.toUtf8(); Moc_PackedString vPacked = { const_cast<char*>(t7a38d8.prepend("WHITESPACE").constData()+10), t7a38d8.size()-10 };callbackApproveTxCtx721036_Edited(this, sPacked, vPacked); };
 	QString remote() { return ({ Moc_PackedString tempVal = callbackApproveTxCtx721036_Remote(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	void setRemote(QString remote) { QByteArray t41ffe5 = remote.toUtf8(); Moc_PackedString remotePacked = { const_cast<char*>(t41ffe5.prepend("WHITESPACE").constData()+10), t41ffe5.size()-10 };callbackApproveTxCtx721036_SetRemote(this, remotePacked); };
 	void Signal_RemoteChanged(QString remote) { QByteArray t41ffe5 = remote.toUtf8(); Moc_PackedString remotePacked = { const_cast<char*>(t41ffe5.prepend("WHITESPACE").constData()+10), t41ffe5.size()-10 };callbackApproveTxCtx721036_RemoteChanged(this, remotePacked); };
@@ -377,6 +378,7 @@ public:
 	void setValueDefault(QString p) { if (p != _value) { _value = p; valueChanged(_value); } };
 signals:
 	void clicked(qint32 b);
+	void edited(QString s, QString v);
 	void remoteChanged(QString remote);
 	void transportChanged(QString transport);
 	void endpointChanged(QString endpoint);
@@ -496,6 +498,717 @@ Q_DECLARE_METATYPE(CustomListModel721036*)
 
 
 void CustomListModel721036_CustomListModel721036_QRegisterMetaTypes() {
+}
+
+void CustomListModel721036_ConnectClear(void* ptr)
+{
+	QObject::connect(static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)()>(&CustomListModel721036::clear), static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)()>(&CustomListModel721036::Signal_Clear));
+}
+
+void CustomListModel721036_DisconnectClear(void* ptr)
+{
+	QObject::disconnect(static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)()>(&CustomListModel721036::clear), static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)()>(&CustomListModel721036::Signal_Clear));
+}
+
+void CustomListModel721036_Clear(void* ptr)
+{
+	static_cast<CustomListModel721036*>(ptr)->clear();
+}
+
+void CustomListModel721036_ConnectAdd(void* ptr)
+{
+	QObject::connect(static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(quintptr)>(&CustomListModel721036::add), static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(quintptr)>(&CustomListModel721036::Signal_Add));
+}
+
+void CustomListModel721036_DisconnectAdd(void* ptr)
+{
+	QObject::disconnect(static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(quintptr)>(&CustomListModel721036::add), static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(quintptr)>(&CustomListModel721036::Signal_Add));
+}
+
+void CustomListModel721036_Add(void* ptr, uintptr_t account)
+{
+	static_cast<CustomListModel721036*>(ptr)->add(account);
+}
+
+void CustomListModel721036_ConnectClicked(void* ptr)
+{
+	QObject::connect(static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(qint32)>(&CustomListModel721036::clicked), static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(qint32)>(&CustomListModel721036::Signal_Clicked));
+}
+
+void CustomListModel721036_DisconnectClicked(void* ptr)
+{
+	QObject::disconnect(static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(qint32)>(&CustomListModel721036::clicked), static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(qint32)>(&CustomListModel721036::Signal_Clicked));
+}
+
+void CustomListModel721036_Clicked(void* ptr, int b)
+{
+	static_cast<CustomListModel721036*>(ptr)->clicked(b);
+}
+
+void CustomListModel721036_ConnectOnCheckStateChanged(void* ptr)
+{
+	QObject::connect(static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(qint32, bool)>(&CustomListModel721036::onCheckStateChanged), static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(qint32, bool)>(&CustomListModel721036::Signal_OnCheckStateChanged));
+}
+
+void CustomListModel721036_DisconnectOnCheckStateChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(qint32, bool)>(&CustomListModel721036::onCheckStateChanged), static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(qint32, bool)>(&CustomListModel721036::Signal_OnCheckStateChanged));
+}
+
+void CustomListModel721036_OnCheckStateChanged(void* ptr, int i, char checked)
+{
+	static_cast<CustomListModel721036*>(ptr)->onCheckStateChanged(i, checked != 0);
+}
+
+int CustomListModel721036_CustomListModel721036_QRegisterMetaType()
+{
+	return qRegisterMetaType<CustomListModel721036*>();
+}
+
+int CustomListModel721036_CustomListModel721036_QRegisterMetaType2(char* typeName)
+{
+	return qRegisterMetaType<CustomListModel721036*>(const_cast<const char*>(typeName));
+}
+
+int CustomListModel721036_CustomListModel721036_QmlRegisterType()
+{
+#ifdef QT_QML_LIB
+	return qmlRegisterType<CustomListModel721036>();
+#else
+	return 0;
+#endif
+}
+
+int CustomListModel721036_CustomListModel721036_QmlRegisterType2(char* uri, int versionMajor, int versionMinor, char* qmlName)
+{
+#ifdef QT_QML_LIB
+	return qmlRegisterType<CustomListModel721036>(const_cast<const char*>(uri), versionMajor, versionMinor, const_cast<const char*>(qmlName));
+#else
+	return 0;
+#endif
+}
+
+int CustomListModel721036_____setItemData_roles_keyList_atList(void* ptr, int i)
+{
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void CustomListModel721036_____setItemData_roles_keyList_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* CustomListModel721036_____setItemData_roles_keyList_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<int>();
+}
+
+int CustomListModel721036_____roleNames_keyList_atList(void* ptr, int i)
+{
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void CustomListModel721036_____roleNames_keyList_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* CustomListModel721036_____roleNames_keyList_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<int>();
+}
+
+int CustomListModel721036_____itemData_keyList_atList(void* ptr, int i)
+{
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void CustomListModel721036_____itemData_keyList_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* CustomListModel721036_____itemData_keyList_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<int>();
+}
+
+void* CustomListModel721036___setItemData_roles_atList(void* ptr, int v, int i)
+{
+	return new QVariant(({ QVariant tmp = static_cast<QMap<int, QVariant>*>(ptr)->value(v); if (i == static_cast<QMap<int, QVariant>*>(ptr)->size()-1) { static_cast<QMap<int, QVariant>*>(ptr)->~QMap(); free(ptr); }; tmp; }));
+}
+
+void CustomListModel721036___setItemData_roles_setList(void* ptr, int key, void* i)
+{
+	static_cast<QMap<int, QVariant>*>(ptr)->insert(key, *static_cast<QVariant*>(i));
+}
+
+void* CustomListModel721036___setItemData_roles_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QMap<int, QVariant>();
+}
+
+struct Moc_PackedList CustomListModel721036___setItemData_roles_keyList(void* ptr)
+{
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); Moc_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* CustomListModel721036___changePersistentIndexList_from_atList(void* ptr, int i)
+{
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void CustomListModel721036___changePersistentIndexList_from_setList(void* ptr, void* i)
+{
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+}
+
+void* CustomListModel721036___changePersistentIndexList_from_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QModelIndex>();
+}
+
+void* CustomListModel721036___changePersistentIndexList_to_atList(void* ptr, int i)
+{
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void CustomListModel721036___changePersistentIndexList_to_setList(void* ptr, void* i)
+{
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+}
+
+void* CustomListModel721036___changePersistentIndexList_to_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QModelIndex>();
+}
+
+int CustomListModel721036___dataChanged_roles_atList(void* ptr, int i)
+{
+	return ({int tmp = static_cast<QVector<int>*>(ptr)->at(i); if (i == static_cast<QVector<int>*>(ptr)->size()-1) { static_cast<QVector<int>*>(ptr)->~QVector(); free(ptr); }; tmp; });
+}
+
+void CustomListModel721036___dataChanged_roles_setList(void* ptr, int i)
+{
+	static_cast<QVector<int>*>(ptr)->append(i);
+}
+
+void* CustomListModel721036___dataChanged_roles_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QVector<int>();
+}
+
+void* CustomListModel721036___layoutAboutToBeChanged_parents_atList(void* ptr, int i)
+{
+	return new QPersistentModelIndex(({QPersistentModelIndex tmp = static_cast<QList<QPersistentModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QPersistentModelIndex>*>(ptr)->size()-1) { static_cast<QList<QPersistentModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void CustomListModel721036___layoutAboutToBeChanged_parents_setList(void* ptr, void* i)
+{
+	static_cast<QList<QPersistentModelIndex>*>(ptr)->append(*static_cast<QPersistentModelIndex*>(i));
+}
+
+void* CustomListModel721036___layoutAboutToBeChanged_parents_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QPersistentModelIndex>();
+}
+
+void* CustomListModel721036___layoutChanged_parents_atList(void* ptr, int i)
+{
+	return new QPersistentModelIndex(({QPersistentModelIndex tmp = static_cast<QList<QPersistentModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QPersistentModelIndex>*>(ptr)->size()-1) { static_cast<QList<QPersistentModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void CustomListModel721036___layoutChanged_parents_setList(void* ptr, void* i)
+{
+	static_cast<QList<QPersistentModelIndex>*>(ptr)->append(*static_cast<QPersistentModelIndex*>(i));
+}
+
+void* CustomListModel721036___layoutChanged_parents_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QPersistentModelIndex>();
+}
+
+void* CustomListModel721036___roleNames_atList(void* ptr, int v, int i)
+{
+	return new QByteArray(({ QByteArray tmp = static_cast<QHash<int, QByteArray>*>(ptr)->value(v); if (i == static_cast<QHash<int, QByteArray>*>(ptr)->size()-1) { static_cast<QHash<int, QByteArray>*>(ptr)->~QHash(); free(ptr); }; tmp; }));
+}
+
+void CustomListModel721036___roleNames_setList(void* ptr, int key, void* i)
+{
+	static_cast<QHash<int, QByteArray>*>(ptr)->insert(key, *static_cast<QByteArray*>(i));
+}
+
+void* CustomListModel721036___roleNames_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QHash<int, QByteArray>();
+}
+
+struct Moc_PackedList CustomListModel721036___roleNames_keyList(void* ptr)
+{
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QHash<int, QByteArray>*>(ptr)->keys()); Moc_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* CustomListModel721036___itemData_atList(void* ptr, int v, int i)
+{
+	return new QVariant(({ QVariant tmp = static_cast<QMap<int, QVariant>*>(ptr)->value(v); if (i == static_cast<QMap<int, QVariant>*>(ptr)->size()-1) { static_cast<QMap<int, QVariant>*>(ptr)->~QMap(); free(ptr); }; tmp; }));
+}
+
+void CustomListModel721036___itemData_setList(void* ptr, int key, void* i)
+{
+	static_cast<QMap<int, QVariant>*>(ptr)->insert(key, *static_cast<QVariant*>(i));
+}
+
+void* CustomListModel721036___itemData_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QMap<int, QVariant>();
+}
+
+struct Moc_PackedList CustomListModel721036___itemData_keyList(void* ptr)
+{
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); Moc_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* CustomListModel721036___mimeData_indexes_atList(void* ptr, int i)
+{
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void CustomListModel721036___mimeData_indexes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+}
+
+void* CustomListModel721036___mimeData_indexes_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QModelIndex>();
+}
+
+void* CustomListModel721036___match_atList(void* ptr, int i)
+{
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void CustomListModel721036___match_setList(void* ptr, void* i)
+{
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+}
+
+void* CustomListModel721036___match_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QModelIndex>();
+}
+
+void* CustomListModel721036___persistentIndexList_atList(void* ptr, int i)
+{
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void CustomListModel721036___persistentIndexList_setList(void* ptr, void* i)
+{
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+}
+
+void* CustomListModel721036___persistentIndexList_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QModelIndex>();
+}
+
+int CustomListModel721036_____doSetRoleNames_roleNames_keyList_atList(void* ptr, int i)
+{
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void CustomListModel721036_____doSetRoleNames_roleNames_keyList_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* CustomListModel721036_____doSetRoleNames_roleNames_keyList_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<int>();
+}
+
+int CustomListModel721036_____setRoleNames_roleNames_keyList_atList(void* ptr, int i)
+{
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void CustomListModel721036_____setRoleNames_roleNames_keyList_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* CustomListModel721036_____setRoleNames_roleNames_keyList_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<int>();
+}
+
+void* CustomListModel721036___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void CustomListModel721036___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* CustomListModel721036___dynamicPropertyNames_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QByteArray>();
+}
+
+void* CustomListModel721036___findChildren_atList2(void* ptr, int i)
+{
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void CustomListModel721036___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* CustomListModel721036___findChildren_newList2(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject*>();
+}
+
+void* CustomListModel721036___findChildren_atList3(void* ptr, int i)
+{
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void CustomListModel721036___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* CustomListModel721036___findChildren_newList3(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject*>();
+}
+
+void* CustomListModel721036___findChildren_atList(void* ptr, int i)
+{
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void CustomListModel721036___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* CustomListModel721036___findChildren_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject*>();
+}
+
+void* CustomListModel721036___children_atList(void* ptr, int i)
+{
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void CustomListModel721036___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* CustomListModel721036___children_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject *>();
+}
+
+void* CustomListModel721036_NewCustomListModel(void* parent)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new CustomListModel721036(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new CustomListModel721036(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new CustomListModel721036(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new CustomListModel721036(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new CustomListModel721036(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new CustomListModel721036(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new CustomListModel721036(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new CustomListModel721036(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new CustomListModel721036(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new CustomListModel721036(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new CustomListModel721036(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new CustomListModel721036(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new CustomListModel721036(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new CustomListModel721036(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new CustomListModel721036(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new CustomListModel721036(static_cast<QWindow*>(parent));
+	} else {
+		return new CustomListModel721036(static_cast<QObject*>(parent));
+	}
+}
+
+void CustomListModel721036_DestroyCustomListModel(void* ptr)
+{
+	static_cast<CustomListModel721036*>(ptr)->~CustomListModel721036();
+}
+
+void CustomListModel721036_DestroyCustomListModelDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
+char CustomListModel721036_DropMimeDataDefault(void* ptr, void* data, long long action, int row, int column, void* parent)
+{
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::dropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
+}
+
+void* CustomListModel721036_IndexDefault(void* ptr, int row, int column, void* parent)
+{
+	return new QModelIndex(static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::index(row, column, *static_cast<QModelIndex*>(parent)));
+}
+
+void* CustomListModel721036_SiblingDefault(void* ptr, int row, int column, void* idx)
+{
+	return new QModelIndex(static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::sibling(row, column, *static_cast<QModelIndex*>(idx)));
+}
+
+long long CustomListModel721036_FlagsDefault(void* ptr, void* index)
+{
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::flags(*static_cast<QModelIndex*>(index));
+}
+
+
+
+char CustomListModel721036_InsertColumnsDefault(void* ptr, int column, int count, void* parent)
+{
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::insertColumns(column, count, *static_cast<QModelIndex*>(parent));
+}
+
+char CustomListModel721036_InsertRowsDefault(void* ptr, int row, int count, void* parent)
+{
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::insertRows(row, count, *static_cast<QModelIndex*>(parent));
+}
+
+char CustomListModel721036_MoveColumnsDefault(void* ptr, void* sourceParent, int sourceColumn, int count, void* destinationParent, int destinationChild)
+{
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::moveColumns(*static_cast<QModelIndex*>(sourceParent), sourceColumn, count, *static_cast<QModelIndex*>(destinationParent), destinationChild);
+}
+
+char CustomListModel721036_MoveRowsDefault(void* ptr, void* sourceParent, int sourceRow, int count, void* destinationParent, int destinationChild)
+{
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::moveRows(*static_cast<QModelIndex*>(sourceParent), sourceRow, count, *static_cast<QModelIndex*>(destinationParent), destinationChild);
+}
+
+char CustomListModel721036_RemoveColumnsDefault(void* ptr, int column, int count, void* parent)
+{
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::removeColumns(column, count, *static_cast<QModelIndex*>(parent));
+}
+
+char CustomListModel721036_RemoveRowsDefault(void* ptr, int row, int count, void* parent)
+{
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::removeRows(row, count, *static_cast<QModelIndex*>(parent));
+}
+
+char CustomListModel721036_SetDataDefault(void* ptr, void* index, void* value, int role)
+{
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::setData(*static_cast<QModelIndex*>(index), *static_cast<QVariant*>(value), role);
+}
+
+char CustomListModel721036_SetHeaderDataDefault(void* ptr, int section, long long orientation, void* value, int role)
+{
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::setHeaderData(section, static_cast<Qt::Orientation>(orientation), *static_cast<QVariant*>(value), role);
+}
+
+char CustomListModel721036_SetItemDataDefault(void* ptr, void* index, void* roles)
+{
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::setItemData(*static_cast<QModelIndex*>(index), *static_cast<QMap<int, QVariant>*>(roles));
+}
+
+char CustomListModel721036_SubmitDefault(void* ptr)
+{
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::submit();
+}
+
+void CustomListModel721036_FetchMoreDefault(void* ptr, void* parent)
+{
+	static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::fetchMore(*static_cast<QModelIndex*>(parent));
+}
+
+void CustomListModel721036_ResetInternalDataDefault(void* ptr)
+{
+	static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::resetInternalData();
+}
+
+void CustomListModel721036_RevertDefault(void* ptr)
+{
+	static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::revert();
+}
+
+void CustomListModel721036_SortDefault(void* ptr, int column, long long order)
+{
+	static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::sort(column, static_cast<Qt::SortOrder>(order));
+}
+
+struct Moc_PackedList CustomListModel721036_RoleNamesDefault(void* ptr)
+{
+	return ({ QHash<int, QByteArray>* tmpValue = new QHash<int, QByteArray>(static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::roleNames()); Moc_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct Moc_PackedList CustomListModel721036_ItemDataDefault(void* ptr, void* index)
+{
+	return ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::itemData(*static_cast<QModelIndex*>(index))); Moc_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* CustomListModel721036_MimeDataDefault(void* ptr, void* indexes)
+{
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::mimeData(({ QList<QModelIndex>* tmpP = static_cast<QList<QModelIndex>*>(indexes); QList<QModelIndex> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }));
+}
+
+void* CustomListModel721036_BuddyDefault(void* ptr, void* index)
+{
+	return new QModelIndex(static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::buddy(*static_cast<QModelIndex*>(index)));
+}
+
+void* CustomListModel721036_ParentDefault(void* ptr, void* index)
+{
+	return new QModelIndex(static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::parent(*static_cast<QModelIndex*>(index)));
+}
+
+struct Moc_PackedList CustomListModel721036_MatchDefault(void* ptr, void* start, int role, void* value, int hits, long long flags)
+{
+	return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); Moc_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* CustomListModel721036_SpanDefault(void* ptr, void* index)
+{
+	return ({ QSize tmpValue = static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
+}
+
+struct Moc_PackedString CustomListModel721036_MimeTypesDefault(void* ptr)
+{
+	return ({ QByteArray t9c6749 = static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::mimeTypes().join("|").toUtf8(); Moc_PackedString { const_cast<char*>(t9c6749.prepend("WHITESPACE").constData()+10), t9c6749.size()-10 }; });
+}
+
+void* CustomListModel721036_DataDefault(void* ptr, void* index, int role)
+{
+	Q_UNUSED(ptr);
+	Q_UNUSED(index);
+	Q_UNUSED(role);
+
+}
+
+void* CustomListModel721036_HeaderDataDefault(void* ptr, int section, long long orientation, int role)
+{
+	return new QVariant(static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::headerData(section, static_cast<Qt::Orientation>(orientation), role));
+}
+
+long long CustomListModel721036_SupportedDragActionsDefault(void* ptr)
+{
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::supportedDragActions();
+}
+
+long long CustomListModel721036_SupportedDropActionsDefault(void* ptr)
+{
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::supportedDropActions();
+}
+
+char CustomListModel721036_CanDropMimeDataDefault(void* ptr, void* data, long long action, int row, int column, void* parent)
+{
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::canDropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
+}
+
+char CustomListModel721036_CanFetchMoreDefault(void* ptr, void* parent)
+{
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::canFetchMore(*static_cast<QModelIndex*>(parent));
+}
+
+char CustomListModel721036_HasChildrenDefault(void* ptr, void* parent)
+{
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::hasChildren(*static_cast<QModelIndex*>(parent));
+}
+
+int CustomListModel721036_ColumnCountDefault(void* ptr, void* parent)
+{
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::columnCount(*static_cast<QModelIndex*>(parent));
+}
+
+int CustomListModel721036_RowCountDefault(void* ptr, void* parent)
+{
+	Q_UNUSED(ptr);
+	Q_UNUSED(parent);
+
+}
+
+char CustomListModel721036_EventDefault(void* ptr, void* e)
+{
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::event(static_cast<QEvent*>(e));
+}
+
+char CustomListModel721036_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
+void CustomListModel721036_ChildEventDefault(void* ptr, void* event)
+{
+	static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void CustomListModel721036_ConnectNotifyDefault(void* ptr, void* sign)
+{
+	static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::connectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void CustomListModel721036_CustomEventDefault(void* ptr, void* event)
+{
+	static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::customEvent(static_cast<QEvent*>(event));
+}
+
+void CustomListModel721036_DeleteLaterDefault(void* ptr)
+{
+	static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::deleteLater();
+}
+
+void CustomListModel721036_DisconnectNotifyDefault(void* ptr, void* sign)
+{
+	static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void CustomListModel721036_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 struct Moc_PackedString ApproveListingCtx721036_Remote(void* ptr)
@@ -1838,6 +2551,21 @@ void ApproveTxCtx721036_Clicked(void* ptr, int b)
 	static_cast<ApproveTxCtx721036*>(ptr)->clicked(b);
 }
 
+void ApproveTxCtx721036_ConnectEdited(void* ptr)
+{
+	QObject::connect(static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString, QString)>(&ApproveTxCtx721036::edited), static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString, QString)>(&ApproveTxCtx721036::Signal_Edited));
+}
+
+void ApproveTxCtx721036_DisconnectEdited(void* ptr)
+{
+	QObject::disconnect(static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString, QString)>(&ApproveTxCtx721036::edited), static_cast<ApproveTxCtx721036*>(ptr), static_cast<void (ApproveTxCtx721036::*)(QString, QString)>(&ApproveTxCtx721036::Signal_Edited));
+}
+
+void ApproveTxCtx721036_Edited(void* ptr, struct Moc_PackedString s, struct Moc_PackedString v)
+{
+	static_cast<ApproveTxCtx721036*>(ptr)->edited(QString::fromUtf8(s.data, s.len), QString::fromUtf8(v.data, v.len));
+}
+
 struct Moc_PackedString ApproveTxCtx721036_Remote(void* ptr)
 {
 	return ({ QByteArray t90f7f1 = static_cast<ApproveTxCtx721036*>(ptr)->remote().toUtf8(); Moc_PackedString { const_cast<char*>(t90f7f1.prepend("WHITESPACE").constData()+10), t90f7f1.size()-10 }; });
@@ -2387,716 +3115,5 @@ void ApproveTxCtx721036_TimerEventDefault(void* ptr, void* event)
 }
 
 
-
-void CustomListModel721036_ConnectClear(void* ptr)
-{
-	QObject::connect(static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)()>(&CustomListModel721036::clear), static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)()>(&CustomListModel721036::Signal_Clear));
-}
-
-void CustomListModel721036_DisconnectClear(void* ptr)
-{
-	QObject::disconnect(static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)()>(&CustomListModel721036::clear), static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)()>(&CustomListModel721036::Signal_Clear));
-}
-
-void CustomListModel721036_Clear(void* ptr)
-{
-	static_cast<CustomListModel721036*>(ptr)->clear();
-}
-
-void CustomListModel721036_ConnectAdd(void* ptr)
-{
-	QObject::connect(static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(quintptr)>(&CustomListModel721036::add), static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(quintptr)>(&CustomListModel721036::Signal_Add));
-}
-
-void CustomListModel721036_DisconnectAdd(void* ptr)
-{
-	QObject::disconnect(static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(quintptr)>(&CustomListModel721036::add), static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(quintptr)>(&CustomListModel721036::Signal_Add));
-}
-
-void CustomListModel721036_Add(void* ptr, uintptr_t account)
-{
-	static_cast<CustomListModel721036*>(ptr)->add(account);
-}
-
-void CustomListModel721036_ConnectClicked(void* ptr)
-{
-	QObject::connect(static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(qint32)>(&CustomListModel721036::clicked), static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(qint32)>(&CustomListModel721036::Signal_Clicked));
-}
-
-void CustomListModel721036_DisconnectClicked(void* ptr)
-{
-	QObject::disconnect(static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(qint32)>(&CustomListModel721036::clicked), static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(qint32)>(&CustomListModel721036::Signal_Clicked));
-}
-
-void CustomListModel721036_Clicked(void* ptr, int b)
-{
-	static_cast<CustomListModel721036*>(ptr)->clicked(b);
-}
-
-void CustomListModel721036_ConnectOnCheckStateChanged(void* ptr)
-{
-	QObject::connect(static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(qint32, bool)>(&CustomListModel721036::onCheckStateChanged), static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(qint32, bool)>(&CustomListModel721036::Signal_OnCheckStateChanged));
-}
-
-void CustomListModel721036_DisconnectOnCheckStateChanged(void* ptr)
-{
-	QObject::disconnect(static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(qint32, bool)>(&CustomListModel721036::onCheckStateChanged), static_cast<CustomListModel721036*>(ptr), static_cast<void (CustomListModel721036::*)(qint32, bool)>(&CustomListModel721036::Signal_OnCheckStateChanged));
-}
-
-void CustomListModel721036_OnCheckStateChanged(void* ptr, int i, char checked)
-{
-	static_cast<CustomListModel721036*>(ptr)->onCheckStateChanged(i, checked != 0);
-}
-
-int CustomListModel721036_CustomListModel721036_QRegisterMetaType()
-{
-	return qRegisterMetaType<CustomListModel721036*>();
-}
-
-int CustomListModel721036_CustomListModel721036_QRegisterMetaType2(char* typeName)
-{
-	return qRegisterMetaType<CustomListModel721036*>(const_cast<const char*>(typeName));
-}
-
-int CustomListModel721036_CustomListModel721036_QmlRegisterType()
-{
-#ifdef QT_QML_LIB
-	return qmlRegisterType<CustomListModel721036>();
-#else
-	return 0;
-#endif
-}
-
-int CustomListModel721036_CustomListModel721036_QmlRegisterType2(char* uri, int versionMajor, int versionMinor, char* qmlName)
-{
-#ifdef QT_QML_LIB
-	return qmlRegisterType<CustomListModel721036>(const_cast<const char*>(uri), versionMajor, versionMinor, const_cast<const char*>(qmlName));
-#else
-	return 0;
-#endif
-}
-
-int CustomListModel721036_____setItemData_roles_keyList_atList(void* ptr, int i)
-{
-	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void CustomListModel721036_____setItemData_roles_keyList_setList(void* ptr, int i)
-{
-	static_cast<QList<int>*>(ptr)->append(i);
-}
-
-void* CustomListModel721036_____setItemData_roles_keyList_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<int>();
-}
-
-int CustomListModel721036_____roleNames_keyList_atList(void* ptr, int i)
-{
-	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void CustomListModel721036_____roleNames_keyList_setList(void* ptr, int i)
-{
-	static_cast<QList<int>*>(ptr)->append(i);
-}
-
-void* CustomListModel721036_____roleNames_keyList_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<int>();
-}
-
-int CustomListModel721036_____itemData_keyList_atList(void* ptr, int i)
-{
-	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void CustomListModel721036_____itemData_keyList_setList(void* ptr, int i)
-{
-	static_cast<QList<int>*>(ptr)->append(i);
-}
-
-void* CustomListModel721036_____itemData_keyList_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<int>();
-}
-
-void* CustomListModel721036___setItemData_roles_atList(void* ptr, int v, int i)
-{
-	return new QVariant(({ QVariant tmp = static_cast<QMap<int, QVariant>*>(ptr)->value(v); if (i == static_cast<QMap<int, QVariant>*>(ptr)->size()-1) { static_cast<QMap<int, QVariant>*>(ptr)->~QMap(); free(ptr); }; tmp; }));
-}
-
-void CustomListModel721036___setItemData_roles_setList(void* ptr, int key, void* i)
-{
-	static_cast<QMap<int, QVariant>*>(ptr)->insert(key, *static_cast<QVariant*>(i));
-}
-
-void* CustomListModel721036___setItemData_roles_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QMap<int, QVariant>();
-}
-
-struct Moc_PackedList CustomListModel721036___setItemData_roles_keyList(void* ptr)
-{
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); Moc_PackedList { tmpValue, tmpValue->size() }; });
-}
-
-void* CustomListModel721036___changePersistentIndexList_from_atList(void* ptr, int i)
-{
-	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
-}
-
-void CustomListModel721036___changePersistentIndexList_from_setList(void* ptr, void* i)
-{
-	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
-}
-
-void* CustomListModel721036___changePersistentIndexList_from_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QModelIndex>();
-}
-
-void* CustomListModel721036___changePersistentIndexList_to_atList(void* ptr, int i)
-{
-	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
-}
-
-void CustomListModel721036___changePersistentIndexList_to_setList(void* ptr, void* i)
-{
-	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
-}
-
-void* CustomListModel721036___changePersistentIndexList_to_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QModelIndex>();
-}
-
-int CustomListModel721036___dataChanged_roles_atList(void* ptr, int i)
-{
-	return ({int tmp = static_cast<QVector<int>*>(ptr)->at(i); if (i == static_cast<QVector<int>*>(ptr)->size()-1) { static_cast<QVector<int>*>(ptr)->~QVector(); free(ptr); }; tmp; });
-}
-
-void CustomListModel721036___dataChanged_roles_setList(void* ptr, int i)
-{
-	static_cast<QVector<int>*>(ptr)->append(i);
-}
-
-void* CustomListModel721036___dataChanged_roles_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QVector<int>();
-}
-
-void* CustomListModel721036___layoutAboutToBeChanged_parents_atList(void* ptr, int i)
-{
-	return new QPersistentModelIndex(({QPersistentModelIndex tmp = static_cast<QList<QPersistentModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QPersistentModelIndex>*>(ptr)->size()-1) { static_cast<QList<QPersistentModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
-}
-
-void CustomListModel721036___layoutAboutToBeChanged_parents_setList(void* ptr, void* i)
-{
-	static_cast<QList<QPersistentModelIndex>*>(ptr)->append(*static_cast<QPersistentModelIndex*>(i));
-}
-
-void* CustomListModel721036___layoutAboutToBeChanged_parents_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QPersistentModelIndex>();
-}
-
-void* CustomListModel721036___layoutChanged_parents_atList(void* ptr, int i)
-{
-	return new QPersistentModelIndex(({QPersistentModelIndex tmp = static_cast<QList<QPersistentModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QPersistentModelIndex>*>(ptr)->size()-1) { static_cast<QList<QPersistentModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
-}
-
-void CustomListModel721036___layoutChanged_parents_setList(void* ptr, void* i)
-{
-	static_cast<QList<QPersistentModelIndex>*>(ptr)->append(*static_cast<QPersistentModelIndex*>(i));
-}
-
-void* CustomListModel721036___layoutChanged_parents_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QPersistentModelIndex>();
-}
-
-void* CustomListModel721036___roleNames_atList(void* ptr, int v, int i)
-{
-	return new QByteArray(({ QByteArray tmp = static_cast<QHash<int, QByteArray>*>(ptr)->value(v); if (i == static_cast<QHash<int, QByteArray>*>(ptr)->size()-1) { static_cast<QHash<int, QByteArray>*>(ptr)->~QHash(); free(ptr); }; tmp; }));
-}
-
-void CustomListModel721036___roleNames_setList(void* ptr, int key, void* i)
-{
-	static_cast<QHash<int, QByteArray>*>(ptr)->insert(key, *static_cast<QByteArray*>(i));
-}
-
-void* CustomListModel721036___roleNames_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QHash<int, QByteArray>();
-}
-
-struct Moc_PackedList CustomListModel721036___roleNames_keyList(void* ptr)
-{
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QHash<int, QByteArray>*>(ptr)->keys()); Moc_PackedList { tmpValue, tmpValue->size() }; });
-}
-
-void* CustomListModel721036___itemData_atList(void* ptr, int v, int i)
-{
-	return new QVariant(({ QVariant tmp = static_cast<QMap<int, QVariant>*>(ptr)->value(v); if (i == static_cast<QMap<int, QVariant>*>(ptr)->size()-1) { static_cast<QMap<int, QVariant>*>(ptr)->~QMap(); free(ptr); }; tmp; }));
-}
-
-void CustomListModel721036___itemData_setList(void* ptr, int key, void* i)
-{
-	static_cast<QMap<int, QVariant>*>(ptr)->insert(key, *static_cast<QVariant*>(i));
-}
-
-void* CustomListModel721036___itemData_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QMap<int, QVariant>();
-}
-
-struct Moc_PackedList CustomListModel721036___itemData_keyList(void* ptr)
-{
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); Moc_PackedList { tmpValue, tmpValue->size() }; });
-}
-
-void* CustomListModel721036___mimeData_indexes_atList(void* ptr, int i)
-{
-	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
-}
-
-void CustomListModel721036___mimeData_indexes_setList(void* ptr, void* i)
-{
-	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
-}
-
-void* CustomListModel721036___mimeData_indexes_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QModelIndex>();
-}
-
-void* CustomListModel721036___match_atList(void* ptr, int i)
-{
-	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
-}
-
-void CustomListModel721036___match_setList(void* ptr, void* i)
-{
-	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
-}
-
-void* CustomListModel721036___match_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QModelIndex>();
-}
-
-void* CustomListModel721036___persistentIndexList_atList(void* ptr, int i)
-{
-	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
-}
-
-void CustomListModel721036___persistentIndexList_setList(void* ptr, void* i)
-{
-	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
-}
-
-void* CustomListModel721036___persistentIndexList_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QModelIndex>();
-}
-
-int CustomListModel721036_____doSetRoleNames_roleNames_keyList_atList(void* ptr, int i)
-{
-	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void CustomListModel721036_____doSetRoleNames_roleNames_keyList_setList(void* ptr, int i)
-{
-	static_cast<QList<int>*>(ptr)->append(i);
-}
-
-void* CustomListModel721036_____doSetRoleNames_roleNames_keyList_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<int>();
-}
-
-int CustomListModel721036_____setRoleNames_roleNames_keyList_atList(void* ptr, int i)
-{
-	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void CustomListModel721036_____setRoleNames_roleNames_keyList_setList(void* ptr, int i)
-{
-	static_cast<QList<int>*>(ptr)->append(i);
-}
-
-void* CustomListModel721036_____setRoleNames_roleNames_keyList_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<int>();
-}
-
-void* CustomListModel721036___dynamicPropertyNames_atList(void* ptr, int i)
-{
-	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
-}
-
-void CustomListModel721036___dynamicPropertyNames_setList(void* ptr, void* i)
-{
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
-}
-
-void* CustomListModel721036___dynamicPropertyNames_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QByteArray>();
-}
-
-void* CustomListModel721036___findChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void CustomListModel721036___findChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* CustomListModel721036___findChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
-void* CustomListModel721036___findChildren_atList3(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void CustomListModel721036___findChildren_setList3(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* CustomListModel721036___findChildren_newList3(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
-void* CustomListModel721036___findChildren_atList(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void CustomListModel721036___findChildren_setList(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* CustomListModel721036___findChildren_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
-void* CustomListModel721036___children_atList(void* ptr, int i)
-{
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void CustomListModel721036___children_setList(void* ptr, void* i)
-{
-	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* CustomListModel721036___children_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject *>();
-}
-
-void* CustomListModel721036_NewCustomListModel(void* parent)
-{
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
-		return new CustomListModel721036(static_cast<QCameraImageCapture*>(parent));
-	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
-		return new CustomListModel721036(static_cast<QDBusPendingCallWatcher*>(parent));
-	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
-		return new CustomListModel721036(static_cast<QExtensionFactory*>(parent));
-	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
-		return new CustomListModel721036(static_cast<QExtensionManager*>(parent));
-	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
-		return new CustomListModel721036(static_cast<QGraphicsObject*>(parent));
-	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
-		return new CustomListModel721036(static_cast<QGraphicsWidget*>(parent));
-	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
-		return new CustomListModel721036(static_cast<QLayout*>(parent));
-	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
-		return new CustomListModel721036(static_cast<QMediaPlaylist*>(parent));
-	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
-		return new CustomListModel721036(static_cast<QMediaRecorder*>(parent));
-	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
-		return new CustomListModel721036(static_cast<QOffscreenSurface*>(parent));
-	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
-		return new CustomListModel721036(static_cast<QPaintDeviceWindow*>(parent));
-	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
-		return new CustomListModel721036(static_cast<QPdfWriter*>(parent));
-	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
-		return new CustomListModel721036(static_cast<QQuickItem*>(parent));
-	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
-		return new CustomListModel721036(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
-		return new CustomListModel721036(static_cast<QWidget*>(parent));
-	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
-		return new CustomListModel721036(static_cast<QWindow*>(parent));
-	} else {
-		return new CustomListModel721036(static_cast<QObject*>(parent));
-	}
-}
-
-void CustomListModel721036_DestroyCustomListModel(void* ptr)
-{
-	static_cast<CustomListModel721036*>(ptr)->~CustomListModel721036();
-}
-
-void CustomListModel721036_DestroyCustomListModelDefault(void* ptr)
-{
-	Q_UNUSED(ptr);
-
-}
-
-char CustomListModel721036_DropMimeDataDefault(void* ptr, void* data, long long action, int row, int column, void* parent)
-{
-	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::dropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
-}
-
-void* CustomListModel721036_IndexDefault(void* ptr, int row, int column, void* parent)
-{
-	return new QModelIndex(static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::index(row, column, *static_cast<QModelIndex*>(parent)));
-}
-
-void* CustomListModel721036_SiblingDefault(void* ptr, int row, int column, void* idx)
-{
-	return new QModelIndex(static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::sibling(row, column, *static_cast<QModelIndex*>(idx)));
-}
-
-long long CustomListModel721036_FlagsDefault(void* ptr, void* index)
-{
-	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::flags(*static_cast<QModelIndex*>(index));
-}
-
-
-
-char CustomListModel721036_InsertColumnsDefault(void* ptr, int column, int count, void* parent)
-{
-	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::insertColumns(column, count, *static_cast<QModelIndex*>(parent));
-}
-
-char CustomListModel721036_InsertRowsDefault(void* ptr, int row, int count, void* parent)
-{
-	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::insertRows(row, count, *static_cast<QModelIndex*>(parent));
-}
-
-char CustomListModel721036_MoveColumnsDefault(void* ptr, void* sourceParent, int sourceColumn, int count, void* destinationParent, int destinationChild)
-{
-	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::moveColumns(*static_cast<QModelIndex*>(sourceParent), sourceColumn, count, *static_cast<QModelIndex*>(destinationParent), destinationChild);
-}
-
-char CustomListModel721036_MoveRowsDefault(void* ptr, void* sourceParent, int sourceRow, int count, void* destinationParent, int destinationChild)
-{
-	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::moveRows(*static_cast<QModelIndex*>(sourceParent), sourceRow, count, *static_cast<QModelIndex*>(destinationParent), destinationChild);
-}
-
-char CustomListModel721036_RemoveColumnsDefault(void* ptr, int column, int count, void* parent)
-{
-	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::removeColumns(column, count, *static_cast<QModelIndex*>(parent));
-}
-
-char CustomListModel721036_RemoveRowsDefault(void* ptr, int row, int count, void* parent)
-{
-	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::removeRows(row, count, *static_cast<QModelIndex*>(parent));
-}
-
-char CustomListModel721036_SetDataDefault(void* ptr, void* index, void* value, int role)
-{
-	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::setData(*static_cast<QModelIndex*>(index), *static_cast<QVariant*>(value), role);
-}
-
-char CustomListModel721036_SetHeaderDataDefault(void* ptr, int section, long long orientation, void* value, int role)
-{
-	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::setHeaderData(section, static_cast<Qt::Orientation>(orientation), *static_cast<QVariant*>(value), role);
-}
-
-char CustomListModel721036_SetItemDataDefault(void* ptr, void* index, void* roles)
-{
-	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::setItemData(*static_cast<QModelIndex*>(index), *static_cast<QMap<int, QVariant>*>(roles));
-}
-
-char CustomListModel721036_SubmitDefault(void* ptr)
-{
-	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::submit();
-}
-
-void CustomListModel721036_FetchMoreDefault(void* ptr, void* parent)
-{
-	static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::fetchMore(*static_cast<QModelIndex*>(parent));
-}
-
-void CustomListModel721036_ResetInternalDataDefault(void* ptr)
-{
-	static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::resetInternalData();
-}
-
-void CustomListModel721036_RevertDefault(void* ptr)
-{
-	static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::revert();
-}
-
-void CustomListModel721036_SortDefault(void* ptr, int column, long long order)
-{
-	static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::sort(column, static_cast<Qt::SortOrder>(order));
-}
-
-struct Moc_PackedList CustomListModel721036_RoleNamesDefault(void* ptr)
-{
-	return ({ QHash<int, QByteArray>* tmpValue = new QHash<int, QByteArray>(static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::roleNames()); Moc_PackedList { tmpValue, tmpValue->size() }; });
-}
-
-struct Moc_PackedList CustomListModel721036_ItemDataDefault(void* ptr, void* index)
-{
-	return ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::itemData(*static_cast<QModelIndex*>(index))); Moc_PackedList { tmpValue, tmpValue->size() }; });
-}
-
-void* CustomListModel721036_MimeDataDefault(void* ptr, void* indexes)
-{
-	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::mimeData(({ QList<QModelIndex>* tmpP = static_cast<QList<QModelIndex>*>(indexes); QList<QModelIndex> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }));
-}
-
-void* CustomListModel721036_BuddyDefault(void* ptr, void* index)
-{
-	return new QModelIndex(static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::buddy(*static_cast<QModelIndex*>(index)));
-}
-
-void* CustomListModel721036_ParentDefault(void* ptr, void* index)
-{
-	return new QModelIndex(static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::parent(*static_cast<QModelIndex*>(index)));
-}
-
-struct Moc_PackedList CustomListModel721036_MatchDefault(void* ptr, void* start, int role, void* value, int hits, long long flags)
-{
-	return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); Moc_PackedList { tmpValue, tmpValue->size() }; });
-}
-
-void* CustomListModel721036_SpanDefault(void* ptr, void* index)
-{
-	return ({ QSize tmpValue = static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
-}
-
-struct Moc_PackedString CustomListModel721036_MimeTypesDefault(void* ptr)
-{
-	return ({ QByteArray t9c6749 = static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::mimeTypes().join("|").toUtf8(); Moc_PackedString { const_cast<char*>(t9c6749.prepend("WHITESPACE").constData()+10), t9c6749.size()-10 }; });
-}
-
-void* CustomListModel721036_DataDefault(void* ptr, void* index, int role)
-{
-	Q_UNUSED(ptr);
-	Q_UNUSED(index);
-	Q_UNUSED(role);
-
-}
-
-void* CustomListModel721036_HeaderDataDefault(void* ptr, int section, long long orientation, int role)
-{
-	return new QVariant(static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::headerData(section, static_cast<Qt::Orientation>(orientation), role));
-}
-
-long long CustomListModel721036_SupportedDragActionsDefault(void* ptr)
-{
-	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::supportedDragActions();
-}
-
-long long CustomListModel721036_SupportedDropActionsDefault(void* ptr)
-{
-	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::supportedDropActions();
-}
-
-char CustomListModel721036_CanDropMimeDataDefault(void* ptr, void* data, long long action, int row, int column, void* parent)
-{
-	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::canDropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
-}
-
-char CustomListModel721036_CanFetchMoreDefault(void* ptr, void* parent)
-{
-	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::canFetchMore(*static_cast<QModelIndex*>(parent));
-}
-
-char CustomListModel721036_HasChildrenDefault(void* ptr, void* parent)
-{
-	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::hasChildren(*static_cast<QModelIndex*>(parent));
-}
-
-int CustomListModel721036_ColumnCountDefault(void* ptr, void* parent)
-{
-	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::columnCount(*static_cast<QModelIndex*>(parent));
-}
-
-int CustomListModel721036_RowCountDefault(void* ptr, void* parent)
-{
-	Q_UNUSED(ptr);
-	Q_UNUSED(parent);
-
-}
-
-char CustomListModel721036_EventDefault(void* ptr, void* e)
-{
-	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::event(static_cast<QEvent*>(e));
-}
-
-char CustomListModel721036_EventFilterDefault(void* ptr, void* watched, void* event)
-{
-	return static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-void CustomListModel721036_ChildEventDefault(void* ptr, void* event)
-{
-	static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::childEvent(static_cast<QChildEvent*>(event));
-}
-
-void CustomListModel721036_ConnectNotifyDefault(void* ptr, void* sign)
-{
-	static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void CustomListModel721036_CustomEventDefault(void* ptr, void* event)
-{
-	static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::customEvent(static_cast<QEvent*>(event));
-}
-
-void CustomListModel721036_DeleteLaterDefault(void* ptr)
-{
-	static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::deleteLater();
-}
-
-void CustomListModel721036_DisconnectNotifyDefault(void* ptr, void* sign)
-{
-	static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void CustomListModel721036_TimerEventDefault(void* ptr, void* event)
-{
-	static_cast<CustomListModel721036*>(ptr)->QAbstractListModel::timerEvent(static_cast<QTimerEvent*>(event));
-}
 
 #include "moc_moc.h"

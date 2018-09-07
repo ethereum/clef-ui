@@ -141,6 +141,7 @@ func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
 				param := data[0]
 
 				co := approvesigndata.ContextObject
+				co.Reset()
 				co.SetTransport(param.Meta.Transport)
 				co.SetRemote(param.Meta.Remote)
 				co.SetEndpoint(param.Meta.Local)
@@ -162,17 +163,19 @@ func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
 				param := data[0]
 
 				co := approvetx.ContextObject
+				co.Reset()
 				co.SetTransport(param.Meta.Transport)
 				co.SetRemote(param.Meta.Remote)
 				co.SetEndpoint(param.Meta.Local)
-				co.SetFrom(param.Transaction.From)
-				co.SetData(param.Transaction.Data)
-				co.SetTo(param.Transaction.To)
-				co.SetGas(param.Transaction.Gas)
-				co.SetGasPrice(param.Transaction.GasPrice)
-				co.SetValue(param.Transaction.Value)
-				co.SetNonce(param.Transaction.Nonce)
-				co.formData = param.Transaction
+				co.SetTransaction(param.Transaction)
+				//co.SetFrom(param.Transaction.From)
+				//co.SetData(param.Transaction.Data)
+				//co.SetTo(param.Transaction.To)
+				//co.SetGas(param.Transaction.Gas)
+				//co.SetGasPrice(param.Transaction.GasPrice)
+				//co.SetValue(param.Transaction.Value)
+				//co.SetNonce(param.Transaction.Nonce)
+				//co.formData = param.Transaction
 				co.ClickResponse(req.Reply, req.Response)
 
 
@@ -187,6 +190,7 @@ func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
 				param := data[0]
 
 				co := approvenewaccount.ContextObject
+				co.Reset()
 				co.SetTransport(param.Meta.Transport)
 				co.SetRemote(param.Meta.Remote)
 				co.SetEndpoint(param.Meta.Local)
