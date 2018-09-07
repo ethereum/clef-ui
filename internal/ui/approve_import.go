@@ -19,12 +19,14 @@ type ApproveImportCtx struct {
 	_ string `property:"remote"`
 	_ string `property:"transport"`
 	_ string `property:"endpoint"`
+	_ string `property:"oldPassword"`
 	_ string `property:"password"`
 	_ string `property:"confirmPassword"`
 
 	_ func(b int) `signal:"clicked,auto"`
 	_ func(b string) `signal:"passwordEdited,auto"`
 	_ func(b string) `signal:"confirmPasswordEdited,auto"`
+	_ func(b string) `signal:"oldPasswordEdited,auto"`
 	answer 				int
 }
 
@@ -36,6 +38,7 @@ func (t *ApproveImportCtx) Reset() {
 	t.answer = 0
 	t.SetPassword("")
 	t.SetConfirmPassword("")
+	t.SetOldPassword("")
 }
 
 func (t *ApproveImportCtx) passwordEdited(pw string) {
@@ -46,6 +49,10 @@ func (t *ApproveImportCtx) confirmPasswordEdited(pw string) {
 	t.SetConfirmPassword(pw)
 }
 
+func (t *ApproveImportCtx) oldPasswordEdited(pw string) {
+	t.SetOldPassword(pw)
+}
+
 func (t *ApproveImportCtx) ClickResponse(reply *params.ApproveImportResponse, res chan bool) {
 	go func() {
 		done := false
@@ -54,13 +61,13 @@ func (t *ApproveImportCtx) ClickResponse(reply *params.ApproveImportResponse, re
 				done = true
 				if t.answer == 1 {
 					reply.Approved = false
-					reply.Password = ""
 					res <- true
 				} else if t.answer == 2 {
+					opw := t.OldPassword()
 					pw := t.Password()
 					cpw := t.ConfirmPassword()
 
-					if len(pw) == 0 || len(cpw) == 0 {
+					if len(pw) == 0 || len(cpw) == 0 || len(opw) == 0 {
 						log.Println("Password cannot be empty")
 						done = false
 						t.Reset()
@@ -73,7 +80,8 @@ func (t *ApproveImportCtx) ClickResponse(reply *params.ApproveImportResponse, re
 						continue
 					}
 					reply.Approved = true
-					reply.Password = cpw
+					reply.New_Password = cpw
+					reply.Old_Password = opw
 					res <- true
 				}
 				t.Reset()

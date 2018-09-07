@@ -344,6 +344,7 @@ Q_OBJECT
 Q_PROPERTY(QString remote READ remote WRITE setRemote NOTIFY remoteChanged)
 Q_PROPERTY(QString transport READ transport WRITE setTransport NOTIFY transportChanged)
 Q_PROPERTY(QString endpoint READ endpoint WRITE setEndpoint NOTIFY endpointChanged)
+Q_PROPERTY(QString oldPassword READ oldPassword WRITE setOldPassword NOTIFY oldPasswordChanged)
 Q_PROPERTY(QString password READ password WRITE setPassword NOTIFY passwordChanged)
 Q_PROPERTY(QString confirmPassword READ confirmPassword WRITE setConfirmPassword NOTIFY confirmPasswordChanged)
 public:
@@ -351,6 +352,7 @@ public:
 	void Signal_Clicked(qint32 b) { callbackApproveImportCtx721036_Clicked(this, b); };
 	void Signal_PasswordEdited(QString b) { QByteArray te9d71f = b.toUtf8(); Moc_PackedString bPacked = { const_cast<char*>(te9d71f.prepend("WHITESPACE").constData()+10), te9d71f.size()-10 };callbackApproveImportCtx721036_PasswordEdited(this, bPacked); };
 	void Signal_ConfirmPasswordEdited(QString b) { QByteArray te9d71f = b.toUtf8(); Moc_PackedString bPacked = { const_cast<char*>(te9d71f.prepend("WHITESPACE").constData()+10), te9d71f.size()-10 };callbackApproveImportCtx721036_ConfirmPasswordEdited(this, bPacked); };
+	void Signal_OldPasswordEdited(QString b) { QByteArray te9d71f = b.toUtf8(); Moc_PackedString bPacked = { const_cast<char*>(te9d71f.prepend("WHITESPACE").constData()+10), te9d71f.size()-10 };callbackApproveImportCtx721036_OldPasswordEdited(this, bPacked); };
 	QString remote() { return ({ Moc_PackedString tempVal = callbackApproveImportCtx721036_Remote(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	void setRemote(QString remote) { QByteArray t41ffe5 = remote.toUtf8(); Moc_PackedString remotePacked = { const_cast<char*>(t41ffe5.prepend("WHITESPACE").constData()+10), t41ffe5.size()-10 };callbackApproveImportCtx721036_SetRemote(this, remotePacked); };
 	void Signal_RemoteChanged(QString remote) { QByteArray t41ffe5 = remote.toUtf8(); Moc_PackedString remotePacked = { const_cast<char*>(t41ffe5.prepend("WHITESPACE").constData()+10), t41ffe5.size()-10 };callbackApproveImportCtx721036_RemoteChanged(this, remotePacked); };
@@ -360,6 +362,9 @@ public:
 	QString endpoint() { return ({ Moc_PackedString tempVal = callbackApproveImportCtx721036_Endpoint(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	void setEndpoint(QString endpoint) { QByteArray te13fe4 = endpoint.toUtf8(); Moc_PackedString endpointPacked = { const_cast<char*>(te13fe4.prepend("WHITESPACE").constData()+10), te13fe4.size()-10 };callbackApproveImportCtx721036_SetEndpoint(this, endpointPacked); };
 	void Signal_EndpointChanged(QString endpoint) { QByteArray te13fe4 = endpoint.toUtf8(); Moc_PackedString endpointPacked = { const_cast<char*>(te13fe4.prepend("WHITESPACE").constData()+10), te13fe4.size()-10 };callbackApproveImportCtx721036_EndpointChanged(this, endpointPacked); };
+	QString oldPassword() { return ({ Moc_PackedString tempVal = callbackApproveImportCtx721036_OldPassword(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	void setOldPassword(QString oldPassword) { QByteArray t9a8cf4 = oldPassword.toUtf8(); Moc_PackedString oldPasswordPacked = { const_cast<char*>(t9a8cf4.prepend("WHITESPACE").constData()+10), t9a8cf4.size()-10 };callbackApproveImportCtx721036_SetOldPassword(this, oldPasswordPacked); };
+	void Signal_OldPasswordChanged(QString oldPassword) { QByteArray t9a8cf4 = oldPassword.toUtf8(); Moc_PackedString oldPasswordPacked = { const_cast<char*>(t9a8cf4.prepend("WHITESPACE").constData()+10), t9a8cf4.size()-10 };callbackApproveImportCtx721036_OldPasswordChanged(this, oldPasswordPacked); };
 	QString password() { return ({ Moc_PackedString tempVal = callbackApproveImportCtx721036_Password(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	void setPassword(QString password) { QByteArray t5baa61 = password.toUtf8(); Moc_PackedString passwordPacked = { const_cast<char*>(t5baa61.prepend("WHITESPACE").constData()+10), t5baa61.size()-10 };callbackApproveImportCtx721036_SetPassword(this, passwordPacked); };
 	void Signal_PasswordChanged(QString password) { QByteArray t5baa61 = password.toUtf8(); Moc_PackedString passwordPacked = { const_cast<char*>(t5baa61.prepend("WHITESPACE").constData()+10), t5baa61.size()-10 };callbackApproveImportCtx721036_PasswordChanged(this, passwordPacked); };
@@ -385,6 +390,8 @@ public:
 	void setTransportDefault(QString p) { if (p != _transport) { _transport = p; transportChanged(_transport); } };
 	QString endpointDefault() { return _endpoint; };
 	void setEndpointDefault(QString p) { if (p != _endpoint) { _endpoint = p; endpointChanged(_endpoint); } };
+	QString oldPasswordDefault() { return _oldPassword; };
+	void setOldPasswordDefault(QString p) { if (p != _oldPassword) { _oldPassword = p; oldPasswordChanged(_oldPassword); } };
 	QString passwordDefault() { return _password; };
 	void setPasswordDefault(QString p) { if (p != _password) { _password = p; passwordChanged(_password); } };
 	QString confirmPasswordDefault() { return _confirmPassword; };
@@ -393,9 +400,11 @@ signals:
 	void clicked(qint32 b);
 	void passwordEdited(QString b);
 	void confirmPasswordEdited(QString b);
+	void oldPasswordEdited(QString b);
 	void remoteChanged(QString remote);
 	void transportChanged(QString transport);
 	void endpointChanged(QString endpoint);
+	void oldPasswordChanged(QString oldPassword);
 	void passwordChanged(QString password);
 	void confirmPasswordChanged(QString confirmPassword);
 public slots:
@@ -403,6 +412,7 @@ private:
 	QString _remote;
 	QString _transport;
 	QString _endpoint;
+	QString _oldPassword;
 	QString _password;
 	QString _confirmPassword;
 };
@@ -621,6 +631,21 @@ void ApproveImportCtx721036_ConfirmPasswordEdited(void* ptr, struct Moc_PackedSt
 	static_cast<ApproveImportCtx721036*>(ptr)->confirmPasswordEdited(QString::fromUtf8(b.data, b.len));
 }
 
+void ApproveImportCtx721036_ConnectOldPasswordEdited(void* ptr)
+{
+	QObject::connect(static_cast<ApproveImportCtx721036*>(ptr), static_cast<void (ApproveImportCtx721036::*)(QString)>(&ApproveImportCtx721036::oldPasswordEdited), static_cast<ApproveImportCtx721036*>(ptr), static_cast<void (ApproveImportCtx721036::*)(QString)>(&ApproveImportCtx721036::Signal_OldPasswordEdited));
+}
+
+void ApproveImportCtx721036_DisconnectOldPasswordEdited(void* ptr)
+{
+	QObject::disconnect(static_cast<ApproveImportCtx721036*>(ptr), static_cast<void (ApproveImportCtx721036::*)(QString)>(&ApproveImportCtx721036::oldPasswordEdited), static_cast<ApproveImportCtx721036*>(ptr), static_cast<void (ApproveImportCtx721036::*)(QString)>(&ApproveImportCtx721036::Signal_OldPasswordEdited));
+}
+
+void ApproveImportCtx721036_OldPasswordEdited(void* ptr, struct Moc_PackedString b)
+{
+	static_cast<ApproveImportCtx721036*>(ptr)->oldPasswordEdited(QString::fromUtf8(b.data, b.len));
+}
+
 struct Moc_PackedString ApproveImportCtx721036_Remote(void* ptr)
 {
 	return ({ QByteArray tf0cf2b = static_cast<ApproveImportCtx721036*>(ptr)->remote().toUtf8(); Moc_PackedString { const_cast<char*>(tf0cf2b.prepend("WHITESPACE").constData()+10), tf0cf2b.size()-10 }; });
@@ -724,6 +749,41 @@ void ApproveImportCtx721036_DisconnectEndpointChanged(void* ptr)
 void ApproveImportCtx721036_EndpointChanged(void* ptr, struct Moc_PackedString endpoint)
 {
 	static_cast<ApproveImportCtx721036*>(ptr)->endpointChanged(QString::fromUtf8(endpoint.data, endpoint.len));
+}
+
+struct Moc_PackedString ApproveImportCtx721036_OldPassword(void* ptr)
+{
+	return ({ QByteArray t5bb522 = static_cast<ApproveImportCtx721036*>(ptr)->oldPassword().toUtf8(); Moc_PackedString { const_cast<char*>(t5bb522.prepend("WHITESPACE").constData()+10), t5bb522.size()-10 }; });
+}
+
+struct Moc_PackedString ApproveImportCtx721036_OldPasswordDefault(void* ptr)
+{
+	return ({ QByteArray tc68d0a = static_cast<ApproveImportCtx721036*>(ptr)->oldPasswordDefault().toUtf8(); Moc_PackedString { const_cast<char*>(tc68d0a.prepend("WHITESPACE").constData()+10), tc68d0a.size()-10 }; });
+}
+
+void ApproveImportCtx721036_SetOldPassword(void* ptr, struct Moc_PackedString oldPassword)
+{
+	static_cast<ApproveImportCtx721036*>(ptr)->setOldPassword(QString::fromUtf8(oldPassword.data, oldPassword.len));
+}
+
+void ApproveImportCtx721036_SetOldPasswordDefault(void* ptr, struct Moc_PackedString oldPassword)
+{
+	static_cast<ApproveImportCtx721036*>(ptr)->setOldPasswordDefault(QString::fromUtf8(oldPassword.data, oldPassword.len));
+}
+
+void ApproveImportCtx721036_ConnectOldPasswordChanged(void* ptr)
+{
+	QObject::connect(static_cast<ApproveImportCtx721036*>(ptr), static_cast<void (ApproveImportCtx721036::*)(QString)>(&ApproveImportCtx721036::oldPasswordChanged), static_cast<ApproveImportCtx721036*>(ptr), static_cast<void (ApproveImportCtx721036::*)(QString)>(&ApproveImportCtx721036::Signal_OldPasswordChanged));
+}
+
+void ApproveImportCtx721036_DisconnectOldPasswordChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<ApproveImportCtx721036*>(ptr), static_cast<void (ApproveImportCtx721036::*)(QString)>(&ApproveImportCtx721036::oldPasswordChanged), static_cast<ApproveImportCtx721036*>(ptr), static_cast<void (ApproveImportCtx721036::*)(QString)>(&ApproveImportCtx721036::Signal_OldPasswordChanged));
+}
+
+void ApproveImportCtx721036_OldPasswordChanged(void* ptr, struct Moc_PackedString oldPassword)
+{
+	static_cast<ApproveImportCtx721036*>(ptr)->oldPasswordChanged(QString::fromUtf8(oldPassword.data, oldPassword.len));
 }
 
 struct Moc_PackedString ApproveImportCtx721036_Password(void* ptr)

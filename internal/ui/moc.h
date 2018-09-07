@@ -8,6 +8,8 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+class CustomListModel721036;
+void CustomListModel721036_CustomListModel721036_QRegisterMetaTypes();
 class ApproveImportCtx721036;
 void ApproveImportCtx721036_ApproveImportCtx721036_QRegisterMetaTypes();
 class ApproveListingCtx721036;
@@ -18,8 +20,6 @@ class ApproveSignDataCtx721036;
 void ApproveSignDataCtx721036_ApproveSignDataCtx721036_QRegisterMetaTypes();
 class ApproveTxCtx721036;
 void ApproveTxCtx721036_ApproveTxCtx721036_QRegisterMetaTypes();
-class CustomListModel721036;
-void CustomListModel721036_CustomListModel721036_QRegisterMetaTypes();
 extern "C" {
 #endif
 
@@ -508,6 +508,9 @@ void ApproveImportCtx721036_PasswordEdited(void* ptr, struct Moc_PackedString b)
 void ApproveImportCtx721036_ConnectConfirmPasswordEdited(void* ptr);
 void ApproveImportCtx721036_DisconnectConfirmPasswordEdited(void* ptr);
 void ApproveImportCtx721036_ConfirmPasswordEdited(void* ptr, struct Moc_PackedString b);
+void ApproveImportCtx721036_ConnectOldPasswordEdited(void* ptr);
+void ApproveImportCtx721036_DisconnectOldPasswordEdited(void* ptr);
+void ApproveImportCtx721036_OldPasswordEdited(void* ptr, struct Moc_PackedString b);
 struct Moc_PackedString ApproveImportCtx721036_Remote(void* ptr);
 struct Moc_PackedString ApproveImportCtx721036_RemoteDefault(void* ptr);
 void ApproveImportCtx721036_SetRemote(void* ptr, struct Moc_PackedString remote);
@@ -529,6 +532,13 @@ void ApproveImportCtx721036_SetEndpointDefault(void* ptr, struct Moc_PackedStrin
 void ApproveImportCtx721036_ConnectEndpointChanged(void* ptr);
 void ApproveImportCtx721036_DisconnectEndpointChanged(void* ptr);
 void ApproveImportCtx721036_EndpointChanged(void* ptr, struct Moc_PackedString endpoint);
+struct Moc_PackedString ApproveImportCtx721036_OldPassword(void* ptr);
+struct Moc_PackedString ApproveImportCtx721036_OldPasswordDefault(void* ptr);
+void ApproveImportCtx721036_SetOldPassword(void* ptr, struct Moc_PackedString oldPassword);
+void ApproveImportCtx721036_SetOldPasswordDefault(void* ptr, struct Moc_PackedString oldPassword);
+void ApproveImportCtx721036_ConnectOldPasswordChanged(void* ptr);
+void ApproveImportCtx721036_DisconnectOldPasswordChanged(void* ptr);
+void ApproveImportCtx721036_OldPasswordChanged(void* ptr, struct Moc_PackedString oldPassword);
 struct Moc_PackedString ApproveImportCtx721036_Password(void* ptr);
 struct Moc_PackedString ApproveImportCtx721036_PasswordDefault(void* ptr);
 void ApproveImportCtx721036_SetPassword(void* ptr, struct Moc_PackedString password);

@@ -192,7 +192,7 @@ Item {
                 x: 12
                 y: 4
                 height: 10
-                text: qsTr("Password")
+                text: qsTr("Old Password")
                 font.capitalization: Font.AllUppercase
                 font.bold: false
                 font.family: "Verdana"
@@ -220,8 +220,8 @@ Item {
                     font.pixelSize: 12
                     echoMode: TextInput.Password
                     passwordMaskDelay: 1000
-                    text: ctxObject.password
-                    onTextChanged: ctxObject.passwordEdited(text)
+                    text: ctxObject.oldPassword
+                    onTextChanged: ctxObject.oldPasswordEdited(text)
                 }
             }
 
@@ -354,7 +354,7 @@ Item {
                 y: 4
                 height: 10
                 color: "#747474"
-                text: qsTr("Confirm Password")
+                text: qsTr("New Password")
                 font.bold: false
                 font.pixelSize: 10
                 font.family: "Verdana"
@@ -381,7 +381,53 @@ Item {
                     verticalAlignment: Text.AlignHCenter
                     echoMode: TextInput.Password
                     passwordMaskDelay: 1000
+                    text: ctxObject.password
+                    onTextChanged: ctxObject.passwordEdited(text)
+                }
+            }
+        }
+
+        Rectangle {
+            id: rectangle13
+            x: 27
+            y: 397
+            width: 347
+            height: 58
+            color: "#00000000"
+            Text {
+                id: text8
+                x: 12
+                y: 4
+                height: 10
+                color: "#747474"
+                text: qsTr("Confirm New Password")
+                font.bold: false
+                font.capitalization: Font.AllUppercase
+                font.family: "Verdana"
+                font.pixelSize: 10
+            }
+
+            Rectangle {
+                id: rectangle9
+                x: 8
+                y: 18
+                width: 331
+                height: 24
+                color: "#efefef"
+                radius: 2
+                TextInput {
+                    id: textInput2
+                    x: 4
+                    y: 7
+                    width: parent.width - 8
+                    height: parent.height - 12
                     text: ctxObject.confirmPassword
+                    font.family: "Courier"
+                    passwordMaskDelay: 1000
+                    verticalAlignment: Text.AlignHCenter
+                    font.pixelSize: 12
+                    echoMode: TextInput.Password
+                    horizontalAlignment: Text.AlignLeft
                     onTextChanged: ctxObject.confirmPasswordEdited(text)
                 }
             }
