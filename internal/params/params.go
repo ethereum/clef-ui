@@ -81,9 +81,18 @@ type ApproveImportParams struct {
 	Meta 			Meta `json:"meta"`
 }
 
-
 type ApproveImportResponse struct {
 	Approved 			bool
 	Old_Password 		string
 	New_Password 		string
+}
+
+type ApproveExportParams struct {
+	Meta 			Meta `json:"meta"`
+	Address 		string `json:"address"`
+}
+
+type ApproveExportResponse struct {
+	Approved 		bool
+	Password 		string
 }

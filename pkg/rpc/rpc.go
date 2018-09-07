@@ -30,6 +30,19 @@ func (c *ClefService) OnSignerStartup(params []*params.OnSignerStartupParam, _ *
 	return nil
 }
 
+func (c *ClefService) ApproveExport(p []*params.ApproveExportParams, reply *params.ApproveExportResponse) error {
+	ch := make(chan bool)
+	r := ui.ApproveExportRequest{
+		Params: p,
+		Response: ch,
+		Reply: reply,
+	}
+	c.ui.ApproveExportRequest <- r
+	<-ch
+
+	return nil
+}
+
 func (c *ClefService) ApproveImport(p []*params.ApproveImportParams, reply *params.ApproveImportResponse) error {
 	ch := make(chan bool)
 	r := ui.ApproveImportRequest{
