@@ -3,6 +3,7 @@ package ui
 import (
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quick"
+	"log"
 )
 
 func init() {CustomListModel_QmlRegisterType2("CustomQmlTypes", 1, 0, "TxListModel")}
@@ -18,9 +19,15 @@ type TxListUI struct {
 }
 
 type TxListItem struct {
-	From 		string
+	From   		string
 	Method 		string
-	RPC 		interface{}
+	RPC    		interface{}
+	OnRemove 	chan int
+	ID 			int
+}
+
+func (item *TxListItem) Remove() {
+	item.OnRemove <- item.ID
 }
 
 type TxListModel struct {
@@ -28,13 +35,25 @@ type TxListModel struct {
 
 	_ func() 					`constructor:"init"`
 	_ func()                    `signal:"clear,auto"`
-	_ func(tx TxListItem)    	`signal:"add,auto"`
+	_ func(tx *TxListItem)    	`signal:"add,auto"`
+	_ func(i int)    			`signal:"remove,auto"`
 
-	modelData 					[]TxListItem
+	modelData 					[]*TxListItem
+	idCounter 					int
+	OnRemove 					chan int
 }
 
 func (m *TxListModel) init() {
-	m.modelData = []TxListItem{}
+	m.modelData = []*TxListItem{}
+	m.idCounter = 0
+	m.OnRemove = make(chan int)
+
+	go func() {
+		for {
+			index := <- m.OnRemove
+			m.Remove(index)
+		}
+	}()
 
 	m.ConnectRoleNames(m.roleNames)
 	m.ConnectRowCount(m.rowCount)
@@ -73,14 +92,41 @@ func (m *TxListModel) data(index *core.QModelIndex, role int) *core.QVariant {
 
 func (m *TxListModel) clear() {
 	m.BeginResetModel()
-	m.modelData = []TxListItem{}
+	m.modelData = []*TxListItem{}
 	m.EndResetModel()
 }
 
-func (m *TxListModel) add(tx TxListItem) {
+func (m *TxListModel) add(tx *TxListItem) {
 	m.BeginInsertRows(core.NewQModelIndex(), len(m.modelData), len(m.modelData))
+	tx.ID = m.idCounter
+	tx.OnRemove = m.OnRemove
 	m.modelData = append(m.modelData, tx)
+	m.idCounter++
 	m.EndInsertRows()
+}
+
+func (m *TxListModel) remove(id int) {
+	if len(m.modelData) == 0 {
+		return
+	}
+
+	//m.BeginRemoveRows(core.NewQModelIndex(), len(m.modelData), len(m.modelData))
+
+	oldTxList := m.modelData
+
+	m.Clear()
+
+	for _, tx := range oldTxList {
+		log.Printf("Current ID: %v || Remove ID: %v", tx.ID, id)
+		if tx.ID != id {
+			m.Add(tx)
+		}
+	}
+
+	//m.modelData = newTxList
+	log.Println(len(m.modelData))
+
+	//m.EndRemoveRows()
 }
 
 type TxListCtx struct {

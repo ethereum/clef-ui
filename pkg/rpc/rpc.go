@@ -34,13 +34,16 @@ func (c *ClefService) ApproveExport(p []*params.ApproveExportParams, reply *para
 		Reply: reply,
 	}
 
-	c.ui.IncomingRequest <- ui.TxListItem{
+	item := &ui.TxListItem{
 		From: p[0].Address,
 		Method: "ApproveExport",
 		RPC: r,
 	}
-	//c.ui.ApproveExportRequest <- r
+
+	c.ui.IncomingRequest <- item
 	<-ch
+
+	item.Remove()
 
 	return nil
 }
@@ -52,15 +55,14 @@ func (c *ClefService) ApproveImport(p []*params.ApproveImportParams, reply *para
 		Response: ch,
 		Reply: reply,
 	}
-
-	c.ui.IncomingRequest <- ui.TxListItem{
+	item := &ui.TxListItem{
 		From: "",
 		Method: "ApproveImport",
 		RPC: r,
 	}
-	//c.ui.ApproveImportRequest <- r
+	c.ui.IncomingRequest <- item
 	<-ch
-
+	item.Remove()
 	return nil
 }
 
@@ -71,15 +73,14 @@ func (c *ClefService) ApproveNewAccount(p []*params.ApproveNewAccountParams, rep
 		Response: ch,
 		Reply: reply,
 	}
-
-	c.ui.IncomingRequest <- ui.TxListItem{
+	item := &ui.TxListItem{
 		From: "",
 		Method: "ApproveNewAccount",
 		RPC: r,
 	}
-	//c.ui.ApproveNewAccountRequest <- r
+	c.ui.IncomingRequest <- item
 	<-ch
-
+	item.Remove()
 	return nil
 }
 
@@ -90,14 +91,15 @@ func (c *ClefService) ApproveTx(p []*params.ApproveTxParams, reply *params.Appro
 		Response: ch,
 		Reply: reply,
 	}
-
-	c.ui.IncomingRequest <- ui.TxListItem{
+	item := &ui.TxListItem{
 		From: p[0].Transaction.From,
 		Method: "ApproveTx",
 		RPC: r,
 	}
-	//c.ui.ApproveTxRequest <- r
+
+	c.ui.IncomingRequest <- item
 	<-ch
+	item.Remove()
 
 	return nil
 }
@@ -109,15 +111,15 @@ func (c *ClefService) ApproveListing(p []*params.ApproveListingParams, reply *pa
 		Response: ch,
 		Reply: reply,
 	}
-
-	c.ui.IncomingRequest <- ui.TxListItem{
+	item := &ui.TxListItem{
 		From: "",
 		Method: "ApproveListing",
 		RPC: r,
 	}
+	c.ui.IncomingRequest <- item
 	//c.ui.ApproveListingRequest <- r
 	<-ch
-
+	item.Remove()
 	return nil
 }
 
@@ -129,14 +131,14 @@ func (c *ClefService) ApproveSignData(params []*params.ApproveSignDataParams, re
 		Reply: reply,
 	}
 
-	c.ui.IncomingRequest <- ui.TxListItem{
+	item := &ui.TxListItem {
 		From: params[0].Address,
 		Method: "ApproveSignData",
 		RPC: r,
 	}
-	//c.ui.ApproveSignDataRequest <- r
+	c.ui.IncomingRequest <- item
 	<-ch
-
+	item.Remove()
 	return nil
 }
 

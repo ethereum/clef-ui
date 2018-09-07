@@ -56,7 +56,7 @@ type ClefUI struct {
 	App 						*widgets.QApplication
 	Mainw 						*widgets.QWidget
 	currentView 				string
-	IncomingRequest	 			chan TxListItem
+	IncomingRequest	 			chan *TxListItem
 	BackToMain 					chan bool
 	ApproveListingRequest 		chan ApproveListingRequest
 	ApproveSignDataRequest 		chan ApproveSignDataRequest
@@ -105,7 +105,7 @@ func (c *ClefUI) initApp() {
 
 	c.App = app
 	c.Mainw = widget
-	c.IncomingRequest = make(chan TxListItem)
+	c.IncomingRequest = make(chan *TxListItem)
 	c.ApproveListingRequest = make(chan ApproveListingRequest)
 	c.ApproveSignDataRequest = make(chan ApproveSignDataRequest)
 	c.ApproveTxRequest = make(chan ApproveTxRequest)
