@@ -29,6 +29,7 @@ type ApproveListingCtx struct {
 
 	answer 		int
 	accounts 	*CustomListModel
+	ClefUI 		*ClefUI
 }
 
 func (ctx *ApproveListingCtx) init() {
@@ -41,6 +42,7 @@ func (ctx *ApproveListingCtx) Reset() {
 	ctx.SetEndpoint("")
 	ctx.answer = 0
 	ctx.accounts.Clear()
+	ctx.ClefUI.BackToMain <- true
 }
 
 func init() {CustomListModel_QmlRegisterType2("CustomQmlTypes", 1, 0, "CustomListModel")}
@@ -153,10 +155,11 @@ func (t *ApproveListingCtx) ClickResponse(reply *params.ApproveListingResponse, 
 }
 
 
-func NewApproveListingUI() *ApproveListingUI {
+func NewApproveListingUI(clefUi *ClefUI) *ApproveListingUI {
 	widget := quick.NewQQuickWidget(nil)
 	widget.SetSource(core.NewQUrl3("qrc:/qml/approve_listing.qml", 0))
 	c := NewApproveListingCtx(nil)
+	c.ClefUI = clefUi
 	v := &ApproveListingUI{
 		UI: widget,
 		ContextObject: c,

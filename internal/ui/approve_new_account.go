@@ -27,6 +27,7 @@ type ApproveNewAccountCtx struct {
 	_ func(b string) `signal:"passwordEdited,auto"`
 	_ func(b string) `signal:"confirmPasswordEdited,auto"`
 	answer 				int
+	ClefUI 				*ClefUI
 }
 
 func (t *ApproveNewAccountCtx) init() {
@@ -43,6 +44,7 @@ func (t *ApproveNewAccountCtx) Reset() {
 	t.SetEndpoint("")
 	t.SetPassword("")
 	t.SetConfirmPassword("")
+	t.ClefUI.BackToMain <- true
 }
 
 func (t *ApproveNewAccountCtx) passwordEdited(pw string) {
@@ -89,10 +91,11 @@ func (t *ApproveNewAccountCtx) ClickResponse(reply *params.ApproveNewAccountResp
 	}()
 }
 
-func NewApproveNewAccountUI() *ApproveNewAccount {
+func NewApproveNewAccountUI(clefUi *ClefUI) *ApproveNewAccount {
 	widget := quick.NewQQuickWidget(nil)
 	widget.SetSource(core.NewQUrl3("qrc:/qml/approve_new_account.qml", 0))
 	c := NewApproveNewAccountCtx(nil)
+	c.ClefUI = clefUi
 	v := &ApproveNewAccount{
 		UI: widget,
 		ContextObject: c,

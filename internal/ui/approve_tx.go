@@ -32,6 +32,7 @@ type ApproveTxCtx struct {
 
 	answer 		int
 	formData 	params.Transaction
+	ClefUI 		*ClefUI
 }
 
 func (t *ApproveTxCtx) init() {
@@ -64,6 +65,7 @@ func (t *ApproveTxCtx) Reset() {
 	t.SetGasPrice("")
 	t.SetFrom("")
 	t.SetTo("")
+	t.ClefUI.BackToMain <- true
 }
 
 func (t *ApproveTxCtx) edited(name string, value string) {
@@ -116,10 +118,11 @@ func (t *ApproveTxCtx) ClickResponse(reply *params.ApproveTxResponse, response c
 	}()
 }
 
-func NewApproveTxUI() *ApproveTxUI {
+func NewApproveTxUI(clefUi *ClefUI) *ApproveTxUI {
 	widget := quick.NewQQuickWidget(nil)
 	widget.SetSource(core.NewQUrl3("qrc:/qml/approve_tx.qml", 0))
 	c := NewApproveTxCtx(nil)
+	c.ClefUI = clefUi
 	v := &ApproveTxUI{
 		UI: widget,
 		ContextObject: c,

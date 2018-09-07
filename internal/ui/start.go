@@ -4,15 +4,10 @@ import (
 	"context"
 	"github.com/kyokan/clef-ui/internal/params"
 	"github.com/therecipe/qt/core"
+	"github.com/therecipe/qt/quick"
 	"github.com/therecipe/qt/quickcontrols2"
 	"github.com/therecipe/qt/widgets"
 	"os"
-)
-
-const (
-	Default string = ""
-	ApproveSignData string	= "ApproveSignData"
-	OnSignerStartup string = "OnSignerStartup"
 )
 
 type RpcRequest struct {
@@ -61,14 +56,22 @@ type ClefUI struct {
 	App 						*widgets.QApplication
 	Mainw 						*widgets.QWidget
 	currentView 				string
-	//IncomingRequest	 		chan RpcRequest
+	IncomingRequest	 			chan TxListItem
+	BackToMain 					chan bool
 	ApproveListingRequest 		chan ApproveListingRequest
 	ApproveSignDataRequest 		chan ApproveSignDataRequest
 	ApproveTxRequest 			chan ApproveTxRequest
 	ApproveNewAccountRequest 	chan ApproveNewAccountRequest
 	ApproveImportRequest 		chan ApproveImportRequest
 	ApproveExportRequest 		chan ApproveExportRequest
-	views 						map[string]interface{}
+
+	approvesigndata 			*quick.QQuickWidget
+	approvetx	 	 			*quick.QQuickWidget
+	approvelisting 				*quick.QQuickWidget
+	approvenewaccount 			*quick.QQuickWidget
+	approveimport 				*quick.QQuickWidget
+	approveexport 				*quick.QQuickWidget
+	txlist 						*quick.QQuickWidget
 }
 
 func (c *ClefUI) initApp() {
@@ -102,45 +105,70 @@ func (c *ClefUI) initApp() {
 
 	c.App = app
 	c.Mainw = widget
-	//c.IncomingRequest = incomingRequest
+	c.IncomingRequest = make(chan TxListItem)
 	c.ApproveListingRequest = make(chan ApproveListingRequest)
 	c.ApproveSignDataRequest = make(chan ApproveSignDataRequest)
 	c.ApproveTxRequest = make(chan ApproveTxRequest)
 	c.ApproveNewAccountRequest = make(chan ApproveNewAccountRequest)
 	c.ApproveImportRequest = make(chan ApproveImportRequest)
 	c.ApproveExportRequest = make(chan ApproveExportRequest)
+	c.BackToMain = make(chan bool)
+}
+
+func (c *ClefUI) hideAll() {
+	c.approvesigndata.Hide()
+	c.approvelisting.Hide()
+	c.approvetx.Hide()
+	c.approveimport.Hide()
+	c.approveexport.Hide()
+	c.approvenewaccount.Hide()
+	c.txlist.Hide()
 }
 
 func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
 	c := &ClefUI{}
 	c.initApp()
 
-	login := NewLoginUI()
-	approvesigndata := NewApproveSignDataUI()
-	approvelisting := NewApproveListingUI()
-	approvetx := NewApproveTxUI()
-	approvenewaccount := NewApproveNewAccountUI()
-	approveimport := NewApproveImportUI()
-	approveexport := NewApproveExportUI()
+	approvesigndata := NewApproveSignDataUI(c)
+	approvelisting := NewApproveListingUI(c)
+	approvetx := NewApproveTxUI(c)
+	approvenewaccount := NewApproveNewAccountUI(c)
+	approveimport := NewApproveImportUI(c)
+	approveexport := NewApproveExportUI(c)
+	txlist := NewTxListUI(c)
 
-	c.Mainw.Layout().AddWidget(login)
+	c.approvesigndata = approvesigndata.UI
+	c.approvelisting = approvelisting.UI
+	c.approvetx = approvetx.UI
+	c.approvenewaccount = approvenewaccount.UI
+	c.approveimport = approveimport.UI
+	c.approveexport = approveexport.UI
+	c.txlist = txlist.UI
+
 	c.Mainw.Layout().AddWidget(approvesigndata.UI)
 	c.Mainw.Layout().AddWidget(approvelisting.UI)
 	c.Mainw.Layout().AddWidget(approvetx.UI)
 	c.Mainw.Layout().AddWidget(approvenewaccount.UI)
 	c.Mainw.Layout().AddWidget(approveimport.UI)
 	c.Mainw.Layout().AddWidget(approveexport.UI)
+	c.Mainw.Layout().AddWidget(txlist.UI)
 	c.Mainw.SetFixedSize2(400, 680	)
+
+	c.txlist.Show()
 
 	go func() {
 		for {
 			select {
+			case <-c.BackToMain:
+				c.hideAll()
+				txlist.UI.Show()
+			case req := <-c.IncomingRequest:
+				txlist.CtxObject.transactions.Add(req)
 			case req := <-c.ApproveListingRequest:
-				c.Mainw.SetWindowTitle("List Account")
+				c.hideAll()
 				param := req.Params[0]
 
 				co := approvelisting.ContextObject
-				co.Reset()
 				co.SetTransport(param.Meta.Transport)
 				co.SetRemote(param.Meta.Remote)
 				co.SetEndpoint(param.Meta.Local)
@@ -153,21 +181,14 @@ func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
 
 				co.ClickResponse(req.Reply, req.Response)
 
-				login.Hide()
-				approvesigndata.UI.Hide()
-				approvetx.UI.Hide()
-				approvenewaccount.UI.Hide()
-				approveimport.UI.Hide()
-				approveexport.UI.Hide()
 				approvelisting.UI.Show()
 			case req := <-c.ApproveSignDataRequest:
-				c.Mainw.SetWindowTitle("Sign Data")
+				c.hideAll()
 				data := req.Params
 				param := data[0]
 
 				co := approvesigndata.ContextObject
 
-				co.Reset()
 				co.SetTransport(param.Meta.Transport)
 				co.SetRemote(param.Meta.Remote)
 				co.SetEndpoint(param.Meta.Local)
@@ -179,90 +200,57 @@ func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
 
 				co.ClickResponse(req.Reply, req.Response)
 
-				login.Hide()
-				approvelisting.UI.Hide()
-				approvetx.UI.Hide()
-				approvenewaccount.UI.Hide()
-				approveimport.UI.Hide()
-				approveexport.UI.Hide()
 				approvesigndata.UI.Show()
 			case req := <-c.ApproveTxRequest:
-				c.Mainw.SetWindowTitle("Send Transaction")
+				c.hideAll()
 				data := req.Params
 				param := data[0]
 
 				co := approvetx.ContextObject
-				co.Reset()
 				co.SetTransport(param.Meta.Transport)
 				co.SetRemote(param.Meta.Remote)
 				co.SetEndpoint(param.Meta.Local)
 				co.SetTransaction(param.Transaction)
 				co.ClickResponse(req.Reply, req.Response)
 
-				login.Hide()
-				approvelisting.UI.Hide()
-				approvesigndata.UI.Hide()
-				approvenewaccount.UI.Hide()
-				approveimport.UI.Hide()
-				approveexport.UI.Hide()
 				approvetx.UI.Show()
 			case req := <-c.ApproveNewAccountRequest:
-				c.Mainw.SetWindowTitle("New Account")
+				c.hideAll()
 				data := req.Params
 				param := data[0]
 
 				co := approvenewaccount.ContextObject
-				co.Reset()
 				co.SetTransport(param.Meta.Transport)
 				co.SetRemote(param.Meta.Remote)
 				co.SetEndpoint(param.Meta.Local)
 				co.ClickResponse(req.Reply, req.Response)
 
-				login.Hide()
-				approvelisting.UI.Hide()
-				approvesigndata.UI.Hide()
-				approvetx.UI.Hide()
-				approveimport.UI.Hide()
-				approveexport.UI.Hide()
 				approvenewaccount.UI.Show()
 			case req := <-c.ApproveImportRequest:
+				c.hideAll()
 				data := req.Params
 				param := data[0]
 
 				co := approveimport.ContextObject
-				co.Reset()
 				co.SetTransport(param.Meta.Transport)
 				co.SetRemote(param.Meta.Remote)
 				co.SetEndpoint(param.Meta.Local)
 				co.ClickResponse(req.Reply, req.Response)
 
-				login.Hide()
-				approvelisting.UI.Hide()
-				approvesigndata.UI.Hide()
-				approvetx.UI.Hide()
-				approvenewaccount.UI.Hide()
-				approveexport.UI.Hide()
 				approveimport.UI.Show()
 			case req := <-c.ApproveExportRequest:
+				c.hideAll()
 				data := req.Params
 				param := data[0]
 
 				co := approveexport.ContextObject
-				co.Reset()
 				co.SetTransport(param.Meta.Transport)
 				co.SetRemote(param.Meta.Remote)
 				co.SetEndpoint(param.Meta.Local)
 				co.SetAddress(param.Address)
 				co.ClickResponse(req.Reply, req.Response)
 
-				login.Hide()
-				approvelisting.UI.Hide()
-				approvesigndata.UI.Hide()
-				approvetx.UI.Hide()
-				approvenewaccount.UI.Hide()
-				approveimport.UI.Hide()
 				approveexport.UI.Show()
-
 			}
 
 		}

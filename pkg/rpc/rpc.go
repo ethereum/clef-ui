@@ -33,7 +33,13 @@ func (c *ClefService) ApproveExport(p []*params.ApproveExportParams, reply *para
 		Response: ch,
 		Reply: reply,
 	}
-	c.ui.ApproveExportRequest <- r
+
+	c.ui.IncomingRequest <- ui.TxListItem{
+		From: p[0].Address,
+		Method: "ApproveExport",
+		RPC: r,
+	}
+	//c.ui.ApproveExportRequest <- r
 	<-ch
 
 	return nil
@@ -47,7 +53,12 @@ func (c *ClefService) ApproveImport(p []*params.ApproveImportParams, reply *para
 		Reply: reply,
 	}
 
-	c.ui.ApproveImportRequest <- r
+	c.ui.IncomingRequest <- ui.TxListItem{
+		From: "",
+		Method: "ApproveImport",
+		RPC: r,
+	}
+	//c.ui.ApproveImportRequest <- r
 	<-ch
 
 	return nil
@@ -61,7 +72,12 @@ func (c *ClefService) ApproveNewAccount(p []*params.ApproveNewAccountParams, rep
 		Reply: reply,
 	}
 
-	c.ui.ApproveNewAccountRequest <- r
+	c.ui.IncomingRequest <- ui.TxListItem{
+		From: "",
+		Method: "ApproveNewAccount",
+		RPC: r,
+	}
+	//c.ui.ApproveNewAccountRequest <- r
 	<-ch
 
 	return nil
@@ -75,7 +91,12 @@ func (c *ClefService) ApproveTx(p []*params.ApproveTxParams, reply *params.Appro
 		Reply: reply,
 	}
 
-	c.ui.ApproveTxRequest <- r
+	c.ui.IncomingRequest <- ui.TxListItem{
+		From: p[0].Transaction.From,
+		Method: "ApproveTx",
+		RPC: r,
+	}
+	//c.ui.ApproveTxRequest <- r
 	<-ch
 
 	return nil
@@ -89,7 +110,12 @@ func (c *ClefService) ApproveListing(p []*params.ApproveListingParams, reply *pa
 		Reply: reply,
 	}
 
-	c.ui.ApproveListingRequest <- r
+	c.ui.IncomingRequest <- ui.TxListItem{
+		From: "",
+		Method: "ApproveListing",
+		RPC: r,
+	}
+	//c.ui.ApproveListingRequest <- r
 	<-ch
 
 	return nil
@@ -103,7 +129,12 @@ func (c *ClefService) ApproveSignData(params []*params.ApproveSignDataParams, re
 		Reply: reply,
 	}
 
-	c.ui.ApproveSignDataRequest <- r
+	c.ui.IncomingRequest <- ui.TxListItem{
+		From: params[0].Address,
+		Method: "ApproveSignData",
+		RPC: r,
+	}
+	//c.ui.ApproveSignDataRequest <- r
 	<-ch
 
 	return nil

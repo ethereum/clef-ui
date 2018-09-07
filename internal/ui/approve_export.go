@@ -15,15 +15,16 @@ type ApproveExport struct {
 type ApproveExportCtx struct {
 	core.QObject
 
-	_ string `property:"remote"`
-	_ string `property:"transport"`
-	_ string `property:"endpoint"`
-	_ string `property:"address"`
-	_ string `property:"password"`
+	_ string 			`property:"remote"`
+	_ string 			`property:"transport"`
+	_ string 			`property:"endpoint"`
+	_ string 			`property:"address"`
+	_ string 			`property:"password"`
 
-	_ func(b int) `signal:"clicked,auto"`
-	_ func(b string) `signal:"passwordEdited,auto"`
+	_ func(b int) 		`signal:"clicked,auto"`
+	_ func(b string) 	`signal:"passwordEdited,auto"`
 	answer 				int
+	ClefUI 				*ClefUI
 }
 
 func (t *ApproveExportCtx) clicked(b int) {
@@ -37,6 +38,7 @@ func (t *ApproveExportCtx) Reset() {
 	t.SetEndpoint("")
 	t.SetPassword("")
 	t.SetAddress("")
+	t.ClefUI.BackToMain <- true
 }
 
 func (t *ApproveExportCtx) passwordEdited(pw string) {
@@ -62,10 +64,11 @@ func (t *ApproveExportCtx) ClickResponse(reply *params.ApproveExportResponse, re
 	}()
 }
 
-func NewApproveExportUI() *ApproveExport {
+func NewApproveExportUI(clefUi *ClefUI) *ApproveExport {
 	widget := quick.NewQQuickWidget(nil)
 	widget.SetSource(core.NewQUrl3("qrc:/qml/approve_export.qml", 0))
 	c := NewApproveExportCtx(nil)
+	c.ClefUI = clefUi
 	v := &ApproveExport{
 		UI: widget,
 		ContextObject: c,

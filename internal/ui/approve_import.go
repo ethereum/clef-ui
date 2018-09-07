@@ -28,6 +28,7 @@ type ApproveImportCtx struct {
 	_ func(b string) `signal:"confirmPasswordEdited,auto"`
 	_ func(b string) `signal:"oldPasswordEdited,auto"`
 	answer 				int
+	ClefUI 				*ClefUI
 }
 
 func (t *ApproveImportCtx) clicked(b int) {
@@ -42,6 +43,7 @@ func (t *ApproveImportCtx) Reset() {
 	t.SetPassword("")
 	t.SetConfirmPassword("")
 	t.SetOldPassword("")
+	t.ClefUI.BackToMain <- true
 }
 
 func (t *ApproveImportCtx) passwordEdited(pw string) {
@@ -93,10 +95,11 @@ func (t *ApproveImportCtx) ClickResponse(reply *params.ApproveImportResponse, re
 	}()
 }
 
-func NewApproveImportUI() *ApproveImport {
+func NewApproveImportUI(clefUi *ClefUI) *ApproveImport {
 	widget := quick.NewQQuickWidget(nil)
 	widget.SetSource(core.NewQUrl3("qrc:/qml/approve_import.qml", 0))
 	c := NewApproveImportCtx(nil)
+	c.ClefUI = clefUi
 	v := &ApproveImport{
 		UI: widget,
 		ContextObject: c,

@@ -25,6 +25,7 @@ type ApproveSignDataCtx struct {
 	_ func(b int) `signal:"clicked,auto"`
 
 	answer 		int
+	ClefUI 		*ClefUI
 }
 
 func (t *ApproveSignDataCtx) clicked(b int) {
@@ -40,6 +41,7 @@ func (t *ApproveSignDataCtx) Reset() {
 	t.SetMessage("")
 	t.SetRawData("")
 	t.SetHash("")
+	t.ClefUI.BackToMain <- true
 }
 
 func (t *ApproveSignDataCtx) ClickResponse(reply *params.ApproveSignDataResponse, res chan bool) {
@@ -61,10 +63,11 @@ func (t *ApproveSignDataCtx) ClickResponse(reply *params.ApproveSignDataResponse
 	}()
 }
 
-func NewApproveSignDataUI() *ApproveSignDataUI {
+func NewApproveSignDataUI(clefUi *ClefUI) *ApproveSignDataUI {
 	widget := quick.NewQQuickWidget(nil)
 	widget.SetSource(core.NewQUrl3("qrc:/qml/approve_sign_data.qml", 0))
 	c := NewApproveSignDataCtx(nil)
+	c.ClefUI = clefUi
 	v := &ApproveSignDataUI{
 		UI: widget,
 		ContextObject: c,

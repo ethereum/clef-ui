@@ -6,5 +6,7 @@
 <file>qml/approve_new_account.qml</file>
 <file>qml/approve_sign_data.qml</file>
 <file>qml/approve_tx.qml</file>
+<file>qml/identicon.png</file>
+<file>qml/tx_list.qml</file>
 </qresource>
 </RCC>
