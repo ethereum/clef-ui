@@ -36,6 +36,9 @@ func (t *ApproveImportCtx) clicked(b int) {
 
 func (t *ApproveImportCtx) Reset() {
 	t.answer = 0
+	t.SetRemote("")
+	t.SetTransport("")
+	t.SetEndpoint("")
 	t.SetPassword("")
 	t.SetConfirmPassword("")
 	t.SetOldPassword("")

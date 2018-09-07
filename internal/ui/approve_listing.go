@@ -15,6 +15,10 @@ type ApproveListingUI struct {
 type ApproveListingCtx struct {
 	core.QObject
 
+	_ func() 										`constructor:"init"`
+	_ func(b int) 									`signal:"clicked,auto"`
+	_ func(i int, checked bool) 					`signal:"onCheckStateChanged,auto"`
+
 	_ string `property:"remote"`
 	_ string `property:"transport"`
 	_ string `property:"endpoint"`
@@ -24,6 +28,19 @@ type ApproveListingCtx struct {
 	_ string `property:"hash"`
 
 	answer 		int
+	accounts 	*CustomListModel
+}
+
+func (ctx *ApproveListingCtx) init() {
+	ctx.accounts = NewCustomListModel(nil	)
+}
+
+func (ctx *ApproveListingCtx) Reset() {
+	ctx.SetRemote("")
+	ctx.SetTransport("")
+	ctx.SetEndpoint("")
+	ctx.answer = 0
+	ctx.accounts.Clear()
 }
 
 func init() {CustomListModel_QmlRegisterType2("CustomQmlTypes", 1, 0, "CustomListModel")}
@@ -44,12 +61,9 @@ type CustomListModel struct {
 	_ func() 										`constructor:"init"`
 	_ func()                                 		`signal:"clear,auto"`
 	_ func(account params.ApproveListingAccount)    `signal:"add,auto"`
-	_ func(b int) 									`signal:"clicked,auto"`
-	_ func(i int, checked bool) 					`signal:"onCheckStateChanged,auto"`
 
 	modelData 										[]params.ApproveListingAccount
 	checkState										map[int]bool
-	answer 											int
 
 }
 
@@ -96,7 +110,6 @@ func (m*CustomListModel) clear() {
 	m.BeginResetModel()
 	m.modelData = []params.ApproveListingAccount{}
 	m.checkState = map[int]bool{}
-	m.answer = 0
 	m.EndResetModel()
 }
 
@@ -106,15 +119,15 @@ func (m *CustomListModel) add(account params.ApproveListingAccount) {
 	m.EndInsertRows()
 }
 
-func (t *CustomListModel) clicked(b int) {
+func (t *ApproveListingCtx) clicked(b int) {
 	t.answer = b
 }
 
-func (t *CustomListModel) onCheckStateChanged(i int, checked bool) {
-	t.checkState[i] = checked
+func (t *ApproveListingCtx) onCheckStateChanged(i int, checked bool) {
+	t.accounts.checkState[i] = checked
 }
 
-func (t *CustomListModel) ClickResponse(reply *params.ApproveListingResponse, res chan bool) {
+func (t *ApproveListingCtx) ClickResponse(reply *params.ApproveListingResponse, res chan bool) {
 	go func() {
 		done := false
 		for !done {
@@ -125,15 +138,15 @@ func (t *CustomListModel) ClickResponse(reply *params.ApproveListingResponse, re
 				} else if t.answer == 2 {
 					accounts := make([]params.ApproveListingAccount, 0)
 
-					for i, account := range t.modelData {
-						if t.checkState[i] {
+					for i, account := range t.accounts.modelData {
+						if t.accounts.checkState[i] {
 							accounts = append(accounts, account)
 						}
 					}
 					reply.Accounts = accounts
 					res <- true
 				}
-				t.Clear()
+				t.Reset()
 			}
 		}
 	}()
@@ -144,15 +157,13 @@ func NewApproveListingUI() *ApproveListingUI {
 	widget := quick.NewQQuickWidget(nil)
 	widget.SetSource(core.NewQUrl3("qrc:/qml/approve_listing.qml", 0))
 	c := NewApproveListingCtx(nil)
-	m := NewCustomListModel(nil)
 	v := &ApproveListingUI{
 		UI: widget,
 		ContextObject: c,
-		AccountListModel: m,
 	}
 	widget.SetStyleSheet("margin: 0;")
 	widget.RootContext().SetContextProperty("ctxObject", c)
-	widget.RootContext().SetContextProperty(	"myModel", m)
+	widget.RootContext().SetContextProperty(	"accounts", c.accounts)
 	widget.SetResizeMode(quick.QQuickWidget__SizeRootObjectToView)
 	widget.Hide()
 	return v

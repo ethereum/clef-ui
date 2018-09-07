@@ -54,6 +54,9 @@ func (t *ApproveTxCtx) clicked(b int) {
 
 func (t *ApproveTxCtx) Reset() {
 	t.answer = 0
+	t.SetRemote("")
+	t.SetTransport("")
+	t.SetEndpoint("")
 	t.SetData("")
 	t.SetNonce("")
 	t.SetValue("")

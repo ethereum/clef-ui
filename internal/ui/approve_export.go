@@ -32,6 +32,9 @@ func (t *ApproveExportCtx) clicked(b int) {
 
 func (t *ApproveExportCtx) Reset() {
 	t.answer = 0
+	t.SetRemote("")
+	t.SetTransport("")
+	t.SetEndpoint("")
 	t.SetPassword("")
 	t.SetAddress("")
 }

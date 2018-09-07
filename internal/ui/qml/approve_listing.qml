@@ -227,7 +227,7 @@ Item {
                     height: 523
                     z: 1
                     highlightRangeMode: ListView.NoHighlightRange
-                    model: myModel
+                    model: accounts
 //                    model: ListModel {
 //                        ListElement {
 //                            address: "0x1b4gs6f"
@@ -248,7 +248,7 @@ Item {
                                 font.capitalization: Font.MixedCase
                                 font.family: "Courier"
                                 checked: selected
-                                onCheckStateChanged: myModel.onCheckStateChanged(index, checked)
+                                onCheckStateChanged: ctxObject.onCheckStateChanged(index, checked)
                             }
                             Text {
                                 text: address
@@ -281,7 +281,7 @@ Item {
                 y: 10
                 height: 36
                 width: 150
-                onClicked: myModel.clicked(1)
+                onClicked: ctxObject.clicked(1)
                 contentItem: Text {
                     x: 0
                     y: 0
@@ -314,7 +314,7 @@ Item {
                 y: 10
                 height: 36
                 width: 150
-                onClicked: myModel.clicked(2)
+                onClicked: ctxObject.clicked(2)
                 contentItem: Text {
                     x: 1
                     y: 1
@@ -354,3 +354,8 @@ Item {
 
     }
 }
+
+/*##^## Designer {
+    D{i:0;autoSize:true;height:480;width:640}
+}
+ ##^##*/

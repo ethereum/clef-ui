@@ -23,7 +23,8 @@ type RpcRequest struct {
 
 type ApproveSignDataRequest struct {
 	Params 		[]*params.ApproveSignDataParams
-	Response 	chan map[string]string
+	Response 	chan bool
+	Reply 		*params.ApproveSignDataResponse
 }
 
 type ApproveListingRequest struct {
@@ -139,17 +140,18 @@ func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
 				param := req.Params[0]
 
 				co := approvelisting.ContextObject
+				co.Reset()
 				co.SetTransport(param.Meta.Transport)
 				co.SetRemote(param.Meta.Remote)
 				co.SetEndpoint(param.Meta.Local)
 
-				model := approvelisting.AccountListModel
-				model.Clear()
+				model := co.accounts
 
 				for _, account := range param.Accounts {
 					model.Add(account)
 				}
-				model.ClickResponse(req.Reply, req.Response)
+
+				co.ClickResponse(req.Reply, req.Response)
 
 				login.Hide()
 				approvesigndata.UI.Hide()
@@ -164,6 +166,7 @@ func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
 				param := data[0]
 
 				co := approvesigndata.ContextObject
+
 				co.Reset()
 				co.SetTransport(param.Meta.Transport)
 				co.SetRemote(param.Meta.Remote)
@@ -174,7 +177,8 @@ func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
 				co.SetRawData(param.Raw_data)
 				co.SetFrom(param.Address)
 
-				co.ClickResponse(req.Response)
+				co.ClickResponse(req.Reply, req.Response)
+
 				login.Hide()
 				approvelisting.UI.Hide()
 				approvetx.UI.Hide()

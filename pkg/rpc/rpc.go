@@ -95,20 +95,16 @@ func (c *ClefService) ApproveListing(p []*params.ApproveListingParams, reply *pa
 	return nil
 }
 
-func (c *ClefService) ApproveSignData(params []*params.ApproveSignDataParams, reply *ClefResponse) error {
-	ch := make(chan map[string]string)
+func (c *ClefService) ApproveSignData(params []*params.ApproveSignDataParams, reply *params.ApproveSignDataResponse) error {
+	ch := make(chan bool)
 	r := ui.ApproveSignDataRequest{
 		Params: params,
 		Response: ch,
+		Reply: reply,
 	}
 
 	c.ui.ApproveSignDataRequest <- r
-
-	res := <-ch
-	reply.Approved = res["approved"] == "true"
-	reply.Password = res["password"]
-
-	//c.ui.IncomingRequest <- ui.RpcRequest{ Method: "" }
+	<-ch
 
 	return nil
 }

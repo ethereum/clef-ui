@@ -1,6 +1,7 @@
 package ui
 
 import (
+	"github.com/kyokan/clef-ui/internal/params"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quick"
 )
@@ -32,25 +33,28 @@ func (t *ApproveSignDataCtx) clicked(b int) {
 
 func (t *ApproveSignDataCtx) Reset() {
 	t.answer = 0
+	t.SetRemote("")
+	t.SetTransport("")
+	t.SetEndpoint("")
+	t.SetFrom("")
+	t.SetMessage("")
+	t.SetRawData("")
+	t.SetHash("")
 }
 
-func (t *ApproveSignDataCtx) ClickResponse(res chan map[string]string) {
+func (t *ApproveSignDataCtx) ClickResponse(reply *params.ApproveSignDataResponse, res chan bool) {
 	go func() {
 		done := false
 		for !done {
 			if t.answer != 0 {
 				done = true
 				if t.answer == 1 {
-					res <- map[string]string{
-						"approved": "false",
-						"password": "",
-					}
+					reply.Approved = false
 				} else if t.answer == 2 {
-					res <- map[string]string{
-						"approved": "true",
-						"password": "asdfasdf",
-					}
+					reply.Approved = true
+					reply.Password = "asdfasdf"
 				}
+				res <- true
 				t.Reset()
 			}
 		}

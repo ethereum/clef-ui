@@ -38,6 +38,9 @@ func (t *ApproveNewAccountCtx) clicked(b int) {
 
 func (t *ApproveNewAccountCtx) Reset() {
 	t.answer = 0
+	t.SetRemote("")
+	t.SetTransport("")
+	t.SetEndpoint("")
 	t.SetPassword("")
 	t.SetConfirmPassword("")
 }

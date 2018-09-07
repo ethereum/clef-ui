@@ -68,6 +68,11 @@ type ApproveSignDataParams struct {
 	Meta 			Meta `json:"meta"`
 }
 
+type ApproveSignDataResponse struct {
+	Approved 		bool
+	Password 		string
+}
+
 type ApproveNewAccountParams struct {
 	Meta 			Meta `json:"meta"`
 }
