@@ -43,6 +43,12 @@ type ApproveNewAccountRequest struct {
 	Response 	chan bool
 }
 
+type ApproveImportRequest struct {
+	Params 		[]*params.ApproveImportParams
+	Reply 		*params.ApproveImportResponse
+	Response 	chan bool
+}
+
 type ClefUI struct {
 	App 						*widgets.QApplication
 	Mainw 						*widgets.QWidget
@@ -52,6 +58,7 @@ type ClefUI struct {
 	ApproveSignDataRequest 		chan ApproveSignDataRequest
 	ApproveTxRequest 			chan ApproveTxRequest
 	ApproveNewAccountRequest 	chan ApproveNewAccountRequest
+	ApproveImportRequest 		chan ApproveImportRequest
 	views 						map[string]interface{}
 }
 
@@ -91,6 +98,7 @@ func (c *ClefUI) initApp() {
 	c.ApproveSignDataRequest = make(chan ApproveSignDataRequest)
 	c.ApproveTxRequest = make(chan ApproveTxRequest)
 	c.ApproveNewAccountRequest = make(chan ApproveNewAccountRequest)
+	c.ApproveImportRequest = make(chan ApproveImportRequest)
 }
 
 func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
@@ -102,12 +110,14 @@ func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
 	approvelisting := NewApproveListingUI()
 	approvetx := NewApproveTxUI()
 	approvenewaccount := NewApproveNewAccountUI()
+	approveimport := NewApproveImportUI()
 
 	c.Mainw.Layout().AddWidget(login)
 	c.Mainw.Layout().AddWidget(approvesigndata.UI)
 	c.Mainw.Layout().AddWidget(approvelisting.UI)
 	c.Mainw.Layout().AddWidget(approvetx.UI)
 	c.Mainw.Layout().AddWidget(approvenewaccount.UI)
+	c.Mainw.Layout().AddWidget(approveimport.UI)
 	c.Mainw.SetFixedSize2(400, 680	)
 
 	go func() {
@@ -134,6 +144,7 @@ func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
 				approvesigndata.UI.Hide()
 				approvetx.UI.Hide()
 				approvenewaccount.UI.Hide()
+				approveimport.UI.Hide()
 				approvelisting.UI.Show()
 			case req := <-c.ApproveSignDataRequest:
 				c.Mainw.SetWindowTitle("Sign Data")
@@ -156,6 +167,7 @@ func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
 				approvelisting.UI.Hide()
 				approvetx.UI.Hide()
 				approvenewaccount.UI.Hide()
+				approveimport.UI.Hide()
 				approvesigndata.UI.Show()
 			case req := <-c.ApproveTxRequest:
 				c.Mainw.SetWindowTitle("Send Transaction")
@@ -168,21 +180,13 @@ func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
 				co.SetRemote(param.Meta.Remote)
 				co.SetEndpoint(param.Meta.Local)
 				co.SetTransaction(param.Transaction)
-				//co.SetFrom(param.Transaction.From)
-				//co.SetData(param.Transaction.Data)
-				//co.SetTo(param.Transaction.To)
-				//co.SetGas(param.Transaction.Gas)
-				//co.SetGasPrice(param.Transaction.GasPrice)
-				//co.SetValue(param.Transaction.Value)
-				//co.SetNonce(param.Transaction.Nonce)
-				//co.formData = param.Transaction
 				co.ClickResponse(req.Reply, req.Response)
-
 
 				login.Hide()
 				approvelisting.UI.Hide()
 				approvesigndata.UI.Hide()
 				approvenewaccount.UI.Hide()
+				approveimport.UI.Hide()
 				approvetx.UI.Show()
 			case req := <-c.ApproveNewAccountRequest:
 				c.Mainw.SetWindowTitle("New Account")
@@ -200,7 +204,26 @@ func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
 				approvelisting.UI.Hide()
 				approvesigndata.UI.Hide()
 				approvetx.UI.Hide()
+				approveimport.UI.Hide()
 				approvenewaccount.UI.Show()
+			case req := <-c.ApproveImportRequest:
+				data := req.Params
+				param := data[0]
+
+				co := approveimport.ContextObject
+				co.Reset()
+				co.SetTransport(param.Meta.Transport)
+				co.SetRemote(param.Meta.Remote)
+				co.SetEndpoint(param.Meta.Local)
+				co.ClickResponse(req.Reply, req.Response)
+
+				login.Hide()
+				approvelisting.UI.Hide()
+				approvesigndata.UI.Hide()
+				approvetx.UI.Hide()
+				approvenewaccount.UI.Hide()
+				approveimport.UI.Show()
+
 			}
 
 		}

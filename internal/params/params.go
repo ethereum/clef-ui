@@ -76,3 +76,12 @@ type ApproveNewAccountResponse struct {
 	Approved 		bool
 	Password 		string
 }
+
+type ApproveImportParams struct {
+	Meta 			Meta `json:"meta"`
+}
+
+type ApproveImportResponse struct {
+	Approved 		bool
+	Password 		string
+}
