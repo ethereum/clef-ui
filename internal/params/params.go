@@ -77,6 +77,10 @@ type ApproveNewAccountResponse struct {
 	Password 		string
 }
 
+type ApproveListingResponse struct {
+	Accounts 		[]ApproveListingAccount
+}
+
 type ApproveImportParams struct {
 	Meta 			Meta `json:"meta"`
 }
@@ -94,5 +98,4 @@ type ApproveExportParams struct {
 
 type ApproveExportResponse struct {
 	Approved 		bool
-	Password 		string
 }

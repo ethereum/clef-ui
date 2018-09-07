@@ -28,7 +28,8 @@ type ApproveSignDataRequest struct {
 
 type ApproveListingRequest struct {
 	Params 		[]*params.ApproveListingParams
-	Response 	chan []params.ApproveListingAccount
+	Response 	chan bool
+	Reply 		*params.ApproveListingResponse
 }
 
 type ApproveTxRequest struct {
@@ -148,7 +149,7 @@ func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
 				for _, account := range param.Accounts {
 					model.Add(account)
 				}
-				model.ClickResponse(req.Response)
+				model.ClickResponse(req.Reply, req.Response)
 
 				login.Hide()
 				approvesigndata.UI.Hide()

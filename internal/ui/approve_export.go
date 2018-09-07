@@ -50,17 +50,7 @@ func (t *ApproveExportCtx) ClickResponse(reply *params.ApproveExportResponse, re
 					reply.Approved = false
 					res <- true
 				} else if t.answer == 2 {
-					//pw := t.Password()
-					//
-					//if len(pw) == 0 {
-					//	log.Println("Password cannot be empty")
-					//	done = false
-					//	t.Reset()
-					//	continue
-					//}
-
 					reply.Approved = true
-					//reply.Password = pw
 					res <- true
 				}
 				t.Reset()

@@ -96,6 +96,7 @@ func (m*CustomListModel) clear() {
 	m.BeginResetModel()
 	m.modelData = []params.ApproveListingAccount{}
 	m.checkState = map[int]bool{}
+	m.answer = 0
 	m.EndResetModel()
 }
 
@@ -109,22 +110,18 @@ func (t *CustomListModel) clicked(b int) {
 	t.answer = b
 }
 
-func (t *CustomListModel) Reset() {
-	t.answer = 0
-}
-
 func (t *CustomListModel) onCheckStateChanged(i int, checked bool) {
 	t.checkState[i] = checked
 }
 
-func (t *CustomListModel) ClickResponse(res chan []params.ApproveListingAccount) {
+func (t *CustomListModel) ClickResponse(reply *params.ApproveListingResponse, res chan bool) {
 	go func() {
 		done := false
 		for !done {
 			if t.answer != 0 {
 				done = true
 				if t.answer == 1 {
-					res <- []params.ApproveListingAccount{}
+					res <- true
 				} else if t.answer == 2 {
 					accounts := make([]params.ApproveListingAccount, 0)
 
@@ -133,10 +130,10 @@ func (t *CustomListModel) ClickResponse(res chan []params.ApproveListingAccount)
 							accounts = append(accounts, account)
 						}
 					}
-
-					res <- accounts
+					reply.Accounts = accounts
+					res <- true
 				}
-				t.Reset()
+				t.Clear()
 			}
 		}
 	}()
