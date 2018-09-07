@@ -30,6 +30,20 @@ func (c *ClefService) OnSignerStartup(params []*params.OnSignerStartupParam, _ *
 	return nil
 }
 
+func (c *ClefService) ApproveNewAccount(p []*params.ApproveNewAccountParams, reply *params.ApproveNewAccountResponse) error {
+	ch := make(chan bool)
+	r := ui.ApproveNewAccountRequest{
+		Params: p,
+		Response: ch,
+		Reply: reply,
+	}
+
+	c.ui.ApproveNewAccountRequest <- r
+	<-ch
+
+	return nil
+}
+
 func (c *ClefService) ApproveTx(p []*params.ApproveTxParams, reply *params.ApproveTxResponse) error {
 	ch := make(chan params.ApproveTxResponse)
 	r := ui.ApproveTxRequest{
