@@ -33,7 +33,8 @@ type ApproveListingRequest struct {
 
 type ApproveTxRequest struct {
 	Params 		[]*params.ApproveTxParams
-	Response 	chan params.ApproveTxResponse
+	Response 	chan bool
+	Reply 		*params.ApproveTxResponse
 }
 
 type ApproveNewAccountRequest struct {
@@ -113,7 +114,7 @@ func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
 		for {
 			select {
 			case req := <-c.ApproveListingRequest:
-				c.Mainw.SetWindowTitle("Account Listing")
+				c.Mainw.SetWindowTitle("List Account")
 				param := req.Params[0]
 
 				co := approvelisting.ContextObject
@@ -172,7 +173,7 @@ func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
 				co.SetValue(param.Transaction.Value)
 				co.SetNonce(param.Transaction.Nonce)
 				co.formData = param.Transaction
-				co.ClickResponse(req.Response)
+				co.ClickResponse(req.Reply, req.Response)
 
 
 				login.Hide()

@@ -45,23 +45,15 @@ func (c *ClefService) ApproveNewAccount(p []*params.ApproveNewAccountParams, rep
 }
 
 func (c *ClefService) ApproveTx(p []*params.ApproveTxParams, reply *params.ApproveTxResponse) error {
-	ch := make(chan params.ApproveTxResponse)
+	ch := make(chan bool)
 	r := ui.ApproveTxRequest{
 		Params: p,
 		Response: ch,
+		Reply: reply,
 	}
 
 	c.ui.ApproveTxRequest <- r
-	res := <-ch
-
-	if !res.Approved {
-		reply.Transaction = p[0].Transaction
-		reply.Approved = res.Approved
-	} else {
-		reply.Transaction = res.Transaction
-		reply.Approved = res.Approved
-		reply.Password = res.Password
-	}
+	<-ch
 
 	return nil
 }

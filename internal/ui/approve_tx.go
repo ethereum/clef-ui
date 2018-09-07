@@ -46,21 +46,21 @@ func (t *ApproveTxCtx) Reset() {
 	t.formData = params.Transaction{}
 }
 
-func (t *ApproveTxCtx) ClickResponse(res chan params.ApproveTxResponse) {
+func (t *ApproveTxCtx) ClickResponse(reply *params.ApproveTxResponse, response chan bool) {
 	go func() {
 		done := false
 		for !done {
 			if t.answer != 0 {
 				done = true
-				r := params.ApproveTxResponse{}
 				if t.answer == 1 {
-					r.Approved = false
-					res <- r
+					reply.Approved = false
+					reply.Transaction = t.formData
+					response <- true
 				} else if t.answer == 2 {
-					r.Transaction = t.formData
-					r.Approved = true
-					r.Password = "asdfasdf"
-					res <- r
+					reply.Transaction = t.formData
+					reply.Approved = true
+					reply.Password = "asdfasdf"
+					response <- true
 				}
 				t.Reset()
 			}
