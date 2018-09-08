@@ -1,9 +1,11 @@
 package ui
 
 import (
+	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/kyokan/clef-ui/internal/params"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quick"
+	"strconv"
 )
 
 type ApproveTxUI struct {
@@ -41,11 +43,16 @@ func (t *ApproveTxCtx) init() {
 }
 
 func (t *ApproveTxCtx) SetTransaction(tx params.Transaction) {
+	value, _ := hexutil.DecodeBig(tx.Value)
+	gas, _ := hexutil.DecodeBig(tx.Gas)
+	gasPrice, _ := hexutil.DecodeBig(tx.GasPrice)
+	nonce, _ := hexutil.DecodeBig(tx.Nonce)
+
 	t.SetData(tx.Data)
-	t.SetNonce(tx.Nonce)
-	t.SetValue(tx.Value)
-	t.SetGas(tx.Gas)
-	t.SetGasPrice(tx.GasPrice)
+	t.SetNonce(nonce.String())
+	t.SetValue(value.String())
+	t.SetGas(gas.String())
+	t.SetGasPrice(gasPrice.String())
 	t.SetFrom(tx.From)
 	t.SetTo(tx.To)
 }
@@ -97,12 +104,16 @@ func (t *ApproveTxCtx) ClickResponse(reply *params.ApproveTxResponse, response c
 		for !done {
 			if t.answer != 0 {
 				done = true
+				gas, _ := strconv.ParseUint(t.Gas(), 10, 64)
+				gasPrice, _ := strconv.ParseUint(t.GasPrice(), 10, 64)
+				v, _ := strconv.ParseUint(t.Value(), 10, 64)
+				nonce, _ := strconv.ParseUint(t.Nonce(), 10, 64)
 				reply.Transaction = params.Transaction{
 					Data: t.Data(),
-					Nonce: t.Nonce(),
-					Value: t.Value(),
-					Gas: t.Gas(),
-					GasPrice: t.GasPrice(),
+					Nonce: hexutil.EncodeUint64(nonce),
+					Value: hexutil.EncodeUint64(v),
+					Gas: hexutil.EncodeUint64(gas),
+					GasPrice: hexutil.EncodeUint64(gasPrice),
 					From: t.From(),
 					To: t.To(),
 				}
