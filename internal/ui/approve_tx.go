@@ -2,6 +2,7 @@ package ui
 
 import (
 	"github.com/ethereum/go-ethereum/common/hexutil"
+	"github.com/kyokan/clef-ui/internal/identicon"
 	"github.com/kyokan/clef-ui/internal/params"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quick"
@@ -29,6 +30,8 @@ type ApproveTxCtx struct {
 	_ string `property:"nonce"`
 	_ string `property:"value"`
 	_ string `property:"password"`
+	_ string `property:"fromSrc"`
+	_ string `property:"toSrc"`
 
 	_ func(b int) `signal:"clicked,auto"`
 	_ func() `signal:"back,auto"`
@@ -54,6 +57,8 @@ func (t *ApproveTxCtx) SetTransaction(tx params.Transaction) {
 	gasPrice, _ := hexutil.DecodeBig(tx.GasPrice)
 	nonce, _ := hexutil.DecodeBig(tx.Nonce)
 
+	t.SetFromSrc(identicon.ToBase64Img(tx.From))
+	t.SetToSrc(identicon.ToBase64Img(tx.To))
 	t.SetData(tx.Data)
 	t.SetNonce(nonce.String())
 	t.SetValue(value.String())

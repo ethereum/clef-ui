@@ -2,6 +2,22 @@
 
 
 [[projects]]
+  digest = "1:2915e1464ca9a9480ed2fb94d6939cdf418525b03b24bfb256486990abd8155a"
+  name = "github.com/dchest/siphash"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "ca249f45189071f5d44dc6401334e3572037b9cb"
+  version = "v1.2.0"
+
+[[projects]]
+  digest = "1:a64bb09fa7a8be2c9a9e3733908d97c1b34573a727d9068568850e1ced9319e9"
+  name = "github.com/ethereum/go-ethereum"
+  packages = ["common/hexutil"]
+  pruneopts = "UT"
+  revision = "89451f7c382ad2185987ee369f16416f89c28a7d"
+  version = "v1.8.15"
+
+[[projects]]
   branch = "master"
   digest = "1:f14d1b50e0075fb00177f12a96dd7addf93d1e2883c25befd17285b779549795"
   name = "github.com/gopherjs/gopherjs"
@@ -38,7 +54,10 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
+    "github.com/dchest/siphash",
+    "github.com/ethereum/go-ethereum/common/hexutil",
     "github.com/powerman/rpc-codec/jsonrpc2",
+    "github.com/therecipe/qt",
     "github.com/therecipe/qt/core",
     "github.com/therecipe/qt/quick",
     "github.com/therecipe/qt/quickcontrols2",
