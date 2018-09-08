@@ -26,6 +26,7 @@ type ApproveTxCtx struct {
 	_ string `property:"gasPrice"`
 	_ string `property:"nonce"`
 	_ string `property:"value"`
+	_ string `property:"password"`
 
 	_ func(b int) `signal:"clicked,auto"`
 	_ func(s string, v string) `signal:"edited,auto"`
@@ -65,6 +66,7 @@ func (t *ApproveTxCtx) Reset() {
 	t.SetGasPrice("")
 	t.SetFrom("")
 	t.SetTo("")
+	t.SetPassword("")
 	t.ClefUI.BackToMain <- true
 }
 
@@ -84,6 +86,8 @@ func (t *ApproveTxCtx) edited(name string, value string) {
 		t.SetGasPrice(value)
 	case "value":
 		t.SetValue(value)
+	case "password":
+		t.SetPassword(value)
 	}
 }
 
@@ -108,7 +112,8 @@ func (t *ApproveTxCtx) ClickResponse(reply *params.ApproveTxResponse, response c
 					response <- true
 				} else if t.answer == 2 {
 					reply.Approved = true
-					reply.Password = "asdfasdf"
+					value := t.Password()
+					reply.Password = value
 					response <- true
 				}
 

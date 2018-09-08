@@ -273,7 +273,7 @@ Item {
                 y: 10
                 height: 36
                 width: 150
-                onClicked: ctxObject.clicked(2)
+                onClicked: pwInput.state = "show"
                 contentItem: Text {
                     x: 1
                     y: 1
@@ -575,5 +575,172 @@ Item {
         }
 
 
+    }
+
+    Rectangle {
+        id: pwInput
+        x: 0
+        y: 0
+        width: 400
+        height: 680
+        color: "#00000000"
+        opacity: 0.5
+        visible: false
+
+        states: [
+            State {
+                name: "show"
+                PropertyChanges { target: pwInput; opacity: 1; visible: true}
+            },
+            State {
+                name: "hide"
+                PropertyChanges { target: pwInput; opacity: 0.5; visible: false}
+            }
+        ]
+
+        transitions: Transition {
+            NumberAnimation {
+                duration: 150
+                properties: "opacity"
+            }
+        }
+
+
+        Rectangle {
+            id: pwInputBg
+            x: 0
+            y: 0
+            width: 400
+            height: 680
+            color: "#000000"
+            opacity: 0.8
+        }
+
+
+
+        Rectangle {
+            id: rectangle17
+            x: 33
+            y: 215
+            width: 334
+            height: 250
+            color: "#ffffff"
+            radius: 6
+
+            Text {
+                id: text3
+                x: 105
+                y: 89
+                color: "#646464"
+                text: qsTr("Enter Password")
+                font.family: "Verdana"
+                font.capitalization: Font.AllUppercase
+            }
+
+            Rectangle {
+                id: rectangle23
+                x: 31
+                y: 111
+                width: 274
+                height: 29
+                color: "#efefef"
+                radius: 2
+
+                TextInput {
+                    id: textInput6
+                    x: 0
+                    y: 8
+                    width: 274
+                    height: 16
+                    color: "#000000"
+                    text: ctxObject.password
+                    horizontalAlignment: Text.AlignHCenter
+                    echoMode: TextInput.Password
+                    font.pixelSize: 16
+                    onTextChanged: ctxObject.edited("password", text)
+                }
+            }
+
+            Button {
+                id: button1
+                x: 185
+                y: 184
+                width: 100
+                height: 36
+                function onClick() {
+                    ctxObject.clicked(2)
+                    pwInput.state = "hide"
+                }
+
+                background: Rectangle {
+                    x: 0
+                    y: 0
+                    width: parent.width
+                    height: parent.height
+                    color: "#b4b4b4"
+                    radius: 18
+
+                    MouseArea {
+                        x: 0
+                        y: 0
+                        width: parent.width
+                        height: parent.height
+                        cursorShape: Qt.PointingHandCursor
+                        onClicked: button1.onClick()
+                    }
+                }
+
+                contentItem: Text {
+                    color: "#ffffff"
+                    text: "Confirm"
+                    font.capitalization: Font.AllUppercase
+                    font.bold: true
+                    font.family: "Verdana"
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                }
+            }
+
+            Button {
+                id: button2
+                x: 50
+                y: 184
+                width: 100
+                height: 36
+
+                function onClick() {
+                    pwInput.state = "hide"
+                    ctxObject.edited("password", "")
+                }
+
+                contentItem: Text {
+                    color: "#b4b4b4"
+                    text: "Cancel"
+                    font.family: "Verdana"
+                    font.bold: true
+                    horizontalAlignment: Text.AlignHCenter
+                    font.capitalization: Font.AllUppercase
+                    verticalAlignment: Text.AlignVCenter
+                }
+                background: Rectangle {
+                    x: 0
+                    y: 0
+                    width: parent.width
+                    height: parent.height
+                    color: "#ffffff"
+                    radius: 18
+                    border.color: "#b4b4b4"
+                    border.width: 2
+                    MouseArea {
+                        x: 0
+                        y: 0
+                        width: parent.width
+                        height: parent.height
+                        onClicked: button2.onClick()
+                        cursorShape: Qt.PointingHandCursor
+                    }
+                }
+            }
+        }
     }
 }

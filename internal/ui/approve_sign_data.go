@@ -21,8 +21,10 @@ type ApproveSignDataCtx struct {
 	_ string `property:"message"`
 	_ string `property:"rawData"`
 	_ string `property:"hash"`
+	_ string `property:"password"`
 
 	_ func(b int) `signal:"clicked,auto"`
+	_ func(b string, value string) `signal:"edited,auto"`
 
 	answer 		int
 	ClefUI 		*ClefUI
@@ -30,6 +32,13 @@ type ApproveSignDataCtx struct {
 
 func (t *ApproveSignDataCtx) clicked(b int) {
 	t.answer = b
+}
+
+func (t *ApproveSignDataCtx) edited(name string, value string) {
+	switch name {
+	case "password":
+		t.SetPassword(value)
+	}
 }
 
 func (t *ApproveSignDataCtx) Reset() {
@@ -41,6 +50,7 @@ func (t *ApproveSignDataCtx) Reset() {
 	t.SetMessage("")
 	t.SetRawData("")
 	t.SetHash("")
+	t.SetPassword("")
 	t.ClefUI.BackToMain <- true
 }
 
@@ -54,7 +64,8 @@ func (t *ApproveSignDataCtx) ClickResponse(reply *params.ApproveSignDataResponse
 					reply.Approved = false
 				} else if t.answer == 2 {
 					reply.Approved = true
-					reply.Password = "asdfasdf"
+					value := t.Password()
+					reply.Password = value
 				}
 				res <- true
 				t.Reset()

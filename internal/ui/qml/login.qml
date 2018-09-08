@@ -6,6 +6,18 @@ Item {
     width: 400
     height: 680
 
+    Popup {
+        id: popup
+        x: 100
+        y: 100
+        width: 200
+        height: 300
+        modal: true
+        focus: true
+        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
+
+    }
+
     Rectangle {
         id: rectangle
         x: 0
@@ -77,10 +89,10 @@ Item {
                 ]
 
                 transitions: Transition {
-                   NumberAnimation {
-                       duration: 200
-                       properties: "opacity"
-                   }
+                    NumberAnimation {
+                        duration: 200
+                        properties: "opacity"
+                    }
                 }
 
                 contentItem: Text {
@@ -238,4 +250,10 @@ Item {
 
 
     }
+
 }
+
+/*##^## Designer {
+    D{i:1;invisible:true}
+}
+ ##^##*/

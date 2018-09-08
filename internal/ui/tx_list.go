@@ -110,23 +110,17 @@ func (m *TxListModel) remove(id int) {
 		return
 	}
 
-	//m.BeginRemoveRows(core.NewQModelIndex(), len(m.modelData), len(m.modelData))
-
 	oldTxList := m.modelData
 
 	m.Clear()
 
 	for _, tx := range oldTxList {
-		log.Printf("Current ID: %v || Remove ID: %v", tx.ID, id)
 		if tx.ID != id {
 			m.Add(tx)
 		}
 	}
 
-	//m.modelData = newTxList
 	log.Println(len(m.modelData))
-
-	//m.EndRemoveRows()
 }
 
 type TxListCtx struct {
