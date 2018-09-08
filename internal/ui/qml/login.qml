@@ -73,8 +73,9 @@ Item {
                     hoverEnabled: true
                     cursorShape: Qt.PointingHandCursor
                     onClicked: ctxObject.clicked()
+                    onHoveredChanged: cta.state = containsMouse ? "hover" : "normal"
                     onPressed: cta.state = "active"
-                    onReleased: cta.state = ""
+                    onReleased: cta.state = "normal"
                 }
 
                 states: [
@@ -91,8 +92,12 @@ Item {
                         PropertyChanges { target: ctabg; opacity: 1 }
                     },
                     State {
-                        name: "inactive"
+                        name: "hover"
                         PropertyChanges { target: ctabg; opacity: 0.8 }
+                    },
+                    State {
+                        name: "normal"
+                        PropertyChanges { target: ctabg; opacity: 0.9 }
                     }
                 ]
 
@@ -126,7 +131,7 @@ Item {
                     width: parent.width
                     height: parent.height
                     color: "#48b877"
-                    opacity: ctama.containsMouse ? 0.6 : 0.8
+                    opacity: 0.9
                     radius: 18
                     border.width: 0
                     PropertyAnimation on opacity {

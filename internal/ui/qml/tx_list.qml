@@ -87,9 +87,49 @@ Item {
                     y: 0
                     width: 384
                     height: 86
-                    color: itemma.containsMouse ? "#f9f9f9" : "#ffffff"
-                    border.color: itemma.containsMouse ? "#dedede" : "#efefef"
-                    border.width: itemma.containsMouse ? 2 : 1
+                    color: "#ffffff"
+                    border.color: "#efefef"
+                    border.width: 1
+
+                    states: [
+                        State {
+                            name: "hover"
+                            PropertyChanges {
+                                target: rectangle2
+                                color: "#f9f9f9"
+                                border.color: "#dedede"
+                                border.width: 2
+                            }
+                        },
+                        State {
+                            name: "active"
+                            PropertyChanges {
+                                target: rectangle2
+                                color: "#f9f9f9"
+                                border.color: "#c9c9c9"
+                                border.width: 2
+                            }
+                        },
+                        State {
+                            name: "normal"
+                            PropertyChanges {
+                                target: rectangle2
+                                color: "#ffffff"
+                                border.color: "#efefef"
+                                border.width: 1
+                            }
+                        }
+                    ]
+
+                    transitions: [
+                        Transition {
+                            PropertyAnimation {
+                                properties:"color,border.color,corder.width"
+                                duration: 200
+                                easing: Easing.OutElastic
+                            }
+                        }
+                    ]
 
                     MouseArea {
                         id: itemma
@@ -100,6 +140,9 @@ Item {
                         hoverEnabled: true
                         cursorShape: Qt.PointingHandCursor
                         onClicked: ctxObject.clicked(index)
+                        onHoveredChanged: containsMouse ? rectangle2.state = "hover" : rectangle2.state = "normal"
+                        onPressed: rectangle2.state = "active"
+                        onReleased: containsMouse ? rectangle2.state = "hover" : rectangle2.state = "normal"
                     }
 
                     Image {
