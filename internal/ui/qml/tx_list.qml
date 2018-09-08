@@ -87,14 +87,18 @@ Item {
                     y: 0
                     width: 384
                     height: 86
-                    color: "#ffffff"
-                    border.color: "#efefef"
+                    color: itemma.containsMouse ? "#f9f9f9" : "#ffffff"
+                    border.color: itemma.containsMouse ? "#dedede" : "#efefef"
+                    border.width: itemma.containsMouse ? 2 : 1
 
                     MouseArea {
+                        id: itemma
                         x: 0
                         y: 0
                         width: parent.width
                         height: parent.height
+                        hoverEnabled: true
+                        cursorShape: Qt.PointingHandCursor
                         onClicked: ctxObject.clicked(index)
                     }
 
