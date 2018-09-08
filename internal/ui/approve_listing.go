@@ -17,6 +17,7 @@ type ApproveListingCtx struct {
 
 	_ func() 										`constructor:"init"`
 	_ func(b int) 									`signal:"clicked,auto"`
+	_ func() 										`signal:"back,auto"`
 	_ func(i int, checked bool) 					`signal:"onCheckStateChanged,auto"`
 
 	_ string `property:"remote"`
@@ -34,6 +35,11 @@ type ApproveListingCtx struct {
 
 func (ctx *ApproveListingCtx) init() {
 	ctx.accounts = NewCustomListModel(nil	)
+}
+
+
+func (t *ApproveListingCtx) back() {
+	t.ClefUI.BackToMain <- true
 }
 
 func (ctx *ApproveListingCtx) Reset() {

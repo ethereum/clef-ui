@@ -24,6 +24,7 @@ type ApproveImportCtx struct {
 	_ string `property:"confirmPassword"`
 
 	_ func(b int) `signal:"clicked,auto"`
+	_ func() `signal:"back,auto"`
 	_ func(b string) `signal:"passwordEdited,auto"`
 	_ func(b string) `signal:"confirmPasswordEdited,auto"`
 	_ func(b string) `signal:"oldPasswordEdited,auto"`
@@ -33,6 +34,10 @@ type ApproveImportCtx struct {
 
 func (t *ApproveImportCtx) clicked(b int) {
 	t.answer = b
+}
+
+func (t *ApproveImportCtx) back() {
+	t.ClefUI.BackToMain <- true
 }
 
 func (t *ApproveImportCtx) Reset() {

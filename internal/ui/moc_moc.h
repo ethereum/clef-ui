@@ -19,308 +19,352 @@
 QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
-struct qt_meta_stringdata_TxListCtx721036_t {
-    QByteArrayData data[4];
-    char stringdata0[27];
+struct qt_meta_stringdata_ApproveExportCtx721036_t {
+    QByteArrayData data[16];
+    char stringdata0[175];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_TxListCtx721036_t, stringdata0) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_ApproveExportCtx721036_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
-static const qt_meta_stringdata_TxListCtx721036_t qt_meta_stringdata_TxListCtx721036 = {
+static const qt_meta_stringdata_ApproveExportCtx721036_t qt_meta_stringdata_ApproveExportCtx721036 = {
     {
-QT_MOC_LITERAL(0, 0, 15), // "TxListCtx721036"
-QT_MOC_LITERAL(1, 16, 7), // "clicked"
-QT_MOC_LITERAL(2, 24, 0), // ""
-QT_MOC_LITERAL(3, 25, 1) // "b"
+QT_MOC_LITERAL(0, 0, 22), // "ApproveExportCtx721036"
+QT_MOC_LITERAL(1, 23, 7), // "clicked"
+QT_MOC_LITERAL(2, 31, 0), // ""
+QT_MOC_LITERAL(3, 32, 1), // "b"
+QT_MOC_LITERAL(4, 34, 4), // "back"
+QT_MOC_LITERAL(5, 39, 14), // "passwordEdited"
+QT_MOC_LITERAL(6, 54, 13), // "remoteChanged"
+QT_MOC_LITERAL(7, 68, 6), // "remote"
+QT_MOC_LITERAL(8, 75, 16), // "transportChanged"
+QT_MOC_LITERAL(9, 92, 9), // "transport"
+QT_MOC_LITERAL(10, 102, 15), // "endpointChanged"
+QT_MOC_LITERAL(11, 118, 8), // "endpoint"
+QT_MOC_LITERAL(12, 127, 14), // "addressChanged"
+QT_MOC_LITERAL(13, 142, 7), // "address"
+QT_MOC_LITERAL(14, 150, 15), // "passwordChanged"
+QT_MOC_LITERAL(15, 166, 8) // "password"
 
     },
-    "TxListCtx721036\0clicked\0\0b"
+    "ApproveExportCtx721036\0clicked\0\0b\0"
+    "back\0passwordEdited\0remoteChanged\0"
+    "remote\0transportChanged\0transport\0"
+    "endpointChanged\0endpoint\0addressChanged\0"
+    "address\0passwordChanged\0password"
 };
 #undef QT_MOC_LITERAL
 
-static const uint qt_meta_data_TxListCtx721036[] = {
+static const uint qt_meta_data_ApproveExportCtx721036[] = {
 
  // content:
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       1,   14, // methods
-       0,    0, // properties
+       8,   14, // methods
+       5,   76, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       1,       // signalCount
+       8,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   19,    2, 0x06 /* Public */,
+       1,    1,   54,    2, 0x06 /* Public */,
+       4,    0,   57,    2, 0x06 /* Public */,
+       5,    1,   58,    2, 0x06 /* Public */,
+       6,    1,   61,    2, 0x06 /* Public */,
+       8,    1,   64,    2, 0x06 /* Public */,
+      10,    1,   67,    2, 0x06 /* Public */,
+      12,    1,   70,    2, 0x06 /* Public */,
+      14,    1,   73,    2, 0x06 /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Int,    3,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,    3,
+    QMetaType::Void, QMetaType::QString,    7,
+    QMetaType::Void, QMetaType::QString,    9,
+    QMetaType::Void, QMetaType::QString,   11,
+    QMetaType::Void, QMetaType::QString,   13,
+    QMetaType::Void, QMetaType::QString,   15,
+
+ // properties: name, type, flags
+       7, QMetaType::QString, 0x00495103,
+       9, QMetaType::QString, 0x00495103,
+      11, QMetaType::QString, 0x00495103,
+      13, QMetaType::QString, 0x00495103,
+      15, QMetaType::QString, 0x00495103,
+
+ // properties: notify_signal_id
+       3,
+       4,
+       5,
+       6,
+       7,
 
        0        // eod
 };
 
-void TxListCtx721036::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void ApproveExportCtx721036::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        TxListCtx721036 *_t = static_cast<TxListCtx721036 *>(_o);
+        ApproveExportCtx721036 *_t = static_cast<ApproveExportCtx721036 *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->clicked((*reinterpret_cast< qint32(*)>(_a[1]))); break;
+        case 1: _t->back(); break;
+        case 2: _t->passwordEdited((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 3: _t->remoteChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 4: _t->transportChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 5: _t->endpointChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 6: _t->addressChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 7: _t->passwordChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (TxListCtx721036::*)(qint32 );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&TxListCtx721036::clicked)) {
-                *result = 0;
-                return;
-            }
-        }
-    }
-}
-
-QT_INIT_METAOBJECT const QMetaObject TxListCtx721036::staticMetaObject = {
-    { &QObject::staticMetaObject, qt_meta_stringdata_TxListCtx721036.data,
-      qt_meta_data_TxListCtx721036,  qt_static_metacall, nullptr, nullptr}
-};
-
-
-const QMetaObject *TxListCtx721036::metaObject() const
-{
-    return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
-}
-
-void *TxListCtx721036::qt_metacast(const char *_clname)
-{
-    if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_TxListCtx721036.stringdata0))
-        return static_cast<void*>(this);
-    return QObject::qt_metacast(_clname);
-}
-
-int TxListCtx721036::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
-{
-    _id = QObject::qt_metacall(_c, _id, _a);
-    if (_id < 0)
-        return _id;
-    if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 1)
-            qt_static_metacall(this, _c, _id, _a);
-        _id -= 1;
-    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 1)
-            *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 1;
-    }
-    return _id;
-}
-
-// SIGNAL 0
-void TxListCtx721036::clicked(qint32 _t1)
-{
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
-    QMetaObject::activate(this, &staticMetaObject, 0, _a);
-}
-struct qt_meta_stringdata_TxListModel721036_t {
-    QByteArrayData data[8];
-    char stringdata0[50];
-};
-#define QT_MOC_LITERAL(idx, ofs, len) \
-    Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_TxListModel721036_t, stringdata0) + ofs \
-        - idx * sizeof(QByteArrayData)) \
-    )
-static const qt_meta_stringdata_TxListModel721036_t qt_meta_stringdata_TxListModel721036 = {
-    {
-QT_MOC_LITERAL(0, 0, 17), // "TxListModel721036"
-QT_MOC_LITERAL(1, 18, 5), // "clear"
-QT_MOC_LITERAL(2, 24, 0), // ""
-QT_MOC_LITERAL(3, 25, 3), // "add"
-QT_MOC_LITERAL(4, 29, 8), // "quintptr"
-QT_MOC_LITERAL(5, 38, 2), // "tx"
-QT_MOC_LITERAL(6, 41, 6), // "remove"
-QT_MOC_LITERAL(7, 48, 1) // "i"
-
-    },
-    "TxListModel721036\0clear\0\0add\0quintptr\0"
-    "tx\0remove\0i"
-};
-#undef QT_MOC_LITERAL
-
-static const uint qt_meta_data_TxListModel721036[] = {
-
- // content:
-       7,       // revision
-       0,       // classname
-       0,    0, // classinfo
-       3,   14, // methods
-       0,    0, // properties
-       0,    0, // enums/sets
-       0,    0, // constructors
-       0,       // flags
-       3,       // signalCount
-
- // signals: name, argc, parameters, tag, flags
-       1,    0,   29,    2, 0x06 /* Public */,
-       3,    1,   30,    2, 0x06 /* Public */,
-       6,    1,   33,    2, 0x06 /* Public */,
-
- // signals: parameters
-    QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 4,    5,
-    QMetaType::Void, QMetaType::Int,    7,
-
-       0        // eod
-};
-
-void TxListModel721036::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
-{
-    if (_c == QMetaObject::InvokeMetaMethod) {
-        TxListModel721036 *_t = static_cast<TxListModel721036 *>(_o);
-        Q_UNUSED(_t)
-        switch (_id) {
-        case 0: _t->clear(); break;
-        case 1: _t->add((*reinterpret_cast< quintptr(*)>(_a[1]))); break;
-        case 2: _t->remove((*reinterpret_cast< qint32(*)>(_a[1]))); break;
-        default: ;
-        }
-    } else if (_c == QMetaObject::IndexOfMethod) {
-        int *result = reinterpret_cast<int *>(_a[0]);
-        {
-            using _t = void (TxListModel721036::*)();
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&TxListModel721036::clear)) {
+            using _t = void (ApproveExportCtx721036::*)(qint32 );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveExportCtx721036::clicked)) {
                 *result = 0;
                 return;
             }
         }
         {
-            using _t = void (TxListModel721036::*)(quintptr );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&TxListModel721036::add)) {
+            using _t = void (ApproveExportCtx721036::*)();
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveExportCtx721036::back)) {
                 *result = 1;
                 return;
             }
         }
         {
-            using _t = void (TxListModel721036::*)(qint32 );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&TxListModel721036::remove)) {
+            using _t = void (ApproveExportCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveExportCtx721036::passwordEdited)) {
                 *result = 2;
                 return;
             }
         }
+        {
+            using _t = void (ApproveExportCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveExportCtx721036::remoteChanged)) {
+                *result = 3;
+                return;
+            }
+        }
+        {
+            using _t = void (ApproveExportCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveExportCtx721036::transportChanged)) {
+                *result = 4;
+                return;
+            }
+        }
+        {
+            using _t = void (ApproveExportCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveExportCtx721036::endpointChanged)) {
+                *result = 5;
+                return;
+            }
+        }
+        {
+            using _t = void (ApproveExportCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveExportCtx721036::addressChanged)) {
+                *result = 6;
+                return;
+            }
+        }
+        {
+            using _t = void (ApproveExportCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveExportCtx721036::passwordChanged)) {
+                *result = 7;
+                return;
+            }
+        }
     }
+#ifndef QT_NO_PROPERTIES
+    else if (_c == QMetaObject::ReadProperty) {
+        ApproveExportCtx721036 *_t = static_cast<ApproveExportCtx721036 *>(_o);
+        Q_UNUSED(_t)
+        void *_v = _a[0];
+        switch (_id) {
+        case 0: *reinterpret_cast< QString*>(_v) = _t->remote(); break;
+        case 1: *reinterpret_cast< QString*>(_v) = _t->transport(); break;
+        case 2: *reinterpret_cast< QString*>(_v) = _t->endpoint(); break;
+        case 3: *reinterpret_cast< QString*>(_v) = _t->address(); break;
+        case 4: *reinterpret_cast< QString*>(_v) = _t->password(); break;
+        default: break;
+        }
+    } else if (_c == QMetaObject::WriteProperty) {
+        ApproveExportCtx721036 *_t = static_cast<ApproveExportCtx721036 *>(_o);
+        Q_UNUSED(_t)
+        void *_v = _a[0];
+        switch (_id) {
+        case 0: _t->setRemote(*reinterpret_cast< QString*>(_v)); break;
+        case 1: _t->setTransport(*reinterpret_cast< QString*>(_v)); break;
+        case 2: _t->setEndpoint(*reinterpret_cast< QString*>(_v)); break;
+        case 3: _t->setAddress(*reinterpret_cast< QString*>(_v)); break;
+        case 4: _t->setPassword(*reinterpret_cast< QString*>(_v)); break;
+        default: break;
+        }
+    } else if (_c == QMetaObject::ResetProperty) {
+    }
+#endif // QT_NO_PROPERTIES
 }
 
-QT_INIT_METAOBJECT const QMetaObject TxListModel721036::staticMetaObject = {
-    { &QAbstractListModel::staticMetaObject, qt_meta_stringdata_TxListModel721036.data,
-      qt_meta_data_TxListModel721036,  qt_static_metacall, nullptr, nullptr}
+QT_INIT_METAOBJECT const QMetaObject ApproveExportCtx721036::staticMetaObject = {
+    { &QObject::staticMetaObject, qt_meta_stringdata_ApproveExportCtx721036.data,
+      qt_meta_data_ApproveExportCtx721036,  qt_static_metacall, nullptr, nullptr}
 };
 
 
-const QMetaObject *TxListModel721036::metaObject() const
+const QMetaObject *ApproveExportCtx721036::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *TxListModel721036::qt_metacast(const char *_clname)
+void *ApproveExportCtx721036::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_TxListModel721036.stringdata0))
+    if (!strcmp(_clname, qt_meta_stringdata_ApproveExportCtx721036.stringdata0))
         return static_cast<void*>(this);
-    return QAbstractListModel::qt_metacast(_clname);
+    return QObject::qt_metacast(_clname);
 }
 
-int TxListModel721036::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int ApproveExportCtx721036::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = QAbstractListModel::qt_metacall(_c, _id, _a);
+    _id = QObject::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 8;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 3)
+        if (_id < 8)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 3;
+        _id -= 8;
     }
+#ifndef QT_NO_PROPERTIES
+   else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
+            || _c == QMetaObject::ResetProperty || _c == QMetaObject::RegisterPropertyMetaType) {
+        qt_static_metacall(this, _c, _id, _a);
+        _id -= 5;
+    } else if (_c == QMetaObject::QueryPropertyDesignable) {
+        _id -= 5;
+    } else if (_c == QMetaObject::QueryPropertyScriptable) {
+        _id -= 5;
+    } else if (_c == QMetaObject::QueryPropertyStored) {
+        _id -= 5;
+    } else if (_c == QMetaObject::QueryPropertyEditable) {
+        _id -= 5;
+    } else if (_c == QMetaObject::QueryPropertyUser) {
+        _id -= 5;
+    }
+#endif // QT_NO_PROPERTIES
     return _id;
 }
 
 // SIGNAL 0
-void TxListModel721036::clear()
+void ApproveExportCtx721036::clicked(qint32 _t1)
 {
-    QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 
 // SIGNAL 1
-void TxListModel721036::add(quintptr _t1)
+void ApproveExportCtx721036::back()
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
-    QMetaObject::activate(this, &staticMetaObject, 1, _a);
+    QMetaObject::activate(this, &staticMetaObject, 1, nullptr);
 }
 
 // SIGNAL 2
-void TxListModel721036::remove(qint32 _t1)
+void ApproveExportCtx721036::passwordEdited(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
-struct qt_meta_stringdata_ApproveListingCtx721036_t {
-    QByteArrayData data[21];
-    char stringdata0[218];
+
+// SIGNAL 3
+void ApproveExportCtx721036::remoteChanged(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 3, _a);
+}
+
+// SIGNAL 4
+void ApproveExportCtx721036::transportChanged(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 4, _a);
+}
+
+// SIGNAL 5
+void ApproveExportCtx721036::endpointChanged(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 5, _a);
+}
+
+// SIGNAL 6
+void ApproveExportCtx721036::addressChanged(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 6, _a);
+}
+
+// SIGNAL 7
+void ApproveExportCtx721036::passwordChanged(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 7, _a);
+}
+struct qt_meta_stringdata_ApproveNewAccountCtx721036_t {
+    QByteArrayData data[17];
+    char stringdata0[217];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_ApproveListingCtx721036_t, stringdata0) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_ApproveNewAccountCtx721036_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
-static const qt_meta_stringdata_ApproveListingCtx721036_t qt_meta_stringdata_ApproveListingCtx721036 = {
+static const qt_meta_stringdata_ApproveNewAccountCtx721036_t qt_meta_stringdata_ApproveNewAccountCtx721036 = {
     {
-QT_MOC_LITERAL(0, 0, 23), // "ApproveListingCtx721036"
-QT_MOC_LITERAL(1, 24, 7), // "clicked"
-QT_MOC_LITERAL(2, 32, 0), // ""
-QT_MOC_LITERAL(3, 33, 1), // "b"
-QT_MOC_LITERAL(4, 35, 19), // "onCheckStateChanged"
-QT_MOC_LITERAL(5, 55, 1), // "i"
-QT_MOC_LITERAL(6, 57, 7), // "checked"
-QT_MOC_LITERAL(7, 65, 13), // "remoteChanged"
-QT_MOC_LITERAL(8, 79, 6), // "remote"
-QT_MOC_LITERAL(9, 86, 16), // "transportChanged"
-QT_MOC_LITERAL(10, 103, 9), // "transport"
-QT_MOC_LITERAL(11, 113, 15), // "endpointChanged"
-QT_MOC_LITERAL(12, 129, 8), // "endpoint"
-QT_MOC_LITERAL(13, 138, 11), // "fromChanged"
-QT_MOC_LITERAL(14, 150, 4), // "from"
-QT_MOC_LITERAL(15, 155, 14), // "messageChanged"
-QT_MOC_LITERAL(16, 170, 7), // "message"
-QT_MOC_LITERAL(17, 178, 14), // "rawDataChanged"
-QT_MOC_LITERAL(18, 193, 7), // "rawData"
-QT_MOC_LITERAL(19, 201, 11), // "hashChanged"
-QT_MOC_LITERAL(20, 213, 4) // "hash"
+QT_MOC_LITERAL(0, 0, 26), // "ApproveNewAccountCtx721036"
+QT_MOC_LITERAL(1, 27, 7), // "clicked"
+QT_MOC_LITERAL(2, 35, 0), // ""
+QT_MOC_LITERAL(3, 36, 1), // "b"
+QT_MOC_LITERAL(4, 38, 4), // "back"
+QT_MOC_LITERAL(5, 43, 14), // "passwordEdited"
+QT_MOC_LITERAL(6, 58, 21), // "confirmPasswordEdited"
+QT_MOC_LITERAL(7, 80, 13), // "remoteChanged"
+QT_MOC_LITERAL(8, 94, 6), // "remote"
+QT_MOC_LITERAL(9, 101, 16), // "transportChanged"
+QT_MOC_LITERAL(10, 118, 9), // "transport"
+QT_MOC_LITERAL(11, 128, 15), // "endpointChanged"
+QT_MOC_LITERAL(12, 144, 8), // "endpoint"
+QT_MOC_LITERAL(13, 153, 15), // "passwordChanged"
+QT_MOC_LITERAL(14, 169, 8), // "password"
+QT_MOC_LITERAL(15, 178, 22), // "confirmPasswordChanged"
+QT_MOC_LITERAL(16, 201, 15) // "confirmPassword"
 
     },
-    "ApproveListingCtx721036\0clicked\0\0b\0"
-    "onCheckStateChanged\0i\0checked\0"
+    "ApproveNewAccountCtx721036\0clicked\0\0"
+    "b\0back\0passwordEdited\0confirmPasswordEdited\0"
     "remoteChanged\0remote\0transportChanged\0"
     "transport\0endpointChanged\0endpoint\0"
-    "fromChanged\0from\0messageChanged\0message\0"
-    "rawDataChanged\0rawData\0hashChanged\0"
-    "hash"
+    "passwordChanged\0password\0"
+    "confirmPasswordChanged\0confirmPassword"
 };
 #undef QT_MOC_LITERAL
 
-static const uint qt_meta_data_ApproveListingCtx721036[] = {
+static const uint qt_meta_data_ApproveNewAccountCtx721036[] = {
 
  // content:
        7,       // revision
        0,       // classname
        0,    0, // classinfo
        9,   14, // methods
-       7,   88, // properties
+       5,   84, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
@@ -328,25 +372,25 @@ static const uint qt_meta_data_ApproveListingCtx721036[] = {
 
  // signals: name, argc, parameters, tag, flags
        1,    1,   59,    2, 0x06 /* Public */,
-       4,    2,   62,    2, 0x06 /* Public */,
-       7,    1,   67,    2, 0x06 /* Public */,
-       9,    1,   70,    2, 0x06 /* Public */,
-      11,    1,   73,    2, 0x06 /* Public */,
-      13,    1,   76,    2, 0x06 /* Public */,
-      15,    1,   79,    2, 0x06 /* Public */,
-      17,    1,   82,    2, 0x06 /* Public */,
-      19,    1,   85,    2, 0x06 /* Public */,
+       4,    0,   62,    2, 0x06 /* Public */,
+       5,    1,   63,    2, 0x06 /* Public */,
+       6,    1,   66,    2, 0x06 /* Public */,
+       7,    1,   69,    2, 0x06 /* Public */,
+       9,    1,   72,    2, 0x06 /* Public */,
+      11,    1,   75,    2, 0x06 /* Public */,
+      13,    1,   78,    2, 0x06 /* Public */,
+      15,    1,   81,    2, 0x06 /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Int,    3,
-    QMetaType::Void, QMetaType::Int, QMetaType::Bool,    5,    6,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,    3,
+    QMetaType::Void, QMetaType::QString,    3,
     QMetaType::Void, QMetaType::QString,    8,
     QMetaType::Void, QMetaType::QString,   10,
     QMetaType::Void, QMetaType::QString,   12,
     QMetaType::Void, QMetaType::QString,   14,
     QMetaType::Void, QMetaType::QString,   16,
-    QMetaType::Void, QMetaType::QString,   18,
-    QMetaType::Void, QMetaType::QString,   20,
 
  // properties: name, type, flags
        8, QMetaType::QString, 0x00495103,
@@ -354,12 +398,8 @@ static const uint qt_meta_data_ApproveListingCtx721036[] = {
       12, QMetaType::QString, 0x00495103,
       14, QMetaType::QString, 0x00495103,
       16, QMetaType::QString, 0x00495103,
-      18, QMetaType::QString, 0x00495103,
-      20, QMetaType::QString, 0x00495103,
 
  // properties: notify_signal_id
-       2,
-       3,
        4,
        5,
        6,
@@ -369,84 +409,84 @@ static const uint qt_meta_data_ApproveListingCtx721036[] = {
        0        // eod
 };
 
-void ApproveListingCtx721036::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void ApproveNewAccountCtx721036::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        ApproveListingCtx721036 *_t = static_cast<ApproveListingCtx721036 *>(_o);
+        ApproveNewAccountCtx721036 *_t = static_cast<ApproveNewAccountCtx721036 *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->clicked((*reinterpret_cast< qint32(*)>(_a[1]))); break;
-        case 1: _t->onCheckStateChanged((*reinterpret_cast< qint32(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2]))); break;
-        case 2: _t->remoteChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 3: _t->transportChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 4: _t->endpointChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 5: _t->fromChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 6: _t->messageChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 7: _t->rawDataChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 8: _t->hashChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 1: _t->back(); break;
+        case 2: _t->passwordEdited((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 3: _t->confirmPasswordEdited((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 4: _t->remoteChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 5: _t->transportChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 6: _t->endpointChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 7: _t->passwordChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 8: _t->confirmPasswordChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (ApproveListingCtx721036::*)(qint32 );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveListingCtx721036::clicked)) {
+            using _t = void (ApproveNewAccountCtx721036::*)(qint32 );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveNewAccountCtx721036::clicked)) {
                 *result = 0;
                 return;
             }
         }
         {
-            using _t = void (ApproveListingCtx721036::*)(qint32 , bool );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveListingCtx721036::onCheckStateChanged)) {
+            using _t = void (ApproveNewAccountCtx721036::*)();
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveNewAccountCtx721036::back)) {
                 *result = 1;
                 return;
             }
         }
         {
-            using _t = void (ApproveListingCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveListingCtx721036::remoteChanged)) {
+            using _t = void (ApproveNewAccountCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveNewAccountCtx721036::passwordEdited)) {
                 *result = 2;
                 return;
             }
         }
         {
-            using _t = void (ApproveListingCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveListingCtx721036::transportChanged)) {
+            using _t = void (ApproveNewAccountCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveNewAccountCtx721036::confirmPasswordEdited)) {
                 *result = 3;
                 return;
             }
         }
         {
-            using _t = void (ApproveListingCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveListingCtx721036::endpointChanged)) {
+            using _t = void (ApproveNewAccountCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveNewAccountCtx721036::remoteChanged)) {
                 *result = 4;
                 return;
             }
         }
         {
-            using _t = void (ApproveListingCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveListingCtx721036::fromChanged)) {
+            using _t = void (ApproveNewAccountCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveNewAccountCtx721036::transportChanged)) {
                 *result = 5;
                 return;
             }
         }
         {
-            using _t = void (ApproveListingCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveListingCtx721036::messageChanged)) {
+            using _t = void (ApproveNewAccountCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveNewAccountCtx721036::endpointChanged)) {
                 *result = 6;
                 return;
             }
         }
         {
-            using _t = void (ApproveListingCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveListingCtx721036::rawDataChanged)) {
+            using _t = void (ApproveNewAccountCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveNewAccountCtx721036::passwordChanged)) {
                 *result = 7;
                 return;
             }
         }
         {
-            using _t = void (ApproveListingCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveListingCtx721036::hashChanged)) {
+            using _t = void (ApproveNewAccountCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveNewAccountCtx721036::confirmPasswordChanged)) {
                 *result = 8;
                 return;
             }
@@ -454,31 +494,27 @@ void ApproveListingCtx721036::qt_static_metacall(QObject *_o, QMetaObject::Call 
     }
 #ifndef QT_NO_PROPERTIES
     else if (_c == QMetaObject::ReadProperty) {
-        ApproveListingCtx721036 *_t = static_cast<ApproveListingCtx721036 *>(_o);
+        ApproveNewAccountCtx721036 *_t = static_cast<ApproveNewAccountCtx721036 *>(_o);
         Q_UNUSED(_t)
         void *_v = _a[0];
         switch (_id) {
         case 0: *reinterpret_cast< QString*>(_v) = _t->remote(); break;
         case 1: *reinterpret_cast< QString*>(_v) = _t->transport(); break;
         case 2: *reinterpret_cast< QString*>(_v) = _t->endpoint(); break;
-        case 3: *reinterpret_cast< QString*>(_v) = _t->from(); break;
-        case 4: *reinterpret_cast< QString*>(_v) = _t->message(); break;
-        case 5: *reinterpret_cast< QString*>(_v) = _t->rawData(); break;
-        case 6: *reinterpret_cast< QString*>(_v) = _t->hash(); break;
+        case 3: *reinterpret_cast< QString*>(_v) = _t->password(); break;
+        case 4: *reinterpret_cast< QString*>(_v) = _t->confirmPassword(); break;
         default: break;
         }
     } else if (_c == QMetaObject::WriteProperty) {
-        ApproveListingCtx721036 *_t = static_cast<ApproveListingCtx721036 *>(_o);
+        ApproveNewAccountCtx721036 *_t = static_cast<ApproveNewAccountCtx721036 *>(_o);
         Q_UNUSED(_t)
         void *_v = _a[0];
         switch (_id) {
         case 0: _t->setRemote(*reinterpret_cast< QString*>(_v)); break;
         case 1: _t->setTransport(*reinterpret_cast< QString*>(_v)); break;
         case 2: _t->setEndpoint(*reinterpret_cast< QString*>(_v)); break;
-        case 3: _t->setFrom(*reinterpret_cast< QString*>(_v)); break;
-        case 4: _t->setMessage(*reinterpret_cast< QString*>(_v)); break;
-        case 5: _t->setRawData(*reinterpret_cast< QString*>(_v)); break;
-        case 6: _t->setHash(*reinterpret_cast< QString*>(_v)); break;
+        case 3: _t->setPassword(*reinterpret_cast< QString*>(_v)); break;
+        case 4: _t->setConfirmPassword(*reinterpret_cast< QString*>(_v)); break;
         default: break;
         }
     } else if (_c == QMetaObject::ResetProperty) {
@@ -486,26 +522,26 @@ void ApproveListingCtx721036::qt_static_metacall(QObject *_o, QMetaObject::Call 
 #endif // QT_NO_PROPERTIES
 }
 
-QT_INIT_METAOBJECT const QMetaObject ApproveListingCtx721036::staticMetaObject = {
-    { &QObject::staticMetaObject, qt_meta_stringdata_ApproveListingCtx721036.data,
-      qt_meta_data_ApproveListingCtx721036,  qt_static_metacall, nullptr, nullptr}
+QT_INIT_METAOBJECT const QMetaObject ApproveNewAccountCtx721036::staticMetaObject = {
+    { &QObject::staticMetaObject, qt_meta_stringdata_ApproveNewAccountCtx721036.data,
+      qt_meta_data_ApproveNewAccountCtx721036,  qt_static_metacall, nullptr, nullptr}
 };
 
 
-const QMetaObject *ApproveListingCtx721036::metaObject() const
+const QMetaObject *ApproveNewAccountCtx721036::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *ApproveListingCtx721036::qt_metacast(const char *_clname)
+void *ApproveNewAccountCtx721036::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_ApproveListingCtx721036.stringdata0))
+    if (!strcmp(_clname, qt_meta_stringdata_ApproveNewAccountCtx721036.stringdata0))
         return static_cast<void*>(this);
     return QObject::qt_metacast(_clname);
 }
 
-int ApproveListingCtx721036::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int ApproveNewAccountCtx721036::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QObject::qt_metacall(_c, _id, _a);
     if (_id < 0)
@@ -523,167 +559,159 @@ int ApproveListingCtx721036::qt_metacall(QMetaObject::Call _c, int _id, void **_
    else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
             || _c == QMetaObject::ResetProperty || _c == QMetaObject::RegisterPropertyMetaType) {
         qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 5;
     } else if (_c == QMetaObject::QueryPropertyDesignable) {
-        _id -= 7;
+        _id -= 5;
     } else if (_c == QMetaObject::QueryPropertyScriptable) {
-        _id -= 7;
+        _id -= 5;
     } else if (_c == QMetaObject::QueryPropertyStored) {
-        _id -= 7;
+        _id -= 5;
     } else if (_c == QMetaObject::QueryPropertyEditable) {
-        _id -= 7;
+        _id -= 5;
     } else if (_c == QMetaObject::QueryPropertyUser) {
-        _id -= 7;
+        _id -= 5;
     }
 #endif // QT_NO_PROPERTIES
     return _id;
 }
 
 // SIGNAL 0
-void ApproveListingCtx721036::clicked(qint32 _t1)
+void ApproveNewAccountCtx721036::clicked(qint32 _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 
 // SIGNAL 1
-void ApproveListingCtx721036::onCheckStateChanged(qint32 _t1, bool _t2)
+void ApproveNewAccountCtx721036::back()
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
-    QMetaObject::activate(this, &staticMetaObject, 1, _a);
+    QMetaObject::activate(this, &staticMetaObject, 1, nullptr);
 }
 
 // SIGNAL 2
-void ApproveListingCtx721036::remoteChanged(QString _t1)
+void ApproveNewAccountCtx721036::passwordEdited(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 
 // SIGNAL 3
-void ApproveListingCtx721036::transportChanged(QString _t1)
+void ApproveNewAccountCtx721036::confirmPasswordEdited(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 3, _a);
 }
 
 // SIGNAL 4
-void ApproveListingCtx721036::endpointChanged(QString _t1)
+void ApproveNewAccountCtx721036::remoteChanged(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 4, _a);
 }
 
 // SIGNAL 5
-void ApproveListingCtx721036::fromChanged(QString _t1)
+void ApproveNewAccountCtx721036::transportChanged(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 5, _a);
 }
 
 // SIGNAL 6
-void ApproveListingCtx721036::messageChanged(QString _t1)
+void ApproveNewAccountCtx721036::endpointChanged(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 6, _a);
 }
 
 // SIGNAL 7
-void ApproveListingCtx721036::rawDataChanged(QString _t1)
+void ApproveNewAccountCtx721036::passwordChanged(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 7, _a);
 }
 
 // SIGNAL 8
-void ApproveListingCtx721036::hashChanged(QString _t1)
+void ApproveNewAccountCtx721036::confirmPasswordChanged(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 8, _a);
 }
-struct qt_meta_stringdata_ApproveTxCtx721036_t {
-    QByteArrayData data[29];
-    char stringdata0[264];
+struct qt_meta_stringdata_ApproveSignDataCtx721036_t {
+    QByteArrayData data[23];
+    char stringdata0[232];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_ApproveTxCtx721036_t, stringdata0) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_ApproveSignDataCtx721036_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
-static const qt_meta_stringdata_ApproveTxCtx721036_t qt_meta_stringdata_ApproveTxCtx721036 = {
+static const qt_meta_stringdata_ApproveSignDataCtx721036_t qt_meta_stringdata_ApproveSignDataCtx721036 = {
     {
-QT_MOC_LITERAL(0, 0, 18), // "ApproveTxCtx721036"
-QT_MOC_LITERAL(1, 19, 7), // "clicked"
-QT_MOC_LITERAL(2, 27, 0), // ""
-QT_MOC_LITERAL(3, 28, 1), // "b"
-QT_MOC_LITERAL(4, 30, 6), // "edited"
-QT_MOC_LITERAL(5, 37, 1), // "s"
-QT_MOC_LITERAL(6, 39, 1), // "v"
-QT_MOC_LITERAL(7, 41, 13), // "remoteChanged"
-QT_MOC_LITERAL(8, 55, 6), // "remote"
-QT_MOC_LITERAL(9, 62, 16), // "transportChanged"
-QT_MOC_LITERAL(10, 79, 9), // "transport"
-QT_MOC_LITERAL(11, 89, 15), // "endpointChanged"
-QT_MOC_LITERAL(12, 105, 8), // "endpoint"
-QT_MOC_LITERAL(13, 114, 11), // "dataChanged"
-QT_MOC_LITERAL(14, 126, 4), // "data"
-QT_MOC_LITERAL(15, 131, 11), // "fromChanged"
-QT_MOC_LITERAL(16, 143, 4), // "from"
-QT_MOC_LITERAL(17, 148, 9), // "toChanged"
-QT_MOC_LITERAL(18, 158, 2), // "to"
-QT_MOC_LITERAL(19, 161, 10), // "gasChanged"
-QT_MOC_LITERAL(20, 172, 3), // "gas"
-QT_MOC_LITERAL(21, 176, 15), // "gasPriceChanged"
-QT_MOC_LITERAL(22, 192, 8), // "gasPrice"
-QT_MOC_LITERAL(23, 201, 12), // "nonceChanged"
-QT_MOC_LITERAL(24, 214, 5), // "nonce"
-QT_MOC_LITERAL(25, 220, 12), // "valueChanged"
-QT_MOC_LITERAL(26, 233, 5), // "value"
-QT_MOC_LITERAL(27, 239, 15), // "passwordChanged"
-QT_MOC_LITERAL(28, 255, 8) // "password"
+QT_MOC_LITERAL(0, 0, 24), // "ApproveSignDataCtx721036"
+QT_MOC_LITERAL(1, 25, 7), // "clicked"
+QT_MOC_LITERAL(2, 33, 0), // ""
+QT_MOC_LITERAL(3, 34, 1), // "b"
+QT_MOC_LITERAL(4, 36, 4), // "back"
+QT_MOC_LITERAL(5, 41, 6), // "edited"
+QT_MOC_LITERAL(6, 48, 5), // "value"
+QT_MOC_LITERAL(7, 54, 13), // "remoteChanged"
+QT_MOC_LITERAL(8, 68, 6), // "remote"
+QT_MOC_LITERAL(9, 75, 16), // "transportChanged"
+QT_MOC_LITERAL(10, 92, 9), // "transport"
+QT_MOC_LITERAL(11, 102, 15), // "endpointChanged"
+QT_MOC_LITERAL(12, 118, 8), // "endpoint"
+QT_MOC_LITERAL(13, 127, 11), // "fromChanged"
+QT_MOC_LITERAL(14, 139, 4), // "from"
+QT_MOC_LITERAL(15, 144, 14), // "messageChanged"
+QT_MOC_LITERAL(16, 159, 7), // "message"
+QT_MOC_LITERAL(17, 167, 14), // "rawDataChanged"
+QT_MOC_LITERAL(18, 182, 7), // "rawData"
+QT_MOC_LITERAL(19, 190, 11), // "hashChanged"
+QT_MOC_LITERAL(20, 202, 4), // "hash"
+QT_MOC_LITERAL(21, 207, 15), // "passwordChanged"
+QT_MOC_LITERAL(22, 223, 8) // "password"
 
     },
-    "ApproveTxCtx721036\0clicked\0\0b\0edited\0"
-    "s\0v\0remoteChanged\0remote\0transportChanged\0"
-    "transport\0endpointChanged\0endpoint\0"
-    "dataChanged\0data\0fromChanged\0from\0"
-    "toChanged\0to\0gasChanged\0gas\0gasPriceChanged\0"
-    "gasPrice\0nonceChanged\0nonce\0valueChanged\0"
-    "value\0passwordChanged\0password"
+    "ApproveSignDataCtx721036\0clicked\0\0b\0"
+    "back\0edited\0value\0remoteChanged\0remote\0"
+    "transportChanged\0transport\0endpointChanged\0"
+    "endpoint\0fromChanged\0from\0messageChanged\0"
+    "message\0rawDataChanged\0rawData\0"
+    "hashChanged\0hash\0passwordChanged\0"
+    "password"
 };
 #undef QT_MOC_LITERAL
 
-static const uint qt_meta_data_ApproveTxCtx721036[] = {
+static const uint qt_meta_data_ApproveSignDataCtx721036[] = {
 
  // content:
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      13,   14, // methods
-      11,  120, // properties
+      11,   14, // methods
+       8,  102, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-      13,       // signalCount
+      11,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   79,    2, 0x06 /* Public */,
-       4,    2,   82,    2, 0x06 /* Public */,
-       7,    1,   87,    2, 0x06 /* Public */,
-       9,    1,   90,    2, 0x06 /* Public */,
-      11,    1,   93,    2, 0x06 /* Public */,
-      13,    1,   96,    2, 0x06 /* Public */,
-      15,    1,   99,    2, 0x06 /* Public */,
-      17,    1,  102,    2, 0x06 /* Public */,
-      19,    1,  105,    2, 0x06 /* Public */,
-      21,    1,  108,    2, 0x06 /* Public */,
-      23,    1,  111,    2, 0x06 /* Public */,
-      25,    1,  114,    2, 0x06 /* Public */,
-      27,    1,  117,    2, 0x06 /* Public */,
+       1,    1,   69,    2, 0x06 /* Public */,
+       4,    0,   72,    2, 0x06 /* Public */,
+       5,    2,   73,    2, 0x06 /* Public */,
+       7,    1,   78,    2, 0x06 /* Public */,
+       9,    1,   81,    2, 0x06 /* Public */,
+      11,    1,   84,    2, 0x06 /* Public */,
+      13,    1,   87,    2, 0x06 /* Public */,
+      15,    1,   90,    2, 0x06 /* Public */,
+      17,    1,   93,    2, 0x06 /* Public */,
+      19,    1,   96,    2, 0x06 /* Public */,
+      21,    1,   99,    2, 0x06 /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Int,    3,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString,    5,    6,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,    3,    6,
     QMetaType::Void, QMetaType::QString,    8,
     QMetaType::Void, QMetaType::QString,   10,
     QMetaType::Void, QMetaType::QString,   12,
@@ -692,9 +720,6 @@ static const uint qt_meta_data_ApproveTxCtx721036[] = {
     QMetaType::Void, QMetaType::QString,   18,
     QMetaType::Void, QMetaType::QString,   20,
     QMetaType::Void, QMetaType::QString,   22,
-    QMetaType::Void, QMetaType::QString,   24,
-    QMetaType::Void, QMetaType::QString,   26,
-    QMetaType::Void, QMetaType::QString,   28,
 
  // properties: name, type, flags
        8, QMetaType::QString, 0x00495103,
@@ -705,12 +730,8 @@ static const uint qt_meta_data_ApproveTxCtx721036[] = {
       18, QMetaType::QString, 0x00495103,
       20, QMetaType::QString, 0x00495103,
       22, QMetaType::QString, 0x00495103,
-      24, QMetaType::QString, 0x00495103,
-      26, QMetaType::QString, 0x00495103,
-      28, QMetaType::QString, 0x00495103,
 
  // properties: notify_signal_id
-       2,
        3,
        4,
        5,
@@ -719,162 +740,138 @@ static const uint qt_meta_data_ApproveTxCtx721036[] = {
        8,
        9,
       10,
-      11,
-      12,
 
        0        // eod
 };
 
-void ApproveTxCtx721036::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void ApproveSignDataCtx721036::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        ApproveTxCtx721036 *_t = static_cast<ApproveTxCtx721036 *>(_o);
+        ApproveSignDataCtx721036 *_t = static_cast<ApproveSignDataCtx721036 *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->clicked((*reinterpret_cast< qint32(*)>(_a[1]))); break;
-        case 1: _t->edited((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2]))); break;
-        case 2: _t->remoteChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 3: _t->transportChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 4: _t->endpointChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 5: _t->dataChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 1: _t->back(); break;
+        case 2: _t->edited((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2]))); break;
+        case 3: _t->remoteChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 4: _t->transportChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 5: _t->endpointChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 6: _t->fromChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 7: _t->toChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 8: _t->gasChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 9: _t->gasPriceChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 10: _t->nonceChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 11: _t->valueChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 12: _t->passwordChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 7: _t->messageChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 8: _t->rawDataChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 9: _t->hashChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 10: _t->passwordChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (ApproveTxCtx721036::*)(qint32 );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::clicked)) {
+            using _t = void (ApproveSignDataCtx721036::*)(qint32 );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveSignDataCtx721036::clicked)) {
                 *result = 0;
                 return;
             }
         }
         {
-            using _t = void (ApproveTxCtx721036::*)(QString , QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::edited)) {
+            using _t = void (ApproveSignDataCtx721036::*)();
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveSignDataCtx721036::back)) {
                 *result = 1;
                 return;
             }
         }
         {
-            using _t = void (ApproveTxCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::remoteChanged)) {
+            using _t = void (ApproveSignDataCtx721036::*)(QString , QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveSignDataCtx721036::edited)) {
                 *result = 2;
                 return;
             }
         }
         {
-            using _t = void (ApproveTxCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::transportChanged)) {
+            using _t = void (ApproveSignDataCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveSignDataCtx721036::remoteChanged)) {
                 *result = 3;
                 return;
             }
         }
         {
-            using _t = void (ApproveTxCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::endpointChanged)) {
+            using _t = void (ApproveSignDataCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveSignDataCtx721036::transportChanged)) {
                 *result = 4;
                 return;
             }
         }
         {
-            using _t = void (ApproveTxCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::dataChanged)) {
+            using _t = void (ApproveSignDataCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveSignDataCtx721036::endpointChanged)) {
                 *result = 5;
                 return;
             }
         }
         {
-            using _t = void (ApproveTxCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::fromChanged)) {
+            using _t = void (ApproveSignDataCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveSignDataCtx721036::fromChanged)) {
                 *result = 6;
                 return;
             }
         }
         {
-            using _t = void (ApproveTxCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::toChanged)) {
+            using _t = void (ApproveSignDataCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveSignDataCtx721036::messageChanged)) {
                 *result = 7;
                 return;
             }
         }
         {
-            using _t = void (ApproveTxCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::gasChanged)) {
+            using _t = void (ApproveSignDataCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveSignDataCtx721036::rawDataChanged)) {
                 *result = 8;
                 return;
             }
         }
         {
-            using _t = void (ApproveTxCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::gasPriceChanged)) {
+            using _t = void (ApproveSignDataCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveSignDataCtx721036::hashChanged)) {
                 *result = 9;
                 return;
             }
         }
         {
-            using _t = void (ApproveTxCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::nonceChanged)) {
+            using _t = void (ApproveSignDataCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveSignDataCtx721036::passwordChanged)) {
                 *result = 10;
-                return;
-            }
-        }
-        {
-            using _t = void (ApproveTxCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::valueChanged)) {
-                *result = 11;
-                return;
-            }
-        }
-        {
-            using _t = void (ApproveTxCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::passwordChanged)) {
-                *result = 12;
                 return;
             }
         }
     }
 #ifndef QT_NO_PROPERTIES
     else if (_c == QMetaObject::ReadProperty) {
-        ApproveTxCtx721036 *_t = static_cast<ApproveTxCtx721036 *>(_o);
+        ApproveSignDataCtx721036 *_t = static_cast<ApproveSignDataCtx721036 *>(_o);
         Q_UNUSED(_t)
         void *_v = _a[0];
         switch (_id) {
         case 0: *reinterpret_cast< QString*>(_v) = _t->remote(); break;
         case 1: *reinterpret_cast< QString*>(_v) = _t->transport(); break;
         case 2: *reinterpret_cast< QString*>(_v) = _t->endpoint(); break;
-        case 3: *reinterpret_cast< QString*>(_v) = _t->data(); break;
-        case 4: *reinterpret_cast< QString*>(_v) = _t->from(); break;
-        case 5: *reinterpret_cast< QString*>(_v) = _t->to(); break;
-        case 6: *reinterpret_cast< QString*>(_v) = _t->gas(); break;
-        case 7: *reinterpret_cast< QString*>(_v) = _t->gasPrice(); break;
-        case 8: *reinterpret_cast< QString*>(_v) = _t->nonce(); break;
-        case 9: *reinterpret_cast< QString*>(_v) = _t->value(); break;
-        case 10: *reinterpret_cast< QString*>(_v) = _t->password(); break;
+        case 3: *reinterpret_cast< QString*>(_v) = _t->from(); break;
+        case 4: *reinterpret_cast< QString*>(_v) = _t->message(); break;
+        case 5: *reinterpret_cast< QString*>(_v) = _t->rawData(); break;
+        case 6: *reinterpret_cast< QString*>(_v) = _t->hash(); break;
+        case 7: *reinterpret_cast< QString*>(_v) = _t->password(); break;
         default: break;
         }
     } else if (_c == QMetaObject::WriteProperty) {
-        ApproveTxCtx721036 *_t = static_cast<ApproveTxCtx721036 *>(_o);
+        ApproveSignDataCtx721036 *_t = static_cast<ApproveSignDataCtx721036 *>(_o);
         Q_UNUSED(_t)
         void *_v = _a[0];
         switch (_id) {
         case 0: _t->setRemote(*reinterpret_cast< QString*>(_v)); break;
         case 1: _t->setTransport(*reinterpret_cast< QString*>(_v)); break;
         case 2: _t->setEndpoint(*reinterpret_cast< QString*>(_v)); break;
-        case 3: _t->setData(*reinterpret_cast< QString*>(_v)); break;
-        case 4: _t->setFrom(*reinterpret_cast< QString*>(_v)); break;
-        case 5: _t->setTo(*reinterpret_cast< QString*>(_v)); break;
-        case 6: _t->setGas(*reinterpret_cast< QString*>(_v)); break;
-        case 7: _t->setGasPrice(*reinterpret_cast< QString*>(_v)); break;
-        case 8: _t->setNonce(*reinterpret_cast< QString*>(_v)); break;
-        case 9: _t->setValue(*reinterpret_cast< QString*>(_v)); break;
-        case 10: _t->setPassword(*reinterpret_cast< QString*>(_v)); break;
+        case 3: _t->setFrom(*reinterpret_cast< QString*>(_v)); break;
+        case 4: _t->setMessage(*reinterpret_cast< QString*>(_v)); break;
+        case 5: _t->setRawData(*reinterpret_cast< QString*>(_v)); break;
+        case 6: _t->setHash(*reinterpret_cast< QString*>(_v)); break;
+        case 7: _t->setPassword(*reinterpret_cast< QString*>(_v)); break;
         default: break;
         }
     } else if (_c == QMetaObject::ResetProperty) {
@@ -882,148 +879,133 @@ void ApproveTxCtx721036::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
 #endif // QT_NO_PROPERTIES
 }
 
-QT_INIT_METAOBJECT const QMetaObject ApproveTxCtx721036::staticMetaObject = {
-    { &QObject::staticMetaObject, qt_meta_stringdata_ApproveTxCtx721036.data,
-      qt_meta_data_ApproveTxCtx721036,  qt_static_metacall, nullptr, nullptr}
+QT_INIT_METAOBJECT const QMetaObject ApproveSignDataCtx721036::staticMetaObject = {
+    { &QObject::staticMetaObject, qt_meta_stringdata_ApproveSignDataCtx721036.data,
+      qt_meta_data_ApproveSignDataCtx721036,  qt_static_metacall, nullptr, nullptr}
 };
 
 
-const QMetaObject *ApproveTxCtx721036::metaObject() const
+const QMetaObject *ApproveSignDataCtx721036::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *ApproveTxCtx721036::qt_metacast(const char *_clname)
+void *ApproveSignDataCtx721036::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_ApproveTxCtx721036.stringdata0))
+    if (!strcmp(_clname, qt_meta_stringdata_ApproveSignDataCtx721036.stringdata0))
         return static_cast<void*>(this);
     return QObject::qt_metacast(_clname);
 }
 
-int ApproveTxCtx721036::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int ApproveSignDataCtx721036::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QObject::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 13)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 13;
+        _id -= 11;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 13)
+        if (_id < 11)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 13;
+        _id -= 11;
     }
 #ifndef QT_NO_PROPERTIES
    else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
             || _c == QMetaObject::ResetProperty || _c == QMetaObject::RegisterPropertyMetaType) {
         qt_static_metacall(this, _c, _id, _a);
-        _id -= 11;
+        _id -= 8;
     } else if (_c == QMetaObject::QueryPropertyDesignable) {
-        _id -= 11;
+        _id -= 8;
     } else if (_c == QMetaObject::QueryPropertyScriptable) {
-        _id -= 11;
+        _id -= 8;
     } else if (_c == QMetaObject::QueryPropertyStored) {
-        _id -= 11;
+        _id -= 8;
     } else if (_c == QMetaObject::QueryPropertyEditable) {
-        _id -= 11;
+        _id -= 8;
     } else if (_c == QMetaObject::QueryPropertyUser) {
-        _id -= 11;
+        _id -= 8;
     }
 #endif // QT_NO_PROPERTIES
     return _id;
 }
 
 // SIGNAL 0
-void ApproveTxCtx721036::clicked(qint32 _t1)
+void ApproveSignDataCtx721036::clicked(qint32 _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 
 // SIGNAL 1
-void ApproveTxCtx721036::edited(QString _t1, QString _t2)
+void ApproveSignDataCtx721036::back()
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
-    QMetaObject::activate(this, &staticMetaObject, 1, _a);
+    QMetaObject::activate(this, &staticMetaObject, 1, nullptr);
 }
 
 // SIGNAL 2
-void ApproveTxCtx721036::remoteChanged(QString _t1)
+void ApproveSignDataCtx721036::edited(QString _t1, QString _t2)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
     QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 
 // SIGNAL 3
-void ApproveTxCtx721036::transportChanged(QString _t1)
+void ApproveSignDataCtx721036::remoteChanged(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 3, _a);
 }
 
 // SIGNAL 4
-void ApproveTxCtx721036::endpointChanged(QString _t1)
+void ApproveSignDataCtx721036::transportChanged(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 4, _a);
 }
 
 // SIGNAL 5
-void ApproveTxCtx721036::dataChanged(QString _t1)
+void ApproveSignDataCtx721036::endpointChanged(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 5, _a);
 }
 
 // SIGNAL 6
-void ApproveTxCtx721036::fromChanged(QString _t1)
+void ApproveSignDataCtx721036::fromChanged(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 6, _a);
 }
 
 // SIGNAL 7
-void ApproveTxCtx721036::toChanged(QString _t1)
+void ApproveSignDataCtx721036::messageChanged(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 7, _a);
 }
 
 // SIGNAL 8
-void ApproveTxCtx721036::gasChanged(QString _t1)
+void ApproveSignDataCtx721036::rawDataChanged(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 8, _a);
 }
 
 // SIGNAL 9
-void ApproveTxCtx721036::gasPriceChanged(QString _t1)
+void ApproveSignDataCtx721036::hashChanged(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 9, _a);
 }
 
 // SIGNAL 10
-void ApproveTxCtx721036::nonceChanged(QString _t1)
+void ApproveSignDataCtx721036::passwordChanged(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 10, _a);
-}
-
-// SIGNAL 11
-void ApproveTxCtx721036::valueChanged(QString _t1)
-{
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
-    QMetaObject::activate(this, &staticMetaObject, 11, _a);
-}
-
-// SIGNAL 12
-void ApproveTxCtx721036::passwordChanged(QString _t1)
-{
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
-    QMetaObject::activate(this, &staticMetaObject, 12, _a);
 }
 struct qt_meta_stringdata_CustomListModel721036_t {
     QByteArrayData data[6];
@@ -1150,59 +1132,419 @@ void CustomListModel721036::add(quintptr _t1)
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
-struct qt_meta_stringdata_ApproveSignDataCtx721036_t {
-    QByteArrayData data[22];
-    char stringdata0[227];
+struct qt_meta_stringdata_ApproveImportCtx721036_t {
+    QByteArrayData data[20];
+    char stringdata0[262];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_ApproveSignDataCtx721036_t, stringdata0) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_ApproveImportCtx721036_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
-static const qt_meta_stringdata_ApproveSignDataCtx721036_t qt_meta_stringdata_ApproveSignDataCtx721036 = {
+static const qt_meta_stringdata_ApproveImportCtx721036_t qt_meta_stringdata_ApproveImportCtx721036 = {
     {
-QT_MOC_LITERAL(0, 0, 24), // "ApproveSignDataCtx721036"
-QT_MOC_LITERAL(1, 25, 7), // "clicked"
-QT_MOC_LITERAL(2, 33, 0), // ""
-QT_MOC_LITERAL(3, 34, 1), // "b"
-QT_MOC_LITERAL(4, 36, 6), // "edited"
-QT_MOC_LITERAL(5, 43, 5), // "value"
-QT_MOC_LITERAL(6, 49, 13), // "remoteChanged"
-QT_MOC_LITERAL(7, 63, 6), // "remote"
-QT_MOC_LITERAL(8, 70, 16), // "transportChanged"
-QT_MOC_LITERAL(9, 87, 9), // "transport"
-QT_MOC_LITERAL(10, 97, 15), // "endpointChanged"
-QT_MOC_LITERAL(11, 113, 8), // "endpoint"
-QT_MOC_LITERAL(12, 122, 11), // "fromChanged"
-QT_MOC_LITERAL(13, 134, 4), // "from"
-QT_MOC_LITERAL(14, 139, 14), // "messageChanged"
-QT_MOC_LITERAL(15, 154, 7), // "message"
-QT_MOC_LITERAL(16, 162, 14), // "rawDataChanged"
-QT_MOC_LITERAL(17, 177, 7), // "rawData"
-QT_MOC_LITERAL(18, 185, 11), // "hashChanged"
-QT_MOC_LITERAL(19, 197, 4), // "hash"
-QT_MOC_LITERAL(20, 202, 15), // "passwordChanged"
-QT_MOC_LITERAL(21, 218, 8) // "password"
+QT_MOC_LITERAL(0, 0, 22), // "ApproveImportCtx721036"
+QT_MOC_LITERAL(1, 23, 7), // "clicked"
+QT_MOC_LITERAL(2, 31, 0), // ""
+QT_MOC_LITERAL(3, 32, 1), // "b"
+QT_MOC_LITERAL(4, 34, 4), // "back"
+QT_MOC_LITERAL(5, 39, 14), // "passwordEdited"
+QT_MOC_LITERAL(6, 54, 21), // "confirmPasswordEdited"
+QT_MOC_LITERAL(7, 76, 17), // "oldPasswordEdited"
+QT_MOC_LITERAL(8, 94, 13), // "remoteChanged"
+QT_MOC_LITERAL(9, 108, 6), // "remote"
+QT_MOC_LITERAL(10, 115, 16), // "transportChanged"
+QT_MOC_LITERAL(11, 132, 9), // "transport"
+QT_MOC_LITERAL(12, 142, 15), // "endpointChanged"
+QT_MOC_LITERAL(13, 158, 8), // "endpoint"
+QT_MOC_LITERAL(14, 167, 18), // "oldPasswordChanged"
+QT_MOC_LITERAL(15, 186, 11), // "oldPassword"
+QT_MOC_LITERAL(16, 198, 15), // "passwordChanged"
+QT_MOC_LITERAL(17, 214, 8), // "password"
+QT_MOC_LITERAL(18, 223, 22), // "confirmPasswordChanged"
+QT_MOC_LITERAL(19, 246, 15) // "confirmPassword"
 
     },
-    "ApproveSignDataCtx721036\0clicked\0\0b\0"
-    "edited\0value\0remoteChanged\0remote\0"
+    "ApproveImportCtx721036\0clicked\0\0b\0"
+    "back\0passwordEdited\0confirmPasswordEdited\0"
+    "oldPasswordEdited\0remoteChanged\0remote\0"
     "transportChanged\0transport\0endpointChanged\0"
-    "endpoint\0fromChanged\0from\0messageChanged\0"
-    "message\0rawDataChanged\0rawData\0"
-    "hashChanged\0hash\0passwordChanged\0"
-    "password"
+    "endpoint\0oldPasswordChanged\0oldPassword\0"
+    "passwordChanged\0password\0"
+    "confirmPasswordChanged\0confirmPassword"
 };
 #undef QT_MOC_LITERAL
 
-static const uint qt_meta_data_ApproveSignDataCtx721036[] = {
+static const uint qt_meta_data_ApproveImportCtx721036[] = {
+
+ // content:
+       7,       // revision
+       0,       // classname
+       0,    0, // classinfo
+      11,   14, // methods
+       6,  100, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+      11,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags
+       1,    1,   69,    2, 0x06 /* Public */,
+       4,    0,   72,    2, 0x06 /* Public */,
+       5,    1,   73,    2, 0x06 /* Public */,
+       6,    1,   76,    2, 0x06 /* Public */,
+       7,    1,   79,    2, 0x06 /* Public */,
+       8,    1,   82,    2, 0x06 /* Public */,
+      10,    1,   85,    2, 0x06 /* Public */,
+      12,    1,   88,    2, 0x06 /* Public */,
+      14,    1,   91,    2, 0x06 /* Public */,
+      16,    1,   94,    2, 0x06 /* Public */,
+      18,    1,   97,    2, 0x06 /* Public */,
+
+ // signals: parameters
+    QMetaType::Void, QMetaType::Int,    3,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,    3,
+    QMetaType::Void, QMetaType::QString,    3,
+    QMetaType::Void, QMetaType::QString,    3,
+    QMetaType::Void, QMetaType::QString,    9,
+    QMetaType::Void, QMetaType::QString,   11,
+    QMetaType::Void, QMetaType::QString,   13,
+    QMetaType::Void, QMetaType::QString,   15,
+    QMetaType::Void, QMetaType::QString,   17,
+    QMetaType::Void, QMetaType::QString,   19,
+
+ // properties: name, type, flags
+       9, QMetaType::QString, 0x00495103,
+      11, QMetaType::QString, 0x00495103,
+      13, QMetaType::QString, 0x00495103,
+      15, QMetaType::QString, 0x00495103,
+      17, QMetaType::QString, 0x00495103,
+      19, QMetaType::QString, 0x00495103,
+
+ // properties: notify_signal_id
+       5,
+       6,
+       7,
+       8,
+       9,
+      10,
+
+       0        // eod
+};
+
+void ApproveImportCtx721036::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+{
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        ApproveImportCtx721036 *_t = static_cast<ApproveImportCtx721036 *>(_o);
+        Q_UNUSED(_t)
+        switch (_id) {
+        case 0: _t->clicked((*reinterpret_cast< qint32(*)>(_a[1]))); break;
+        case 1: _t->back(); break;
+        case 2: _t->passwordEdited((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 3: _t->confirmPasswordEdited((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 4: _t->oldPasswordEdited((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 5: _t->remoteChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 6: _t->transportChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 7: _t->endpointChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 8: _t->oldPasswordChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 9: _t->passwordChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 10: _t->confirmPasswordChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        default: ;
+        }
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        {
+            using _t = void (ApproveImportCtx721036::*)(qint32 );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveImportCtx721036::clicked)) {
+                *result = 0;
+                return;
+            }
+        }
+        {
+            using _t = void (ApproveImportCtx721036::*)();
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveImportCtx721036::back)) {
+                *result = 1;
+                return;
+            }
+        }
+        {
+            using _t = void (ApproveImportCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveImportCtx721036::passwordEdited)) {
+                *result = 2;
+                return;
+            }
+        }
+        {
+            using _t = void (ApproveImportCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveImportCtx721036::confirmPasswordEdited)) {
+                *result = 3;
+                return;
+            }
+        }
+        {
+            using _t = void (ApproveImportCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveImportCtx721036::oldPasswordEdited)) {
+                *result = 4;
+                return;
+            }
+        }
+        {
+            using _t = void (ApproveImportCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveImportCtx721036::remoteChanged)) {
+                *result = 5;
+                return;
+            }
+        }
+        {
+            using _t = void (ApproveImportCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveImportCtx721036::transportChanged)) {
+                *result = 6;
+                return;
+            }
+        }
+        {
+            using _t = void (ApproveImportCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveImportCtx721036::endpointChanged)) {
+                *result = 7;
+                return;
+            }
+        }
+        {
+            using _t = void (ApproveImportCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveImportCtx721036::oldPasswordChanged)) {
+                *result = 8;
+                return;
+            }
+        }
+        {
+            using _t = void (ApproveImportCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveImportCtx721036::passwordChanged)) {
+                *result = 9;
+                return;
+            }
+        }
+        {
+            using _t = void (ApproveImportCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveImportCtx721036::confirmPasswordChanged)) {
+                *result = 10;
+                return;
+            }
+        }
+    }
+#ifndef QT_NO_PROPERTIES
+    else if (_c == QMetaObject::ReadProperty) {
+        ApproveImportCtx721036 *_t = static_cast<ApproveImportCtx721036 *>(_o);
+        Q_UNUSED(_t)
+        void *_v = _a[0];
+        switch (_id) {
+        case 0: *reinterpret_cast< QString*>(_v) = _t->remote(); break;
+        case 1: *reinterpret_cast< QString*>(_v) = _t->transport(); break;
+        case 2: *reinterpret_cast< QString*>(_v) = _t->endpoint(); break;
+        case 3: *reinterpret_cast< QString*>(_v) = _t->oldPassword(); break;
+        case 4: *reinterpret_cast< QString*>(_v) = _t->password(); break;
+        case 5: *reinterpret_cast< QString*>(_v) = _t->confirmPassword(); break;
+        default: break;
+        }
+    } else if (_c == QMetaObject::WriteProperty) {
+        ApproveImportCtx721036 *_t = static_cast<ApproveImportCtx721036 *>(_o);
+        Q_UNUSED(_t)
+        void *_v = _a[0];
+        switch (_id) {
+        case 0: _t->setRemote(*reinterpret_cast< QString*>(_v)); break;
+        case 1: _t->setTransport(*reinterpret_cast< QString*>(_v)); break;
+        case 2: _t->setEndpoint(*reinterpret_cast< QString*>(_v)); break;
+        case 3: _t->setOldPassword(*reinterpret_cast< QString*>(_v)); break;
+        case 4: _t->setPassword(*reinterpret_cast< QString*>(_v)); break;
+        case 5: _t->setConfirmPassword(*reinterpret_cast< QString*>(_v)); break;
+        default: break;
+        }
+    } else if (_c == QMetaObject::ResetProperty) {
+    }
+#endif // QT_NO_PROPERTIES
+}
+
+QT_INIT_METAOBJECT const QMetaObject ApproveImportCtx721036::staticMetaObject = {
+    { &QObject::staticMetaObject, qt_meta_stringdata_ApproveImportCtx721036.data,
+      qt_meta_data_ApproveImportCtx721036,  qt_static_metacall, nullptr, nullptr}
+};
+
+
+const QMetaObject *ApproveImportCtx721036::metaObject() const
+{
+    return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
+}
+
+void *ApproveImportCtx721036::qt_metacast(const char *_clname)
+{
+    if (!_clname) return nullptr;
+    if (!strcmp(_clname, qt_meta_stringdata_ApproveImportCtx721036.stringdata0))
+        return static_cast<void*>(this);
+    return QObject::qt_metacast(_clname);
+}
+
+int ApproveImportCtx721036::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+{
+    _id = QObject::qt_metacall(_c, _id, _a);
+    if (_id < 0)
+        return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 11)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 11;
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 11)
+            *reinterpret_cast<int*>(_a[0]) = -1;
+        _id -= 11;
+    }
+#ifndef QT_NO_PROPERTIES
+   else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
+            || _c == QMetaObject::ResetProperty || _c == QMetaObject::RegisterPropertyMetaType) {
+        qt_static_metacall(this, _c, _id, _a);
+        _id -= 6;
+    } else if (_c == QMetaObject::QueryPropertyDesignable) {
+        _id -= 6;
+    } else if (_c == QMetaObject::QueryPropertyScriptable) {
+        _id -= 6;
+    } else if (_c == QMetaObject::QueryPropertyStored) {
+        _id -= 6;
+    } else if (_c == QMetaObject::QueryPropertyEditable) {
+        _id -= 6;
+    } else if (_c == QMetaObject::QueryPropertyUser) {
+        _id -= 6;
+    }
+#endif // QT_NO_PROPERTIES
+    return _id;
+}
+
+// SIGNAL 0
+void ApproveImportCtx721036::clicked(qint32 _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
+}
+
+// SIGNAL 1
+void ApproveImportCtx721036::back()
+{
+    QMetaObject::activate(this, &staticMetaObject, 1, nullptr);
+}
+
+// SIGNAL 2
+void ApproveImportCtx721036::passwordEdited(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 2, _a);
+}
+
+// SIGNAL 3
+void ApproveImportCtx721036::confirmPasswordEdited(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 3, _a);
+}
+
+// SIGNAL 4
+void ApproveImportCtx721036::oldPasswordEdited(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 4, _a);
+}
+
+// SIGNAL 5
+void ApproveImportCtx721036::remoteChanged(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 5, _a);
+}
+
+// SIGNAL 6
+void ApproveImportCtx721036::transportChanged(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 6, _a);
+}
+
+// SIGNAL 7
+void ApproveImportCtx721036::endpointChanged(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 7, _a);
+}
+
+// SIGNAL 8
+void ApproveImportCtx721036::oldPasswordChanged(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 8, _a);
+}
+
+// SIGNAL 9
+void ApproveImportCtx721036::passwordChanged(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 9, _a);
+}
+
+// SIGNAL 10
+void ApproveImportCtx721036::confirmPasswordChanged(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 10, _a);
+}
+struct qt_meta_stringdata_ApproveListingCtx721036_t {
+    QByteArrayData data[22];
+    char stringdata0[223];
+};
+#define QT_MOC_LITERAL(idx, ofs, len) \
+    Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
+    qptrdiff(offsetof(qt_meta_stringdata_ApproveListingCtx721036_t, stringdata0) + ofs \
+        - idx * sizeof(QByteArrayData)) \
+    )
+static const qt_meta_stringdata_ApproveListingCtx721036_t qt_meta_stringdata_ApproveListingCtx721036 = {
+    {
+QT_MOC_LITERAL(0, 0, 23), // "ApproveListingCtx721036"
+QT_MOC_LITERAL(1, 24, 7), // "clicked"
+QT_MOC_LITERAL(2, 32, 0), // ""
+QT_MOC_LITERAL(3, 33, 1), // "b"
+QT_MOC_LITERAL(4, 35, 4), // "back"
+QT_MOC_LITERAL(5, 40, 19), // "onCheckStateChanged"
+QT_MOC_LITERAL(6, 60, 1), // "i"
+QT_MOC_LITERAL(7, 62, 7), // "checked"
+QT_MOC_LITERAL(8, 70, 13), // "remoteChanged"
+QT_MOC_LITERAL(9, 84, 6), // "remote"
+QT_MOC_LITERAL(10, 91, 16), // "transportChanged"
+QT_MOC_LITERAL(11, 108, 9), // "transport"
+QT_MOC_LITERAL(12, 118, 15), // "endpointChanged"
+QT_MOC_LITERAL(13, 134, 8), // "endpoint"
+QT_MOC_LITERAL(14, 143, 11), // "fromChanged"
+QT_MOC_LITERAL(15, 155, 4), // "from"
+QT_MOC_LITERAL(16, 160, 14), // "messageChanged"
+QT_MOC_LITERAL(17, 175, 7), // "message"
+QT_MOC_LITERAL(18, 183, 14), // "rawDataChanged"
+QT_MOC_LITERAL(19, 198, 7), // "rawData"
+QT_MOC_LITERAL(20, 206, 11), // "hashChanged"
+QT_MOC_LITERAL(21, 218, 4) // "hash"
+
+    },
+    "ApproveListingCtx721036\0clicked\0\0b\0"
+    "back\0onCheckStateChanged\0i\0checked\0"
+    "remoteChanged\0remote\0transportChanged\0"
+    "transport\0endpointChanged\0endpoint\0"
+    "fromChanged\0from\0messageChanged\0message\0"
+    "rawDataChanged\0rawData\0hashChanged\0"
+    "hash"
+};
+#undef QT_MOC_LITERAL
+
+static const uint qt_meta_data_ApproveListingCtx721036[] = {
 
  // content:
        7,       // revision
        0,       // classname
        0,    0, // classinfo
       10,   14, // methods
-       8,   96, // properties
+       7,   94, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
@@ -1210,20 +1552,20 @@ static const uint qt_meta_data_ApproveSignDataCtx721036[] = {
 
  // signals: name, argc, parameters, tag, flags
        1,    1,   64,    2, 0x06 /* Public */,
-       4,    2,   67,    2, 0x06 /* Public */,
-       6,    1,   72,    2, 0x06 /* Public */,
-       8,    1,   75,    2, 0x06 /* Public */,
-      10,    1,   78,    2, 0x06 /* Public */,
-      12,    1,   81,    2, 0x06 /* Public */,
-      14,    1,   84,    2, 0x06 /* Public */,
-      16,    1,   87,    2, 0x06 /* Public */,
-      18,    1,   90,    2, 0x06 /* Public */,
-      20,    1,   93,    2, 0x06 /* Public */,
+       4,    0,   67,    2, 0x06 /* Public */,
+       5,    2,   68,    2, 0x06 /* Public */,
+       8,    1,   73,    2, 0x06 /* Public */,
+      10,    1,   76,    2, 0x06 /* Public */,
+      12,    1,   79,    2, 0x06 /* Public */,
+      14,    1,   82,    2, 0x06 /* Public */,
+      16,    1,   85,    2, 0x06 /* Public */,
+      18,    1,   88,    2, 0x06 /* Public */,
+      20,    1,   91,    2, 0x06 /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Int,    3,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString,    3,    5,
-    QMetaType::Void, QMetaType::QString,    7,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int, QMetaType::Bool,    6,    7,
     QMetaType::Void, QMetaType::QString,    9,
     QMetaType::Void, QMetaType::QString,   11,
     QMetaType::Void, QMetaType::QString,   13,
@@ -1233,7 +1575,6 @@ static const uint qt_meta_data_ApproveSignDataCtx721036[] = {
     QMetaType::Void, QMetaType::QString,   21,
 
  // properties: name, type, flags
-       7, QMetaType::QString, 0x00495103,
        9, QMetaType::QString, 0x00495103,
       11, QMetaType::QString, 0x00495103,
       13, QMetaType::QString, 0x00495103,
@@ -1243,7 +1584,6 @@ static const uint qt_meta_data_ApproveSignDataCtx721036[] = {
       21, QMetaType::QString, 0x00495103,
 
  // properties: notify_signal_id
-       2,
        3,
        4,
        5,
@@ -1255,92 +1595,92 @@ static const uint qt_meta_data_ApproveSignDataCtx721036[] = {
        0        // eod
 };
 
-void ApproveSignDataCtx721036::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void ApproveListingCtx721036::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        ApproveSignDataCtx721036 *_t = static_cast<ApproveSignDataCtx721036 *>(_o);
+        ApproveListingCtx721036 *_t = static_cast<ApproveListingCtx721036 *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->clicked((*reinterpret_cast< qint32(*)>(_a[1]))); break;
-        case 1: _t->edited((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2]))); break;
-        case 2: _t->remoteChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 3: _t->transportChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 4: _t->endpointChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 5: _t->fromChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 6: _t->messageChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 7: _t->rawDataChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 8: _t->hashChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 9: _t->passwordChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 1: _t->back(); break;
+        case 2: _t->onCheckStateChanged((*reinterpret_cast< qint32(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2]))); break;
+        case 3: _t->remoteChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 4: _t->transportChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 5: _t->endpointChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 6: _t->fromChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 7: _t->messageChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 8: _t->rawDataChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 9: _t->hashChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (ApproveSignDataCtx721036::*)(qint32 );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveSignDataCtx721036::clicked)) {
+            using _t = void (ApproveListingCtx721036::*)(qint32 );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveListingCtx721036::clicked)) {
                 *result = 0;
                 return;
             }
         }
         {
-            using _t = void (ApproveSignDataCtx721036::*)(QString , QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveSignDataCtx721036::edited)) {
+            using _t = void (ApproveListingCtx721036::*)();
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveListingCtx721036::back)) {
                 *result = 1;
                 return;
             }
         }
         {
-            using _t = void (ApproveSignDataCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveSignDataCtx721036::remoteChanged)) {
+            using _t = void (ApproveListingCtx721036::*)(qint32 , bool );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveListingCtx721036::onCheckStateChanged)) {
                 *result = 2;
                 return;
             }
         }
         {
-            using _t = void (ApproveSignDataCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveSignDataCtx721036::transportChanged)) {
+            using _t = void (ApproveListingCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveListingCtx721036::remoteChanged)) {
                 *result = 3;
                 return;
             }
         }
         {
-            using _t = void (ApproveSignDataCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveSignDataCtx721036::endpointChanged)) {
+            using _t = void (ApproveListingCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveListingCtx721036::transportChanged)) {
                 *result = 4;
                 return;
             }
         }
         {
-            using _t = void (ApproveSignDataCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveSignDataCtx721036::fromChanged)) {
+            using _t = void (ApproveListingCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveListingCtx721036::endpointChanged)) {
                 *result = 5;
                 return;
             }
         }
         {
-            using _t = void (ApproveSignDataCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveSignDataCtx721036::messageChanged)) {
+            using _t = void (ApproveListingCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveListingCtx721036::fromChanged)) {
                 *result = 6;
                 return;
             }
         }
         {
-            using _t = void (ApproveSignDataCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveSignDataCtx721036::rawDataChanged)) {
+            using _t = void (ApproveListingCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveListingCtx721036::messageChanged)) {
                 *result = 7;
                 return;
             }
         }
         {
-            using _t = void (ApproveSignDataCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveSignDataCtx721036::hashChanged)) {
+            using _t = void (ApproveListingCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveListingCtx721036::rawDataChanged)) {
                 *result = 8;
                 return;
             }
         }
         {
-            using _t = void (ApproveSignDataCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveSignDataCtx721036::passwordChanged)) {
+            using _t = void (ApproveListingCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveListingCtx721036::hashChanged)) {
                 *result = 9;
                 return;
             }
@@ -1348,7 +1688,7 @@ void ApproveSignDataCtx721036::qt_static_metacall(QObject *_o, QMetaObject::Call
     }
 #ifndef QT_NO_PROPERTIES
     else if (_c == QMetaObject::ReadProperty) {
-        ApproveSignDataCtx721036 *_t = static_cast<ApproveSignDataCtx721036 *>(_o);
+        ApproveListingCtx721036 *_t = static_cast<ApproveListingCtx721036 *>(_o);
         Q_UNUSED(_t)
         void *_v = _a[0];
         switch (_id) {
@@ -1359,11 +1699,10 @@ void ApproveSignDataCtx721036::qt_static_metacall(QObject *_o, QMetaObject::Call
         case 4: *reinterpret_cast< QString*>(_v) = _t->message(); break;
         case 5: *reinterpret_cast< QString*>(_v) = _t->rawData(); break;
         case 6: *reinterpret_cast< QString*>(_v) = _t->hash(); break;
-        case 7: *reinterpret_cast< QString*>(_v) = _t->password(); break;
         default: break;
         }
     } else if (_c == QMetaObject::WriteProperty) {
-        ApproveSignDataCtx721036 *_t = static_cast<ApproveSignDataCtx721036 *>(_o);
+        ApproveListingCtx721036 *_t = static_cast<ApproveListingCtx721036 *>(_o);
         Q_UNUSED(_t)
         void *_v = _a[0];
         switch (_id) {
@@ -1374,7 +1713,6 @@ void ApproveSignDataCtx721036::qt_static_metacall(QObject *_o, QMetaObject::Call
         case 4: _t->setMessage(*reinterpret_cast< QString*>(_v)); break;
         case 5: _t->setRawData(*reinterpret_cast< QString*>(_v)); break;
         case 6: _t->setHash(*reinterpret_cast< QString*>(_v)); break;
-        case 7: _t->setPassword(*reinterpret_cast< QString*>(_v)); break;
         default: break;
         }
     } else if (_c == QMetaObject::ResetProperty) {
@@ -1382,26 +1720,26 @@ void ApproveSignDataCtx721036::qt_static_metacall(QObject *_o, QMetaObject::Call
 #endif // QT_NO_PROPERTIES
 }
 
-QT_INIT_METAOBJECT const QMetaObject ApproveSignDataCtx721036::staticMetaObject = {
-    { &QObject::staticMetaObject, qt_meta_stringdata_ApproveSignDataCtx721036.data,
-      qt_meta_data_ApproveSignDataCtx721036,  qt_static_metacall, nullptr, nullptr}
+QT_INIT_METAOBJECT const QMetaObject ApproveListingCtx721036::staticMetaObject = {
+    { &QObject::staticMetaObject, qt_meta_stringdata_ApproveListingCtx721036.data,
+      qt_meta_data_ApproveListingCtx721036,  qt_static_metacall, nullptr, nullptr}
 };
 
 
-const QMetaObject *ApproveSignDataCtx721036::metaObject() const
+const QMetaObject *ApproveListingCtx721036::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *ApproveSignDataCtx721036::qt_metacast(const char *_clname)
+void *ApproveListingCtx721036::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_ApproveSignDataCtx721036.stringdata0))
+    if (!strcmp(_clname, qt_meta_stringdata_ApproveListingCtx721036.stringdata0))
         return static_cast<void*>(this);
     return QObject::qt_metacast(_clname);
 }
 
-int ApproveSignDataCtx721036::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int ApproveListingCtx721036::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QObject::qt_metacall(_c, _id, _a);
     if (_id < 0)
@@ -1419,90 +1757,531 @@ int ApproveSignDataCtx721036::qt_metacall(QMetaObject::Call _c, int _id, void **
    else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
             || _c == QMetaObject::ResetProperty || _c == QMetaObject::RegisterPropertyMetaType) {
         qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 7;
     } else if (_c == QMetaObject::QueryPropertyDesignable) {
-        _id -= 8;
+        _id -= 7;
     } else if (_c == QMetaObject::QueryPropertyScriptable) {
-        _id -= 8;
+        _id -= 7;
     } else if (_c == QMetaObject::QueryPropertyStored) {
-        _id -= 8;
+        _id -= 7;
     } else if (_c == QMetaObject::QueryPropertyEditable) {
-        _id -= 8;
+        _id -= 7;
     } else if (_c == QMetaObject::QueryPropertyUser) {
-        _id -= 8;
+        _id -= 7;
     }
 #endif // QT_NO_PROPERTIES
     return _id;
 }
 
 // SIGNAL 0
-void ApproveSignDataCtx721036::clicked(qint32 _t1)
+void ApproveListingCtx721036::clicked(qint32 _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 
 // SIGNAL 1
-void ApproveSignDataCtx721036::edited(QString _t1, QString _t2)
+void ApproveListingCtx721036::back()
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
-    QMetaObject::activate(this, &staticMetaObject, 1, _a);
+    QMetaObject::activate(this, &staticMetaObject, 1, nullptr);
 }
 
 // SIGNAL 2
-void ApproveSignDataCtx721036::remoteChanged(QString _t1)
+void ApproveListingCtx721036::onCheckStateChanged(qint32 _t1, bool _t2)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
     QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 
 // SIGNAL 3
-void ApproveSignDataCtx721036::transportChanged(QString _t1)
+void ApproveListingCtx721036::remoteChanged(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 3, _a);
 }
 
 // SIGNAL 4
-void ApproveSignDataCtx721036::endpointChanged(QString _t1)
+void ApproveListingCtx721036::transportChanged(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 4, _a);
 }
 
 // SIGNAL 5
-void ApproveSignDataCtx721036::fromChanged(QString _t1)
+void ApproveListingCtx721036::endpointChanged(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 5, _a);
 }
 
 // SIGNAL 6
-void ApproveSignDataCtx721036::messageChanged(QString _t1)
+void ApproveListingCtx721036::fromChanged(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 6, _a);
 }
 
 // SIGNAL 7
-void ApproveSignDataCtx721036::rawDataChanged(QString _t1)
+void ApproveListingCtx721036::messageChanged(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 7, _a);
 }
 
 // SIGNAL 8
-void ApproveSignDataCtx721036::hashChanged(QString _t1)
+void ApproveListingCtx721036::rawDataChanged(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 8, _a);
 }
 
 // SIGNAL 9
-void ApproveSignDataCtx721036::passwordChanged(QString _t1)
+void ApproveListingCtx721036::hashChanged(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 9, _a);
+}
+struct qt_meta_stringdata_ApproveTxCtx721036_t {
+    QByteArrayData data[30];
+    char stringdata0[269];
+};
+#define QT_MOC_LITERAL(idx, ofs, len) \
+    Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
+    qptrdiff(offsetof(qt_meta_stringdata_ApproveTxCtx721036_t, stringdata0) + ofs \
+        - idx * sizeof(QByteArrayData)) \
+    )
+static const qt_meta_stringdata_ApproveTxCtx721036_t qt_meta_stringdata_ApproveTxCtx721036 = {
+    {
+QT_MOC_LITERAL(0, 0, 18), // "ApproveTxCtx721036"
+QT_MOC_LITERAL(1, 19, 7), // "clicked"
+QT_MOC_LITERAL(2, 27, 0), // ""
+QT_MOC_LITERAL(3, 28, 1), // "b"
+QT_MOC_LITERAL(4, 30, 4), // "back"
+QT_MOC_LITERAL(5, 35, 6), // "edited"
+QT_MOC_LITERAL(6, 42, 1), // "s"
+QT_MOC_LITERAL(7, 44, 1), // "v"
+QT_MOC_LITERAL(8, 46, 13), // "remoteChanged"
+QT_MOC_LITERAL(9, 60, 6), // "remote"
+QT_MOC_LITERAL(10, 67, 16), // "transportChanged"
+QT_MOC_LITERAL(11, 84, 9), // "transport"
+QT_MOC_LITERAL(12, 94, 15), // "endpointChanged"
+QT_MOC_LITERAL(13, 110, 8), // "endpoint"
+QT_MOC_LITERAL(14, 119, 11), // "dataChanged"
+QT_MOC_LITERAL(15, 131, 4), // "data"
+QT_MOC_LITERAL(16, 136, 11), // "fromChanged"
+QT_MOC_LITERAL(17, 148, 4), // "from"
+QT_MOC_LITERAL(18, 153, 9), // "toChanged"
+QT_MOC_LITERAL(19, 163, 2), // "to"
+QT_MOC_LITERAL(20, 166, 10), // "gasChanged"
+QT_MOC_LITERAL(21, 177, 3), // "gas"
+QT_MOC_LITERAL(22, 181, 15), // "gasPriceChanged"
+QT_MOC_LITERAL(23, 197, 8), // "gasPrice"
+QT_MOC_LITERAL(24, 206, 12), // "nonceChanged"
+QT_MOC_LITERAL(25, 219, 5), // "nonce"
+QT_MOC_LITERAL(26, 225, 12), // "valueChanged"
+QT_MOC_LITERAL(27, 238, 5), // "value"
+QT_MOC_LITERAL(28, 244, 15), // "passwordChanged"
+QT_MOC_LITERAL(29, 260, 8) // "password"
+
+    },
+    "ApproveTxCtx721036\0clicked\0\0b\0back\0"
+    "edited\0s\0v\0remoteChanged\0remote\0"
+    "transportChanged\0transport\0endpointChanged\0"
+    "endpoint\0dataChanged\0data\0fromChanged\0"
+    "from\0toChanged\0to\0gasChanged\0gas\0"
+    "gasPriceChanged\0gasPrice\0nonceChanged\0"
+    "nonce\0valueChanged\0value\0passwordChanged\0"
+    "password"
+};
+#undef QT_MOC_LITERAL
+
+static const uint qt_meta_data_ApproveTxCtx721036[] = {
+
+ // content:
+       7,       // revision
+       0,       // classname
+       0,    0, // classinfo
+      14,   14, // methods
+      11,  126, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+      14,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags
+       1,    1,   84,    2, 0x06 /* Public */,
+       4,    0,   87,    2, 0x06 /* Public */,
+       5,    2,   88,    2, 0x06 /* Public */,
+       8,    1,   93,    2, 0x06 /* Public */,
+      10,    1,   96,    2, 0x06 /* Public */,
+      12,    1,   99,    2, 0x06 /* Public */,
+      14,    1,  102,    2, 0x06 /* Public */,
+      16,    1,  105,    2, 0x06 /* Public */,
+      18,    1,  108,    2, 0x06 /* Public */,
+      20,    1,  111,    2, 0x06 /* Public */,
+      22,    1,  114,    2, 0x06 /* Public */,
+      24,    1,  117,    2, 0x06 /* Public */,
+      26,    1,  120,    2, 0x06 /* Public */,
+      28,    1,  123,    2, 0x06 /* Public */,
+
+ // signals: parameters
+    QMetaType::Void, QMetaType::Int,    3,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,    6,    7,
+    QMetaType::Void, QMetaType::QString,    9,
+    QMetaType::Void, QMetaType::QString,   11,
+    QMetaType::Void, QMetaType::QString,   13,
+    QMetaType::Void, QMetaType::QString,   15,
+    QMetaType::Void, QMetaType::QString,   17,
+    QMetaType::Void, QMetaType::QString,   19,
+    QMetaType::Void, QMetaType::QString,   21,
+    QMetaType::Void, QMetaType::QString,   23,
+    QMetaType::Void, QMetaType::QString,   25,
+    QMetaType::Void, QMetaType::QString,   27,
+    QMetaType::Void, QMetaType::QString,   29,
+
+ // properties: name, type, flags
+       9, QMetaType::QString, 0x00495103,
+      11, QMetaType::QString, 0x00495103,
+      13, QMetaType::QString, 0x00495103,
+      15, QMetaType::QString, 0x00495103,
+      17, QMetaType::QString, 0x00495103,
+      19, QMetaType::QString, 0x00495103,
+      21, QMetaType::QString, 0x00495103,
+      23, QMetaType::QString, 0x00495103,
+      25, QMetaType::QString, 0x00495103,
+      27, QMetaType::QString, 0x00495103,
+      29, QMetaType::QString, 0x00495103,
+
+ // properties: notify_signal_id
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+      10,
+      11,
+      12,
+      13,
+
+       0        // eod
+};
+
+void ApproveTxCtx721036::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+{
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        ApproveTxCtx721036 *_t = static_cast<ApproveTxCtx721036 *>(_o);
+        Q_UNUSED(_t)
+        switch (_id) {
+        case 0: _t->clicked((*reinterpret_cast< qint32(*)>(_a[1]))); break;
+        case 1: _t->back(); break;
+        case 2: _t->edited((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2]))); break;
+        case 3: _t->remoteChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 4: _t->transportChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 5: _t->endpointChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 6: _t->dataChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 7: _t->fromChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 8: _t->toChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 9: _t->gasChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 10: _t->gasPriceChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 11: _t->nonceChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 12: _t->valueChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 13: _t->passwordChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        default: ;
+        }
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        {
+            using _t = void (ApproveTxCtx721036::*)(qint32 );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::clicked)) {
+                *result = 0;
+                return;
+            }
+        }
+        {
+            using _t = void (ApproveTxCtx721036::*)();
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::back)) {
+                *result = 1;
+                return;
+            }
+        }
+        {
+            using _t = void (ApproveTxCtx721036::*)(QString , QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::edited)) {
+                *result = 2;
+                return;
+            }
+        }
+        {
+            using _t = void (ApproveTxCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::remoteChanged)) {
+                *result = 3;
+                return;
+            }
+        }
+        {
+            using _t = void (ApproveTxCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::transportChanged)) {
+                *result = 4;
+                return;
+            }
+        }
+        {
+            using _t = void (ApproveTxCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::endpointChanged)) {
+                *result = 5;
+                return;
+            }
+        }
+        {
+            using _t = void (ApproveTxCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::dataChanged)) {
+                *result = 6;
+                return;
+            }
+        }
+        {
+            using _t = void (ApproveTxCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::fromChanged)) {
+                *result = 7;
+                return;
+            }
+        }
+        {
+            using _t = void (ApproveTxCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::toChanged)) {
+                *result = 8;
+                return;
+            }
+        }
+        {
+            using _t = void (ApproveTxCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::gasChanged)) {
+                *result = 9;
+                return;
+            }
+        }
+        {
+            using _t = void (ApproveTxCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::gasPriceChanged)) {
+                *result = 10;
+                return;
+            }
+        }
+        {
+            using _t = void (ApproveTxCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::nonceChanged)) {
+                *result = 11;
+                return;
+            }
+        }
+        {
+            using _t = void (ApproveTxCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::valueChanged)) {
+                *result = 12;
+                return;
+            }
+        }
+        {
+            using _t = void (ApproveTxCtx721036::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveTxCtx721036::passwordChanged)) {
+                *result = 13;
+                return;
+            }
+        }
+    }
+#ifndef QT_NO_PROPERTIES
+    else if (_c == QMetaObject::ReadProperty) {
+        ApproveTxCtx721036 *_t = static_cast<ApproveTxCtx721036 *>(_o);
+        Q_UNUSED(_t)
+        void *_v = _a[0];
+        switch (_id) {
+        case 0: *reinterpret_cast< QString*>(_v) = _t->remote(); break;
+        case 1: *reinterpret_cast< QString*>(_v) = _t->transport(); break;
+        case 2: *reinterpret_cast< QString*>(_v) = _t->endpoint(); break;
+        case 3: *reinterpret_cast< QString*>(_v) = _t->data(); break;
+        case 4: *reinterpret_cast< QString*>(_v) = _t->from(); break;
+        case 5: *reinterpret_cast< QString*>(_v) = _t->to(); break;
+        case 6: *reinterpret_cast< QString*>(_v) = _t->gas(); break;
+        case 7: *reinterpret_cast< QString*>(_v) = _t->gasPrice(); break;
+        case 8: *reinterpret_cast< QString*>(_v) = _t->nonce(); break;
+        case 9: *reinterpret_cast< QString*>(_v) = _t->value(); break;
+        case 10: *reinterpret_cast< QString*>(_v) = _t->password(); break;
+        default: break;
+        }
+    } else if (_c == QMetaObject::WriteProperty) {
+        ApproveTxCtx721036 *_t = static_cast<ApproveTxCtx721036 *>(_o);
+        Q_UNUSED(_t)
+        void *_v = _a[0];
+        switch (_id) {
+        case 0: _t->setRemote(*reinterpret_cast< QString*>(_v)); break;
+        case 1: _t->setTransport(*reinterpret_cast< QString*>(_v)); break;
+        case 2: _t->setEndpoint(*reinterpret_cast< QString*>(_v)); break;
+        case 3: _t->setData(*reinterpret_cast< QString*>(_v)); break;
+        case 4: _t->setFrom(*reinterpret_cast< QString*>(_v)); break;
+        case 5: _t->setTo(*reinterpret_cast< QString*>(_v)); break;
+        case 6: _t->setGas(*reinterpret_cast< QString*>(_v)); break;
+        case 7: _t->setGasPrice(*reinterpret_cast< QString*>(_v)); break;
+        case 8: _t->setNonce(*reinterpret_cast< QString*>(_v)); break;
+        case 9: _t->setValue(*reinterpret_cast< QString*>(_v)); break;
+        case 10: _t->setPassword(*reinterpret_cast< QString*>(_v)); break;
+        default: break;
+        }
+    } else if (_c == QMetaObject::ResetProperty) {
+    }
+#endif // QT_NO_PROPERTIES
+}
+
+QT_INIT_METAOBJECT const QMetaObject ApproveTxCtx721036::staticMetaObject = {
+    { &QObject::staticMetaObject, qt_meta_stringdata_ApproveTxCtx721036.data,
+      qt_meta_data_ApproveTxCtx721036,  qt_static_metacall, nullptr, nullptr}
+};
+
+
+const QMetaObject *ApproveTxCtx721036::metaObject() const
+{
+    return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
+}
+
+void *ApproveTxCtx721036::qt_metacast(const char *_clname)
+{
+    if (!_clname) return nullptr;
+    if (!strcmp(_clname, qt_meta_stringdata_ApproveTxCtx721036.stringdata0))
+        return static_cast<void*>(this);
+    return QObject::qt_metacast(_clname);
+}
+
+int ApproveTxCtx721036::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+{
+    _id = QObject::qt_metacall(_c, _id, _a);
+    if (_id < 0)
+        return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 14)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 14;
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 14)
+            *reinterpret_cast<int*>(_a[0]) = -1;
+        _id -= 14;
+    }
+#ifndef QT_NO_PROPERTIES
+   else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
+            || _c == QMetaObject::ResetProperty || _c == QMetaObject::RegisterPropertyMetaType) {
+        qt_static_metacall(this, _c, _id, _a);
+        _id -= 11;
+    } else if (_c == QMetaObject::QueryPropertyDesignable) {
+        _id -= 11;
+    } else if (_c == QMetaObject::QueryPropertyScriptable) {
+        _id -= 11;
+    } else if (_c == QMetaObject::QueryPropertyStored) {
+        _id -= 11;
+    } else if (_c == QMetaObject::QueryPropertyEditable) {
+        _id -= 11;
+    } else if (_c == QMetaObject::QueryPropertyUser) {
+        _id -= 11;
+    }
+#endif // QT_NO_PROPERTIES
+    return _id;
+}
+
+// SIGNAL 0
+void ApproveTxCtx721036::clicked(qint32 _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
+}
+
+// SIGNAL 1
+void ApproveTxCtx721036::back()
+{
+    QMetaObject::activate(this, &staticMetaObject, 1, nullptr);
+}
+
+// SIGNAL 2
+void ApproveTxCtx721036::edited(QString _t1, QString _t2)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
+    QMetaObject::activate(this, &staticMetaObject, 2, _a);
+}
+
+// SIGNAL 3
+void ApproveTxCtx721036::remoteChanged(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 3, _a);
+}
+
+// SIGNAL 4
+void ApproveTxCtx721036::transportChanged(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 4, _a);
+}
+
+// SIGNAL 5
+void ApproveTxCtx721036::endpointChanged(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 5, _a);
+}
+
+// SIGNAL 6
+void ApproveTxCtx721036::dataChanged(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 6, _a);
+}
+
+// SIGNAL 7
+void ApproveTxCtx721036::fromChanged(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 7, _a);
+}
+
+// SIGNAL 8
+void ApproveTxCtx721036::toChanged(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 8, _a);
+}
+
+// SIGNAL 9
+void ApproveTxCtx721036::gasChanged(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 9, _a);
+}
+
+// SIGNAL 10
+void ApproveTxCtx721036::gasPriceChanged(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 10, _a);
+}
+
+// SIGNAL 11
+void ApproveTxCtx721036::nonceChanged(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 11, _a);
+}
+
+// SIGNAL 12
+void ApproveTxCtx721036::valueChanged(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 12, _a);
+}
+
+// SIGNAL 13
+void ApproveTxCtx721036::passwordChanged(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 13, _a);
 }
 struct qt_meta_stringdata_LoginCtx721036_t {
     QByteArrayData data[17];
@@ -1808,931 +2587,255 @@ void LoginCtx721036::isValidChanged(bool _t1)
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 7, _a);
 }
-struct qt_meta_stringdata_ApproveExportCtx721036_t {
-    QByteArrayData data[15];
-    char stringdata0[170];
+struct qt_meta_stringdata_TxListCtx721036_t {
+    QByteArrayData data[4];
+    char stringdata0[27];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_ApproveExportCtx721036_t, stringdata0) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_TxListCtx721036_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
-static const qt_meta_stringdata_ApproveExportCtx721036_t qt_meta_stringdata_ApproveExportCtx721036 = {
+static const qt_meta_stringdata_TxListCtx721036_t qt_meta_stringdata_TxListCtx721036 = {
     {
-QT_MOC_LITERAL(0, 0, 22), // "ApproveExportCtx721036"
-QT_MOC_LITERAL(1, 23, 7), // "clicked"
-QT_MOC_LITERAL(2, 31, 0), // ""
-QT_MOC_LITERAL(3, 32, 1), // "b"
-QT_MOC_LITERAL(4, 34, 14), // "passwordEdited"
-QT_MOC_LITERAL(5, 49, 13), // "remoteChanged"
-QT_MOC_LITERAL(6, 63, 6), // "remote"
-QT_MOC_LITERAL(7, 70, 16), // "transportChanged"
-QT_MOC_LITERAL(8, 87, 9), // "transport"
-QT_MOC_LITERAL(9, 97, 15), // "endpointChanged"
-QT_MOC_LITERAL(10, 113, 8), // "endpoint"
-QT_MOC_LITERAL(11, 122, 14), // "addressChanged"
-QT_MOC_LITERAL(12, 137, 7), // "address"
-QT_MOC_LITERAL(13, 145, 15), // "passwordChanged"
-QT_MOC_LITERAL(14, 161, 8) // "password"
+QT_MOC_LITERAL(0, 0, 15), // "TxListCtx721036"
+QT_MOC_LITERAL(1, 16, 7), // "clicked"
+QT_MOC_LITERAL(2, 24, 0), // ""
+QT_MOC_LITERAL(3, 25, 1) // "b"
 
     },
-    "ApproveExportCtx721036\0clicked\0\0b\0"
-    "passwordEdited\0remoteChanged\0remote\0"
-    "transportChanged\0transport\0endpointChanged\0"
-    "endpoint\0addressChanged\0address\0"
-    "passwordChanged\0password"
+    "TxListCtx721036\0clicked\0\0b"
 };
 #undef QT_MOC_LITERAL
 
-static const uint qt_meta_data_ApproveExportCtx721036[] = {
+static const uint qt_meta_data_TxListCtx721036[] = {
 
  // content:
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       7,   14, // methods
-       5,   70, // properties
+       1,   14, // methods
+       0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       7,       // signalCount
+       1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   49,    2, 0x06 /* Public */,
-       4,    1,   52,    2, 0x06 /* Public */,
-       5,    1,   55,    2, 0x06 /* Public */,
-       7,    1,   58,    2, 0x06 /* Public */,
-       9,    1,   61,    2, 0x06 /* Public */,
-      11,    1,   64,    2, 0x06 /* Public */,
-      13,    1,   67,    2, 0x06 /* Public */,
+       1,    1,   19,    2, 0x06 /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Int,    3,
-    QMetaType::Void, QMetaType::QString,    3,
-    QMetaType::Void, QMetaType::QString,    6,
-    QMetaType::Void, QMetaType::QString,    8,
-    QMetaType::Void, QMetaType::QString,   10,
-    QMetaType::Void, QMetaType::QString,   12,
-    QMetaType::Void, QMetaType::QString,   14,
-
- // properties: name, type, flags
-       6, QMetaType::QString, 0x00495103,
-       8, QMetaType::QString, 0x00495103,
-      10, QMetaType::QString, 0x00495103,
-      12, QMetaType::QString, 0x00495103,
-      14, QMetaType::QString, 0x00495103,
-
- // properties: notify_signal_id
-       2,
-       3,
-       4,
-       5,
-       6,
 
        0        // eod
 };
 
-void ApproveExportCtx721036::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void TxListCtx721036::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        ApproveExportCtx721036 *_t = static_cast<ApproveExportCtx721036 *>(_o);
+        TxListCtx721036 *_t = static_cast<TxListCtx721036 *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->clicked((*reinterpret_cast< qint32(*)>(_a[1]))); break;
-        case 1: _t->passwordEdited((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 2: _t->remoteChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 3: _t->transportChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 4: _t->endpointChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 5: _t->addressChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 6: _t->passwordChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (ApproveExportCtx721036::*)(qint32 );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveExportCtx721036::clicked)) {
+            using _t = void (TxListCtx721036::*)(qint32 );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&TxListCtx721036::clicked)) {
                 *result = 0;
                 return;
             }
         }
-        {
-            using _t = void (ApproveExportCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveExportCtx721036::passwordEdited)) {
-                *result = 1;
-                return;
-            }
-        }
-        {
-            using _t = void (ApproveExportCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveExportCtx721036::remoteChanged)) {
-                *result = 2;
-                return;
-            }
-        }
-        {
-            using _t = void (ApproveExportCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveExportCtx721036::transportChanged)) {
-                *result = 3;
-                return;
-            }
-        }
-        {
-            using _t = void (ApproveExportCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveExportCtx721036::endpointChanged)) {
-                *result = 4;
-                return;
-            }
-        }
-        {
-            using _t = void (ApproveExportCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveExportCtx721036::addressChanged)) {
-                *result = 5;
-                return;
-            }
-        }
-        {
-            using _t = void (ApproveExportCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveExportCtx721036::passwordChanged)) {
-                *result = 6;
-                return;
-            }
-        }
     }
-#ifndef QT_NO_PROPERTIES
-    else if (_c == QMetaObject::ReadProperty) {
-        ApproveExportCtx721036 *_t = static_cast<ApproveExportCtx721036 *>(_o);
-        Q_UNUSED(_t)
-        void *_v = _a[0];
-        switch (_id) {
-        case 0: *reinterpret_cast< QString*>(_v) = _t->remote(); break;
-        case 1: *reinterpret_cast< QString*>(_v) = _t->transport(); break;
-        case 2: *reinterpret_cast< QString*>(_v) = _t->endpoint(); break;
-        case 3: *reinterpret_cast< QString*>(_v) = _t->address(); break;
-        case 4: *reinterpret_cast< QString*>(_v) = _t->password(); break;
-        default: break;
-        }
-    } else if (_c == QMetaObject::WriteProperty) {
-        ApproveExportCtx721036 *_t = static_cast<ApproveExportCtx721036 *>(_o);
-        Q_UNUSED(_t)
-        void *_v = _a[0];
-        switch (_id) {
-        case 0: _t->setRemote(*reinterpret_cast< QString*>(_v)); break;
-        case 1: _t->setTransport(*reinterpret_cast< QString*>(_v)); break;
-        case 2: _t->setEndpoint(*reinterpret_cast< QString*>(_v)); break;
-        case 3: _t->setAddress(*reinterpret_cast< QString*>(_v)); break;
-        case 4: _t->setPassword(*reinterpret_cast< QString*>(_v)); break;
-        default: break;
-        }
-    } else if (_c == QMetaObject::ResetProperty) {
-    }
-#endif // QT_NO_PROPERTIES
 }
 
-QT_INIT_METAOBJECT const QMetaObject ApproveExportCtx721036::staticMetaObject = {
-    { &QObject::staticMetaObject, qt_meta_stringdata_ApproveExportCtx721036.data,
-      qt_meta_data_ApproveExportCtx721036,  qt_static_metacall, nullptr, nullptr}
+QT_INIT_METAOBJECT const QMetaObject TxListCtx721036::staticMetaObject = {
+    { &QObject::staticMetaObject, qt_meta_stringdata_TxListCtx721036.data,
+      qt_meta_data_TxListCtx721036,  qt_static_metacall, nullptr, nullptr}
 };
 
 
-const QMetaObject *ApproveExportCtx721036::metaObject() const
+const QMetaObject *TxListCtx721036::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *ApproveExportCtx721036::qt_metacast(const char *_clname)
+void *TxListCtx721036::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_ApproveExportCtx721036.stringdata0))
+    if (!strcmp(_clname, qt_meta_stringdata_TxListCtx721036.stringdata0))
         return static_cast<void*>(this);
     return QObject::qt_metacast(_clname);
 }
 
-int ApproveExportCtx721036::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int TxListCtx721036::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QObject::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 7)
+        if (_id < 1)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 1;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 7)
+        if (_id < 1)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 7;
+        _id -= 1;
     }
-#ifndef QT_NO_PROPERTIES
-   else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
-            || _c == QMetaObject::ResetProperty || _c == QMetaObject::RegisterPropertyMetaType) {
-        qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
-    } else if (_c == QMetaObject::QueryPropertyDesignable) {
-        _id -= 5;
-    } else if (_c == QMetaObject::QueryPropertyScriptable) {
-        _id -= 5;
-    } else if (_c == QMetaObject::QueryPropertyStored) {
-        _id -= 5;
-    } else if (_c == QMetaObject::QueryPropertyEditable) {
-        _id -= 5;
-    } else if (_c == QMetaObject::QueryPropertyUser) {
-        _id -= 5;
-    }
-#endif // QT_NO_PROPERTIES
     return _id;
 }
 
 // SIGNAL 0
-void ApproveExportCtx721036::clicked(qint32 _t1)
+void TxListCtx721036::clicked(qint32 _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
+struct qt_meta_stringdata_TxListModel721036_t {
+    QByteArrayData data[8];
+    char stringdata0[50];
+};
+#define QT_MOC_LITERAL(idx, ofs, len) \
+    Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
+    qptrdiff(offsetof(qt_meta_stringdata_TxListModel721036_t, stringdata0) + ofs \
+        - idx * sizeof(QByteArrayData)) \
+    )
+static const qt_meta_stringdata_TxListModel721036_t qt_meta_stringdata_TxListModel721036 = {
+    {
+QT_MOC_LITERAL(0, 0, 17), // "TxListModel721036"
+QT_MOC_LITERAL(1, 18, 5), // "clear"
+QT_MOC_LITERAL(2, 24, 0), // ""
+QT_MOC_LITERAL(3, 25, 3), // "add"
+QT_MOC_LITERAL(4, 29, 8), // "quintptr"
+QT_MOC_LITERAL(5, 38, 2), // "tx"
+QT_MOC_LITERAL(6, 41, 6), // "remove"
+QT_MOC_LITERAL(7, 48, 1) // "i"
+
+    },
+    "TxListModel721036\0clear\0\0add\0quintptr\0"
+    "tx\0remove\0i"
+};
+#undef QT_MOC_LITERAL
+
+static const uint qt_meta_data_TxListModel721036[] = {
+
+ // content:
+       7,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       3,   14, // methods
+       0,    0, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       3,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags
+       1,    0,   29,    2, 0x06 /* Public */,
+       3,    1,   30,    2, 0x06 /* Public */,
+       6,    1,   33,    2, 0x06 /* Public */,
+
+ // signals: parameters
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 4,    5,
+    QMetaType::Void, QMetaType::Int,    7,
+
+       0        // eod
+};
+
+void TxListModel721036::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+{
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        TxListModel721036 *_t = static_cast<TxListModel721036 *>(_o);
+        Q_UNUSED(_t)
+        switch (_id) {
+        case 0: _t->clear(); break;
+        case 1: _t->add((*reinterpret_cast< quintptr(*)>(_a[1]))); break;
+        case 2: _t->remove((*reinterpret_cast< qint32(*)>(_a[1]))); break;
+        default: ;
+        }
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        {
+            using _t = void (TxListModel721036::*)();
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&TxListModel721036::clear)) {
+                *result = 0;
+                return;
+            }
+        }
+        {
+            using _t = void (TxListModel721036::*)(quintptr );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&TxListModel721036::add)) {
+                *result = 1;
+                return;
+            }
+        }
+        {
+            using _t = void (TxListModel721036::*)(qint32 );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&TxListModel721036::remove)) {
+                *result = 2;
+                return;
+            }
+        }
+    }
+}
+
+QT_INIT_METAOBJECT const QMetaObject TxListModel721036::staticMetaObject = {
+    { &QAbstractListModel::staticMetaObject, qt_meta_stringdata_TxListModel721036.data,
+      qt_meta_data_TxListModel721036,  qt_static_metacall, nullptr, nullptr}
+};
+
+
+const QMetaObject *TxListModel721036::metaObject() const
+{
+    return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
+}
+
+void *TxListModel721036::qt_metacast(const char *_clname)
+{
+    if (!_clname) return nullptr;
+    if (!strcmp(_clname, qt_meta_stringdata_TxListModel721036.stringdata0))
+        return static_cast<void*>(this);
+    return QAbstractListModel::qt_metacast(_clname);
+}
+
+int TxListModel721036::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+{
+    _id = QAbstractListModel::qt_metacall(_c, _id, _a);
+    if (_id < 0)
+        return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 3)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 3;
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 3)
+            *reinterpret_cast<int*>(_a[0]) = -1;
+        _id -= 3;
+    }
+    return _id;
+}
+
+// SIGNAL 0
+void TxListModel721036::clear()
+{
+    QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
+}
 
 // SIGNAL 1
-void ApproveExportCtx721036::passwordEdited(QString _t1)
+void TxListModel721036::add(quintptr _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 
 // SIGNAL 2
-void ApproveExportCtx721036::remoteChanged(QString _t1)
+void TxListModel721036::remove(qint32 _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 2, _a);
-}
-
-// SIGNAL 3
-void ApproveExportCtx721036::transportChanged(QString _t1)
-{
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
-    QMetaObject::activate(this, &staticMetaObject, 3, _a);
-}
-
-// SIGNAL 4
-void ApproveExportCtx721036::endpointChanged(QString _t1)
-{
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
-    QMetaObject::activate(this, &staticMetaObject, 4, _a);
-}
-
-// SIGNAL 5
-void ApproveExportCtx721036::addressChanged(QString _t1)
-{
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
-    QMetaObject::activate(this, &staticMetaObject, 5, _a);
-}
-
-// SIGNAL 6
-void ApproveExportCtx721036::passwordChanged(QString _t1)
-{
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
-    QMetaObject::activate(this, &staticMetaObject, 6, _a);
-}
-struct qt_meta_stringdata_ApproveImportCtx721036_t {
-    QByteArrayData data[19];
-    char stringdata0[257];
-};
-#define QT_MOC_LITERAL(idx, ofs, len) \
-    Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_ApproveImportCtx721036_t, stringdata0) + ofs \
-        - idx * sizeof(QByteArrayData)) \
-    )
-static const qt_meta_stringdata_ApproveImportCtx721036_t qt_meta_stringdata_ApproveImportCtx721036 = {
-    {
-QT_MOC_LITERAL(0, 0, 22), // "ApproveImportCtx721036"
-QT_MOC_LITERAL(1, 23, 7), // "clicked"
-QT_MOC_LITERAL(2, 31, 0), // ""
-QT_MOC_LITERAL(3, 32, 1), // "b"
-QT_MOC_LITERAL(4, 34, 14), // "passwordEdited"
-QT_MOC_LITERAL(5, 49, 21), // "confirmPasswordEdited"
-QT_MOC_LITERAL(6, 71, 17), // "oldPasswordEdited"
-QT_MOC_LITERAL(7, 89, 13), // "remoteChanged"
-QT_MOC_LITERAL(8, 103, 6), // "remote"
-QT_MOC_LITERAL(9, 110, 16), // "transportChanged"
-QT_MOC_LITERAL(10, 127, 9), // "transport"
-QT_MOC_LITERAL(11, 137, 15), // "endpointChanged"
-QT_MOC_LITERAL(12, 153, 8), // "endpoint"
-QT_MOC_LITERAL(13, 162, 18), // "oldPasswordChanged"
-QT_MOC_LITERAL(14, 181, 11), // "oldPassword"
-QT_MOC_LITERAL(15, 193, 15), // "passwordChanged"
-QT_MOC_LITERAL(16, 209, 8), // "password"
-QT_MOC_LITERAL(17, 218, 22), // "confirmPasswordChanged"
-QT_MOC_LITERAL(18, 241, 15) // "confirmPassword"
-
-    },
-    "ApproveImportCtx721036\0clicked\0\0b\0"
-    "passwordEdited\0confirmPasswordEdited\0"
-    "oldPasswordEdited\0remoteChanged\0remote\0"
-    "transportChanged\0transport\0endpointChanged\0"
-    "endpoint\0oldPasswordChanged\0oldPassword\0"
-    "passwordChanged\0password\0"
-    "confirmPasswordChanged\0confirmPassword"
-};
-#undef QT_MOC_LITERAL
-
-static const uint qt_meta_data_ApproveImportCtx721036[] = {
-
- // content:
-       7,       // revision
-       0,       // classname
-       0,    0, // classinfo
-      10,   14, // methods
-       6,   94, // properties
-       0,    0, // enums/sets
-       0,    0, // constructors
-       0,       // flags
-      10,       // signalCount
-
- // signals: name, argc, parameters, tag, flags
-       1,    1,   64,    2, 0x06 /* Public */,
-       4,    1,   67,    2, 0x06 /* Public */,
-       5,    1,   70,    2, 0x06 /* Public */,
-       6,    1,   73,    2, 0x06 /* Public */,
-       7,    1,   76,    2, 0x06 /* Public */,
-       9,    1,   79,    2, 0x06 /* Public */,
-      11,    1,   82,    2, 0x06 /* Public */,
-      13,    1,   85,    2, 0x06 /* Public */,
-      15,    1,   88,    2, 0x06 /* Public */,
-      17,    1,   91,    2, 0x06 /* Public */,
-
- // signals: parameters
-    QMetaType::Void, QMetaType::Int,    3,
-    QMetaType::Void, QMetaType::QString,    3,
-    QMetaType::Void, QMetaType::QString,    3,
-    QMetaType::Void, QMetaType::QString,    3,
-    QMetaType::Void, QMetaType::QString,    8,
-    QMetaType::Void, QMetaType::QString,   10,
-    QMetaType::Void, QMetaType::QString,   12,
-    QMetaType::Void, QMetaType::QString,   14,
-    QMetaType::Void, QMetaType::QString,   16,
-    QMetaType::Void, QMetaType::QString,   18,
-
- // properties: name, type, flags
-       8, QMetaType::QString, 0x00495103,
-      10, QMetaType::QString, 0x00495103,
-      12, QMetaType::QString, 0x00495103,
-      14, QMetaType::QString, 0x00495103,
-      16, QMetaType::QString, 0x00495103,
-      18, QMetaType::QString, 0x00495103,
-
- // properties: notify_signal_id
-       4,
-       5,
-       6,
-       7,
-       8,
-       9,
-
-       0        // eod
-};
-
-void ApproveImportCtx721036::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
-{
-    if (_c == QMetaObject::InvokeMetaMethod) {
-        ApproveImportCtx721036 *_t = static_cast<ApproveImportCtx721036 *>(_o);
-        Q_UNUSED(_t)
-        switch (_id) {
-        case 0: _t->clicked((*reinterpret_cast< qint32(*)>(_a[1]))); break;
-        case 1: _t->passwordEdited((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 2: _t->confirmPasswordEdited((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 3: _t->oldPasswordEdited((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 4: _t->remoteChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 5: _t->transportChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 6: _t->endpointChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 7: _t->oldPasswordChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 8: _t->passwordChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 9: _t->confirmPasswordChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        default: ;
-        }
-    } else if (_c == QMetaObject::IndexOfMethod) {
-        int *result = reinterpret_cast<int *>(_a[0]);
-        {
-            using _t = void (ApproveImportCtx721036::*)(qint32 );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveImportCtx721036::clicked)) {
-                *result = 0;
-                return;
-            }
-        }
-        {
-            using _t = void (ApproveImportCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveImportCtx721036::passwordEdited)) {
-                *result = 1;
-                return;
-            }
-        }
-        {
-            using _t = void (ApproveImportCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveImportCtx721036::confirmPasswordEdited)) {
-                *result = 2;
-                return;
-            }
-        }
-        {
-            using _t = void (ApproveImportCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveImportCtx721036::oldPasswordEdited)) {
-                *result = 3;
-                return;
-            }
-        }
-        {
-            using _t = void (ApproveImportCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveImportCtx721036::remoteChanged)) {
-                *result = 4;
-                return;
-            }
-        }
-        {
-            using _t = void (ApproveImportCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveImportCtx721036::transportChanged)) {
-                *result = 5;
-                return;
-            }
-        }
-        {
-            using _t = void (ApproveImportCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveImportCtx721036::endpointChanged)) {
-                *result = 6;
-                return;
-            }
-        }
-        {
-            using _t = void (ApproveImportCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveImportCtx721036::oldPasswordChanged)) {
-                *result = 7;
-                return;
-            }
-        }
-        {
-            using _t = void (ApproveImportCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveImportCtx721036::passwordChanged)) {
-                *result = 8;
-                return;
-            }
-        }
-        {
-            using _t = void (ApproveImportCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveImportCtx721036::confirmPasswordChanged)) {
-                *result = 9;
-                return;
-            }
-        }
-    }
-#ifndef QT_NO_PROPERTIES
-    else if (_c == QMetaObject::ReadProperty) {
-        ApproveImportCtx721036 *_t = static_cast<ApproveImportCtx721036 *>(_o);
-        Q_UNUSED(_t)
-        void *_v = _a[0];
-        switch (_id) {
-        case 0: *reinterpret_cast< QString*>(_v) = _t->remote(); break;
-        case 1: *reinterpret_cast< QString*>(_v) = _t->transport(); break;
-        case 2: *reinterpret_cast< QString*>(_v) = _t->endpoint(); break;
-        case 3: *reinterpret_cast< QString*>(_v) = _t->oldPassword(); break;
-        case 4: *reinterpret_cast< QString*>(_v) = _t->password(); break;
-        case 5: *reinterpret_cast< QString*>(_v) = _t->confirmPassword(); break;
-        default: break;
-        }
-    } else if (_c == QMetaObject::WriteProperty) {
-        ApproveImportCtx721036 *_t = static_cast<ApproveImportCtx721036 *>(_o);
-        Q_UNUSED(_t)
-        void *_v = _a[0];
-        switch (_id) {
-        case 0: _t->setRemote(*reinterpret_cast< QString*>(_v)); break;
-        case 1: _t->setTransport(*reinterpret_cast< QString*>(_v)); break;
-        case 2: _t->setEndpoint(*reinterpret_cast< QString*>(_v)); break;
-        case 3: _t->setOldPassword(*reinterpret_cast< QString*>(_v)); break;
-        case 4: _t->setPassword(*reinterpret_cast< QString*>(_v)); break;
-        case 5: _t->setConfirmPassword(*reinterpret_cast< QString*>(_v)); break;
-        default: break;
-        }
-    } else if (_c == QMetaObject::ResetProperty) {
-    }
-#endif // QT_NO_PROPERTIES
-}
-
-QT_INIT_METAOBJECT const QMetaObject ApproveImportCtx721036::staticMetaObject = {
-    { &QObject::staticMetaObject, qt_meta_stringdata_ApproveImportCtx721036.data,
-      qt_meta_data_ApproveImportCtx721036,  qt_static_metacall, nullptr, nullptr}
-};
-
-
-const QMetaObject *ApproveImportCtx721036::metaObject() const
-{
-    return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
-}
-
-void *ApproveImportCtx721036::qt_metacast(const char *_clname)
-{
-    if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_ApproveImportCtx721036.stringdata0))
-        return static_cast<void*>(this);
-    return QObject::qt_metacast(_clname);
-}
-
-int ApproveImportCtx721036::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
-{
-    _id = QObject::qt_metacall(_c, _id, _a);
-    if (_id < 0)
-        return _id;
-    if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 10)
-            qt_static_metacall(this, _c, _id, _a);
-        _id -= 10;
-    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 10)
-            *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 10;
-    }
-#ifndef QT_NO_PROPERTIES
-   else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
-            || _c == QMetaObject::ResetProperty || _c == QMetaObject::RegisterPropertyMetaType) {
-        qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
-    } else if (_c == QMetaObject::QueryPropertyDesignable) {
-        _id -= 6;
-    } else if (_c == QMetaObject::QueryPropertyScriptable) {
-        _id -= 6;
-    } else if (_c == QMetaObject::QueryPropertyStored) {
-        _id -= 6;
-    } else if (_c == QMetaObject::QueryPropertyEditable) {
-        _id -= 6;
-    } else if (_c == QMetaObject::QueryPropertyUser) {
-        _id -= 6;
-    }
-#endif // QT_NO_PROPERTIES
-    return _id;
-}
-
-// SIGNAL 0
-void ApproveImportCtx721036::clicked(qint32 _t1)
-{
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
-    QMetaObject::activate(this, &staticMetaObject, 0, _a);
-}
-
-// SIGNAL 1
-void ApproveImportCtx721036::passwordEdited(QString _t1)
-{
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
-    QMetaObject::activate(this, &staticMetaObject, 1, _a);
-}
-
-// SIGNAL 2
-void ApproveImportCtx721036::confirmPasswordEdited(QString _t1)
-{
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
-    QMetaObject::activate(this, &staticMetaObject, 2, _a);
-}
-
-// SIGNAL 3
-void ApproveImportCtx721036::oldPasswordEdited(QString _t1)
-{
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
-    QMetaObject::activate(this, &staticMetaObject, 3, _a);
-}
-
-// SIGNAL 4
-void ApproveImportCtx721036::remoteChanged(QString _t1)
-{
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
-    QMetaObject::activate(this, &staticMetaObject, 4, _a);
-}
-
-// SIGNAL 5
-void ApproveImportCtx721036::transportChanged(QString _t1)
-{
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
-    QMetaObject::activate(this, &staticMetaObject, 5, _a);
-}
-
-// SIGNAL 6
-void ApproveImportCtx721036::endpointChanged(QString _t1)
-{
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
-    QMetaObject::activate(this, &staticMetaObject, 6, _a);
-}
-
-// SIGNAL 7
-void ApproveImportCtx721036::oldPasswordChanged(QString _t1)
-{
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
-    QMetaObject::activate(this, &staticMetaObject, 7, _a);
-}
-
-// SIGNAL 8
-void ApproveImportCtx721036::passwordChanged(QString _t1)
-{
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
-    QMetaObject::activate(this, &staticMetaObject, 8, _a);
-}
-
-// SIGNAL 9
-void ApproveImportCtx721036::confirmPasswordChanged(QString _t1)
-{
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
-    QMetaObject::activate(this, &staticMetaObject, 9, _a);
-}
-struct qt_meta_stringdata_ApproveNewAccountCtx721036_t {
-    QByteArrayData data[16];
-    char stringdata0[212];
-};
-#define QT_MOC_LITERAL(idx, ofs, len) \
-    Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_ApproveNewAccountCtx721036_t, stringdata0) + ofs \
-        - idx * sizeof(QByteArrayData)) \
-    )
-static const qt_meta_stringdata_ApproveNewAccountCtx721036_t qt_meta_stringdata_ApproveNewAccountCtx721036 = {
-    {
-QT_MOC_LITERAL(0, 0, 26), // "ApproveNewAccountCtx721036"
-QT_MOC_LITERAL(1, 27, 7), // "clicked"
-QT_MOC_LITERAL(2, 35, 0), // ""
-QT_MOC_LITERAL(3, 36, 1), // "b"
-QT_MOC_LITERAL(4, 38, 14), // "passwordEdited"
-QT_MOC_LITERAL(5, 53, 21), // "confirmPasswordEdited"
-QT_MOC_LITERAL(6, 75, 13), // "remoteChanged"
-QT_MOC_LITERAL(7, 89, 6), // "remote"
-QT_MOC_LITERAL(8, 96, 16), // "transportChanged"
-QT_MOC_LITERAL(9, 113, 9), // "transport"
-QT_MOC_LITERAL(10, 123, 15), // "endpointChanged"
-QT_MOC_LITERAL(11, 139, 8), // "endpoint"
-QT_MOC_LITERAL(12, 148, 15), // "passwordChanged"
-QT_MOC_LITERAL(13, 164, 8), // "password"
-QT_MOC_LITERAL(14, 173, 22), // "confirmPasswordChanged"
-QT_MOC_LITERAL(15, 196, 15) // "confirmPassword"
-
-    },
-    "ApproveNewAccountCtx721036\0clicked\0\0"
-    "b\0passwordEdited\0confirmPasswordEdited\0"
-    "remoteChanged\0remote\0transportChanged\0"
-    "transport\0endpointChanged\0endpoint\0"
-    "passwordChanged\0password\0"
-    "confirmPasswordChanged\0confirmPassword"
-};
-#undef QT_MOC_LITERAL
-
-static const uint qt_meta_data_ApproveNewAccountCtx721036[] = {
-
- // content:
-       7,       // revision
-       0,       // classname
-       0,    0, // classinfo
-       8,   14, // methods
-       5,   78, // properties
-       0,    0, // enums/sets
-       0,    0, // constructors
-       0,       // flags
-       8,       // signalCount
-
- // signals: name, argc, parameters, tag, flags
-       1,    1,   54,    2, 0x06 /* Public */,
-       4,    1,   57,    2, 0x06 /* Public */,
-       5,    1,   60,    2, 0x06 /* Public */,
-       6,    1,   63,    2, 0x06 /* Public */,
-       8,    1,   66,    2, 0x06 /* Public */,
-      10,    1,   69,    2, 0x06 /* Public */,
-      12,    1,   72,    2, 0x06 /* Public */,
-      14,    1,   75,    2, 0x06 /* Public */,
-
- // signals: parameters
-    QMetaType::Void, QMetaType::Int,    3,
-    QMetaType::Void, QMetaType::QString,    3,
-    QMetaType::Void, QMetaType::QString,    3,
-    QMetaType::Void, QMetaType::QString,    7,
-    QMetaType::Void, QMetaType::QString,    9,
-    QMetaType::Void, QMetaType::QString,   11,
-    QMetaType::Void, QMetaType::QString,   13,
-    QMetaType::Void, QMetaType::QString,   15,
-
- // properties: name, type, flags
-       7, QMetaType::QString, 0x00495103,
-       9, QMetaType::QString, 0x00495103,
-      11, QMetaType::QString, 0x00495103,
-      13, QMetaType::QString, 0x00495103,
-      15, QMetaType::QString, 0x00495103,
-
- // properties: notify_signal_id
-       3,
-       4,
-       5,
-       6,
-       7,
-
-       0        // eod
-};
-
-void ApproveNewAccountCtx721036::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
-{
-    if (_c == QMetaObject::InvokeMetaMethod) {
-        ApproveNewAccountCtx721036 *_t = static_cast<ApproveNewAccountCtx721036 *>(_o);
-        Q_UNUSED(_t)
-        switch (_id) {
-        case 0: _t->clicked((*reinterpret_cast< qint32(*)>(_a[1]))); break;
-        case 1: _t->passwordEdited((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 2: _t->confirmPasswordEdited((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 3: _t->remoteChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 4: _t->transportChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 5: _t->endpointChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 6: _t->passwordChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 7: _t->confirmPasswordChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        default: ;
-        }
-    } else if (_c == QMetaObject::IndexOfMethod) {
-        int *result = reinterpret_cast<int *>(_a[0]);
-        {
-            using _t = void (ApproveNewAccountCtx721036::*)(qint32 );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveNewAccountCtx721036::clicked)) {
-                *result = 0;
-                return;
-            }
-        }
-        {
-            using _t = void (ApproveNewAccountCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveNewAccountCtx721036::passwordEdited)) {
-                *result = 1;
-                return;
-            }
-        }
-        {
-            using _t = void (ApproveNewAccountCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveNewAccountCtx721036::confirmPasswordEdited)) {
-                *result = 2;
-                return;
-            }
-        }
-        {
-            using _t = void (ApproveNewAccountCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveNewAccountCtx721036::remoteChanged)) {
-                *result = 3;
-                return;
-            }
-        }
-        {
-            using _t = void (ApproveNewAccountCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveNewAccountCtx721036::transportChanged)) {
-                *result = 4;
-                return;
-            }
-        }
-        {
-            using _t = void (ApproveNewAccountCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveNewAccountCtx721036::endpointChanged)) {
-                *result = 5;
-                return;
-            }
-        }
-        {
-            using _t = void (ApproveNewAccountCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveNewAccountCtx721036::passwordChanged)) {
-                *result = 6;
-                return;
-            }
-        }
-        {
-            using _t = void (ApproveNewAccountCtx721036::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ApproveNewAccountCtx721036::confirmPasswordChanged)) {
-                *result = 7;
-                return;
-            }
-        }
-    }
-#ifndef QT_NO_PROPERTIES
-    else if (_c == QMetaObject::ReadProperty) {
-        ApproveNewAccountCtx721036 *_t = static_cast<ApproveNewAccountCtx721036 *>(_o);
-        Q_UNUSED(_t)
-        void *_v = _a[0];
-        switch (_id) {
-        case 0: *reinterpret_cast< QString*>(_v) = _t->remote(); break;
-        case 1: *reinterpret_cast< QString*>(_v) = _t->transport(); break;
-        case 2: *reinterpret_cast< QString*>(_v) = _t->endpoint(); break;
-        case 3: *reinterpret_cast< QString*>(_v) = _t->password(); break;
-        case 4: *reinterpret_cast< QString*>(_v) = _t->confirmPassword(); break;
-        default: break;
-        }
-    } else if (_c == QMetaObject::WriteProperty) {
-        ApproveNewAccountCtx721036 *_t = static_cast<ApproveNewAccountCtx721036 *>(_o);
-        Q_UNUSED(_t)
-        void *_v = _a[0];
-        switch (_id) {
-        case 0: _t->setRemote(*reinterpret_cast< QString*>(_v)); break;
-        case 1: _t->setTransport(*reinterpret_cast< QString*>(_v)); break;
-        case 2: _t->setEndpoint(*reinterpret_cast< QString*>(_v)); break;
-        case 3: _t->setPassword(*reinterpret_cast< QString*>(_v)); break;
-        case 4: _t->setConfirmPassword(*reinterpret_cast< QString*>(_v)); break;
-        default: break;
-        }
-    } else if (_c == QMetaObject::ResetProperty) {
-    }
-#endif // QT_NO_PROPERTIES
-}
-
-QT_INIT_METAOBJECT const QMetaObject ApproveNewAccountCtx721036::staticMetaObject = {
-    { &QObject::staticMetaObject, qt_meta_stringdata_ApproveNewAccountCtx721036.data,
-      qt_meta_data_ApproveNewAccountCtx721036,  qt_static_metacall, nullptr, nullptr}
-};
-
-
-const QMetaObject *ApproveNewAccountCtx721036::metaObject() const
-{
-    return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
-}
-
-void *ApproveNewAccountCtx721036::qt_metacast(const char *_clname)
-{
-    if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_ApproveNewAccountCtx721036.stringdata0))
-        return static_cast<void*>(this);
-    return QObject::qt_metacast(_clname);
-}
-
-int ApproveNewAccountCtx721036::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
-{
-    _id = QObject::qt_metacall(_c, _id, _a);
-    if (_id < 0)
-        return _id;
-    if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
-            qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
-    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 8)
-            *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 8;
-    }
-#ifndef QT_NO_PROPERTIES
-   else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
-            || _c == QMetaObject::ResetProperty || _c == QMetaObject::RegisterPropertyMetaType) {
-        qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
-    } else if (_c == QMetaObject::QueryPropertyDesignable) {
-        _id -= 5;
-    } else if (_c == QMetaObject::QueryPropertyScriptable) {
-        _id -= 5;
-    } else if (_c == QMetaObject::QueryPropertyStored) {
-        _id -= 5;
-    } else if (_c == QMetaObject::QueryPropertyEditable) {
-        _id -= 5;
-    } else if (_c == QMetaObject::QueryPropertyUser) {
-        _id -= 5;
-    }
-#endif // QT_NO_PROPERTIES
-    return _id;
-}
-
-// SIGNAL 0
-void ApproveNewAccountCtx721036::clicked(qint32 _t1)
-{
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
-    QMetaObject::activate(this, &staticMetaObject, 0, _a);
-}
-
-// SIGNAL 1
-void ApproveNewAccountCtx721036::passwordEdited(QString _t1)
-{
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
-    QMetaObject::activate(this, &staticMetaObject, 1, _a);
-}
-
-// SIGNAL 2
-void ApproveNewAccountCtx721036::confirmPasswordEdited(QString _t1)
-{
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
-    QMetaObject::activate(this, &staticMetaObject, 2, _a);
-}
-
-// SIGNAL 3
-void ApproveNewAccountCtx721036::remoteChanged(QString _t1)
-{
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
-    QMetaObject::activate(this, &staticMetaObject, 3, _a);
-}
-
-// SIGNAL 4
-void ApproveNewAccountCtx721036::transportChanged(QString _t1)
-{
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
-    QMetaObject::activate(this, &staticMetaObject, 4, _a);
-}
-
-// SIGNAL 5
-void ApproveNewAccountCtx721036::endpointChanged(QString _t1)
-{
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
-    QMetaObject::activate(this, &staticMetaObject, 5, _a);
-}
-
-// SIGNAL 6
-void ApproveNewAccountCtx721036::passwordChanged(QString _t1)
-{
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
-    QMetaObject::activate(this, &staticMetaObject, 6, _a);
-}
-
-// SIGNAL 7
-void ApproveNewAccountCtx721036::confirmPasswordChanged(QString _t1)
-{
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
-    QMetaObject::activate(this, &staticMetaObject, 7, _a);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

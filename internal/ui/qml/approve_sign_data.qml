@@ -40,6 +40,7 @@ Item {
                 width: 32
                 height: 32
                 z: 1
+                onClicked: ctxObject.back()
                 contentItem: Text {
                     text: qsTr("<")
                     verticalAlignment: Text.AlignVCenter

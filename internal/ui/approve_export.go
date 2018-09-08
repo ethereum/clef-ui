@@ -22,6 +22,7 @@ type ApproveExportCtx struct {
 	_ string 			`property:"password"`
 
 	_ func(b int) 		`signal:"clicked,auto"`
+	_ func() 			`signal:"back,auto"`
 	_ func(b string) 	`signal:"passwordEdited,auto"`
 	answer 				int
 	ClefUI 				*ClefUI
@@ -29,6 +30,10 @@ type ApproveExportCtx struct {
 
 func (t *ApproveExportCtx) clicked(b int) {
 	t.answer = b
+}
+
+func (t *ApproveExportCtx) back() {
+	t.ClefUI.BackToMain <- true
 }
 
 func (t *ApproveExportCtx) Reset() {

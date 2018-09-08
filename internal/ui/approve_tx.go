@@ -31,6 +31,7 @@ type ApproveTxCtx struct {
 	_ string `property:"password"`
 
 	_ func(b int) `signal:"clicked,auto"`
+	_ func() `signal:"back,auto"`
 	_ func(s string, v string) `signal:"edited,auto"`
 
 	answer 		int
@@ -40,6 +41,10 @@ type ApproveTxCtx struct {
 
 func (t *ApproveTxCtx) init() {
 	t.formData = params.Transaction{}
+}
+
+func (t *ApproveTxCtx) back() {
+	t.ClefUI.BackToMain <- true
 }
 
 func (t *ApproveTxCtx) SetTransaction(tx params.Transaction) {

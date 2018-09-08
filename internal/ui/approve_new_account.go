@@ -23,9 +23,10 @@ type ApproveNewAccountCtx struct {
 	_ string `property:"password"`
 	_ string `property:"confirmPassword"`
 
-	_ func(b int) `signal:"clicked,auto"`
-	_ func(b string) `signal:"passwordEdited,auto"`
-	_ func(b string) `signal:"confirmPasswordEdited,auto"`
+	_ func(b int) 		`signal:"clicked,auto"`
+	_ func() 			`signal:"back,auto"`
+	_ func(b string) 	`signal:"passwordEdited,auto"`
+	_ func(b string) 	`signal:"confirmPasswordEdited,auto"`
 	answer 				int
 	ClefUI 				*ClefUI
 }
@@ -36,6 +37,11 @@ func (t *ApproveNewAccountCtx) init() {
 func (t *ApproveNewAccountCtx) clicked(b int) {
 	t.answer = b
 }
+
+func (t *ApproveNewAccountCtx) back() {
+	t.ClefUI.BackToMain <- true
+}
+
 
 func (t *ApproveNewAccountCtx) Reset() {
 	t.answer = 0

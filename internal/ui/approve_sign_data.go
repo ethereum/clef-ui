@@ -24,6 +24,7 @@ type ApproveSignDataCtx struct {
 	_ string `property:"password"`
 
 	_ func(b int) `signal:"clicked,auto"`
+	_ func() `signal:"back,auto"`
 	_ func(b string, value string) `signal:"edited,auto"`
 
 	answer 		int
@@ -32,6 +33,10 @@ type ApproveSignDataCtx struct {
 
 func (t *ApproveSignDataCtx) clicked(b int) {
 	t.answer = b
+}
+
+func (t *ApproveSignDataCtx) back() {
+	t.ClefUI.BackToMain <- true
 }
 
 func (t *ApproveSignDataCtx) edited(name string, value string) {
