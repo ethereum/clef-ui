@@ -39,6 +39,7 @@ func (t *ApproveNewAccountCtx) clicked(b int) {
 }
 
 func (t *ApproveNewAccountCtx) back() {
+	t.Reset()
 	t.ClefUI.BackToMain <- true
 }
 

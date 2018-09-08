@@ -36,6 +36,7 @@ func (t *ApproveSignDataCtx) clicked(b int) {
 }
 
 func (t *ApproveSignDataCtx) back() {
+	t.Reset()
 	t.ClefUI.BackToMain <- true
 }
 

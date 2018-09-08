@@ -33,6 +33,7 @@ func (t *ApproveExportCtx) clicked(b int) {
 }
 
 func (t *ApproveExportCtx) back() {
+	t.Reset()
 	t.ClefUI.BackToMain <- true
 }
 

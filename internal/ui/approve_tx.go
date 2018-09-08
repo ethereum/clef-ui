@@ -44,6 +44,7 @@ func (t *ApproveTxCtx) init() {
 }
 
 func (t *ApproveTxCtx) back() {
+	t.Reset()
 	t.ClefUI.BackToMain <- true
 }
 

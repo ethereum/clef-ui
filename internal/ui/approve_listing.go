@@ -39,6 +39,7 @@ func (ctx *ApproveListingCtx) init() {
 
 
 func (t *ApproveListingCtx) back() {
+	t.Reset()
 	t.ClefUI.BackToMain <- true
 }
 
