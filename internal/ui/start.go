@@ -2,6 +2,7 @@ package ui
 
 import (
 	"context"
+	"github.com/kyokan/clef-ui/internal/identicon"
 	"github.com/kyokan/clef-ui/internal/params"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quick"
@@ -205,6 +206,7 @@ func NewClefUI(ctx context.Context, uiClose chan bool, readyToStart chan string)
 				co.SetMessage(param.Message)
 				co.SetRawData(param.Raw_data)
 				co.SetFrom(param.Address)
+				co.SetFromSrc(identicon.ToBase64Img(param.Address))
 
 				co.ClickResponse(req.Reply, req.Response)
 
@@ -256,6 +258,7 @@ func NewClefUI(ctx context.Context, uiClose chan bool, readyToStart chan string)
 				co.SetRemote(param.Meta.Remote)
 				co.SetEndpoint(param.Meta.Local)
 				co.SetAddress(param.Address)
+				co.SetFromSrc(identicon.ToBase64Img(param.Address))
 				co.ClickResponse(req.Reply, req.Response)
 
 				approveexport.UI.Show()

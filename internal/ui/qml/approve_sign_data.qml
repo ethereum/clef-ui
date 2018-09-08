@@ -206,7 +206,7 @@ Item {
                 id: rectangle5
                 x: 8
                 y: 18
-                width: 384
+                width: 342
                 height: 24
                 color: "#efefef"
                 radius: 2
@@ -223,6 +223,15 @@ Item {
                     verticalAlignment: Text.AlignHCenter
                     font.pixelSize: 12
                 }
+            }
+
+            Image {
+                id: image
+                x: 356
+                y: 6
+                width: 36
+                height: 36
+                source: ctxObject.fromSrc
             }
 
 

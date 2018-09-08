@@ -1,6 +1,7 @@
 package ui
 
 import (
+	"github.com/kyokan/clef-ui/internal/identicon"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quick"
 	"log"
@@ -11,6 +12,7 @@ func init() {CustomListModel_QmlRegisterType2("CustomQmlTypes", 1, 0, "TxListMod
 const (
 	From = int(core.Qt__UserRole) + 1<<iota
 	Method
+	FromSrc
 )
 
 type TxListUI struct {
@@ -66,13 +68,14 @@ func (m *TxListModel) rowCount(*core.QModelIndex) int {
 }
 
 func (m *TxListModel) columnCount(*core.QModelIndex) int {
-	return 2
+	return 3
 }
 
 func (m *TxListModel) roleNames() map[int]*core.QByteArray {
 	return map[int]*core.QByteArray{
 		From: core.NewQByteArray2("from", -1),
 		Method:  core.NewQByteArray2("method", -1),
+		FromSrc: core.NewQByteArray2("fromSrc", -1),
 	}
 }
 
@@ -85,6 +88,10 @@ func (m *TxListModel) data(index *core.QModelIndex, role int) *core.QVariant {
 
 	if role == int(Method) {
 		return core.NewQVariant14(item.Method)
+	}
+
+	if role == int(FromSrc) {
+		return core.NewQVariant14(identicon.ToBase64Img(item.From))
 	}
 
 	return core.NewQVariant()

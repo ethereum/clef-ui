@@ -20,6 +20,7 @@ type ApproveExportCtx struct {
 	_ string 			`property:"endpoint"`
 	_ string 			`property:"address"`
 	_ string 			`property:"password"`
+	_ string 			`property:"fromSrc"`
 
 	_ func(b int) 		`signal:"clicked,auto"`
 	_ func() 			`signal:"back,auto"`

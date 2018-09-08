@@ -22,6 +22,7 @@ type ApproveSignDataCtx struct {
 	_ string `property:"rawData"`
 	_ string `property:"hash"`
 	_ string `property:"password"`
+	_ string `property:"fromSrc"`
 
 	_ func(b int) `signal:"clicked,auto"`
 	_ func() `signal:"back,auto"`

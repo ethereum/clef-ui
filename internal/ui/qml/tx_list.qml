@@ -104,7 +104,7 @@ Item {
                         y: 8
                         width: 70
                         height: 70
-                        source: "identicon.png"
+                        source: fromSrc
                     }
 
                     Rectangle {

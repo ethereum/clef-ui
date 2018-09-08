@@ -49,7 +49,7 @@ func (c *ClefService) ApproveImport(p []*params.ApproveImportParams, reply *para
 		Reply: reply,
 	}
 	item := &ui.TxListItem{
-		From: "",
+		From: " - ",
 		Method: "ApproveImport",
 		RPC: r,
 	}
@@ -67,7 +67,7 @@ func (c *ClefService) ApproveNewAccount(p []*params.ApproveNewAccountParams, rep
 		Reply: reply,
 	}
 	item := &ui.TxListItem{
-		From: "",
+		From: " - ",
 		Method: "ApproveNewAccount",
 		RPC: r,
 	}
@@ -105,7 +105,7 @@ func (c *ClefService) ApproveListing(p []*params.ApproveListingParams, reply *pa
 		Reply: reply,
 	}
 	item := &ui.TxListItem{
-		From: "",
+		From: " - ",
 		Method: "ApproveListing",
 		RPC: r,
 	}

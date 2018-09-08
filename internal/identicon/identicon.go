@@ -132,7 +132,7 @@ func (icon *identicon) Render(data []byte) []byte {
 	return buf.Bytes()
 }
 
-var renderer = New7x7([]byte("0xAB6916095ca1df60bb79ce92ce3ea74c37c5d359"))
+var renderer = New7x7([]byte("0x4b594f4b414e20495320415745534f4d45"))
 var identicons = make(map[string]string)
 
 func ToBase64Img(address string) (b string) {
