@@ -6,18 +6,6 @@ Item {
     width: 400
     height: 680
 
-    Popup {
-        id: popup
-        x: 100
-        y: 100
-        width: 200
-        height: 300
-        modal: true
-        focus: true
-        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
-
-    }
-
     Rectangle {
         id: rectangle
         x: 0
@@ -75,7 +63,19 @@ Item {
                 width: 150
                 height: 36
                 opacity: ctxObject.isValid ? 1 : 0.5
-                onClicked: ctxObject.clicked()
+
+                MouseArea {
+                    id: ctama
+                    x: 0
+                    y: 0
+                    width: parent.width
+                    height: parent.height
+                    hoverEnabled: true
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: ctxObject.clicked()
+                    onPressed: cta.state = "active"
+                    onReleased: cta.state = ""
+                }
 
                 states: [
                     State {
@@ -85,15 +85,25 @@ Item {
                     State {
                         name: "invalid"
                         PropertyChanges { target: cta; opacity: 0.5 }
+                    },
+                    State {
+                        name: "active"
+                        PropertyChanges { target: ctabg; opacity: 1 }
+                    },
+                    State {
+                        name: "inactive"
+                        PropertyChanges { target: ctabg; opacity: 0.8 }
                     }
                 ]
 
-                transitions: Transition {
-                    NumberAnimation {
-                        duration: 200
-                        properties: "opacity"
+                transitions: [
+                    Transition {
+                        NumberAnimation {
+                            duration: 200
+                            properties: "opacity"
+                        }
                     }
-                }
+                ]
 
                 contentItem: Text {
                     x: 1
@@ -110,12 +120,19 @@ Item {
                     verticalAlignment: Text.AlignVCenter
                     elide: Text.ElideRight
                 }
+
                 background: Rectangle {
+                    id: ctabg
                     width: parent.width
                     height: parent.height
                     color: "#48b877"
+                    opacity: ctama.containsMouse ? 0.6 : 0.8
                     radius: 18
                     border.width: 0
+                    PropertyAnimation on opacity {
+                        duration: 200
+                        easing: Easing.InOutElastic
+                    }
                 }
             }
 
@@ -159,9 +176,11 @@ Item {
                 y: -11
                 width: 84
                 height: 115
-                color: "#efefef"
+                color: "#76e09f"
                 text: "𝄞"
-                font.family: "Verdana"
+                font.wordSpacing: 0
+                style: Text.Normal
+                font.family: "Tahoma"
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
                 font.pixelSize: 128
@@ -201,6 +220,8 @@ Item {
                 height: 14
                 color: "#646464"
                 text: ctxObject.gopath
+                font.family: "Verdana"
+                cursorVisible: true
                 onTextChanged: rectangle3.onChange(text)
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.Center
@@ -252,8 +273,3 @@ Item {
     }
 
 }
-
-/*##^## Designer {
-    D{i:1;invisible:true}
-}
- ##^##*/
