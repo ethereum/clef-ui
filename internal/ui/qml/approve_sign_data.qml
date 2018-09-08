@@ -40,7 +40,16 @@ Item {
                 width: 32
                 height: 32
                 z: 1
-                onClicked: ctxObject.back()
+
+                MouseArea {
+                    x: 0
+                    y: 0
+                    width: parent.width
+                    height: parent.height
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: ctxObject.back()
+                }
+
                 contentItem: Text {
                     text: qsTr("<")
                     verticalAlignment: Text.AlignVCenter
@@ -251,7 +260,16 @@ Item {
                 y: 10
                 height: 36
                 width: 150
-                onClicked: ctxObject.clicked(1)
+
+                MouseArea {
+                    x: 0
+                    y: 0
+                    width: parent.width
+                    height: parent.height
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: ctxObject.clicked(1)
+                }
+
                 contentItem: Text {
                     x: 1
                     y: 1
@@ -284,7 +302,15 @@ Item {
                 y: 10
                 height: 36
                 width: 150
-                onClicked: pwInput2.state = "show"
+
+                MouseArea {
+                    x: 0
+                    y: 0
+                    width: parent.width
+                    height: parent.height
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: pwInput2.state = "show"
+                }
                 contentItem: Text {
                     x: 1
                     y: 1

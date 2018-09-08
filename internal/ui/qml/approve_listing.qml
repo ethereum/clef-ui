@@ -1,6 +1,6 @@
 import QtQuick 2.4
 import QtQuick.Controls 2.3
-import CustomQmlTypes 1.0		//CustomListModel
+//import CustomQmlTypes 1.0		//CustomListModel
 
 Item {
     id: item1
@@ -40,7 +40,15 @@ Item {
                 width: 32
                 height: 32
                 z: 1
-                onClicked: ctxObject.back()
+
+                MouseArea {
+                    x: 0
+                    y: 0
+                    width: parent.width
+                    height: parent.height
+                    onClicked: ctxObject.back()
+                    cursorShape: Qt.PointingHandCursor
+                }
                 contentItem: Text {
                     text: qsTr("<")
                     verticalAlignment: Text.AlignVCenter
@@ -282,7 +290,15 @@ Item {
                 y: 10
                 height: 36
                 width: 150
-                onClicked: ctxObject.clicked(1)
+
+                MouseArea {
+                    x: 0
+                    y: 0
+                    width: parent.width
+                    height: parent.height
+                    onClicked: ctxObject.clicked(1)
+                    cursorShape: Qt.PointingHandCursor
+                }
                 contentItem: Text {
                     x: 0
                     y: 0
@@ -315,7 +331,15 @@ Item {
                 y: 10
                 height: 36
                 width: 150
-                onClicked: ctxObject.clicked(2)
+
+                MouseArea {
+                    x: 0
+                    y: 0
+                    width: parent.width
+                    height: parent.height
+                    onClicked: ctxObject.clicked(2)
+                    cursorShape: Qt.PointingHandCursor
+                }
                 contentItem: Text {
                     x: 1
                     y: 1
@@ -355,8 +379,3 @@ Item {
 
     }
 }
-
-/*##^## Designer {
-    D{i:0;autoSize:true;height:480;width:640}
-}
- ##^##*/
