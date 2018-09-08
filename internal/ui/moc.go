@@ -22,6 +22,1335 @@ func cGoUnpackString(s C.struct_Moc_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
+type LoginCtx_ITF interface {
+	std_core.QObject_ITF
+	LoginCtx_PTR() *LoginCtx
+}
+
+func (ptr *LoginCtx) LoginCtx_PTR() *LoginCtx {
+	return ptr
+}
+
+func (ptr *LoginCtx) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *LoginCtx) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromLoginCtx(ptr LoginCtx_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.LoginCtx_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewLoginCtxFromPointer(ptr unsafe.Pointer) (n *LoginCtx) {
+	if gPtr, ok := qt.Receive(ptr); !ok {
+		n = new(LoginCtx)
+		n.SetPointer(ptr)
+	} else {
+		switch deduced := gPtr.(type) {
+		case *LoginCtx:
+			n = deduced
+
+		case *std_core.QObject:
+			n = &LoginCtx{QObject: *deduced}
+
+		default:
+			n = new(LoginCtx)
+			n.SetPointer(ptr)
+		}
+	}
+	return
+}
+
+//export callbackLoginCtx721036_Constructor
+func callbackLoginCtx721036_Constructor(ptr unsafe.Pointer) {
+	this := NewLoginCtxFromPointer(ptr)
+	qt.Register(ptr, this)
+	this.ConnectClicked(this.clicked)
+	this.ConnectEdited(this.edited)
+}
+
+//export callbackLoginCtx721036_Clicked
+func callbackLoginCtx721036_Clicked(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "clicked"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+func (ptr *LoginCtx) ConnectClicked(f func()) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "clicked") {
+			C.LoginCtx721036_ConnectClicked(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "clicked"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "clicked", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "clicked", f)
+		}
+	}
+}
+
+func (ptr *LoginCtx) DisconnectClicked() {
+	if ptr.Pointer() != nil {
+		C.LoginCtx721036_DisconnectClicked(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "clicked")
+	}
+}
+
+func (ptr *LoginCtx) Clicked() {
+	if ptr.Pointer() != nil {
+		C.LoginCtx721036_Clicked(ptr.Pointer())
+	}
+}
+
+//export callbackLoginCtx721036_Edited
+func callbackLoginCtx721036_Edited(ptr unsafe.Pointer, b C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "edited"); signal != nil {
+		signal.(func(string))(cGoUnpackString(b))
+	}
+
+}
+
+func (ptr *LoginCtx) ConnectEdited(f func(b string)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "edited") {
+			C.LoginCtx721036_ConnectEdited(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "edited"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "edited", func(b string) {
+				signal.(func(string))(b)
+				f(b)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "edited", f)
+		}
+	}
+}
+
+func (ptr *LoginCtx) DisconnectEdited() {
+	if ptr.Pointer() != nil {
+		C.LoginCtx721036_DisconnectEdited(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "edited")
+	}
+}
+
+func (ptr *LoginCtx) Edited(b string) {
+	if ptr.Pointer() != nil {
+		var bC *C.char
+		if b != "" {
+			bC = C.CString(b)
+			defer C.free(unsafe.Pointer(bC))
+		}
+		C.LoginCtx721036_Edited(ptr.Pointer(), C.struct_Moc_PackedString{data: bC, len: C.longlong(len(b))})
+	}
+}
+
+//export callbackLoginCtx721036_Remote
+func callbackLoginCtx721036_Remote(ptr unsafe.Pointer) C.struct_Moc_PackedString {
+	if signal := qt.GetSignal(ptr, "remote"); signal != nil {
+		tempVal := signal.(func() string)()
+		return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+	}
+	tempVal := NewLoginCtxFromPointer(ptr).RemoteDefault()
+	return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+}
+
+func (ptr *LoginCtx) ConnectRemote(f func() string) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "remote"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "remote", func() string {
+				signal.(func() string)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "remote", f)
+		}
+	}
+}
+
+func (ptr *LoginCtx) DisconnectRemote() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "remote")
+	}
+}
+
+func (ptr *LoginCtx) Remote() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.LoginCtx721036_Remote(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *LoginCtx) RemoteDefault() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.LoginCtx721036_RemoteDefault(ptr.Pointer()))
+	}
+	return ""
+}
+
+//export callbackLoginCtx721036_SetRemote
+func callbackLoginCtx721036_SetRemote(ptr unsafe.Pointer, remote C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "setRemote"); signal != nil {
+		signal.(func(string))(cGoUnpackString(remote))
+	} else {
+		NewLoginCtxFromPointer(ptr).SetRemoteDefault(cGoUnpackString(remote))
+	}
+}
+
+func (ptr *LoginCtx) ConnectSetRemote(f func(remote string)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setRemote"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setRemote", func(remote string) {
+				signal.(func(string))(remote)
+				f(remote)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setRemote", f)
+		}
+	}
+}
+
+func (ptr *LoginCtx) DisconnectSetRemote() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setRemote")
+	}
+}
+
+func (ptr *LoginCtx) SetRemote(remote string) {
+	if ptr.Pointer() != nil {
+		var remoteC *C.char
+		if remote != "" {
+			remoteC = C.CString(remote)
+			defer C.free(unsafe.Pointer(remoteC))
+		}
+		C.LoginCtx721036_SetRemote(ptr.Pointer(), C.struct_Moc_PackedString{data: remoteC, len: C.longlong(len(remote))})
+	}
+}
+
+func (ptr *LoginCtx) SetRemoteDefault(remote string) {
+	if ptr.Pointer() != nil {
+		var remoteC *C.char
+		if remote != "" {
+			remoteC = C.CString(remote)
+			defer C.free(unsafe.Pointer(remoteC))
+		}
+		C.LoginCtx721036_SetRemoteDefault(ptr.Pointer(), C.struct_Moc_PackedString{data: remoteC, len: C.longlong(len(remote))})
+	}
+}
+
+//export callbackLoginCtx721036_RemoteChanged
+func callbackLoginCtx721036_RemoteChanged(ptr unsafe.Pointer, remote C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "remoteChanged"); signal != nil {
+		signal.(func(string))(cGoUnpackString(remote))
+	}
+
+}
+
+func (ptr *LoginCtx) ConnectRemoteChanged(f func(remote string)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "remoteChanged") {
+			C.LoginCtx721036_ConnectRemoteChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "remoteChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "remoteChanged", func(remote string) {
+				signal.(func(string))(remote)
+				f(remote)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "remoteChanged", f)
+		}
+	}
+}
+
+func (ptr *LoginCtx) DisconnectRemoteChanged() {
+	if ptr.Pointer() != nil {
+		C.LoginCtx721036_DisconnectRemoteChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "remoteChanged")
+	}
+}
+
+func (ptr *LoginCtx) RemoteChanged(remote string) {
+	if ptr.Pointer() != nil {
+		var remoteC *C.char
+		if remote != "" {
+			remoteC = C.CString(remote)
+			defer C.free(unsafe.Pointer(remoteC))
+		}
+		C.LoginCtx721036_RemoteChanged(ptr.Pointer(), C.struct_Moc_PackedString{data: remoteC, len: C.longlong(len(remote))})
+	}
+}
+
+//export callbackLoginCtx721036_Transport
+func callbackLoginCtx721036_Transport(ptr unsafe.Pointer) C.struct_Moc_PackedString {
+	if signal := qt.GetSignal(ptr, "transport"); signal != nil {
+		tempVal := signal.(func() string)()
+		return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+	}
+	tempVal := NewLoginCtxFromPointer(ptr).TransportDefault()
+	return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+}
+
+func (ptr *LoginCtx) ConnectTransport(f func() string) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "transport"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "transport", func() string {
+				signal.(func() string)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "transport", f)
+		}
+	}
+}
+
+func (ptr *LoginCtx) DisconnectTransport() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "transport")
+	}
+}
+
+func (ptr *LoginCtx) Transport() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.LoginCtx721036_Transport(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *LoginCtx) TransportDefault() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.LoginCtx721036_TransportDefault(ptr.Pointer()))
+	}
+	return ""
+}
+
+//export callbackLoginCtx721036_SetTransport
+func callbackLoginCtx721036_SetTransport(ptr unsafe.Pointer, transport C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "setTransport"); signal != nil {
+		signal.(func(string))(cGoUnpackString(transport))
+	} else {
+		NewLoginCtxFromPointer(ptr).SetTransportDefault(cGoUnpackString(transport))
+	}
+}
+
+func (ptr *LoginCtx) ConnectSetTransport(f func(transport string)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setTransport"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setTransport", func(transport string) {
+				signal.(func(string))(transport)
+				f(transport)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setTransport", f)
+		}
+	}
+}
+
+func (ptr *LoginCtx) DisconnectSetTransport() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setTransport")
+	}
+}
+
+func (ptr *LoginCtx) SetTransport(transport string) {
+	if ptr.Pointer() != nil {
+		var transportC *C.char
+		if transport != "" {
+			transportC = C.CString(transport)
+			defer C.free(unsafe.Pointer(transportC))
+		}
+		C.LoginCtx721036_SetTransport(ptr.Pointer(), C.struct_Moc_PackedString{data: transportC, len: C.longlong(len(transport))})
+	}
+}
+
+func (ptr *LoginCtx) SetTransportDefault(transport string) {
+	if ptr.Pointer() != nil {
+		var transportC *C.char
+		if transport != "" {
+			transportC = C.CString(transport)
+			defer C.free(unsafe.Pointer(transportC))
+		}
+		C.LoginCtx721036_SetTransportDefault(ptr.Pointer(), C.struct_Moc_PackedString{data: transportC, len: C.longlong(len(transport))})
+	}
+}
+
+//export callbackLoginCtx721036_TransportChanged
+func callbackLoginCtx721036_TransportChanged(ptr unsafe.Pointer, transport C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "transportChanged"); signal != nil {
+		signal.(func(string))(cGoUnpackString(transport))
+	}
+
+}
+
+func (ptr *LoginCtx) ConnectTransportChanged(f func(transport string)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "transportChanged") {
+			C.LoginCtx721036_ConnectTransportChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "transportChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "transportChanged", func(transport string) {
+				signal.(func(string))(transport)
+				f(transport)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "transportChanged", f)
+		}
+	}
+}
+
+func (ptr *LoginCtx) DisconnectTransportChanged() {
+	if ptr.Pointer() != nil {
+		C.LoginCtx721036_DisconnectTransportChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "transportChanged")
+	}
+}
+
+func (ptr *LoginCtx) TransportChanged(transport string) {
+	if ptr.Pointer() != nil {
+		var transportC *C.char
+		if transport != "" {
+			transportC = C.CString(transport)
+			defer C.free(unsafe.Pointer(transportC))
+		}
+		C.LoginCtx721036_TransportChanged(ptr.Pointer(), C.struct_Moc_PackedString{data: transportC, len: C.longlong(len(transport))})
+	}
+}
+
+//export callbackLoginCtx721036_Endpoint
+func callbackLoginCtx721036_Endpoint(ptr unsafe.Pointer) C.struct_Moc_PackedString {
+	if signal := qt.GetSignal(ptr, "endpoint"); signal != nil {
+		tempVal := signal.(func() string)()
+		return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+	}
+	tempVal := NewLoginCtxFromPointer(ptr).EndpointDefault()
+	return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+}
+
+func (ptr *LoginCtx) ConnectEndpoint(f func() string) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "endpoint"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "endpoint", func() string {
+				signal.(func() string)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "endpoint", f)
+		}
+	}
+}
+
+func (ptr *LoginCtx) DisconnectEndpoint() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "endpoint")
+	}
+}
+
+func (ptr *LoginCtx) Endpoint() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.LoginCtx721036_Endpoint(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *LoginCtx) EndpointDefault() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.LoginCtx721036_EndpointDefault(ptr.Pointer()))
+	}
+	return ""
+}
+
+//export callbackLoginCtx721036_SetEndpoint
+func callbackLoginCtx721036_SetEndpoint(ptr unsafe.Pointer, endpoint C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "setEndpoint"); signal != nil {
+		signal.(func(string))(cGoUnpackString(endpoint))
+	} else {
+		NewLoginCtxFromPointer(ptr).SetEndpointDefault(cGoUnpackString(endpoint))
+	}
+}
+
+func (ptr *LoginCtx) ConnectSetEndpoint(f func(endpoint string)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setEndpoint"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setEndpoint", func(endpoint string) {
+				signal.(func(string))(endpoint)
+				f(endpoint)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setEndpoint", f)
+		}
+	}
+}
+
+func (ptr *LoginCtx) DisconnectSetEndpoint() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setEndpoint")
+	}
+}
+
+func (ptr *LoginCtx) SetEndpoint(endpoint string) {
+	if ptr.Pointer() != nil {
+		var endpointC *C.char
+		if endpoint != "" {
+			endpointC = C.CString(endpoint)
+			defer C.free(unsafe.Pointer(endpointC))
+		}
+		C.LoginCtx721036_SetEndpoint(ptr.Pointer(), C.struct_Moc_PackedString{data: endpointC, len: C.longlong(len(endpoint))})
+	}
+}
+
+func (ptr *LoginCtx) SetEndpointDefault(endpoint string) {
+	if ptr.Pointer() != nil {
+		var endpointC *C.char
+		if endpoint != "" {
+			endpointC = C.CString(endpoint)
+			defer C.free(unsafe.Pointer(endpointC))
+		}
+		C.LoginCtx721036_SetEndpointDefault(ptr.Pointer(), C.struct_Moc_PackedString{data: endpointC, len: C.longlong(len(endpoint))})
+	}
+}
+
+//export callbackLoginCtx721036_EndpointChanged
+func callbackLoginCtx721036_EndpointChanged(ptr unsafe.Pointer, endpoint C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "endpointChanged"); signal != nil {
+		signal.(func(string))(cGoUnpackString(endpoint))
+	}
+
+}
+
+func (ptr *LoginCtx) ConnectEndpointChanged(f func(endpoint string)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "endpointChanged") {
+			C.LoginCtx721036_ConnectEndpointChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "endpointChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "endpointChanged", func(endpoint string) {
+				signal.(func(string))(endpoint)
+				f(endpoint)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "endpointChanged", f)
+		}
+	}
+}
+
+func (ptr *LoginCtx) DisconnectEndpointChanged() {
+	if ptr.Pointer() != nil {
+		C.LoginCtx721036_DisconnectEndpointChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "endpointChanged")
+	}
+}
+
+func (ptr *LoginCtx) EndpointChanged(endpoint string) {
+	if ptr.Pointer() != nil {
+		var endpointC *C.char
+		if endpoint != "" {
+			endpointC = C.CString(endpoint)
+			defer C.free(unsafe.Pointer(endpointC))
+		}
+		C.LoginCtx721036_EndpointChanged(ptr.Pointer(), C.struct_Moc_PackedString{data: endpointC, len: C.longlong(len(endpoint))})
+	}
+}
+
+//export callbackLoginCtx721036_Gopath
+func callbackLoginCtx721036_Gopath(ptr unsafe.Pointer) C.struct_Moc_PackedString {
+	if signal := qt.GetSignal(ptr, "gopath"); signal != nil {
+		tempVal := signal.(func() string)()
+		return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+	}
+	tempVal := NewLoginCtxFromPointer(ptr).GopathDefault()
+	return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+}
+
+func (ptr *LoginCtx) ConnectGopath(f func() string) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "gopath"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "gopath", func() string {
+				signal.(func() string)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "gopath", f)
+		}
+	}
+}
+
+func (ptr *LoginCtx) DisconnectGopath() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "gopath")
+	}
+}
+
+func (ptr *LoginCtx) Gopath() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.LoginCtx721036_Gopath(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *LoginCtx) GopathDefault() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.LoginCtx721036_GopathDefault(ptr.Pointer()))
+	}
+	return ""
+}
+
+//export callbackLoginCtx721036_SetGopath
+func callbackLoginCtx721036_SetGopath(ptr unsafe.Pointer, gopath C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "setGopath"); signal != nil {
+		signal.(func(string))(cGoUnpackString(gopath))
+	} else {
+		NewLoginCtxFromPointer(ptr).SetGopathDefault(cGoUnpackString(gopath))
+	}
+}
+
+func (ptr *LoginCtx) ConnectSetGopath(f func(gopath string)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setGopath"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setGopath", func(gopath string) {
+				signal.(func(string))(gopath)
+				f(gopath)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setGopath", f)
+		}
+	}
+}
+
+func (ptr *LoginCtx) DisconnectSetGopath() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setGopath")
+	}
+}
+
+func (ptr *LoginCtx) SetGopath(gopath string) {
+	if ptr.Pointer() != nil {
+		var gopathC *C.char
+		if gopath != "" {
+			gopathC = C.CString(gopath)
+			defer C.free(unsafe.Pointer(gopathC))
+		}
+		C.LoginCtx721036_SetGopath(ptr.Pointer(), C.struct_Moc_PackedString{data: gopathC, len: C.longlong(len(gopath))})
+	}
+}
+
+func (ptr *LoginCtx) SetGopathDefault(gopath string) {
+	if ptr.Pointer() != nil {
+		var gopathC *C.char
+		if gopath != "" {
+			gopathC = C.CString(gopath)
+			defer C.free(unsafe.Pointer(gopathC))
+		}
+		C.LoginCtx721036_SetGopathDefault(ptr.Pointer(), C.struct_Moc_PackedString{data: gopathC, len: C.longlong(len(gopath))})
+	}
+}
+
+//export callbackLoginCtx721036_GopathChanged
+func callbackLoginCtx721036_GopathChanged(ptr unsafe.Pointer, gopath C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "gopathChanged"); signal != nil {
+		signal.(func(string))(cGoUnpackString(gopath))
+	}
+
+}
+
+func (ptr *LoginCtx) ConnectGopathChanged(f func(gopath string)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "gopathChanged") {
+			C.LoginCtx721036_ConnectGopathChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "gopathChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "gopathChanged", func(gopath string) {
+				signal.(func(string))(gopath)
+				f(gopath)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "gopathChanged", f)
+		}
+	}
+}
+
+func (ptr *LoginCtx) DisconnectGopathChanged() {
+	if ptr.Pointer() != nil {
+		C.LoginCtx721036_DisconnectGopathChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "gopathChanged")
+	}
+}
+
+func (ptr *LoginCtx) GopathChanged(gopath string) {
+	if ptr.Pointer() != nil {
+		var gopathC *C.char
+		if gopath != "" {
+			gopathC = C.CString(gopath)
+			defer C.free(unsafe.Pointer(gopathC))
+		}
+		C.LoginCtx721036_GopathChanged(ptr.Pointer(), C.struct_Moc_PackedString{data: gopathC, len: C.longlong(len(gopath))})
+	}
+}
+
+//export callbackLoginCtx721036_BinaryHash
+func callbackLoginCtx721036_BinaryHash(ptr unsafe.Pointer) C.struct_Moc_PackedString {
+	if signal := qt.GetSignal(ptr, "binaryHash"); signal != nil {
+		tempVal := signal.(func() string)()
+		return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+	}
+	tempVal := NewLoginCtxFromPointer(ptr).BinaryHashDefault()
+	return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+}
+
+func (ptr *LoginCtx) ConnectBinaryHash(f func() string) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "binaryHash"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "binaryHash", func() string {
+				signal.(func() string)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "binaryHash", f)
+		}
+	}
+}
+
+func (ptr *LoginCtx) DisconnectBinaryHash() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "binaryHash")
+	}
+}
+
+func (ptr *LoginCtx) BinaryHash() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.LoginCtx721036_BinaryHash(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *LoginCtx) BinaryHashDefault() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.LoginCtx721036_BinaryHashDefault(ptr.Pointer()))
+	}
+	return ""
+}
+
+//export callbackLoginCtx721036_SetBinaryHash
+func callbackLoginCtx721036_SetBinaryHash(ptr unsafe.Pointer, binaryHash C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "setBinaryHash"); signal != nil {
+		signal.(func(string))(cGoUnpackString(binaryHash))
+	} else {
+		NewLoginCtxFromPointer(ptr).SetBinaryHashDefault(cGoUnpackString(binaryHash))
+	}
+}
+
+func (ptr *LoginCtx) ConnectSetBinaryHash(f func(binaryHash string)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setBinaryHash"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setBinaryHash", func(binaryHash string) {
+				signal.(func(string))(binaryHash)
+				f(binaryHash)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setBinaryHash", f)
+		}
+	}
+}
+
+func (ptr *LoginCtx) DisconnectSetBinaryHash() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setBinaryHash")
+	}
+}
+
+func (ptr *LoginCtx) SetBinaryHash(binaryHash string) {
+	if ptr.Pointer() != nil {
+		var binaryHashC *C.char
+		if binaryHash != "" {
+			binaryHashC = C.CString(binaryHash)
+			defer C.free(unsafe.Pointer(binaryHashC))
+		}
+		C.LoginCtx721036_SetBinaryHash(ptr.Pointer(), C.struct_Moc_PackedString{data: binaryHashC, len: C.longlong(len(binaryHash))})
+	}
+}
+
+func (ptr *LoginCtx) SetBinaryHashDefault(binaryHash string) {
+	if ptr.Pointer() != nil {
+		var binaryHashC *C.char
+		if binaryHash != "" {
+			binaryHashC = C.CString(binaryHash)
+			defer C.free(unsafe.Pointer(binaryHashC))
+		}
+		C.LoginCtx721036_SetBinaryHashDefault(ptr.Pointer(), C.struct_Moc_PackedString{data: binaryHashC, len: C.longlong(len(binaryHash))})
+	}
+}
+
+//export callbackLoginCtx721036_BinaryHashChanged
+func callbackLoginCtx721036_BinaryHashChanged(ptr unsafe.Pointer, binaryHash C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "binaryHashChanged"); signal != nil {
+		signal.(func(string))(cGoUnpackString(binaryHash))
+	}
+
+}
+
+func (ptr *LoginCtx) ConnectBinaryHashChanged(f func(binaryHash string)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "binaryHashChanged") {
+			C.LoginCtx721036_ConnectBinaryHashChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "binaryHashChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "binaryHashChanged", func(binaryHash string) {
+				signal.(func(string))(binaryHash)
+				f(binaryHash)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "binaryHashChanged", f)
+		}
+	}
+}
+
+func (ptr *LoginCtx) DisconnectBinaryHashChanged() {
+	if ptr.Pointer() != nil {
+		C.LoginCtx721036_DisconnectBinaryHashChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "binaryHashChanged")
+	}
+}
+
+func (ptr *LoginCtx) BinaryHashChanged(binaryHash string) {
+	if ptr.Pointer() != nil {
+		var binaryHashC *C.char
+		if binaryHash != "" {
+			binaryHashC = C.CString(binaryHash)
+			defer C.free(unsafe.Pointer(binaryHashC))
+		}
+		C.LoginCtx721036_BinaryHashChanged(ptr.Pointer(), C.struct_Moc_PackedString{data: binaryHashC, len: C.longlong(len(binaryHash))})
+	}
+}
+
+//export callbackLoginCtx721036_IsValid
+func callbackLoginCtx721036_IsValid(ptr unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "isValid"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewLoginCtxFromPointer(ptr).IsValidDefault())))
+}
+
+func (ptr *LoginCtx) ConnectIsValid(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "isValid"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "isValid", func() bool {
+				signal.(func() bool)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "isValid", f)
+		}
+	}
+}
+
+func (ptr *LoginCtx) DisconnectIsValid() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "isValid")
+	}
+}
+
+func (ptr *LoginCtx) IsValid() bool {
+	if ptr.Pointer() != nil {
+		return C.LoginCtx721036_IsValid(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *LoginCtx) IsValidDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.LoginCtx721036_IsValidDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+//export callbackLoginCtx721036_SetIsValid
+func callbackLoginCtx721036_SetIsValid(ptr unsafe.Pointer, isValid C.char) {
+	if signal := qt.GetSignal(ptr, "setIsValid"); signal != nil {
+		signal.(func(bool))(int8(isValid) != 0)
+	} else {
+		NewLoginCtxFromPointer(ptr).SetIsValidDefault(int8(isValid) != 0)
+	}
+}
+
+func (ptr *LoginCtx) ConnectSetIsValid(f func(isValid bool)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setIsValid"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setIsValid", func(isValid bool) {
+				signal.(func(bool))(isValid)
+				f(isValid)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setIsValid", f)
+		}
+	}
+}
+
+func (ptr *LoginCtx) DisconnectSetIsValid() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setIsValid")
+	}
+}
+
+func (ptr *LoginCtx) SetIsValid(isValid bool) {
+	if ptr.Pointer() != nil {
+		C.LoginCtx721036_SetIsValid(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(isValid))))
+	}
+}
+
+func (ptr *LoginCtx) SetIsValidDefault(isValid bool) {
+	if ptr.Pointer() != nil {
+		C.LoginCtx721036_SetIsValidDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(isValid))))
+	}
+}
+
+//export callbackLoginCtx721036_IsValidChanged
+func callbackLoginCtx721036_IsValidChanged(ptr unsafe.Pointer, isValid C.char) {
+	if signal := qt.GetSignal(ptr, "isValidChanged"); signal != nil {
+		signal.(func(bool))(int8(isValid) != 0)
+	}
+
+}
+
+func (ptr *LoginCtx) ConnectIsValidChanged(f func(isValid bool)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "isValidChanged") {
+			C.LoginCtx721036_ConnectIsValidChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "isValidChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "isValidChanged", func(isValid bool) {
+				signal.(func(bool))(isValid)
+				f(isValid)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "isValidChanged", f)
+		}
+	}
+}
+
+func (ptr *LoginCtx) DisconnectIsValidChanged() {
+	if ptr.Pointer() != nil {
+		C.LoginCtx721036_DisconnectIsValidChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "isValidChanged")
+	}
+}
+
+func (ptr *LoginCtx) IsValidChanged(isValid bool) {
+	if ptr.Pointer() != nil {
+		C.LoginCtx721036_IsValidChanged(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(isValid))))
+	}
+}
+
+func LoginCtx_QRegisterMetaType() int {
+	return int(int32(C.LoginCtx721036_LoginCtx721036_QRegisterMetaType()))
+}
+
+func (ptr *LoginCtx) QRegisterMetaType() int {
+	return int(int32(C.LoginCtx721036_LoginCtx721036_QRegisterMetaType()))
+}
+
+func LoginCtx_QRegisterMetaType2(typeName string) int {
+	var typeNameC *C.char
+	if typeName != "" {
+		typeNameC = C.CString(typeName)
+		defer C.free(unsafe.Pointer(typeNameC))
+	}
+	return int(int32(C.LoginCtx721036_LoginCtx721036_QRegisterMetaType2(typeNameC)))
+}
+
+func (ptr *LoginCtx) QRegisterMetaType2(typeName string) int {
+	var typeNameC *C.char
+	if typeName != "" {
+		typeNameC = C.CString(typeName)
+		defer C.free(unsafe.Pointer(typeNameC))
+	}
+	return int(int32(C.LoginCtx721036_LoginCtx721036_QRegisterMetaType2(typeNameC)))
+}
+
+func LoginCtx_QmlRegisterType() int {
+	return int(int32(C.LoginCtx721036_LoginCtx721036_QmlRegisterType()))
+}
+
+func (ptr *LoginCtx) QmlRegisterType() int {
+	return int(int32(C.LoginCtx721036_LoginCtx721036_QmlRegisterType()))
+}
+
+func LoginCtx_QmlRegisterType2(uri string, versionMajor int, versionMinor int, qmlName string) int {
+	var uriC *C.char
+	if uri != "" {
+		uriC = C.CString(uri)
+		defer C.free(unsafe.Pointer(uriC))
+	}
+	var qmlNameC *C.char
+	if qmlName != "" {
+		qmlNameC = C.CString(qmlName)
+		defer C.free(unsafe.Pointer(qmlNameC))
+	}
+	return int(int32(C.LoginCtx721036_LoginCtx721036_QmlRegisterType2(uriC, C.int(int32(versionMajor)), C.int(int32(versionMinor)), qmlNameC)))
+}
+
+func (ptr *LoginCtx) QmlRegisterType2(uri string, versionMajor int, versionMinor int, qmlName string) int {
+	var uriC *C.char
+	if uri != "" {
+		uriC = C.CString(uri)
+		defer C.free(unsafe.Pointer(uriC))
+	}
+	var qmlNameC *C.char
+	if qmlName != "" {
+		qmlNameC = C.CString(qmlName)
+		defer C.free(unsafe.Pointer(qmlNameC))
+	}
+	return int(int32(C.LoginCtx721036_LoginCtx721036_QmlRegisterType2(uriC, C.int(int32(versionMajor)), C.int(int32(versionMinor)), qmlNameC)))
+}
+
+func (ptr *LoginCtx) __dynamicPropertyNames_atList(i int) *std_core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQByteArrayFromPointer(C.LoginCtx721036___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*std_core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *LoginCtx) __dynamicPropertyNames_setList(i std_core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.LoginCtx721036___dynamicPropertyNames_setList(ptr.Pointer(), std_core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *LoginCtx) __dynamicPropertyNames_newList() unsafe.Pointer {
+	return C.LoginCtx721036___dynamicPropertyNames_newList(ptr.Pointer())
+}
+
+func (ptr *LoginCtx) __findChildren_atList2(i int) *std_core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQObjectFromPointer(C.LoginCtx721036___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *LoginCtx) __findChildren_setList2(i std_core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.LoginCtx721036___findChildren_setList2(ptr.Pointer(), std_core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *LoginCtx) __findChildren_newList2() unsafe.Pointer {
+	return C.LoginCtx721036___findChildren_newList2(ptr.Pointer())
+}
+
+func (ptr *LoginCtx) __findChildren_atList3(i int) *std_core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQObjectFromPointer(C.LoginCtx721036___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *LoginCtx) __findChildren_setList3(i std_core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.LoginCtx721036___findChildren_setList3(ptr.Pointer(), std_core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *LoginCtx) __findChildren_newList3() unsafe.Pointer {
+	return C.LoginCtx721036___findChildren_newList3(ptr.Pointer())
+}
+
+func (ptr *LoginCtx) __findChildren_atList(i int) *std_core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQObjectFromPointer(C.LoginCtx721036___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *LoginCtx) __findChildren_setList(i std_core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.LoginCtx721036___findChildren_setList(ptr.Pointer(), std_core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *LoginCtx) __findChildren_newList() unsafe.Pointer {
+	return C.LoginCtx721036___findChildren_newList(ptr.Pointer())
+}
+
+func (ptr *LoginCtx) __children_atList(i int) *std_core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQObjectFromPointer(C.LoginCtx721036___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *LoginCtx) __children_setList(i std_core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.LoginCtx721036___children_setList(ptr.Pointer(), std_core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *LoginCtx) __children_newList() unsafe.Pointer {
+	return C.LoginCtx721036___children_newList(ptr.Pointer())
+}
+
+func NewLoginCtx(parent std_core.QObject_ITF) *LoginCtx {
+	tmpValue := NewLoginCtxFromPointer(C.LoginCtx721036_NewLoginCtx(std_core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
+//export callbackLoginCtx721036_DestroyLoginCtx
+func callbackLoginCtx721036_DestroyLoginCtx(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "~LoginCtx"); signal != nil {
+		signal.(func())()
+	} else {
+		NewLoginCtxFromPointer(ptr).DestroyLoginCtxDefault()
+	}
+}
+
+func (ptr *LoginCtx) ConnectDestroyLoginCtx(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "~LoginCtx"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "~LoginCtx", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "~LoginCtx", f)
+		}
+	}
+}
+
+func (ptr *LoginCtx) DisconnectDestroyLoginCtx() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "~LoginCtx")
+	}
+}
+
+func (ptr *LoginCtx) DestroyLoginCtx() {
+	if ptr.Pointer() != nil {
+		C.LoginCtx721036_DestroyLoginCtx(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *LoginCtx) DestroyLoginCtxDefault() {
+	if ptr.Pointer() != nil {
+		C.LoginCtx721036_DestroyLoginCtxDefault(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+//export callbackLoginCtx721036_Event
+func callbackLoginCtx721036_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QEvent) bool)(std_core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewLoginCtxFromPointer(ptr).EventDefault(std_core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *LoginCtx) EventDefault(e std_core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.LoginCtx721036_EventDefault(ptr.Pointer(), std_core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackLoginCtx721036_EventFilter
+func callbackLoginCtx721036_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QObject, *std_core.QEvent) bool)(std_core.NewQObjectFromPointer(watched), std_core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewLoginCtxFromPointer(ptr).EventFilterDefault(std_core.NewQObjectFromPointer(watched), std_core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *LoginCtx) EventFilterDefault(watched std_core.QObject_ITF, event std_core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.LoginCtx721036_EventFilterDefault(ptr.Pointer(), std_core.PointerFromQObject(watched), std_core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+//export callbackLoginCtx721036_ChildEvent
+func callbackLoginCtx721036_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
+		signal.(func(*std_core.QChildEvent))(std_core.NewQChildEventFromPointer(event))
+	} else {
+		NewLoginCtxFromPointer(ptr).ChildEventDefault(std_core.NewQChildEventFromPointer(event))
+	}
+}
+
+func (ptr *LoginCtx) ChildEventDefault(event std_core.QChildEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.LoginCtx721036_ChildEventDefault(ptr.Pointer(), std_core.PointerFromQChildEvent(event))
+	}
+}
+
+//export callbackLoginCtx721036_ConnectNotify
+func callbackLoginCtx721036_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
+		signal.(func(*std_core.QMetaMethod))(std_core.NewQMetaMethodFromPointer(sign))
+	} else {
+		NewLoginCtxFromPointer(ptr).ConnectNotifyDefault(std_core.NewQMetaMethodFromPointer(sign))
+	}
+}
+
+func (ptr *LoginCtx) ConnectNotifyDefault(sign std_core.QMetaMethod_ITF) {
+	if ptr.Pointer() != nil {
+		C.LoginCtx721036_ConnectNotifyDefault(ptr.Pointer(), std_core.PointerFromQMetaMethod(sign))
+	}
+}
+
+//export callbackLoginCtx721036_CustomEvent
+func callbackLoginCtx721036_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
+		signal.(func(*std_core.QEvent))(std_core.NewQEventFromPointer(event))
+	} else {
+		NewLoginCtxFromPointer(ptr).CustomEventDefault(std_core.NewQEventFromPointer(event))
+	}
+}
+
+func (ptr *LoginCtx) CustomEventDefault(event std_core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.LoginCtx721036_CustomEventDefault(ptr.Pointer(), std_core.PointerFromQEvent(event))
+	}
+}
+
+//export callbackLoginCtx721036_DeleteLater
+func callbackLoginCtx721036_DeleteLater(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
+		signal.(func())()
+	} else {
+		NewLoginCtxFromPointer(ptr).DeleteLaterDefault()
+	}
+}
+
+func (ptr *LoginCtx) DeleteLaterDefault() {
+	if ptr.Pointer() != nil {
+		C.LoginCtx721036_DeleteLaterDefault(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+//export callbackLoginCtx721036_Destroyed
+func callbackLoginCtx721036_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
+		signal.(func(*std_core.QObject))(std_core.NewQObjectFromPointer(obj))
+	}
+
+}
+
+//export callbackLoginCtx721036_DisconnectNotify
+func callbackLoginCtx721036_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
+		signal.(func(*std_core.QMetaMethod))(std_core.NewQMetaMethodFromPointer(sign))
+	} else {
+		NewLoginCtxFromPointer(ptr).DisconnectNotifyDefault(std_core.NewQMetaMethodFromPointer(sign))
+	}
+}
+
+func (ptr *LoginCtx) DisconnectNotifyDefault(sign std_core.QMetaMethod_ITF) {
+	if ptr.Pointer() != nil {
+		C.LoginCtx721036_DisconnectNotifyDefault(ptr.Pointer(), std_core.PointerFromQMetaMethod(sign))
+	}
+}
+
+//export callbackLoginCtx721036_ObjectNameChanged
+func callbackLoginCtx721036_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
+		signal.(func(string))(cGoUnpackString(objectName))
+	}
+
+}
+
+//export callbackLoginCtx721036_TimerEvent
+func callbackLoginCtx721036_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
+		signal.(func(*std_core.QTimerEvent))(std_core.NewQTimerEventFromPointer(event))
+	} else {
+		NewLoginCtxFromPointer(ptr).TimerEventDefault(std_core.NewQTimerEventFromPointer(event))
+	}
+}
+
+func (ptr *LoginCtx) TimerEventDefault(event std_core.QTimerEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.LoginCtx721036_TimerEventDefault(ptr.Pointer(), std_core.PointerFromQTimerEvent(event))
+	}
+}
+
 type TxListCtx_ITF interface {
 	std_core.QObject_ITF
 	TxListCtx_PTR() *TxListCtx
@@ -477,1164 +1806,223 @@ func (ptr *TxListCtx) TimerEventDefault(event std_core.QTimerEvent_ITF) {
 	}
 }
 
-type ApproveListingCtx_ITF interface {
-	std_core.QObject_ITF
-	ApproveListingCtx_PTR() *ApproveListingCtx
+type TxListModel_ITF interface {
+	std_core.QAbstractListModel_ITF
+	TxListModel_PTR() *TxListModel
 }
 
-func (ptr *ApproveListingCtx) ApproveListingCtx_PTR() *ApproveListingCtx {
+func (ptr *TxListModel) TxListModel_PTR() *TxListModel {
 	return ptr
 }
 
-func (ptr *ApproveListingCtx) Pointer() unsafe.Pointer {
+func (ptr *TxListModel) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QObject_PTR().Pointer()
+		return ptr.QAbstractListModel_PTR().Pointer()
 	}
 	return nil
 }
 
-func (ptr *ApproveListingCtx) SetPointer(p unsafe.Pointer) {
+func (ptr *TxListModel) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.QObject_PTR().SetPointer(p)
+		ptr.QAbstractListModel_PTR().SetPointer(p)
 	}
 }
 
-func PointerFromApproveListingCtx(ptr ApproveListingCtx_ITF) unsafe.Pointer {
+func PointerFromTxListModel(ptr TxListModel_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ApproveListingCtx_PTR().Pointer()
+		return ptr.TxListModel_PTR().Pointer()
 	}
 	return nil
 }
 
-func NewApproveListingCtxFromPointer(ptr unsafe.Pointer) (n *ApproveListingCtx) {
+func NewTxListModelFromPointer(ptr unsafe.Pointer) (n *TxListModel) {
 	if gPtr, ok := qt.Receive(ptr); !ok {
-		n = new(ApproveListingCtx)
+		n = new(TxListModel)
 		n.SetPointer(ptr)
 	} else {
 		switch deduced := gPtr.(type) {
-		case *ApproveListingCtx:
+		case *TxListModel:
 			n = deduced
 
-		case *std_core.QObject:
-			n = &ApproveListingCtx{QObject: *deduced}
+		case *std_core.QAbstractListModel:
+			n = &TxListModel{QAbstractListModel: *deduced}
 
 		default:
-			n = new(ApproveListingCtx)
+			n = new(TxListModel)
 			n.SetPointer(ptr)
 		}
 	}
 	return
 }
 
-//export callbackApproveListingCtx721036_Constructor
-func callbackApproveListingCtx721036_Constructor(ptr unsafe.Pointer) {
-	this := NewApproveListingCtxFromPointer(ptr)
+//export callbackTxListModel721036_Constructor
+func callbackTxListModel721036_Constructor(ptr unsafe.Pointer) {
+	this := NewTxListModelFromPointer(ptr)
 	qt.Register(ptr, this)
-	this.ConnectClicked(this.clicked)
-	this.ConnectOnCheckStateChanged(this.onCheckStateChanged)
+	this.ConnectClear(this.clear)
+	this.ConnectAdd(this.add)
+	this.ConnectRemove(this.remove)
 	this.init()
 }
 
-//export callbackApproveListingCtx721036_Clicked
-func callbackApproveListingCtx721036_Clicked(ptr unsafe.Pointer, b C.int) {
-	if signal := qt.GetSignal(ptr, "clicked"); signal != nil {
-		signal.(func(int))(int(int32(b)))
+//export callbackTxListModel721036_Clear
+func callbackTxListModel721036_Clear(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "clear"); signal != nil {
+		signal.(func())()
 	}
 
 }
 
-func (ptr *ApproveListingCtx) ConnectClicked(f func(b int)) {
+func (ptr *TxListModel) ConnectClear(f func()) {
 	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "clicked") {
-			C.ApproveListingCtx721036_ConnectClicked(ptr.Pointer())
+		if !qt.ExistsSignal(ptr.Pointer(), "clear") {
+			C.TxListModel721036_ConnectClear(ptr.Pointer())
 		}
 
-		if signal := qt.LendSignal(ptr.Pointer(), "clicked"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "clicked", func(b int) {
-				signal.(func(int))(b)
-				f(b)
+		if signal := qt.LendSignal(ptr.Pointer(), "clear"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "clear", func() {
+				signal.(func())()
+				f()
 			})
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "clicked", f)
+			qt.ConnectSignal(ptr.Pointer(), "clear", f)
 		}
 	}
 }
 
-func (ptr *ApproveListingCtx) DisconnectClicked() {
+func (ptr *TxListModel) DisconnectClear() {
 	if ptr.Pointer() != nil {
-		C.ApproveListingCtx721036_DisconnectClicked(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "clicked")
+		C.TxListModel721036_DisconnectClear(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "clear")
 	}
 }
 
-func (ptr *ApproveListingCtx) Clicked(b int) {
+func (ptr *TxListModel) Clear() {
 	if ptr.Pointer() != nil {
-		C.ApproveListingCtx721036_Clicked(ptr.Pointer(), C.int(int32(b)))
+		C.TxListModel721036_Clear(ptr.Pointer())
 	}
 }
 
-//export callbackApproveListingCtx721036_OnCheckStateChanged
-func callbackApproveListingCtx721036_OnCheckStateChanged(ptr unsafe.Pointer, i C.int, checked C.char) {
-	if signal := qt.GetSignal(ptr, "onCheckStateChanged"); signal != nil {
-		signal.(func(int, bool))(int(int32(i)), int8(checked) != 0)
+//export callbackTxListModel721036_Add
+func callbackTxListModel721036_Add(ptr unsafe.Pointer, tx C.uintptr_t) {
+	var txD *TxListItem
+	if txI, ok := qt.ReceiveTemp(unsafe.Pointer(uintptr(tx))); ok {
+		qt.UnregisterTemp(unsafe.Pointer(uintptr(tx)))
+		txD = txI.(*TxListItem)
+	}
+	if signal := qt.GetSignal(ptr, "add"); signal != nil {
+		signal.(func(*TxListItem))(txD)
 	}
 
 }
 
-func (ptr *ApproveListingCtx) ConnectOnCheckStateChanged(f func(i int, checked bool)) {
+func (ptr *TxListModel) ConnectAdd(f func(tx *TxListItem)) {
 	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "onCheckStateChanged") {
-			C.ApproveListingCtx721036_ConnectOnCheckStateChanged(ptr.Pointer())
+		if !qt.ExistsSignal(ptr.Pointer(), "add") {
+			C.TxListModel721036_ConnectAdd(ptr.Pointer())
 		}
 
-		if signal := qt.LendSignal(ptr.Pointer(), "onCheckStateChanged"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "onCheckStateChanged", func(i int, checked bool) {
-				signal.(func(int, bool))(i, checked)
-				f(i, checked)
+		if signal := qt.LendSignal(ptr.Pointer(), "add"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "add", func(tx *TxListItem) {
+				signal.(func(*TxListItem))(tx)
+				f(tx)
 			})
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "onCheckStateChanged", f)
+			qt.ConnectSignal(ptr.Pointer(), "add", f)
 		}
 	}
 }
 
-func (ptr *ApproveListingCtx) DisconnectOnCheckStateChanged() {
+func (ptr *TxListModel) DisconnectAdd() {
 	if ptr.Pointer() != nil {
-		C.ApproveListingCtx721036_DisconnectOnCheckStateChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "onCheckStateChanged")
+		C.TxListModel721036_DisconnectAdd(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "add")
 	}
 }
 
-func (ptr *ApproveListingCtx) OnCheckStateChanged(i int, checked bool) {
+func (ptr *TxListModel) Add(tx *TxListItem) {
 	if ptr.Pointer() != nil {
-		C.ApproveListingCtx721036_OnCheckStateChanged(ptr.Pointer(), C.int(int32(i)), C.char(int8(qt.GoBoolToInt(checked))))
+		qt.RegisterTemp(unsafe.Pointer(tx), tx)
+		C.TxListModel721036_Add(ptr.Pointer(), C.uintptr_t(uintptr(unsafe.Pointer(tx))))
 	}
 }
 
-//export callbackApproveListingCtx721036_Remote
-func callbackApproveListingCtx721036_Remote(ptr unsafe.Pointer) C.struct_Moc_PackedString {
-	if signal := qt.GetSignal(ptr, "remote"); signal != nil {
-		tempVal := signal.(func() string)()
-		return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+//export callbackTxListModel721036_Remove
+func callbackTxListModel721036_Remove(ptr unsafe.Pointer, i C.int) {
+	if signal := qt.GetSignal(ptr, "remove"); signal != nil {
+		signal.(func(int))(int(int32(i)))
 	}
-	tempVal := NewApproveListingCtxFromPointer(ptr).RemoteDefault()
-	return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+
 }
 
-func (ptr *ApproveListingCtx) ConnectRemote(f func() string) {
+func (ptr *TxListModel) ConnectRemove(f func(i int)) {
 	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "remote"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "remote", func() string {
-				signal.(func() string)()
-				return f()
+		if !qt.ExistsSignal(ptr.Pointer(), "remove") {
+			C.TxListModel721036_ConnectRemove(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "remove"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "remove", func(i int) {
+				signal.(func(int))(i)
+				f(i)
 			})
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "remote", f)
+			qt.ConnectSignal(ptr.Pointer(), "remove", f)
 		}
 	}
 }
 
-func (ptr *ApproveListingCtx) DisconnectRemote() {
+func (ptr *TxListModel) DisconnectRemove() {
 	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "remote")
-	}
-}
-
-func (ptr *ApproveListingCtx) Remote() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.ApproveListingCtx721036_Remote(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *ApproveListingCtx) RemoteDefault() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.ApproveListingCtx721036_RemoteDefault(ptr.Pointer()))
-	}
-	return ""
-}
-
-//export callbackApproveListingCtx721036_SetRemote
-func callbackApproveListingCtx721036_SetRemote(ptr unsafe.Pointer, remote C.struct_Moc_PackedString) {
-	if signal := qt.GetSignal(ptr, "setRemote"); signal != nil {
-		signal.(func(string))(cGoUnpackString(remote))
-	} else {
-		NewApproveListingCtxFromPointer(ptr).SetRemoteDefault(cGoUnpackString(remote))
-	}
-}
-
-func (ptr *ApproveListingCtx) ConnectSetRemote(f func(remote string)) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "setRemote"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "setRemote", func(remote string) {
-				signal.(func(string))(remote)
-				f(remote)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setRemote", f)
-		}
-	}
-}
-
-func (ptr *ApproveListingCtx) DisconnectSetRemote() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "setRemote")
-	}
-}
-
-func (ptr *ApproveListingCtx) SetRemote(remote string) {
-	if ptr.Pointer() != nil {
-		var remoteC *C.char
-		if remote != "" {
-			remoteC = C.CString(remote)
-			defer C.free(unsafe.Pointer(remoteC))
-		}
-		C.ApproveListingCtx721036_SetRemote(ptr.Pointer(), C.struct_Moc_PackedString{data: remoteC, len: C.longlong(len(remote))})
-	}
-}
-
-func (ptr *ApproveListingCtx) SetRemoteDefault(remote string) {
-	if ptr.Pointer() != nil {
-		var remoteC *C.char
-		if remote != "" {
-			remoteC = C.CString(remote)
-			defer C.free(unsafe.Pointer(remoteC))
-		}
-		C.ApproveListingCtx721036_SetRemoteDefault(ptr.Pointer(), C.struct_Moc_PackedString{data: remoteC, len: C.longlong(len(remote))})
-	}
-}
-
-//export callbackApproveListingCtx721036_RemoteChanged
-func callbackApproveListingCtx721036_RemoteChanged(ptr unsafe.Pointer, remote C.struct_Moc_PackedString) {
-	if signal := qt.GetSignal(ptr, "remoteChanged"); signal != nil {
-		signal.(func(string))(cGoUnpackString(remote))
-	}
-
-}
-
-func (ptr *ApproveListingCtx) ConnectRemoteChanged(f func(remote string)) {
-	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "remoteChanged") {
-			C.ApproveListingCtx721036_ConnectRemoteChanged(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "remoteChanged"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "remoteChanged", func(remote string) {
-				signal.(func(string))(remote)
-				f(remote)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "remoteChanged", f)
-		}
-	}
-}
-
-func (ptr *ApproveListingCtx) DisconnectRemoteChanged() {
-	if ptr.Pointer() != nil {
-		C.ApproveListingCtx721036_DisconnectRemoteChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "remoteChanged")
-	}
-}
-
-func (ptr *ApproveListingCtx) RemoteChanged(remote string) {
-	if ptr.Pointer() != nil {
-		var remoteC *C.char
-		if remote != "" {
-			remoteC = C.CString(remote)
-			defer C.free(unsafe.Pointer(remoteC))
-		}
-		C.ApproveListingCtx721036_RemoteChanged(ptr.Pointer(), C.struct_Moc_PackedString{data: remoteC, len: C.longlong(len(remote))})
-	}
-}
-
-//export callbackApproveListingCtx721036_Transport
-func callbackApproveListingCtx721036_Transport(ptr unsafe.Pointer) C.struct_Moc_PackedString {
-	if signal := qt.GetSignal(ptr, "transport"); signal != nil {
-		tempVal := signal.(func() string)()
-		return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-	}
-	tempVal := NewApproveListingCtxFromPointer(ptr).TransportDefault()
-	return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-}
-
-func (ptr *ApproveListingCtx) ConnectTransport(f func() string) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "transport"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "transport", func() string {
-				signal.(func() string)()
-				return f()
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "transport", f)
-		}
-	}
-}
-
-func (ptr *ApproveListingCtx) DisconnectTransport() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "transport")
-	}
-}
-
-func (ptr *ApproveListingCtx) Transport() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.ApproveListingCtx721036_Transport(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *ApproveListingCtx) TransportDefault() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.ApproveListingCtx721036_TransportDefault(ptr.Pointer()))
-	}
-	return ""
-}
-
-//export callbackApproveListingCtx721036_SetTransport
-func callbackApproveListingCtx721036_SetTransport(ptr unsafe.Pointer, transport C.struct_Moc_PackedString) {
-	if signal := qt.GetSignal(ptr, "setTransport"); signal != nil {
-		signal.(func(string))(cGoUnpackString(transport))
-	} else {
-		NewApproveListingCtxFromPointer(ptr).SetTransportDefault(cGoUnpackString(transport))
-	}
-}
-
-func (ptr *ApproveListingCtx) ConnectSetTransport(f func(transport string)) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "setTransport"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "setTransport", func(transport string) {
-				signal.(func(string))(transport)
-				f(transport)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setTransport", f)
-		}
-	}
-}
-
-func (ptr *ApproveListingCtx) DisconnectSetTransport() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "setTransport")
-	}
-}
-
-func (ptr *ApproveListingCtx) SetTransport(transport string) {
-	if ptr.Pointer() != nil {
-		var transportC *C.char
-		if transport != "" {
-			transportC = C.CString(transport)
-			defer C.free(unsafe.Pointer(transportC))
-		}
-		C.ApproveListingCtx721036_SetTransport(ptr.Pointer(), C.struct_Moc_PackedString{data: transportC, len: C.longlong(len(transport))})
-	}
-}
-
-func (ptr *ApproveListingCtx) SetTransportDefault(transport string) {
-	if ptr.Pointer() != nil {
-		var transportC *C.char
-		if transport != "" {
-			transportC = C.CString(transport)
-			defer C.free(unsafe.Pointer(transportC))
-		}
-		C.ApproveListingCtx721036_SetTransportDefault(ptr.Pointer(), C.struct_Moc_PackedString{data: transportC, len: C.longlong(len(transport))})
-	}
-}
-
-//export callbackApproveListingCtx721036_TransportChanged
-func callbackApproveListingCtx721036_TransportChanged(ptr unsafe.Pointer, transport C.struct_Moc_PackedString) {
-	if signal := qt.GetSignal(ptr, "transportChanged"); signal != nil {
-		signal.(func(string))(cGoUnpackString(transport))
-	}
-
-}
-
-func (ptr *ApproveListingCtx) ConnectTransportChanged(f func(transport string)) {
-	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "transportChanged") {
-			C.ApproveListingCtx721036_ConnectTransportChanged(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "transportChanged"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "transportChanged", func(transport string) {
-				signal.(func(string))(transport)
-				f(transport)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "transportChanged", f)
-		}
-	}
-}
-
-func (ptr *ApproveListingCtx) DisconnectTransportChanged() {
-	if ptr.Pointer() != nil {
-		C.ApproveListingCtx721036_DisconnectTransportChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "transportChanged")
-	}
-}
-
-func (ptr *ApproveListingCtx) TransportChanged(transport string) {
-	if ptr.Pointer() != nil {
-		var transportC *C.char
-		if transport != "" {
-			transportC = C.CString(transport)
-			defer C.free(unsafe.Pointer(transportC))
-		}
-		C.ApproveListingCtx721036_TransportChanged(ptr.Pointer(), C.struct_Moc_PackedString{data: transportC, len: C.longlong(len(transport))})
-	}
-}
-
-//export callbackApproveListingCtx721036_Endpoint
-func callbackApproveListingCtx721036_Endpoint(ptr unsafe.Pointer) C.struct_Moc_PackedString {
-	if signal := qt.GetSignal(ptr, "endpoint"); signal != nil {
-		tempVal := signal.(func() string)()
-		return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-	}
-	tempVal := NewApproveListingCtxFromPointer(ptr).EndpointDefault()
-	return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-}
-
-func (ptr *ApproveListingCtx) ConnectEndpoint(f func() string) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "endpoint"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "endpoint", func() string {
-				signal.(func() string)()
-				return f()
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "endpoint", f)
-		}
-	}
-}
-
-func (ptr *ApproveListingCtx) DisconnectEndpoint() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "endpoint")
-	}
-}
-
-func (ptr *ApproveListingCtx) Endpoint() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.ApproveListingCtx721036_Endpoint(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *ApproveListingCtx) EndpointDefault() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.ApproveListingCtx721036_EndpointDefault(ptr.Pointer()))
-	}
-	return ""
-}
-
-//export callbackApproveListingCtx721036_SetEndpoint
-func callbackApproveListingCtx721036_SetEndpoint(ptr unsafe.Pointer, endpoint C.struct_Moc_PackedString) {
-	if signal := qt.GetSignal(ptr, "setEndpoint"); signal != nil {
-		signal.(func(string))(cGoUnpackString(endpoint))
-	} else {
-		NewApproveListingCtxFromPointer(ptr).SetEndpointDefault(cGoUnpackString(endpoint))
-	}
-}
-
-func (ptr *ApproveListingCtx) ConnectSetEndpoint(f func(endpoint string)) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "setEndpoint"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "setEndpoint", func(endpoint string) {
-				signal.(func(string))(endpoint)
-				f(endpoint)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setEndpoint", f)
-		}
-	}
-}
-
-func (ptr *ApproveListingCtx) DisconnectSetEndpoint() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "setEndpoint")
-	}
-}
-
-func (ptr *ApproveListingCtx) SetEndpoint(endpoint string) {
-	if ptr.Pointer() != nil {
-		var endpointC *C.char
-		if endpoint != "" {
-			endpointC = C.CString(endpoint)
-			defer C.free(unsafe.Pointer(endpointC))
-		}
-		C.ApproveListingCtx721036_SetEndpoint(ptr.Pointer(), C.struct_Moc_PackedString{data: endpointC, len: C.longlong(len(endpoint))})
-	}
-}
-
-func (ptr *ApproveListingCtx) SetEndpointDefault(endpoint string) {
-	if ptr.Pointer() != nil {
-		var endpointC *C.char
-		if endpoint != "" {
-			endpointC = C.CString(endpoint)
-			defer C.free(unsafe.Pointer(endpointC))
-		}
-		C.ApproveListingCtx721036_SetEndpointDefault(ptr.Pointer(), C.struct_Moc_PackedString{data: endpointC, len: C.longlong(len(endpoint))})
-	}
-}
-
-//export callbackApproveListingCtx721036_EndpointChanged
-func callbackApproveListingCtx721036_EndpointChanged(ptr unsafe.Pointer, endpoint C.struct_Moc_PackedString) {
-	if signal := qt.GetSignal(ptr, "endpointChanged"); signal != nil {
-		signal.(func(string))(cGoUnpackString(endpoint))
-	}
-
-}
-
-func (ptr *ApproveListingCtx) ConnectEndpointChanged(f func(endpoint string)) {
-	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "endpointChanged") {
-			C.ApproveListingCtx721036_ConnectEndpointChanged(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "endpointChanged"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "endpointChanged", func(endpoint string) {
-				signal.(func(string))(endpoint)
-				f(endpoint)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "endpointChanged", f)
-		}
-	}
-}
-
-func (ptr *ApproveListingCtx) DisconnectEndpointChanged() {
-	if ptr.Pointer() != nil {
-		C.ApproveListingCtx721036_DisconnectEndpointChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "endpointChanged")
-	}
-}
-
-func (ptr *ApproveListingCtx) EndpointChanged(endpoint string) {
-	if ptr.Pointer() != nil {
-		var endpointC *C.char
-		if endpoint != "" {
-			endpointC = C.CString(endpoint)
-			defer C.free(unsafe.Pointer(endpointC))
-		}
-		C.ApproveListingCtx721036_EndpointChanged(ptr.Pointer(), C.struct_Moc_PackedString{data: endpointC, len: C.longlong(len(endpoint))})
-	}
-}
-
-//export callbackApproveListingCtx721036_From
-func callbackApproveListingCtx721036_From(ptr unsafe.Pointer) C.struct_Moc_PackedString {
-	if signal := qt.GetSignal(ptr, "from"); signal != nil {
-		tempVal := signal.(func() string)()
-		return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-	}
-	tempVal := NewApproveListingCtxFromPointer(ptr).FromDefault()
-	return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-}
-
-func (ptr *ApproveListingCtx) ConnectFrom(f func() string) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "from"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "from", func() string {
-				signal.(func() string)()
-				return f()
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "from", f)
-		}
-	}
-}
-
-func (ptr *ApproveListingCtx) DisconnectFrom() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "from")
-	}
-}
-
-func (ptr *ApproveListingCtx) From() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.ApproveListingCtx721036_From(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *ApproveListingCtx) FromDefault() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.ApproveListingCtx721036_FromDefault(ptr.Pointer()))
-	}
-	return ""
-}
-
-//export callbackApproveListingCtx721036_SetFrom
-func callbackApproveListingCtx721036_SetFrom(ptr unsafe.Pointer, from C.struct_Moc_PackedString) {
-	if signal := qt.GetSignal(ptr, "setFrom"); signal != nil {
-		signal.(func(string))(cGoUnpackString(from))
-	} else {
-		NewApproveListingCtxFromPointer(ptr).SetFromDefault(cGoUnpackString(from))
-	}
-}
-
-func (ptr *ApproveListingCtx) ConnectSetFrom(f func(from string)) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "setFrom"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "setFrom", func(from string) {
-				signal.(func(string))(from)
-				f(from)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setFrom", f)
-		}
-	}
-}
-
-func (ptr *ApproveListingCtx) DisconnectSetFrom() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "setFrom")
-	}
-}
-
-func (ptr *ApproveListingCtx) SetFrom(from string) {
-	if ptr.Pointer() != nil {
-		var fromC *C.char
-		if from != "" {
-			fromC = C.CString(from)
-			defer C.free(unsafe.Pointer(fromC))
-		}
-		C.ApproveListingCtx721036_SetFrom(ptr.Pointer(), C.struct_Moc_PackedString{data: fromC, len: C.longlong(len(from))})
-	}
-}
-
-func (ptr *ApproveListingCtx) SetFromDefault(from string) {
-	if ptr.Pointer() != nil {
-		var fromC *C.char
-		if from != "" {
-			fromC = C.CString(from)
-			defer C.free(unsafe.Pointer(fromC))
-		}
-		C.ApproveListingCtx721036_SetFromDefault(ptr.Pointer(), C.struct_Moc_PackedString{data: fromC, len: C.longlong(len(from))})
-	}
-}
-
-//export callbackApproveListingCtx721036_FromChanged
-func callbackApproveListingCtx721036_FromChanged(ptr unsafe.Pointer, from C.struct_Moc_PackedString) {
-	if signal := qt.GetSignal(ptr, "fromChanged"); signal != nil {
-		signal.(func(string))(cGoUnpackString(from))
-	}
-
-}
-
-func (ptr *ApproveListingCtx) ConnectFromChanged(f func(from string)) {
-	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "fromChanged") {
-			C.ApproveListingCtx721036_ConnectFromChanged(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "fromChanged"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "fromChanged", func(from string) {
-				signal.(func(string))(from)
-				f(from)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "fromChanged", f)
-		}
-	}
-}
-
-func (ptr *ApproveListingCtx) DisconnectFromChanged() {
-	if ptr.Pointer() != nil {
-		C.ApproveListingCtx721036_DisconnectFromChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "fromChanged")
-	}
-}
-
-func (ptr *ApproveListingCtx) FromChanged(from string) {
-	if ptr.Pointer() != nil {
-		var fromC *C.char
-		if from != "" {
-			fromC = C.CString(from)
-			defer C.free(unsafe.Pointer(fromC))
-		}
-		C.ApproveListingCtx721036_FromChanged(ptr.Pointer(), C.struct_Moc_PackedString{data: fromC, len: C.longlong(len(from))})
-	}
-}
-
-//export callbackApproveListingCtx721036_Message
-func callbackApproveListingCtx721036_Message(ptr unsafe.Pointer) C.struct_Moc_PackedString {
-	if signal := qt.GetSignal(ptr, "message"); signal != nil {
-		tempVal := signal.(func() string)()
-		return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-	}
-	tempVal := NewApproveListingCtxFromPointer(ptr).MessageDefault()
-	return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-}
-
-func (ptr *ApproveListingCtx) ConnectMessage(f func() string) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "message"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "message", func() string {
-				signal.(func() string)()
-				return f()
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "message", f)
-		}
-	}
-}
-
-func (ptr *ApproveListingCtx) DisconnectMessage() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "message")
-	}
-}
-
-func (ptr *ApproveListingCtx) Message() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.ApproveListingCtx721036_Message(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *ApproveListingCtx) MessageDefault() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.ApproveListingCtx721036_MessageDefault(ptr.Pointer()))
-	}
-	return ""
-}
-
-//export callbackApproveListingCtx721036_SetMessage
-func callbackApproveListingCtx721036_SetMessage(ptr unsafe.Pointer, message C.struct_Moc_PackedString) {
-	if signal := qt.GetSignal(ptr, "setMessage"); signal != nil {
-		signal.(func(string))(cGoUnpackString(message))
-	} else {
-		NewApproveListingCtxFromPointer(ptr).SetMessageDefault(cGoUnpackString(message))
-	}
-}
-
-func (ptr *ApproveListingCtx) ConnectSetMessage(f func(message string)) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "setMessage"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "setMessage", func(message string) {
-				signal.(func(string))(message)
-				f(message)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setMessage", f)
-		}
-	}
-}
-
-func (ptr *ApproveListingCtx) DisconnectSetMessage() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "setMessage")
-	}
-}
-
-func (ptr *ApproveListingCtx) SetMessage(message string) {
-	if ptr.Pointer() != nil {
-		var messageC *C.char
-		if message != "" {
-			messageC = C.CString(message)
-			defer C.free(unsafe.Pointer(messageC))
-		}
-		C.ApproveListingCtx721036_SetMessage(ptr.Pointer(), C.struct_Moc_PackedString{data: messageC, len: C.longlong(len(message))})
-	}
-}
-
-func (ptr *ApproveListingCtx) SetMessageDefault(message string) {
-	if ptr.Pointer() != nil {
-		var messageC *C.char
-		if message != "" {
-			messageC = C.CString(message)
-			defer C.free(unsafe.Pointer(messageC))
-		}
-		C.ApproveListingCtx721036_SetMessageDefault(ptr.Pointer(), C.struct_Moc_PackedString{data: messageC, len: C.longlong(len(message))})
-	}
-}
-
-//export callbackApproveListingCtx721036_MessageChanged
-func callbackApproveListingCtx721036_MessageChanged(ptr unsafe.Pointer, message C.struct_Moc_PackedString) {
-	if signal := qt.GetSignal(ptr, "messageChanged"); signal != nil {
-		signal.(func(string))(cGoUnpackString(message))
-	}
-
-}
-
-func (ptr *ApproveListingCtx) ConnectMessageChanged(f func(message string)) {
-	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "messageChanged") {
-			C.ApproveListingCtx721036_ConnectMessageChanged(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "messageChanged"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "messageChanged", func(message string) {
-				signal.(func(string))(message)
-				f(message)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "messageChanged", f)
-		}
-	}
-}
-
-func (ptr *ApproveListingCtx) DisconnectMessageChanged() {
-	if ptr.Pointer() != nil {
-		C.ApproveListingCtx721036_DisconnectMessageChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "messageChanged")
-	}
-}
-
-func (ptr *ApproveListingCtx) MessageChanged(message string) {
-	if ptr.Pointer() != nil {
-		var messageC *C.char
-		if message != "" {
-			messageC = C.CString(message)
-			defer C.free(unsafe.Pointer(messageC))
-		}
-		C.ApproveListingCtx721036_MessageChanged(ptr.Pointer(), C.struct_Moc_PackedString{data: messageC, len: C.longlong(len(message))})
-	}
-}
-
-//export callbackApproveListingCtx721036_RawData
-func callbackApproveListingCtx721036_RawData(ptr unsafe.Pointer) C.struct_Moc_PackedString {
-	if signal := qt.GetSignal(ptr, "rawData"); signal != nil {
-		tempVal := signal.(func() string)()
-		return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-	}
-	tempVal := NewApproveListingCtxFromPointer(ptr).RawDataDefault()
-	return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-}
-
-func (ptr *ApproveListingCtx) ConnectRawData(f func() string) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "rawData"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "rawData", func() string {
-				signal.(func() string)()
-				return f()
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "rawData", f)
-		}
-	}
-}
-
-func (ptr *ApproveListingCtx) DisconnectRawData() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "rawData")
-	}
-}
-
-func (ptr *ApproveListingCtx) RawData() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.ApproveListingCtx721036_RawData(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *ApproveListingCtx) RawDataDefault() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.ApproveListingCtx721036_RawDataDefault(ptr.Pointer()))
-	}
-	return ""
-}
-
-//export callbackApproveListingCtx721036_SetRawData
-func callbackApproveListingCtx721036_SetRawData(ptr unsafe.Pointer, rawData C.struct_Moc_PackedString) {
-	if signal := qt.GetSignal(ptr, "setRawData"); signal != nil {
-		signal.(func(string))(cGoUnpackString(rawData))
-	} else {
-		NewApproveListingCtxFromPointer(ptr).SetRawDataDefault(cGoUnpackString(rawData))
-	}
-}
-
-func (ptr *ApproveListingCtx) ConnectSetRawData(f func(rawData string)) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "setRawData"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "setRawData", func(rawData string) {
-				signal.(func(string))(rawData)
-				f(rawData)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setRawData", f)
-		}
-	}
-}
-
-func (ptr *ApproveListingCtx) DisconnectSetRawData() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "setRawData")
-	}
-}
-
-func (ptr *ApproveListingCtx) SetRawData(rawData string) {
-	if ptr.Pointer() != nil {
-		var rawDataC *C.char
-		if rawData != "" {
-			rawDataC = C.CString(rawData)
-			defer C.free(unsafe.Pointer(rawDataC))
-		}
-		C.ApproveListingCtx721036_SetRawData(ptr.Pointer(), C.struct_Moc_PackedString{data: rawDataC, len: C.longlong(len(rawData))})
-	}
-}
-
-func (ptr *ApproveListingCtx) SetRawDataDefault(rawData string) {
-	if ptr.Pointer() != nil {
-		var rawDataC *C.char
-		if rawData != "" {
-			rawDataC = C.CString(rawData)
-			defer C.free(unsafe.Pointer(rawDataC))
-		}
-		C.ApproveListingCtx721036_SetRawDataDefault(ptr.Pointer(), C.struct_Moc_PackedString{data: rawDataC, len: C.longlong(len(rawData))})
-	}
-}
-
-//export callbackApproveListingCtx721036_RawDataChanged
-func callbackApproveListingCtx721036_RawDataChanged(ptr unsafe.Pointer, rawData C.struct_Moc_PackedString) {
-	if signal := qt.GetSignal(ptr, "rawDataChanged"); signal != nil {
-		signal.(func(string))(cGoUnpackString(rawData))
-	}
-
-}
-
-func (ptr *ApproveListingCtx) ConnectRawDataChanged(f func(rawData string)) {
-	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "rawDataChanged") {
-			C.ApproveListingCtx721036_ConnectRawDataChanged(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "rawDataChanged"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "rawDataChanged", func(rawData string) {
-				signal.(func(string))(rawData)
-				f(rawData)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "rawDataChanged", f)
-		}
-	}
-}
-
-func (ptr *ApproveListingCtx) DisconnectRawDataChanged() {
-	if ptr.Pointer() != nil {
-		C.ApproveListingCtx721036_DisconnectRawDataChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "rawDataChanged")
-	}
-}
-
-func (ptr *ApproveListingCtx) RawDataChanged(rawData string) {
-	if ptr.Pointer() != nil {
-		var rawDataC *C.char
-		if rawData != "" {
-			rawDataC = C.CString(rawData)
-			defer C.free(unsafe.Pointer(rawDataC))
-		}
-		C.ApproveListingCtx721036_RawDataChanged(ptr.Pointer(), C.struct_Moc_PackedString{data: rawDataC, len: C.longlong(len(rawData))})
-	}
-}
-
-//export callbackApproveListingCtx721036_Hash
-func callbackApproveListingCtx721036_Hash(ptr unsafe.Pointer) C.struct_Moc_PackedString {
-	if signal := qt.GetSignal(ptr, "hash"); signal != nil {
-		tempVal := signal.(func() string)()
-		return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-	}
-	tempVal := NewApproveListingCtxFromPointer(ptr).HashDefault()
-	return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-}
-
-func (ptr *ApproveListingCtx) ConnectHash(f func() string) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "hash"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "hash", func() string {
-				signal.(func() string)()
-				return f()
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "hash", f)
-		}
-	}
-}
-
-func (ptr *ApproveListingCtx) DisconnectHash() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "hash")
-	}
-}
-
-func (ptr *ApproveListingCtx) Hash() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.ApproveListingCtx721036_Hash(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *ApproveListingCtx) HashDefault() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.ApproveListingCtx721036_HashDefault(ptr.Pointer()))
-	}
-	return ""
-}
-
-//export callbackApproveListingCtx721036_SetHash
-func callbackApproveListingCtx721036_SetHash(ptr unsafe.Pointer, hash C.struct_Moc_PackedString) {
-	if signal := qt.GetSignal(ptr, "setHash"); signal != nil {
-		signal.(func(string))(cGoUnpackString(hash))
-	} else {
-		NewApproveListingCtxFromPointer(ptr).SetHashDefault(cGoUnpackString(hash))
-	}
-}
-
-func (ptr *ApproveListingCtx) ConnectSetHash(f func(hash string)) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "setHash"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "setHash", func(hash string) {
-				signal.(func(string))(hash)
-				f(hash)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setHash", f)
-		}
-	}
-}
-
-func (ptr *ApproveListingCtx) DisconnectSetHash() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "setHash")
-	}
-}
-
-func (ptr *ApproveListingCtx) SetHash(hash string) {
-	if ptr.Pointer() != nil {
-		var hashC *C.char
-		if hash != "" {
-			hashC = C.CString(hash)
-			defer C.free(unsafe.Pointer(hashC))
-		}
-		C.ApproveListingCtx721036_SetHash(ptr.Pointer(), C.struct_Moc_PackedString{data: hashC, len: C.longlong(len(hash))})
-	}
-}
-
-func (ptr *ApproveListingCtx) SetHashDefault(hash string) {
-	if ptr.Pointer() != nil {
-		var hashC *C.char
-		if hash != "" {
-			hashC = C.CString(hash)
-			defer C.free(unsafe.Pointer(hashC))
-		}
-		C.ApproveListingCtx721036_SetHashDefault(ptr.Pointer(), C.struct_Moc_PackedString{data: hashC, len: C.longlong(len(hash))})
-	}
-}
-
-//export callbackApproveListingCtx721036_HashChanged
-func callbackApproveListingCtx721036_HashChanged(ptr unsafe.Pointer, hash C.struct_Moc_PackedString) {
-	if signal := qt.GetSignal(ptr, "hashChanged"); signal != nil {
-		signal.(func(string))(cGoUnpackString(hash))
-	}
-
-}
-
-func (ptr *ApproveListingCtx) ConnectHashChanged(f func(hash string)) {
-	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "hashChanged") {
-			C.ApproveListingCtx721036_ConnectHashChanged(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "hashChanged"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "hashChanged", func(hash string) {
-				signal.(func(string))(hash)
-				f(hash)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "hashChanged", f)
-		}
-	}
-}
-
-func (ptr *ApproveListingCtx) DisconnectHashChanged() {
-	if ptr.Pointer() != nil {
-		C.ApproveListingCtx721036_DisconnectHashChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "hashChanged")
+		C.TxListModel721036_DisconnectRemove(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "remove")
 	}
 }
 
-func (ptr *ApproveListingCtx) HashChanged(hash string) {
+func (ptr *TxListModel) Remove(i int) {
 	if ptr.Pointer() != nil {
-		var hashC *C.char
-		if hash != "" {
-			hashC = C.CString(hash)
-			defer C.free(unsafe.Pointer(hashC))
-		}
-		C.ApproveListingCtx721036_HashChanged(ptr.Pointer(), C.struct_Moc_PackedString{data: hashC, len: C.longlong(len(hash))})
+		C.TxListModel721036_Remove(ptr.Pointer(), C.int(int32(i)))
 	}
 }
 
-func ApproveListingCtx_QRegisterMetaType() int {
-	return int(int32(C.ApproveListingCtx721036_ApproveListingCtx721036_QRegisterMetaType()))
+func TxListModel_QRegisterMetaType() int {
+	return int(int32(C.TxListModel721036_TxListModel721036_QRegisterMetaType()))
 }
 
-func (ptr *ApproveListingCtx) QRegisterMetaType() int {
-	return int(int32(C.ApproveListingCtx721036_ApproveListingCtx721036_QRegisterMetaType()))
+func (ptr *TxListModel) QRegisterMetaType() int {
+	return int(int32(C.TxListModel721036_TxListModel721036_QRegisterMetaType()))
 }
 
-func ApproveListingCtx_QRegisterMetaType2(typeName string) int {
+func TxListModel_QRegisterMetaType2(typeName string) int {
 	var typeNameC *C.char
 	if typeName != "" {
 		typeNameC = C.CString(typeName)
 		defer C.free(unsafe.Pointer(typeNameC))
 	}
-	return int(int32(C.ApproveListingCtx721036_ApproveListingCtx721036_QRegisterMetaType2(typeNameC)))
+	return int(int32(C.TxListModel721036_TxListModel721036_QRegisterMetaType2(typeNameC)))
 }
 
-func (ptr *ApproveListingCtx) QRegisterMetaType2(typeName string) int {
+func (ptr *TxListModel) QRegisterMetaType2(typeName string) int {
 	var typeNameC *C.char
 	if typeName != "" {
 		typeNameC = C.CString(typeName)
 		defer C.free(unsafe.Pointer(typeNameC))
 	}
-	return int(int32(C.ApproveListingCtx721036_ApproveListingCtx721036_QRegisterMetaType2(typeNameC)))
+	return int(int32(C.TxListModel721036_TxListModel721036_QRegisterMetaType2(typeNameC)))
 }
 
-func ApproveListingCtx_QmlRegisterType() int {
-	return int(int32(C.ApproveListingCtx721036_ApproveListingCtx721036_QmlRegisterType()))
+func TxListModel_QmlRegisterType() int {
+	return int(int32(C.TxListModel721036_TxListModel721036_QmlRegisterType()))
 }
 
-func (ptr *ApproveListingCtx) QmlRegisterType() int {
-	return int(int32(C.ApproveListingCtx721036_ApproveListingCtx721036_QmlRegisterType()))
+func (ptr *TxListModel) QmlRegisterType() int {
+	return int(int32(C.TxListModel721036_TxListModel721036_QmlRegisterType()))
 }
 
-func ApproveListingCtx_QmlRegisterType2(uri string, versionMajor int, versionMinor int, qmlName string) int {
+func TxListModel_QmlRegisterType2(uri string, versionMajor int, versionMinor int, qmlName string) int {
 	var uriC *C.char
 	if uri != "" {
 		uriC = C.CString(uri)
@@ -1645,10 +2033,10 @@ func ApproveListingCtx_QmlRegisterType2(uri string, versionMajor int, versionMin
 		qmlNameC = C.CString(qmlName)
 		defer C.free(unsafe.Pointer(qmlNameC))
 	}
-	return int(int32(C.ApproveListingCtx721036_ApproveListingCtx721036_QmlRegisterType2(uriC, C.int(int32(versionMajor)), C.int(int32(versionMinor)), qmlNameC)))
+	return int(int32(C.TxListModel721036_TxListModel721036_QmlRegisterType2(uriC, C.int(int32(versionMajor)), C.int(int32(versionMinor)), qmlNameC)))
 }
 
-func (ptr *ApproveListingCtx) QmlRegisterType2(uri string, versionMajor int, versionMinor int, qmlName string) int {
+func (ptr *TxListModel) QmlRegisterType2(uri string, versionMajor int, versionMinor int, qmlName string) int {
 	var uriC *C.char
 	if uri != "" {
 		uriC = C.CString(uri)
@@ -1659,1281 +2047,365 @@ func (ptr *ApproveListingCtx) QmlRegisterType2(uri string, versionMajor int, ver
 		qmlNameC = C.CString(qmlName)
 		defer C.free(unsafe.Pointer(qmlNameC))
 	}
-	return int(int32(C.ApproveListingCtx721036_ApproveListingCtx721036_QmlRegisterType2(uriC, C.int(int32(versionMajor)), C.int(int32(versionMinor)), qmlNameC)))
+	return int(int32(C.TxListModel721036_TxListModel721036_QmlRegisterType2(uriC, C.int(int32(versionMajor)), C.int(int32(versionMinor)), qmlNameC)))
 }
 
-func (ptr *ApproveListingCtx) __dynamicPropertyNames_atList(i int) *std_core.QByteArray {
+func (ptr *TxListModel) ____setItemData_roles_keyList_atList(i int) int {
 	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQByteArrayFromPointer(C.ApproveListingCtx721036___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		return int(int32(C.TxListModel721036_____setItemData_roles_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *TxListModel) ____setItemData_roles_keyList_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.TxListModel721036_____setItemData_roles_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *TxListModel) ____setItemData_roles_keyList_newList() unsafe.Pointer {
+	return C.TxListModel721036_____setItemData_roles_keyList_newList(ptr.Pointer())
+}
+
+func (ptr *TxListModel) ____roleNames_keyList_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.TxListModel721036_____roleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *TxListModel) ____roleNames_keyList_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.TxListModel721036_____roleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *TxListModel) ____roleNames_keyList_newList() unsafe.Pointer {
+	return C.TxListModel721036_____roleNames_keyList_newList(ptr.Pointer())
+}
+
+func (ptr *TxListModel) ____itemData_keyList_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.TxListModel721036_____itemData_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *TxListModel) ____itemData_keyList_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.TxListModel721036_____itemData_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *TxListModel) ____itemData_keyList_newList() unsafe.Pointer {
+	return C.TxListModel721036_____itemData_keyList_newList(ptr.Pointer())
+}
+
+func (ptr *TxListModel) __setItemData_roles_atList(v int, i int) *std_core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQVariantFromPointer(C.TxListModel721036___setItemData_roles_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*std_core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *TxListModel) __setItemData_roles_setList(key int, i std_core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.TxListModel721036___setItemData_roles_setList(ptr.Pointer(), C.int(int32(key)), std_core.PointerFromQVariant(i))
+	}
+}
+
+func (ptr *TxListModel) __setItemData_roles_newList() unsafe.Pointer {
+	return C.TxListModel721036___setItemData_roles_newList(ptr.Pointer())
+}
+
+func (ptr *TxListModel) __setItemData_roles_keyList() []int {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_Moc_PackedList) []int {
+			out := make([]int, int(l.len))
+			tmpList := NewTxListModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____setItemData_roles_keyList_atList(i)
+			}
+			return out
+		}(C.TxListModel721036___setItemData_roles_keyList(ptr.Pointer()))
+	}
+	return make([]int, 0)
+}
+
+func (ptr *TxListModel) __changePersistentIndexList_from_atList(i int) *std_core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQModelIndexFromPointer(C.TxListModel721036___changePersistentIndexList_from_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *TxListModel) __changePersistentIndexList_from_setList(i std_core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.TxListModel721036___changePersistentIndexList_from_setList(ptr.Pointer(), std_core.PointerFromQModelIndex(i))
+	}
+}
+
+func (ptr *TxListModel) __changePersistentIndexList_from_newList() unsafe.Pointer {
+	return C.TxListModel721036___changePersistentIndexList_from_newList(ptr.Pointer())
+}
+
+func (ptr *TxListModel) __changePersistentIndexList_to_atList(i int) *std_core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQModelIndexFromPointer(C.TxListModel721036___changePersistentIndexList_to_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *TxListModel) __changePersistentIndexList_to_setList(i std_core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.TxListModel721036___changePersistentIndexList_to_setList(ptr.Pointer(), std_core.PointerFromQModelIndex(i))
+	}
+}
+
+func (ptr *TxListModel) __changePersistentIndexList_to_newList() unsafe.Pointer {
+	return C.TxListModel721036___changePersistentIndexList_to_newList(ptr.Pointer())
+}
+
+func (ptr *TxListModel) __dataChanged_roles_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.TxListModel721036___dataChanged_roles_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *TxListModel) __dataChanged_roles_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.TxListModel721036___dataChanged_roles_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *TxListModel) __dataChanged_roles_newList() unsafe.Pointer {
+	return C.TxListModel721036___dataChanged_roles_newList(ptr.Pointer())
+}
+
+func (ptr *TxListModel) __layoutAboutToBeChanged_parents_atList(i int) *std_core.QPersistentModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQPersistentModelIndexFromPointer(C.TxListModel721036___layoutAboutToBeChanged_parents_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*std_core.QPersistentModelIndex).DestroyQPersistentModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *TxListModel) __layoutAboutToBeChanged_parents_setList(i std_core.QPersistentModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.TxListModel721036___layoutAboutToBeChanged_parents_setList(ptr.Pointer(), std_core.PointerFromQPersistentModelIndex(i))
+	}
+}
+
+func (ptr *TxListModel) __layoutAboutToBeChanged_parents_newList() unsafe.Pointer {
+	return C.TxListModel721036___layoutAboutToBeChanged_parents_newList(ptr.Pointer())
+}
+
+func (ptr *TxListModel) __layoutChanged_parents_atList(i int) *std_core.QPersistentModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQPersistentModelIndexFromPointer(C.TxListModel721036___layoutChanged_parents_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*std_core.QPersistentModelIndex).DestroyQPersistentModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *TxListModel) __layoutChanged_parents_setList(i std_core.QPersistentModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.TxListModel721036___layoutChanged_parents_setList(ptr.Pointer(), std_core.PointerFromQPersistentModelIndex(i))
+	}
+}
+
+func (ptr *TxListModel) __layoutChanged_parents_newList() unsafe.Pointer {
+	return C.TxListModel721036___layoutChanged_parents_newList(ptr.Pointer())
+}
+
+func (ptr *TxListModel) __roleNames_atList(v int, i int) *std_core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQByteArrayFromPointer(C.TxListModel721036___roleNames_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
 		runtime.SetFinalizer(tmpValue, (*std_core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *ApproveListingCtx) __dynamicPropertyNames_setList(i std_core.QByteArray_ITF) {
+func (ptr *TxListModel) __roleNames_setList(key int, i std_core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		C.ApproveListingCtx721036___dynamicPropertyNames_setList(ptr.Pointer(), std_core.PointerFromQByteArray(i))
+		C.TxListModel721036___roleNames_setList(ptr.Pointer(), C.int(int32(key)), std_core.PointerFromQByteArray(i))
 	}
 }
 
-func (ptr *ApproveListingCtx) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.ApproveListingCtx721036___dynamicPropertyNames_newList(ptr.Pointer())
+func (ptr *TxListModel) __roleNames_newList() unsafe.Pointer {
+	return C.TxListModel721036___roleNames_newList(ptr.Pointer())
 }
 
-func (ptr *ApproveListingCtx) __findChildren_atList2(i int) *std_core.QObject {
+func (ptr *TxListModel) __roleNames_keyList() []int {
 	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQObjectFromPointer(C.ApproveListingCtx721036___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
-		}
+		return func(l C.struct_Moc_PackedList) []int {
+			out := make([]int, int(l.len))
+			tmpList := NewTxListModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____roleNames_keyList_atList(i)
+			}
+			return out
+		}(C.TxListModel721036___roleNames_keyList(ptr.Pointer()))
+	}
+	return make([]int, 0)
+}
+
+func (ptr *TxListModel) __itemData_atList(v int, i int) *std_core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQVariantFromPointer(C.TxListModel721036___itemData_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*std_core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *ApproveListingCtx) __findChildren_setList2(i std_core.QObject_ITF) {
+func (ptr *TxListModel) __itemData_setList(key int, i std_core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		C.ApproveListingCtx721036___findChildren_setList2(ptr.Pointer(), std_core.PointerFromQObject(i))
+		C.TxListModel721036___itemData_setList(ptr.Pointer(), C.int(int32(key)), std_core.PointerFromQVariant(i))
 	}
 }
 
-func (ptr *ApproveListingCtx) __findChildren_newList2() unsafe.Pointer {
-	return C.ApproveListingCtx721036___findChildren_newList2(ptr.Pointer())
+func (ptr *TxListModel) __itemData_newList() unsafe.Pointer {
+	return C.TxListModel721036___itemData_newList(ptr.Pointer())
 }
 
-func (ptr *ApproveListingCtx) __findChildren_atList3(i int) *std_core.QObject {
+func (ptr *TxListModel) __itemData_keyList() []int {
 	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQObjectFromPointer(C.ApproveListingCtx721036___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
-		}
+		return func(l C.struct_Moc_PackedList) []int {
+			out := make([]int, int(l.len))
+			tmpList := NewTxListModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____itemData_keyList_atList(i)
+			}
+			return out
+		}(C.TxListModel721036___itemData_keyList(ptr.Pointer()))
+	}
+	return make([]int, 0)
+}
+
+func (ptr *TxListModel) __mimeData_indexes_atList(i int) *std_core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQModelIndexFromPointer(C.TxListModel721036___mimeData_indexes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *ApproveListingCtx) __findChildren_setList3(i std_core.QObject_ITF) {
+func (ptr *TxListModel) __mimeData_indexes_setList(i std_core.QModelIndex_ITF) {
 	if ptr.Pointer() != nil {
-		C.ApproveListingCtx721036___findChildren_setList3(ptr.Pointer(), std_core.PointerFromQObject(i))
+		C.TxListModel721036___mimeData_indexes_setList(ptr.Pointer(), std_core.PointerFromQModelIndex(i))
 	}
 }
 
-func (ptr *ApproveListingCtx) __findChildren_newList3() unsafe.Pointer {
-	return C.ApproveListingCtx721036___findChildren_newList3(ptr.Pointer())
+func (ptr *TxListModel) __mimeData_indexes_newList() unsafe.Pointer {
+	return C.TxListModel721036___mimeData_indexes_newList(ptr.Pointer())
 }
 
-func (ptr *ApproveListingCtx) __findChildren_atList(i int) *std_core.QObject {
+func (ptr *TxListModel) __match_atList(i int) *std_core.QModelIndex {
 	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQObjectFromPointer(C.ApproveListingCtx721036___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
-		}
+		tmpValue := std_core.NewQModelIndexFromPointer(C.TxListModel721036___match_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *ApproveListingCtx) __findChildren_setList(i std_core.QObject_ITF) {
+func (ptr *TxListModel) __match_setList(i std_core.QModelIndex_ITF) {
 	if ptr.Pointer() != nil {
-		C.ApproveListingCtx721036___findChildren_setList(ptr.Pointer(), std_core.PointerFromQObject(i))
+		C.TxListModel721036___match_setList(ptr.Pointer(), std_core.PointerFromQModelIndex(i))
 	}
 }
 
-func (ptr *ApproveListingCtx) __findChildren_newList() unsafe.Pointer {
-	return C.ApproveListingCtx721036___findChildren_newList(ptr.Pointer())
+func (ptr *TxListModel) __match_newList() unsafe.Pointer {
+	return C.TxListModel721036___match_newList(ptr.Pointer())
 }
 
-func (ptr *ApproveListingCtx) __children_atList(i int) *std_core.QObject {
+func (ptr *TxListModel) __persistentIndexList_atList(i int) *std_core.QModelIndex {
 	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQObjectFromPointer(C.ApproveListingCtx721036___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
-		}
+		tmpValue := std_core.NewQModelIndexFromPointer(C.TxListModel721036___persistentIndexList_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *ApproveListingCtx) __children_setList(i std_core.QObject_ITF) {
+func (ptr *TxListModel) __persistentIndexList_setList(i std_core.QModelIndex_ITF) {
 	if ptr.Pointer() != nil {
-		C.ApproveListingCtx721036___children_setList(ptr.Pointer(), std_core.PointerFromQObject(i))
+		C.TxListModel721036___persistentIndexList_setList(ptr.Pointer(), std_core.PointerFromQModelIndex(i))
 	}
 }
 
-func (ptr *ApproveListingCtx) __children_newList() unsafe.Pointer {
-	return C.ApproveListingCtx721036___children_newList(ptr.Pointer())
+func (ptr *TxListModel) __persistentIndexList_newList() unsafe.Pointer {
+	return C.TxListModel721036___persistentIndexList_newList(ptr.Pointer())
 }
 
-func NewApproveListingCtx(parent std_core.QObject_ITF) *ApproveListingCtx {
-	tmpValue := NewApproveListingCtxFromPointer(C.ApproveListingCtx721036_NewApproveListingCtx(std_core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
-}
-
-//export callbackApproveListingCtx721036_DestroyApproveListingCtx
-func callbackApproveListingCtx721036_DestroyApproveListingCtx(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~ApproveListingCtx"); signal != nil {
-		signal.(func())()
-	} else {
-		NewApproveListingCtxFromPointer(ptr).DestroyApproveListingCtxDefault()
-	}
-}
-
-func (ptr *ApproveListingCtx) ConnectDestroyApproveListingCtx(f func()) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "~ApproveListingCtx"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "~ApproveListingCtx", func() {
-				signal.(func())()
-				f()
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~ApproveListingCtx", f)
-		}
-	}
-}
-
-func (ptr *ApproveListingCtx) DisconnectDestroyApproveListingCtx() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "~ApproveListingCtx")
-	}
-}
-
-func (ptr *ApproveListingCtx) DestroyApproveListingCtx() {
-	if ptr.Pointer() != nil {
-		C.ApproveListingCtx721036_DestroyApproveListingCtx(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-func (ptr *ApproveListingCtx) DestroyApproveListingCtxDefault() {
-	if ptr.Pointer() != nil {
-		C.ApproveListingCtx721036_DestroyApproveListingCtxDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-//export callbackApproveListingCtx721036_Event
-func callbackApproveListingCtx721036_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QEvent) bool)(std_core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewApproveListingCtxFromPointer(ptr).EventDefault(std_core.NewQEventFromPointer(e)))))
-}
-
-func (ptr *ApproveListingCtx) EventDefault(e std_core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.ApproveListingCtx721036_EventDefault(ptr.Pointer(), std_core.PointerFromQEvent(e)) != 0
-	}
-	return false
-}
-
-//export callbackApproveListingCtx721036_EventFilter
-func callbackApproveListingCtx721036_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QObject, *std_core.QEvent) bool)(std_core.NewQObjectFromPointer(watched), std_core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewApproveListingCtxFromPointer(ptr).EventFilterDefault(std_core.NewQObjectFromPointer(watched), std_core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *ApproveListingCtx) EventFilterDefault(watched std_core.QObject_ITF, event std_core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.ApproveListingCtx721036_EventFilterDefault(ptr.Pointer(), std_core.PointerFromQObject(watched), std_core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-//export callbackApproveListingCtx721036_ChildEvent
-func callbackApproveListingCtx721036_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		signal.(func(*std_core.QChildEvent))(std_core.NewQChildEventFromPointer(event))
-	} else {
-		NewApproveListingCtxFromPointer(ptr).ChildEventDefault(std_core.NewQChildEventFromPointer(event))
-	}
-}
-
-func (ptr *ApproveListingCtx) ChildEventDefault(event std_core.QChildEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.ApproveListingCtx721036_ChildEventDefault(ptr.Pointer(), std_core.PointerFromQChildEvent(event))
-	}
-}
-
-//export callbackApproveListingCtx721036_ConnectNotify
-func callbackApproveListingCtx721036_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		signal.(func(*std_core.QMetaMethod))(std_core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewApproveListingCtxFromPointer(ptr).ConnectNotifyDefault(std_core.NewQMetaMethodFromPointer(sign))
-	}
-}
-
-func (ptr *ApproveListingCtx) ConnectNotifyDefault(sign std_core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.ApproveListingCtx721036_ConnectNotifyDefault(ptr.Pointer(), std_core.PointerFromQMetaMethod(sign))
-	}
-}
-
-//export callbackApproveListingCtx721036_CustomEvent
-func callbackApproveListingCtx721036_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		signal.(func(*std_core.QEvent))(std_core.NewQEventFromPointer(event))
-	} else {
-		NewApproveListingCtxFromPointer(ptr).CustomEventDefault(std_core.NewQEventFromPointer(event))
-	}
-}
-
-func (ptr *ApproveListingCtx) CustomEventDefault(event std_core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.ApproveListingCtx721036_CustomEventDefault(ptr.Pointer(), std_core.PointerFromQEvent(event))
-	}
-}
-
-//export callbackApproveListingCtx721036_DeleteLater
-func callbackApproveListingCtx721036_DeleteLater(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		signal.(func())()
-	} else {
-		NewApproveListingCtxFromPointer(ptr).DeleteLaterDefault()
-	}
-}
-
-func (ptr *ApproveListingCtx) DeleteLaterDefault() {
-	if ptr.Pointer() != nil {
-		C.ApproveListingCtx721036_DeleteLaterDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-//export callbackApproveListingCtx721036_Destroyed
-func callbackApproveListingCtx721036_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		signal.(func(*std_core.QObject))(std_core.NewQObjectFromPointer(obj))
-	}
-
-}
-
-//export callbackApproveListingCtx721036_DisconnectNotify
-func callbackApproveListingCtx721036_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		signal.(func(*std_core.QMetaMethod))(std_core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewApproveListingCtxFromPointer(ptr).DisconnectNotifyDefault(std_core.NewQMetaMethodFromPointer(sign))
-	}
-}
-
-func (ptr *ApproveListingCtx) DisconnectNotifyDefault(sign std_core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.ApproveListingCtx721036_DisconnectNotifyDefault(ptr.Pointer(), std_core.PointerFromQMetaMethod(sign))
-	}
-}
-
-//export callbackApproveListingCtx721036_ObjectNameChanged
-func callbackApproveListingCtx721036_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_Moc_PackedString) {
-	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		signal.(func(string))(cGoUnpackString(objectName))
-	}
-
-}
-
-//export callbackApproveListingCtx721036_TimerEvent
-func callbackApproveListingCtx721036_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		signal.(func(*std_core.QTimerEvent))(std_core.NewQTimerEventFromPointer(event))
-	} else {
-		NewApproveListingCtxFromPointer(ptr).TimerEventDefault(std_core.NewQTimerEventFromPointer(event))
-	}
-}
-
-func (ptr *ApproveListingCtx) TimerEventDefault(event std_core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.ApproveListingCtx721036_TimerEventDefault(ptr.Pointer(), std_core.PointerFromQTimerEvent(event))
-	}
-}
-
-type ApproveNewAccountCtx_ITF interface {
-	std_core.QObject_ITF
-	ApproveNewAccountCtx_PTR() *ApproveNewAccountCtx
-}
-
-func (ptr *ApproveNewAccountCtx) ApproveNewAccountCtx_PTR() *ApproveNewAccountCtx {
-	return ptr
-}
-
-func (ptr *ApproveNewAccountCtx) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QObject_PTR().Pointer()
-	}
-	return nil
-}
-
-func (ptr *ApproveNewAccountCtx) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.QObject_PTR().SetPointer(p)
-	}
-}
-
-func PointerFromApproveNewAccountCtx(ptr ApproveNewAccountCtx_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ApproveNewAccountCtx_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewApproveNewAccountCtxFromPointer(ptr unsafe.Pointer) (n *ApproveNewAccountCtx) {
-	if gPtr, ok := qt.Receive(ptr); !ok {
-		n = new(ApproveNewAccountCtx)
-		n.SetPointer(ptr)
-	} else {
-		switch deduced := gPtr.(type) {
-		case *ApproveNewAccountCtx:
-			n = deduced
-
-		case *std_core.QObject:
-			n = &ApproveNewAccountCtx{QObject: *deduced}
-
-		default:
-			n = new(ApproveNewAccountCtx)
-			n.SetPointer(ptr)
-		}
-	}
-	return
-}
-
-//export callbackApproveNewAccountCtx721036_Constructor
-func callbackApproveNewAccountCtx721036_Constructor(ptr unsafe.Pointer) {
-	this := NewApproveNewAccountCtxFromPointer(ptr)
-	qt.Register(ptr, this)
-	this.ConnectClicked(this.clicked)
-	this.ConnectPasswordEdited(this.passwordEdited)
-	this.ConnectConfirmPasswordEdited(this.confirmPasswordEdited)
-	this.init()
-}
-
-//export callbackApproveNewAccountCtx721036_Clicked
-func callbackApproveNewAccountCtx721036_Clicked(ptr unsafe.Pointer, b C.int) {
-	if signal := qt.GetSignal(ptr, "clicked"); signal != nil {
-		signal.(func(int))(int(int32(b)))
-	}
-
-}
-
-func (ptr *ApproveNewAccountCtx) ConnectClicked(f func(b int)) {
-	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "clicked") {
-			C.ApproveNewAccountCtx721036_ConnectClicked(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "clicked"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "clicked", func(b int) {
-				signal.(func(int))(b)
-				f(b)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "clicked", f)
-		}
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) DisconnectClicked() {
-	if ptr.Pointer() != nil {
-		C.ApproveNewAccountCtx721036_DisconnectClicked(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "clicked")
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) Clicked(b int) {
-	if ptr.Pointer() != nil {
-		C.ApproveNewAccountCtx721036_Clicked(ptr.Pointer(), C.int(int32(b)))
-	}
-}
-
-//export callbackApproveNewAccountCtx721036_PasswordEdited
-func callbackApproveNewAccountCtx721036_PasswordEdited(ptr unsafe.Pointer, b C.struct_Moc_PackedString) {
-	if signal := qt.GetSignal(ptr, "passwordEdited"); signal != nil {
-		signal.(func(string))(cGoUnpackString(b))
-	}
-
-}
-
-func (ptr *ApproveNewAccountCtx) ConnectPasswordEdited(f func(b string)) {
-	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "passwordEdited") {
-			C.ApproveNewAccountCtx721036_ConnectPasswordEdited(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "passwordEdited"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "passwordEdited", func(b string) {
-				signal.(func(string))(b)
-				f(b)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "passwordEdited", f)
-		}
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) DisconnectPasswordEdited() {
-	if ptr.Pointer() != nil {
-		C.ApproveNewAccountCtx721036_DisconnectPasswordEdited(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "passwordEdited")
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) PasswordEdited(b string) {
-	if ptr.Pointer() != nil {
-		var bC *C.char
-		if b != "" {
-			bC = C.CString(b)
-			defer C.free(unsafe.Pointer(bC))
-		}
-		C.ApproveNewAccountCtx721036_PasswordEdited(ptr.Pointer(), C.struct_Moc_PackedString{data: bC, len: C.longlong(len(b))})
-	}
-}
-
-//export callbackApproveNewAccountCtx721036_ConfirmPasswordEdited
-func callbackApproveNewAccountCtx721036_ConfirmPasswordEdited(ptr unsafe.Pointer, b C.struct_Moc_PackedString) {
-	if signal := qt.GetSignal(ptr, "confirmPasswordEdited"); signal != nil {
-		signal.(func(string))(cGoUnpackString(b))
-	}
-
-}
-
-func (ptr *ApproveNewAccountCtx) ConnectConfirmPasswordEdited(f func(b string)) {
-	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "confirmPasswordEdited") {
-			C.ApproveNewAccountCtx721036_ConnectConfirmPasswordEdited(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "confirmPasswordEdited"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "confirmPasswordEdited", func(b string) {
-				signal.(func(string))(b)
-				f(b)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "confirmPasswordEdited", f)
-		}
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) DisconnectConfirmPasswordEdited() {
-	if ptr.Pointer() != nil {
-		C.ApproveNewAccountCtx721036_DisconnectConfirmPasswordEdited(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "confirmPasswordEdited")
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) ConfirmPasswordEdited(b string) {
-	if ptr.Pointer() != nil {
-		var bC *C.char
-		if b != "" {
-			bC = C.CString(b)
-			defer C.free(unsafe.Pointer(bC))
-		}
-		C.ApproveNewAccountCtx721036_ConfirmPasswordEdited(ptr.Pointer(), C.struct_Moc_PackedString{data: bC, len: C.longlong(len(b))})
-	}
-}
-
-//export callbackApproveNewAccountCtx721036_Remote
-func callbackApproveNewAccountCtx721036_Remote(ptr unsafe.Pointer) C.struct_Moc_PackedString {
-	if signal := qt.GetSignal(ptr, "remote"); signal != nil {
-		tempVal := signal.(func() string)()
-		return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-	}
-	tempVal := NewApproveNewAccountCtxFromPointer(ptr).RemoteDefault()
-	return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-}
-
-func (ptr *ApproveNewAccountCtx) ConnectRemote(f func() string) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "remote"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "remote", func() string {
-				signal.(func() string)()
-				return f()
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "remote", f)
-		}
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) DisconnectRemote() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "remote")
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) Remote() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.ApproveNewAccountCtx721036_Remote(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *ApproveNewAccountCtx) RemoteDefault() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.ApproveNewAccountCtx721036_RemoteDefault(ptr.Pointer()))
-	}
-	return ""
-}
-
-//export callbackApproveNewAccountCtx721036_SetRemote
-func callbackApproveNewAccountCtx721036_SetRemote(ptr unsafe.Pointer, remote C.struct_Moc_PackedString) {
-	if signal := qt.GetSignal(ptr, "setRemote"); signal != nil {
-		signal.(func(string))(cGoUnpackString(remote))
-	} else {
-		NewApproveNewAccountCtxFromPointer(ptr).SetRemoteDefault(cGoUnpackString(remote))
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) ConnectSetRemote(f func(remote string)) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "setRemote"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "setRemote", func(remote string) {
-				signal.(func(string))(remote)
-				f(remote)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setRemote", f)
-		}
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) DisconnectSetRemote() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "setRemote")
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) SetRemote(remote string) {
-	if ptr.Pointer() != nil {
-		var remoteC *C.char
-		if remote != "" {
-			remoteC = C.CString(remote)
-			defer C.free(unsafe.Pointer(remoteC))
-		}
-		C.ApproveNewAccountCtx721036_SetRemote(ptr.Pointer(), C.struct_Moc_PackedString{data: remoteC, len: C.longlong(len(remote))})
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) SetRemoteDefault(remote string) {
-	if ptr.Pointer() != nil {
-		var remoteC *C.char
-		if remote != "" {
-			remoteC = C.CString(remote)
-			defer C.free(unsafe.Pointer(remoteC))
-		}
-		C.ApproveNewAccountCtx721036_SetRemoteDefault(ptr.Pointer(), C.struct_Moc_PackedString{data: remoteC, len: C.longlong(len(remote))})
-	}
-}
-
-//export callbackApproveNewAccountCtx721036_RemoteChanged
-func callbackApproveNewAccountCtx721036_RemoteChanged(ptr unsafe.Pointer, remote C.struct_Moc_PackedString) {
-	if signal := qt.GetSignal(ptr, "remoteChanged"); signal != nil {
-		signal.(func(string))(cGoUnpackString(remote))
-	}
-
-}
-
-func (ptr *ApproveNewAccountCtx) ConnectRemoteChanged(f func(remote string)) {
-	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "remoteChanged") {
-			C.ApproveNewAccountCtx721036_ConnectRemoteChanged(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "remoteChanged"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "remoteChanged", func(remote string) {
-				signal.(func(string))(remote)
-				f(remote)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "remoteChanged", f)
-		}
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) DisconnectRemoteChanged() {
-	if ptr.Pointer() != nil {
-		C.ApproveNewAccountCtx721036_DisconnectRemoteChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "remoteChanged")
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) RemoteChanged(remote string) {
-	if ptr.Pointer() != nil {
-		var remoteC *C.char
-		if remote != "" {
-			remoteC = C.CString(remote)
-			defer C.free(unsafe.Pointer(remoteC))
-		}
-		C.ApproveNewAccountCtx721036_RemoteChanged(ptr.Pointer(), C.struct_Moc_PackedString{data: remoteC, len: C.longlong(len(remote))})
-	}
-}
-
-//export callbackApproveNewAccountCtx721036_Transport
-func callbackApproveNewAccountCtx721036_Transport(ptr unsafe.Pointer) C.struct_Moc_PackedString {
-	if signal := qt.GetSignal(ptr, "transport"); signal != nil {
-		tempVal := signal.(func() string)()
-		return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-	}
-	tempVal := NewApproveNewAccountCtxFromPointer(ptr).TransportDefault()
-	return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-}
-
-func (ptr *ApproveNewAccountCtx) ConnectTransport(f func() string) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "transport"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "transport", func() string {
-				signal.(func() string)()
-				return f()
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "transport", f)
-		}
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) DisconnectTransport() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "transport")
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) Transport() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.ApproveNewAccountCtx721036_Transport(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *ApproveNewAccountCtx) TransportDefault() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.ApproveNewAccountCtx721036_TransportDefault(ptr.Pointer()))
-	}
-	return ""
-}
-
-//export callbackApproveNewAccountCtx721036_SetTransport
-func callbackApproveNewAccountCtx721036_SetTransport(ptr unsafe.Pointer, transport C.struct_Moc_PackedString) {
-	if signal := qt.GetSignal(ptr, "setTransport"); signal != nil {
-		signal.(func(string))(cGoUnpackString(transport))
-	} else {
-		NewApproveNewAccountCtxFromPointer(ptr).SetTransportDefault(cGoUnpackString(transport))
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) ConnectSetTransport(f func(transport string)) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "setTransport"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "setTransport", func(transport string) {
-				signal.(func(string))(transport)
-				f(transport)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setTransport", f)
-		}
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) DisconnectSetTransport() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "setTransport")
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) SetTransport(transport string) {
-	if ptr.Pointer() != nil {
-		var transportC *C.char
-		if transport != "" {
-			transportC = C.CString(transport)
-			defer C.free(unsafe.Pointer(transportC))
-		}
-		C.ApproveNewAccountCtx721036_SetTransport(ptr.Pointer(), C.struct_Moc_PackedString{data: transportC, len: C.longlong(len(transport))})
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) SetTransportDefault(transport string) {
-	if ptr.Pointer() != nil {
-		var transportC *C.char
-		if transport != "" {
-			transportC = C.CString(transport)
-			defer C.free(unsafe.Pointer(transportC))
-		}
-		C.ApproveNewAccountCtx721036_SetTransportDefault(ptr.Pointer(), C.struct_Moc_PackedString{data: transportC, len: C.longlong(len(transport))})
-	}
-}
-
-//export callbackApproveNewAccountCtx721036_TransportChanged
-func callbackApproveNewAccountCtx721036_TransportChanged(ptr unsafe.Pointer, transport C.struct_Moc_PackedString) {
-	if signal := qt.GetSignal(ptr, "transportChanged"); signal != nil {
-		signal.(func(string))(cGoUnpackString(transport))
-	}
-
-}
-
-func (ptr *ApproveNewAccountCtx) ConnectTransportChanged(f func(transport string)) {
-	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "transportChanged") {
-			C.ApproveNewAccountCtx721036_ConnectTransportChanged(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "transportChanged"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "transportChanged", func(transport string) {
-				signal.(func(string))(transport)
-				f(transport)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "transportChanged", f)
-		}
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) DisconnectTransportChanged() {
-	if ptr.Pointer() != nil {
-		C.ApproveNewAccountCtx721036_DisconnectTransportChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "transportChanged")
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) TransportChanged(transport string) {
-	if ptr.Pointer() != nil {
-		var transportC *C.char
-		if transport != "" {
-			transportC = C.CString(transport)
-			defer C.free(unsafe.Pointer(transportC))
-		}
-		C.ApproveNewAccountCtx721036_TransportChanged(ptr.Pointer(), C.struct_Moc_PackedString{data: transportC, len: C.longlong(len(transport))})
-	}
-}
-
-//export callbackApproveNewAccountCtx721036_Endpoint
-func callbackApproveNewAccountCtx721036_Endpoint(ptr unsafe.Pointer) C.struct_Moc_PackedString {
-	if signal := qt.GetSignal(ptr, "endpoint"); signal != nil {
-		tempVal := signal.(func() string)()
-		return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-	}
-	tempVal := NewApproveNewAccountCtxFromPointer(ptr).EndpointDefault()
-	return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-}
-
-func (ptr *ApproveNewAccountCtx) ConnectEndpoint(f func() string) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "endpoint"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "endpoint", func() string {
-				signal.(func() string)()
-				return f()
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "endpoint", f)
-		}
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) DisconnectEndpoint() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "endpoint")
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) Endpoint() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.ApproveNewAccountCtx721036_Endpoint(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *ApproveNewAccountCtx) EndpointDefault() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.ApproveNewAccountCtx721036_EndpointDefault(ptr.Pointer()))
-	}
-	return ""
-}
-
-//export callbackApproveNewAccountCtx721036_SetEndpoint
-func callbackApproveNewAccountCtx721036_SetEndpoint(ptr unsafe.Pointer, endpoint C.struct_Moc_PackedString) {
-	if signal := qt.GetSignal(ptr, "setEndpoint"); signal != nil {
-		signal.(func(string))(cGoUnpackString(endpoint))
-	} else {
-		NewApproveNewAccountCtxFromPointer(ptr).SetEndpointDefault(cGoUnpackString(endpoint))
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) ConnectSetEndpoint(f func(endpoint string)) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "setEndpoint"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "setEndpoint", func(endpoint string) {
-				signal.(func(string))(endpoint)
-				f(endpoint)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setEndpoint", f)
-		}
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) DisconnectSetEndpoint() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "setEndpoint")
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) SetEndpoint(endpoint string) {
-	if ptr.Pointer() != nil {
-		var endpointC *C.char
-		if endpoint != "" {
-			endpointC = C.CString(endpoint)
-			defer C.free(unsafe.Pointer(endpointC))
-		}
-		C.ApproveNewAccountCtx721036_SetEndpoint(ptr.Pointer(), C.struct_Moc_PackedString{data: endpointC, len: C.longlong(len(endpoint))})
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) SetEndpointDefault(endpoint string) {
-	if ptr.Pointer() != nil {
-		var endpointC *C.char
-		if endpoint != "" {
-			endpointC = C.CString(endpoint)
-			defer C.free(unsafe.Pointer(endpointC))
-		}
-		C.ApproveNewAccountCtx721036_SetEndpointDefault(ptr.Pointer(), C.struct_Moc_PackedString{data: endpointC, len: C.longlong(len(endpoint))})
-	}
-}
-
-//export callbackApproveNewAccountCtx721036_EndpointChanged
-func callbackApproveNewAccountCtx721036_EndpointChanged(ptr unsafe.Pointer, endpoint C.struct_Moc_PackedString) {
-	if signal := qt.GetSignal(ptr, "endpointChanged"); signal != nil {
-		signal.(func(string))(cGoUnpackString(endpoint))
-	}
-
-}
-
-func (ptr *ApproveNewAccountCtx) ConnectEndpointChanged(f func(endpoint string)) {
-	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "endpointChanged") {
-			C.ApproveNewAccountCtx721036_ConnectEndpointChanged(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "endpointChanged"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "endpointChanged", func(endpoint string) {
-				signal.(func(string))(endpoint)
-				f(endpoint)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "endpointChanged", f)
-		}
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) DisconnectEndpointChanged() {
-	if ptr.Pointer() != nil {
-		C.ApproveNewAccountCtx721036_DisconnectEndpointChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "endpointChanged")
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) EndpointChanged(endpoint string) {
-	if ptr.Pointer() != nil {
-		var endpointC *C.char
-		if endpoint != "" {
-			endpointC = C.CString(endpoint)
-			defer C.free(unsafe.Pointer(endpointC))
-		}
-		C.ApproveNewAccountCtx721036_EndpointChanged(ptr.Pointer(), C.struct_Moc_PackedString{data: endpointC, len: C.longlong(len(endpoint))})
-	}
-}
-
-//export callbackApproveNewAccountCtx721036_Password
-func callbackApproveNewAccountCtx721036_Password(ptr unsafe.Pointer) C.struct_Moc_PackedString {
-	if signal := qt.GetSignal(ptr, "password"); signal != nil {
-		tempVal := signal.(func() string)()
-		return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-	}
-	tempVal := NewApproveNewAccountCtxFromPointer(ptr).PasswordDefault()
-	return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-}
-
-func (ptr *ApproveNewAccountCtx) ConnectPassword(f func() string) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "password"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "password", func() string {
-				signal.(func() string)()
-				return f()
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "password", f)
-		}
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) DisconnectPassword() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "password")
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) Password() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.ApproveNewAccountCtx721036_Password(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *ApproveNewAccountCtx) PasswordDefault() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.ApproveNewAccountCtx721036_PasswordDefault(ptr.Pointer()))
-	}
-	return ""
-}
-
-//export callbackApproveNewAccountCtx721036_SetPassword
-func callbackApproveNewAccountCtx721036_SetPassword(ptr unsafe.Pointer, password C.struct_Moc_PackedString) {
-	if signal := qt.GetSignal(ptr, "setPassword"); signal != nil {
-		signal.(func(string))(cGoUnpackString(password))
-	} else {
-		NewApproveNewAccountCtxFromPointer(ptr).SetPasswordDefault(cGoUnpackString(password))
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) ConnectSetPassword(f func(password string)) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "setPassword"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "setPassword", func(password string) {
-				signal.(func(string))(password)
-				f(password)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setPassword", f)
-		}
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) DisconnectSetPassword() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "setPassword")
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) SetPassword(password string) {
-	if ptr.Pointer() != nil {
-		var passwordC *C.char
-		if password != "" {
-			passwordC = C.CString(password)
-			defer C.free(unsafe.Pointer(passwordC))
-		}
-		C.ApproveNewAccountCtx721036_SetPassword(ptr.Pointer(), C.struct_Moc_PackedString{data: passwordC, len: C.longlong(len(password))})
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) SetPasswordDefault(password string) {
-	if ptr.Pointer() != nil {
-		var passwordC *C.char
-		if password != "" {
-			passwordC = C.CString(password)
-			defer C.free(unsafe.Pointer(passwordC))
-		}
-		C.ApproveNewAccountCtx721036_SetPasswordDefault(ptr.Pointer(), C.struct_Moc_PackedString{data: passwordC, len: C.longlong(len(password))})
-	}
-}
-
-//export callbackApproveNewAccountCtx721036_PasswordChanged
-func callbackApproveNewAccountCtx721036_PasswordChanged(ptr unsafe.Pointer, password C.struct_Moc_PackedString) {
-	if signal := qt.GetSignal(ptr, "passwordChanged"); signal != nil {
-		signal.(func(string))(cGoUnpackString(password))
-	}
-
-}
-
-func (ptr *ApproveNewAccountCtx) ConnectPasswordChanged(f func(password string)) {
-	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "passwordChanged") {
-			C.ApproveNewAccountCtx721036_ConnectPasswordChanged(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "passwordChanged"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "passwordChanged", func(password string) {
-				signal.(func(string))(password)
-				f(password)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "passwordChanged", f)
-		}
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) DisconnectPasswordChanged() {
-	if ptr.Pointer() != nil {
-		C.ApproveNewAccountCtx721036_DisconnectPasswordChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "passwordChanged")
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) PasswordChanged(password string) {
-	if ptr.Pointer() != nil {
-		var passwordC *C.char
-		if password != "" {
-			passwordC = C.CString(password)
-			defer C.free(unsafe.Pointer(passwordC))
-		}
-		C.ApproveNewAccountCtx721036_PasswordChanged(ptr.Pointer(), C.struct_Moc_PackedString{data: passwordC, len: C.longlong(len(password))})
-	}
-}
-
-//export callbackApproveNewAccountCtx721036_ConfirmPassword
-func callbackApproveNewAccountCtx721036_ConfirmPassword(ptr unsafe.Pointer) C.struct_Moc_PackedString {
-	if signal := qt.GetSignal(ptr, "confirmPassword"); signal != nil {
-		tempVal := signal.(func() string)()
-		return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-	}
-	tempVal := NewApproveNewAccountCtxFromPointer(ptr).ConfirmPasswordDefault()
-	return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-}
-
-func (ptr *ApproveNewAccountCtx) ConnectConfirmPassword(f func() string) {
+func (ptr *TxListModel) ____doSetRoleNames_roleNames_keyList_atList(i int) int {
 	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "confirmPassword"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "confirmPassword", func() string {
-				signal.(func() string)()
-				return f()
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "confirmPassword", f)
-		}
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) DisconnectConfirmPassword() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "confirmPassword")
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) ConfirmPassword() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.ApproveNewAccountCtx721036_ConfirmPassword(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *ApproveNewAccountCtx) ConfirmPasswordDefault() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.ApproveNewAccountCtx721036_ConfirmPasswordDefault(ptr.Pointer()))
-	}
-	return ""
-}
-
-//export callbackApproveNewAccountCtx721036_SetConfirmPassword
-func callbackApproveNewAccountCtx721036_SetConfirmPassword(ptr unsafe.Pointer, confirmPassword C.struct_Moc_PackedString) {
-	if signal := qt.GetSignal(ptr, "setConfirmPassword"); signal != nil {
-		signal.(func(string))(cGoUnpackString(confirmPassword))
-	} else {
-		NewApproveNewAccountCtxFromPointer(ptr).SetConfirmPasswordDefault(cGoUnpackString(confirmPassword))
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) ConnectSetConfirmPassword(f func(confirmPassword string)) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "setConfirmPassword"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "setConfirmPassword", func(confirmPassword string) {
-				signal.(func(string))(confirmPassword)
-				f(confirmPassword)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setConfirmPassword", f)
-		}
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) DisconnectSetConfirmPassword() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "setConfirmPassword")
-	}
-}
-
-func (ptr *ApproveNewAccountCtx) SetConfirmPassword(confirmPassword string) {
-	if ptr.Pointer() != nil {
-		var confirmPasswordC *C.char
-		if confirmPassword != "" {
-			confirmPasswordC = C.CString(confirmPassword)
-			defer C.free(unsafe.Pointer(confirmPasswordC))
-		}
-		C.ApproveNewAccountCtx721036_SetConfirmPassword(ptr.Pointer(), C.struct_Moc_PackedString{data: confirmPasswordC, len: C.longlong(len(confirmPassword))})
+		return int(int32(C.TxListModel721036_____doSetRoleNames_roleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
 	}
+	return 0
 }
 
-func (ptr *ApproveNewAccountCtx) SetConfirmPasswordDefault(confirmPassword string) {
+func (ptr *TxListModel) ____doSetRoleNames_roleNames_keyList_setList(i int) {
 	if ptr.Pointer() != nil {
-		var confirmPasswordC *C.char
-		if confirmPassword != "" {
-			confirmPasswordC = C.CString(confirmPassword)
-			defer C.free(unsafe.Pointer(confirmPasswordC))
-		}
-		C.ApproveNewAccountCtx721036_SetConfirmPasswordDefault(ptr.Pointer(), C.struct_Moc_PackedString{data: confirmPasswordC, len: C.longlong(len(confirmPassword))})
-	}
-}
-
-//export callbackApproveNewAccountCtx721036_ConfirmPasswordChanged
-func callbackApproveNewAccountCtx721036_ConfirmPasswordChanged(ptr unsafe.Pointer, confirmPassword C.struct_Moc_PackedString) {
-	if signal := qt.GetSignal(ptr, "confirmPasswordChanged"); signal != nil {
-		signal.(func(string))(cGoUnpackString(confirmPassword))
+		C.TxListModel721036_____doSetRoleNames_roleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
 	}
-
 }
-
-func (ptr *ApproveNewAccountCtx) ConnectConfirmPasswordChanged(f func(confirmPassword string)) {
-	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "confirmPasswordChanged") {
-			C.ApproveNewAccountCtx721036_ConnectConfirmPasswordChanged(ptr.Pointer())
-		}
 
-		if signal := qt.LendSignal(ptr.Pointer(), "confirmPasswordChanged"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "confirmPasswordChanged", func(confirmPassword string) {
-				signal.(func(string))(confirmPassword)
-				f(confirmPassword)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "confirmPasswordChanged", f)
-		}
-	}
+func (ptr *TxListModel) ____doSetRoleNames_roleNames_keyList_newList() unsafe.Pointer {
+	return C.TxListModel721036_____doSetRoleNames_roleNames_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *ApproveNewAccountCtx) DisconnectConfirmPasswordChanged() {
+func (ptr *TxListModel) ____setRoleNames_roleNames_keyList_atList(i int) int {
 	if ptr.Pointer() != nil {
-		C.ApproveNewAccountCtx721036_DisconnectConfirmPasswordChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "confirmPasswordChanged")
+		return int(int32(C.TxListModel721036_____setRoleNames_roleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
 	}
+	return 0
 }
 
-func (ptr *ApproveNewAccountCtx) ConfirmPasswordChanged(confirmPassword string) {
+func (ptr *TxListModel) ____setRoleNames_roleNames_keyList_setList(i int) {
 	if ptr.Pointer() != nil {
-		var confirmPasswordC *C.char
-		if confirmPassword != "" {
-			confirmPasswordC = C.CString(confirmPassword)
-			defer C.free(unsafe.Pointer(confirmPasswordC))
-		}
-		C.ApproveNewAccountCtx721036_ConfirmPasswordChanged(ptr.Pointer(), C.struct_Moc_PackedString{data: confirmPasswordC, len: C.longlong(len(confirmPassword))})
-	}
-}
-
-func ApproveNewAccountCtx_QRegisterMetaType() int {
-	return int(int32(C.ApproveNewAccountCtx721036_ApproveNewAccountCtx721036_QRegisterMetaType()))
-}
-
-func (ptr *ApproveNewAccountCtx) QRegisterMetaType() int {
-	return int(int32(C.ApproveNewAccountCtx721036_ApproveNewAccountCtx721036_QRegisterMetaType()))
-}
-
-func ApproveNewAccountCtx_QRegisterMetaType2(typeName string) int {
-	var typeNameC *C.char
-	if typeName != "" {
-		typeNameC = C.CString(typeName)
-		defer C.free(unsafe.Pointer(typeNameC))
-	}
-	return int(int32(C.ApproveNewAccountCtx721036_ApproveNewAccountCtx721036_QRegisterMetaType2(typeNameC)))
-}
-
-func (ptr *ApproveNewAccountCtx) QRegisterMetaType2(typeName string) int {
-	var typeNameC *C.char
-	if typeName != "" {
-		typeNameC = C.CString(typeName)
-		defer C.free(unsafe.Pointer(typeNameC))
-	}
-	return int(int32(C.ApproveNewAccountCtx721036_ApproveNewAccountCtx721036_QRegisterMetaType2(typeNameC)))
-}
-
-func ApproveNewAccountCtx_QmlRegisterType() int {
-	return int(int32(C.ApproveNewAccountCtx721036_ApproveNewAccountCtx721036_QmlRegisterType()))
-}
-
-func (ptr *ApproveNewAccountCtx) QmlRegisterType() int {
-	return int(int32(C.ApproveNewAccountCtx721036_ApproveNewAccountCtx721036_QmlRegisterType()))
-}
-
-func ApproveNewAccountCtx_QmlRegisterType2(uri string, versionMajor int, versionMinor int, qmlName string) int {
-	var uriC *C.char
-	if uri != "" {
-		uriC = C.CString(uri)
-		defer C.free(unsafe.Pointer(uriC))
-	}
-	var qmlNameC *C.char
-	if qmlName != "" {
-		qmlNameC = C.CString(qmlName)
-		defer C.free(unsafe.Pointer(qmlNameC))
+		C.TxListModel721036_____setRoleNames_roleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
 	}
-	return int(int32(C.ApproveNewAccountCtx721036_ApproveNewAccountCtx721036_QmlRegisterType2(uriC, C.int(int32(versionMajor)), C.int(int32(versionMinor)), qmlNameC)))
 }
 
-func (ptr *ApproveNewAccountCtx) QmlRegisterType2(uri string, versionMajor int, versionMinor int, qmlName string) int {
-	var uriC *C.char
-	if uri != "" {
-		uriC = C.CString(uri)
-		defer C.free(unsafe.Pointer(uriC))
-	}
-	var qmlNameC *C.char
-	if qmlName != "" {
-		qmlNameC = C.CString(qmlName)
-		defer C.free(unsafe.Pointer(qmlNameC))
-	}
-	return int(int32(C.ApproveNewAccountCtx721036_ApproveNewAccountCtx721036_QmlRegisterType2(uriC, C.int(int32(versionMajor)), C.int(int32(versionMinor)), qmlNameC)))
+func (ptr *TxListModel) ____setRoleNames_roleNames_keyList_newList() unsafe.Pointer {
+	return C.TxListModel721036_____setRoleNames_roleNames_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *ApproveNewAccountCtx) __dynamicPropertyNames_atList(i int) *std_core.QByteArray {
+func (ptr *TxListModel) __dynamicPropertyNames_atList(i int) *std_core.QByteArray {
 	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQByteArrayFromPointer(C.ApproveNewAccountCtx721036___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := std_core.NewQByteArrayFromPointer(C.TxListModel721036___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
 		runtime.SetFinalizer(tmpValue, (*std_core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *ApproveNewAccountCtx) __dynamicPropertyNames_setList(i std_core.QByteArray_ITF) {
+func (ptr *TxListModel) __dynamicPropertyNames_setList(i std_core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		C.ApproveNewAccountCtx721036___dynamicPropertyNames_setList(ptr.Pointer(), std_core.PointerFromQByteArray(i))
+		C.TxListModel721036___dynamicPropertyNames_setList(ptr.Pointer(), std_core.PointerFromQByteArray(i))
 	}
 }
 
-func (ptr *ApproveNewAccountCtx) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.ApproveNewAccountCtx721036___dynamicPropertyNames_newList(ptr.Pointer())
+func (ptr *TxListModel) __dynamicPropertyNames_newList() unsafe.Pointer {
+	return C.TxListModel721036___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *ApproveNewAccountCtx) __findChildren_atList2(i int) *std_core.QObject {
+func (ptr *TxListModel) __findChildren_atList2(i int) *std_core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQObjectFromPointer(C.ApproveNewAccountCtx721036___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := std_core.NewQObjectFromPointer(C.TxListModel721036___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -2942,19 +2414,19 @@ func (ptr *ApproveNewAccountCtx) __findChildren_atList2(i int) *std_core.QObject
 	return nil
 }
 
-func (ptr *ApproveNewAccountCtx) __findChildren_setList2(i std_core.QObject_ITF) {
+func (ptr *TxListModel) __findChildren_setList2(i std_core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.ApproveNewAccountCtx721036___findChildren_setList2(ptr.Pointer(), std_core.PointerFromQObject(i))
+		C.TxListModel721036___findChildren_setList2(ptr.Pointer(), std_core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *ApproveNewAccountCtx) __findChildren_newList2() unsafe.Pointer {
-	return C.ApproveNewAccountCtx721036___findChildren_newList2(ptr.Pointer())
+func (ptr *TxListModel) __findChildren_newList2() unsafe.Pointer {
+	return C.TxListModel721036___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *ApproveNewAccountCtx) __findChildren_atList3(i int) *std_core.QObject {
+func (ptr *TxListModel) __findChildren_atList3(i int) *std_core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQObjectFromPointer(C.ApproveNewAccountCtx721036___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := std_core.NewQObjectFromPointer(C.TxListModel721036___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -2963,19 +2435,19 @@ func (ptr *ApproveNewAccountCtx) __findChildren_atList3(i int) *std_core.QObject
 	return nil
 }
 
-func (ptr *ApproveNewAccountCtx) __findChildren_setList3(i std_core.QObject_ITF) {
+func (ptr *TxListModel) __findChildren_setList3(i std_core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.ApproveNewAccountCtx721036___findChildren_setList3(ptr.Pointer(), std_core.PointerFromQObject(i))
+		C.TxListModel721036___findChildren_setList3(ptr.Pointer(), std_core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *ApproveNewAccountCtx) __findChildren_newList3() unsafe.Pointer {
-	return C.ApproveNewAccountCtx721036___findChildren_newList3(ptr.Pointer())
+func (ptr *TxListModel) __findChildren_newList3() unsafe.Pointer {
+	return C.TxListModel721036___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *ApproveNewAccountCtx) __findChildren_atList(i int) *std_core.QObject {
+func (ptr *TxListModel) __findChildren_atList(i int) *std_core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQObjectFromPointer(C.ApproveNewAccountCtx721036___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := std_core.NewQObjectFromPointer(C.TxListModel721036___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -2984,19 +2456,19 @@ func (ptr *ApproveNewAccountCtx) __findChildren_atList(i int) *std_core.QObject 
 	return nil
 }
 
-func (ptr *ApproveNewAccountCtx) __findChildren_setList(i std_core.QObject_ITF) {
+func (ptr *TxListModel) __findChildren_setList(i std_core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.ApproveNewAccountCtx721036___findChildren_setList(ptr.Pointer(), std_core.PointerFromQObject(i))
+		C.TxListModel721036___findChildren_setList(ptr.Pointer(), std_core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *ApproveNewAccountCtx) __findChildren_newList() unsafe.Pointer {
-	return C.ApproveNewAccountCtx721036___findChildren_newList(ptr.Pointer())
+func (ptr *TxListModel) __findChildren_newList() unsafe.Pointer {
+	return C.TxListModel721036___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *ApproveNewAccountCtx) __children_atList(i int) *std_core.QObject {
+func (ptr *TxListModel) __children_atList(i int) *std_core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQObjectFromPointer(C.ApproveNewAccountCtx721036___children_atList(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := std_core.NewQObjectFromPointer(C.TxListModel721036___children_atList(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -3005,207 +2477,1044 @@ func (ptr *ApproveNewAccountCtx) __children_atList(i int) *std_core.QObject {
 	return nil
 }
 
-func (ptr *ApproveNewAccountCtx) __children_setList(i std_core.QObject_ITF) {
+func (ptr *TxListModel) __children_setList(i std_core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.ApproveNewAccountCtx721036___children_setList(ptr.Pointer(), std_core.PointerFromQObject(i))
+		C.TxListModel721036___children_setList(ptr.Pointer(), std_core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *ApproveNewAccountCtx) __children_newList() unsafe.Pointer {
-	return C.ApproveNewAccountCtx721036___children_newList(ptr.Pointer())
+func (ptr *TxListModel) __children_newList() unsafe.Pointer {
+	return C.TxListModel721036___children_newList(ptr.Pointer())
 }
 
-func NewApproveNewAccountCtx(parent std_core.QObject_ITF) *ApproveNewAccountCtx {
-	tmpValue := NewApproveNewAccountCtxFromPointer(C.ApproveNewAccountCtx721036_NewApproveNewAccountCtx(std_core.PointerFromQObject(parent)))
+func NewTxListModel(parent std_core.QObject_ITF) *TxListModel {
+	tmpValue := NewTxListModelFromPointer(C.TxListModel721036_NewTxListModel(std_core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
 
-//export callbackApproveNewAccountCtx721036_DestroyApproveNewAccountCtx
-func callbackApproveNewAccountCtx721036_DestroyApproveNewAccountCtx(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~ApproveNewAccountCtx"); signal != nil {
+//export callbackTxListModel721036_DestroyTxListModel
+func callbackTxListModel721036_DestroyTxListModel(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "~TxListModel"); signal != nil {
 		signal.(func())()
 	} else {
-		NewApproveNewAccountCtxFromPointer(ptr).DestroyApproveNewAccountCtxDefault()
+		NewTxListModelFromPointer(ptr).DestroyTxListModelDefault()
 	}
 }
 
-func (ptr *ApproveNewAccountCtx) ConnectDestroyApproveNewAccountCtx(f func()) {
+func (ptr *TxListModel) ConnectDestroyTxListModel(f func()) {
 	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~ApproveNewAccountCtx"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "~ApproveNewAccountCtx", func() {
+		if signal := qt.LendSignal(ptr.Pointer(), "~TxListModel"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "~TxListModel", func() {
 				signal.(func())()
 				f()
 			})
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~ApproveNewAccountCtx", f)
+			qt.ConnectSignal(ptr.Pointer(), "~TxListModel", f)
 		}
 	}
 }
 
-func (ptr *ApproveNewAccountCtx) DisconnectDestroyApproveNewAccountCtx() {
+func (ptr *TxListModel) DisconnectDestroyTxListModel() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~ApproveNewAccountCtx")
+		qt.DisconnectSignal(ptr.Pointer(), "~TxListModel")
 	}
 }
 
-func (ptr *ApproveNewAccountCtx) DestroyApproveNewAccountCtx() {
+func (ptr *TxListModel) DestroyTxListModel() {
 	if ptr.Pointer() != nil {
-		C.ApproveNewAccountCtx721036_DestroyApproveNewAccountCtx(ptr.Pointer())
+		C.TxListModel721036_DestroyTxListModel(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
-func (ptr *ApproveNewAccountCtx) DestroyApproveNewAccountCtxDefault() {
+func (ptr *TxListModel) DestroyTxListModelDefault() {
 	if ptr.Pointer() != nil {
-		C.ApproveNewAccountCtx721036_DestroyApproveNewAccountCtxDefault(ptr.Pointer())
+		C.TxListModel721036_DestroyTxListModelDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
-//export callbackApproveNewAccountCtx721036_Event
-func callbackApproveNewAccountCtx721036_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+//export callbackTxListModel721036_DropMimeData
+func callbackTxListModel721036_DropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "dropMimeData"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QMimeData, std_core.Qt__DropAction, int, int, *std_core.QModelIndex) bool)(std_core.NewQMimeDataFromPointer(data), std_core.Qt__DropAction(action), int(int32(row)), int(int32(column)), std_core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewTxListModelFromPointer(ptr).DropMimeDataDefault(std_core.NewQMimeDataFromPointer(data), std_core.Qt__DropAction(action), int(int32(row)), int(int32(column)), std_core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *TxListModel) DropMimeDataDefault(data std_core.QMimeData_ITF, action std_core.Qt__DropAction, row int, column int, parent std_core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.TxListModel721036_DropMimeDataDefault(ptr.Pointer(), std_core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), std_core.PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+//export callbackTxListModel721036_Index
+func callbackTxListModel721036_Index(ptr unsafe.Pointer, row C.int, column C.int, parent unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "index"); signal != nil {
+		return std_core.PointerFromQModelIndex(signal.(func(int, int, *std_core.QModelIndex) *std_core.QModelIndex)(int(int32(row)), int(int32(column)), std_core.NewQModelIndexFromPointer(parent)))
+	}
+
+	return std_core.PointerFromQModelIndex(NewTxListModelFromPointer(ptr).IndexDefault(int(int32(row)), int(int32(column)), std_core.NewQModelIndexFromPointer(parent)))
+}
+
+func (ptr *TxListModel) IndexDefault(row int, column int, parent std_core.QModelIndex_ITF) *std_core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQModelIndexFromPointer(C.TxListModel721036_IndexDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), std_core.PointerFromQModelIndex(parent)))
+		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackTxListModel721036_Sibling
+func callbackTxListModel721036_Sibling(ptr unsafe.Pointer, row C.int, column C.int, idx unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "sibling"); signal != nil {
+		return std_core.PointerFromQModelIndex(signal.(func(int, int, *std_core.QModelIndex) *std_core.QModelIndex)(int(int32(row)), int(int32(column)), std_core.NewQModelIndexFromPointer(idx)))
+	}
+
+	return std_core.PointerFromQModelIndex(NewTxListModelFromPointer(ptr).SiblingDefault(int(int32(row)), int(int32(column)), std_core.NewQModelIndexFromPointer(idx)))
+}
+
+func (ptr *TxListModel) SiblingDefault(row int, column int, idx std_core.QModelIndex_ITF) *std_core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQModelIndexFromPointer(C.TxListModel721036_SiblingDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), std_core.PointerFromQModelIndex(idx)))
+		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackTxListModel721036_Flags
+func callbackTxListModel721036_Flags(ptr unsafe.Pointer, index unsafe.Pointer) C.longlong {
+	if signal := qt.GetSignal(ptr, "flags"); signal != nil {
+		return C.longlong(signal.(func(*std_core.QModelIndex) std_core.Qt__ItemFlag)(std_core.NewQModelIndexFromPointer(index)))
+	}
+
+	return C.longlong(NewTxListModelFromPointer(ptr).FlagsDefault(std_core.NewQModelIndexFromPointer(index)))
+}
+
+func (ptr *TxListModel) FlagsDefault(index std_core.QModelIndex_ITF) std_core.Qt__ItemFlag {
+	if ptr.Pointer() != nil {
+		return std_core.Qt__ItemFlag(C.TxListModel721036_FlagsDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(index)))
+	}
+	return 0
+}
+
+//export callbackTxListModel721036_InsertColumns
+func callbackTxListModel721036_InsertColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "insertColumns"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *std_core.QModelIndex) bool)(int(int32(column)), int(int32(count)), std_core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewTxListModelFromPointer(ptr).InsertColumnsDefault(int(int32(column)), int(int32(count)), std_core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *TxListModel) InsertColumnsDefault(column int, count int, parent std_core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.TxListModel721036_InsertColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), std_core.PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+//export callbackTxListModel721036_InsertRows
+func callbackTxListModel721036_InsertRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "insertRows"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *std_core.QModelIndex) bool)(int(int32(row)), int(int32(count)), std_core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewTxListModelFromPointer(ptr).InsertRowsDefault(int(int32(row)), int(int32(count)), std_core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *TxListModel) InsertRowsDefault(row int, count int, parent std_core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.TxListModel721036_InsertRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), std_core.PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+//export callbackTxListModel721036_MoveColumns
+func callbackTxListModel721036_MoveColumns(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceColumn C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
+	if signal := qt.GetSignal(ptr, "moveColumns"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QModelIndex, int, int, *std_core.QModelIndex, int) bool)(std_core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceColumn)), int(int32(count)), std_core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewTxListModelFromPointer(ptr).MoveColumnsDefault(std_core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceColumn)), int(int32(count)), std_core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
+}
+
+func (ptr *TxListModel) MoveColumnsDefault(sourceParent std_core.QModelIndex_ITF, sourceColumn int, count int, destinationParent std_core.QModelIndex_ITF, destinationChild int) bool {
+	if ptr.Pointer() != nil {
+		return C.TxListModel721036_MoveColumnsDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceColumn)), C.int(int32(count)), std_core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
+	}
+	return false
+}
+
+//export callbackTxListModel721036_MoveRows
+func callbackTxListModel721036_MoveRows(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceRow C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
+	if signal := qt.GetSignal(ptr, "moveRows"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QModelIndex, int, int, *std_core.QModelIndex, int) bool)(std_core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceRow)), int(int32(count)), std_core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewTxListModelFromPointer(ptr).MoveRowsDefault(std_core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceRow)), int(int32(count)), std_core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
+}
+
+func (ptr *TxListModel) MoveRowsDefault(sourceParent std_core.QModelIndex_ITF, sourceRow int, count int, destinationParent std_core.QModelIndex_ITF, destinationChild int) bool {
+	if ptr.Pointer() != nil {
+		return C.TxListModel721036_MoveRowsDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceRow)), C.int(int32(count)), std_core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
+	}
+	return false
+}
+
+//export callbackTxListModel721036_RemoveColumns
+func callbackTxListModel721036_RemoveColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "removeColumns"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *std_core.QModelIndex) bool)(int(int32(column)), int(int32(count)), std_core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewTxListModelFromPointer(ptr).RemoveColumnsDefault(int(int32(column)), int(int32(count)), std_core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *TxListModel) RemoveColumnsDefault(column int, count int, parent std_core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.TxListModel721036_RemoveColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), std_core.PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+//export callbackTxListModel721036_RemoveRows
+func callbackTxListModel721036_RemoveRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "removeRows"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *std_core.QModelIndex) bool)(int(int32(row)), int(int32(count)), std_core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewTxListModelFromPointer(ptr).RemoveRowsDefault(int(int32(row)), int(int32(count)), std_core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *TxListModel) RemoveRowsDefault(row int, count int, parent std_core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.TxListModel721036_RemoveRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), std_core.PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+//export callbackTxListModel721036_SetData
+func callbackTxListModel721036_SetData(ptr unsafe.Pointer, index unsafe.Pointer, value unsafe.Pointer, role C.int) C.char {
+	if signal := qt.GetSignal(ptr, "setData"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QModelIndex, *std_core.QVariant, int) bool)(std_core.NewQModelIndexFromPointer(index), std_core.NewQVariantFromPointer(value), int(int32(role))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewTxListModelFromPointer(ptr).SetDataDefault(std_core.NewQModelIndexFromPointer(index), std_core.NewQVariantFromPointer(value), int(int32(role))))))
+}
+
+func (ptr *TxListModel) SetDataDefault(index std_core.QModelIndex_ITF, value std_core.QVariant_ITF, role int) bool {
+	if ptr.Pointer() != nil {
+		return C.TxListModel721036_SetDataDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(index), std_core.PointerFromQVariant(value), C.int(int32(role))) != 0
+	}
+	return false
+}
+
+//export callbackTxListModel721036_SetHeaderData
+func callbackTxListModel721036_SetHeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, value unsafe.Pointer, role C.int) C.char {
+	if signal := qt.GetSignal(ptr, "setHeaderData"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int, std_core.Qt__Orientation, *std_core.QVariant, int) bool)(int(int32(section)), std_core.Qt__Orientation(orientation), std_core.NewQVariantFromPointer(value), int(int32(role))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewTxListModelFromPointer(ptr).SetHeaderDataDefault(int(int32(section)), std_core.Qt__Orientation(orientation), std_core.NewQVariantFromPointer(value), int(int32(role))))))
+}
+
+func (ptr *TxListModel) SetHeaderDataDefault(section int, orientation std_core.Qt__Orientation, value std_core.QVariant_ITF, role int) bool {
+	if ptr.Pointer() != nil {
+		return C.TxListModel721036_SetHeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), std_core.PointerFromQVariant(value), C.int(int32(role))) != 0
+	}
+	return false
+}
+
+//export callbackTxListModel721036_SetItemData
+func callbackTxListModel721036_SetItemData(ptr unsafe.Pointer, index unsafe.Pointer, roles C.struct_Moc_PackedList) C.char {
+	if signal := qt.GetSignal(ptr, "setItemData"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QModelIndex, map[int]*std_core.QVariant) bool)(std_core.NewQModelIndexFromPointer(index), func(l C.struct_Moc_PackedList) map[int]*std_core.QVariant {
+			out := make(map[int]*std_core.QVariant, int(l.len))
+			tmpList := NewTxListModelFromPointer(l.data)
+			for i, v := range tmpList.__setItemData_roles_keyList() {
+				out[v] = tmpList.__setItemData_roles_atList(v, i)
+			}
+			return out
+		}(roles)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewTxListModelFromPointer(ptr).SetItemDataDefault(std_core.NewQModelIndexFromPointer(index), func(l C.struct_Moc_PackedList) map[int]*std_core.QVariant {
+		out := make(map[int]*std_core.QVariant, int(l.len))
+		tmpList := NewTxListModelFromPointer(l.data)
+		for i, v := range tmpList.__setItemData_roles_keyList() {
+			out[v] = tmpList.__setItemData_roles_atList(v, i)
+		}
+		return out
+	}(roles)))))
+}
+
+func (ptr *TxListModel) SetItemDataDefault(index std_core.QModelIndex_ITF, roles map[int]*std_core.QVariant) bool {
+	if ptr.Pointer() != nil {
+		return C.TxListModel721036_SetItemDataDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(index), func() unsafe.Pointer {
+			tmpList := NewTxListModelFromPointer(NewTxListModelFromPointer(nil).__setItemData_roles_newList())
+			for k, v := range roles {
+				tmpList.__setItemData_roles_setList(k, v)
+			}
+			return tmpList.Pointer()
+		}()) != 0
+	}
+	return false
+}
+
+//export callbackTxListModel721036_Submit
+func callbackTxListModel721036_Submit(ptr unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "submit"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewTxListModelFromPointer(ptr).SubmitDefault())))
+}
+
+func (ptr *TxListModel) SubmitDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.TxListModel721036_SubmitDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+//export callbackTxListModel721036_ColumnsAboutToBeInserted
+func callbackTxListModel721036_ColumnsAboutToBeInserted(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "columnsAboutToBeInserted"); signal != nil {
+		signal.(func(*std_core.QModelIndex, int, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackTxListModel721036_ColumnsAboutToBeMoved
+func callbackTxListModel721036_ColumnsAboutToBeMoved(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceStart C.int, sourceEnd C.int, destinationParent unsafe.Pointer, destinationColumn C.int) {
+	if signal := qt.GetSignal(ptr, "columnsAboutToBeMoved"); signal != nil {
+		signal.(func(*std_core.QModelIndex, int, int, *std_core.QModelIndex, int))(std_core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceStart)), int(int32(sourceEnd)), std_core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationColumn)))
+	}
+
+}
+
+//export callbackTxListModel721036_ColumnsAboutToBeRemoved
+func callbackTxListModel721036_ColumnsAboutToBeRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "columnsAboutToBeRemoved"); signal != nil {
+		signal.(func(*std_core.QModelIndex, int, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackTxListModel721036_ColumnsInserted
+func callbackTxListModel721036_ColumnsInserted(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "columnsInserted"); signal != nil {
+		signal.(func(*std_core.QModelIndex, int, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackTxListModel721036_ColumnsMoved
+func callbackTxListModel721036_ColumnsMoved(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int, destination unsafe.Pointer, column C.int) {
+	if signal := qt.GetSignal(ptr, "columnsMoved"); signal != nil {
+		signal.(func(*std_core.QModelIndex, int, int, *std_core.QModelIndex, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)), std_core.NewQModelIndexFromPointer(destination), int(int32(column)))
+	}
+
+}
+
+//export callbackTxListModel721036_ColumnsRemoved
+func callbackTxListModel721036_ColumnsRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "columnsRemoved"); signal != nil {
+		signal.(func(*std_core.QModelIndex, int, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackTxListModel721036_DataChanged
+func callbackTxListModel721036_DataChanged(ptr unsafe.Pointer, topLeft unsafe.Pointer, bottomRight unsafe.Pointer, roles C.struct_Moc_PackedList) {
+	if signal := qt.GetSignal(ptr, "dataChanged"); signal != nil {
+		signal.(func(*std_core.QModelIndex, *std_core.QModelIndex, []int))(std_core.NewQModelIndexFromPointer(topLeft), std_core.NewQModelIndexFromPointer(bottomRight), func(l C.struct_Moc_PackedList) []int {
+			out := make([]int, int(l.len))
+			tmpList := NewTxListModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__dataChanged_roles_atList(i)
+			}
+			return out
+		}(roles))
+	}
+
+}
+
+//export callbackTxListModel721036_FetchMore
+func callbackTxListModel721036_FetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "fetchMore"); signal != nil {
+		signal.(func(*std_core.QModelIndex))(std_core.NewQModelIndexFromPointer(parent))
+	} else {
+		NewTxListModelFromPointer(ptr).FetchMoreDefault(std_core.NewQModelIndexFromPointer(parent))
+	}
+}
+
+func (ptr *TxListModel) FetchMoreDefault(parent std_core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.TxListModel721036_FetchMoreDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(parent))
+	}
+}
+
+//export callbackTxListModel721036_HeaderDataChanged
+func callbackTxListModel721036_HeaderDataChanged(ptr unsafe.Pointer, orientation C.longlong, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "headerDataChanged"); signal != nil {
+		signal.(func(std_core.Qt__Orientation, int, int))(std_core.Qt__Orientation(orientation), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackTxListModel721036_LayoutAboutToBeChanged
+func callbackTxListModel721036_LayoutAboutToBeChanged(ptr unsafe.Pointer, parents C.struct_Moc_PackedList, hint C.longlong) {
+	if signal := qt.GetSignal(ptr, "layoutAboutToBeChanged"); signal != nil {
+		signal.(func([]*std_core.QPersistentModelIndex, std_core.QAbstractItemModel__LayoutChangeHint))(func(l C.struct_Moc_PackedList) []*std_core.QPersistentModelIndex {
+			out := make([]*std_core.QPersistentModelIndex, int(l.len))
+			tmpList := NewTxListModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__layoutAboutToBeChanged_parents_atList(i)
+			}
+			return out
+		}(parents), std_core.QAbstractItemModel__LayoutChangeHint(hint))
+	}
+
+}
+
+//export callbackTxListModel721036_LayoutChanged
+func callbackTxListModel721036_LayoutChanged(ptr unsafe.Pointer, parents C.struct_Moc_PackedList, hint C.longlong) {
+	if signal := qt.GetSignal(ptr, "layoutChanged"); signal != nil {
+		signal.(func([]*std_core.QPersistentModelIndex, std_core.QAbstractItemModel__LayoutChangeHint))(func(l C.struct_Moc_PackedList) []*std_core.QPersistentModelIndex {
+			out := make([]*std_core.QPersistentModelIndex, int(l.len))
+			tmpList := NewTxListModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__layoutChanged_parents_atList(i)
+			}
+			return out
+		}(parents), std_core.QAbstractItemModel__LayoutChangeHint(hint))
+	}
+
+}
+
+//export callbackTxListModel721036_ModelAboutToBeReset
+func callbackTxListModel721036_ModelAboutToBeReset(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "modelAboutToBeReset"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+//export callbackTxListModel721036_ModelReset
+func callbackTxListModel721036_ModelReset(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "modelReset"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+//export callbackTxListModel721036_ResetInternalData
+func callbackTxListModel721036_ResetInternalData(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "resetInternalData"); signal != nil {
+		signal.(func())()
+	} else {
+		NewTxListModelFromPointer(ptr).ResetInternalDataDefault()
+	}
+}
+
+func (ptr *TxListModel) ResetInternalDataDefault() {
+	if ptr.Pointer() != nil {
+		C.TxListModel721036_ResetInternalDataDefault(ptr.Pointer())
+	}
+}
+
+//export callbackTxListModel721036_Revert
+func callbackTxListModel721036_Revert(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "revert"); signal != nil {
+		signal.(func())()
+	} else {
+		NewTxListModelFromPointer(ptr).RevertDefault()
+	}
+}
+
+func (ptr *TxListModel) RevertDefault() {
+	if ptr.Pointer() != nil {
+		C.TxListModel721036_RevertDefault(ptr.Pointer())
+	}
+}
+
+//export callbackTxListModel721036_RowsAboutToBeInserted
+func callbackTxListModel721036_RowsAboutToBeInserted(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int) {
+	if signal := qt.GetSignal(ptr, "rowsAboutToBeInserted"); signal != nil {
+		signal.(func(*std_core.QModelIndex, int, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)))
+	}
+
+}
+
+//export callbackTxListModel721036_RowsAboutToBeMoved
+func callbackTxListModel721036_RowsAboutToBeMoved(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceStart C.int, sourceEnd C.int, destinationParent unsafe.Pointer, destinationRow C.int) {
+	if signal := qt.GetSignal(ptr, "rowsAboutToBeMoved"); signal != nil {
+		signal.(func(*std_core.QModelIndex, int, int, *std_core.QModelIndex, int))(std_core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceStart)), int(int32(sourceEnd)), std_core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationRow)))
+	}
+
+}
+
+//export callbackTxListModel721036_RowsAboutToBeRemoved
+func callbackTxListModel721036_RowsAboutToBeRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "rowsAboutToBeRemoved"); signal != nil {
+		signal.(func(*std_core.QModelIndex, int, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackTxListModel721036_RowsInserted
+func callbackTxListModel721036_RowsInserted(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "rowsInserted"); signal != nil {
+		signal.(func(*std_core.QModelIndex, int, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackTxListModel721036_RowsMoved
+func callbackTxListModel721036_RowsMoved(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int, destination unsafe.Pointer, row C.int) {
+	if signal := qt.GetSignal(ptr, "rowsMoved"); signal != nil {
+		signal.(func(*std_core.QModelIndex, int, int, *std_core.QModelIndex, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)), std_core.NewQModelIndexFromPointer(destination), int(int32(row)))
+	}
+
+}
+
+//export callbackTxListModel721036_RowsRemoved
+func callbackTxListModel721036_RowsRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "rowsRemoved"); signal != nil {
+		signal.(func(*std_core.QModelIndex, int, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackTxListModel721036_Sort
+func callbackTxListModel721036_Sort(ptr unsafe.Pointer, column C.int, order C.longlong) {
+	if signal := qt.GetSignal(ptr, "sort"); signal != nil {
+		signal.(func(int, std_core.Qt__SortOrder))(int(int32(column)), std_core.Qt__SortOrder(order))
+	} else {
+		NewTxListModelFromPointer(ptr).SortDefault(int(int32(column)), std_core.Qt__SortOrder(order))
+	}
+}
+
+func (ptr *TxListModel) SortDefault(column int, order std_core.Qt__SortOrder) {
+	if ptr.Pointer() != nil {
+		C.TxListModel721036_SortDefault(ptr.Pointer(), C.int(int32(column)), C.longlong(order))
+	}
+}
+
+//export callbackTxListModel721036_RoleNames
+func callbackTxListModel721036_RoleNames(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "roleNames"); signal != nil {
+		return func() unsafe.Pointer {
+			tmpList := NewTxListModelFromPointer(NewTxListModelFromPointer(nil).__roleNames_newList())
+			for k, v := range signal.(func() map[int]*std_core.QByteArray)() {
+				tmpList.__roleNames_setList(k, v)
+			}
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		tmpList := NewTxListModelFromPointer(NewTxListModelFromPointer(nil).__roleNames_newList())
+		for k, v := range NewTxListModelFromPointer(ptr).RoleNamesDefault() {
+			tmpList.__roleNames_setList(k, v)
+		}
+		return tmpList.Pointer()
+	}()
+}
+
+func (ptr *TxListModel) RoleNamesDefault() map[int]*std_core.QByteArray {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_Moc_PackedList) map[int]*std_core.QByteArray {
+			out := make(map[int]*std_core.QByteArray, int(l.len))
+			tmpList := NewTxListModelFromPointer(l.data)
+			for i, v := range tmpList.__roleNames_keyList() {
+				out[v] = tmpList.__roleNames_atList(v, i)
+			}
+			return out
+		}(C.TxListModel721036_RoleNamesDefault(ptr.Pointer()))
+	}
+	return make(map[int]*std_core.QByteArray, 0)
+}
+
+//export callbackTxListModel721036_ItemData
+func callbackTxListModel721036_ItemData(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "itemData"); signal != nil {
+		return func() unsafe.Pointer {
+			tmpList := NewTxListModelFromPointer(NewTxListModelFromPointer(nil).__itemData_newList())
+			for k, v := range signal.(func(*std_core.QModelIndex) map[int]*std_core.QVariant)(std_core.NewQModelIndexFromPointer(index)) {
+				tmpList.__itemData_setList(k, v)
+			}
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		tmpList := NewTxListModelFromPointer(NewTxListModelFromPointer(nil).__itemData_newList())
+		for k, v := range NewTxListModelFromPointer(ptr).ItemDataDefault(std_core.NewQModelIndexFromPointer(index)) {
+			tmpList.__itemData_setList(k, v)
+		}
+		return tmpList.Pointer()
+	}()
+}
+
+func (ptr *TxListModel) ItemDataDefault(index std_core.QModelIndex_ITF) map[int]*std_core.QVariant {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_Moc_PackedList) map[int]*std_core.QVariant {
+			out := make(map[int]*std_core.QVariant, int(l.len))
+			tmpList := NewTxListModelFromPointer(l.data)
+			for i, v := range tmpList.__itemData_keyList() {
+				out[v] = tmpList.__itemData_atList(v, i)
+			}
+			return out
+		}(C.TxListModel721036_ItemDataDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(index)))
+	}
+	return make(map[int]*std_core.QVariant, 0)
+}
+
+//export callbackTxListModel721036_MimeData
+func callbackTxListModel721036_MimeData(ptr unsafe.Pointer, indexes C.struct_Moc_PackedList) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "mimeData"); signal != nil {
+		return std_core.PointerFromQMimeData(signal.(func([]*std_core.QModelIndex) *std_core.QMimeData)(func(l C.struct_Moc_PackedList) []*std_core.QModelIndex {
+			out := make([]*std_core.QModelIndex, int(l.len))
+			tmpList := NewTxListModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__mimeData_indexes_atList(i)
+			}
+			return out
+		}(indexes)))
+	}
+
+	return std_core.PointerFromQMimeData(NewTxListModelFromPointer(ptr).MimeDataDefault(func(l C.struct_Moc_PackedList) []*std_core.QModelIndex {
+		out := make([]*std_core.QModelIndex, int(l.len))
+		tmpList := NewTxListModelFromPointer(l.data)
+		for i := 0; i < len(out); i++ {
+			out[i] = tmpList.__mimeData_indexes_atList(i)
+		}
+		return out
+	}(indexes)))
+}
+
+func (ptr *TxListModel) MimeDataDefault(indexes []*std_core.QModelIndex) *std_core.QMimeData {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQMimeDataFromPointer(C.TxListModel721036_MimeDataDefault(ptr.Pointer(), func() unsafe.Pointer {
+			tmpList := NewTxListModelFromPointer(NewTxListModelFromPointer(nil).__mimeData_indexes_newList())
+			for _, v := range indexes {
+				tmpList.__mimeData_indexes_setList(v)
+			}
+			return tmpList.Pointer()
+		}()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackTxListModel721036_Buddy
+func callbackTxListModel721036_Buddy(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "buddy"); signal != nil {
+		return std_core.PointerFromQModelIndex(signal.(func(*std_core.QModelIndex) *std_core.QModelIndex)(std_core.NewQModelIndexFromPointer(index)))
+	}
+
+	return std_core.PointerFromQModelIndex(NewTxListModelFromPointer(ptr).BuddyDefault(std_core.NewQModelIndexFromPointer(index)))
+}
+
+func (ptr *TxListModel) BuddyDefault(index std_core.QModelIndex_ITF) *std_core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQModelIndexFromPointer(C.TxListModel721036_BuddyDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackTxListModel721036_Parent
+func callbackTxListModel721036_Parent(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "parent"); signal != nil {
+		return std_core.PointerFromQModelIndex(signal.(func(*std_core.QModelIndex) *std_core.QModelIndex)(std_core.NewQModelIndexFromPointer(index)))
+	}
+
+	return std_core.PointerFromQModelIndex(NewTxListModelFromPointer(ptr).ParentDefault(std_core.NewQModelIndexFromPointer(index)))
+}
+
+func (ptr *TxListModel) ParentDefault(index std_core.QModelIndex_ITF) *std_core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQModelIndexFromPointer(C.TxListModel721036_ParentDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackTxListModel721036_Match
+func callbackTxListModel721036_Match(ptr unsafe.Pointer, start unsafe.Pointer, role C.int, value unsafe.Pointer, hits C.int, flags C.longlong) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "match"); signal != nil {
+		return func() unsafe.Pointer {
+			tmpList := NewTxListModelFromPointer(NewTxListModelFromPointer(nil).__match_newList())
+			for _, v := range signal.(func(*std_core.QModelIndex, int, *std_core.QVariant, int, std_core.Qt__MatchFlag) []*std_core.QModelIndex)(std_core.NewQModelIndexFromPointer(start), int(int32(role)), std_core.NewQVariantFromPointer(value), int(int32(hits)), std_core.Qt__MatchFlag(flags)) {
+				tmpList.__match_setList(v)
+			}
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		tmpList := NewTxListModelFromPointer(NewTxListModelFromPointer(nil).__match_newList())
+		for _, v := range NewTxListModelFromPointer(ptr).MatchDefault(std_core.NewQModelIndexFromPointer(start), int(int32(role)), std_core.NewQVariantFromPointer(value), int(int32(hits)), std_core.Qt__MatchFlag(flags)) {
+			tmpList.__match_setList(v)
+		}
+		return tmpList.Pointer()
+	}()
+}
+
+func (ptr *TxListModel) MatchDefault(start std_core.QModelIndex_ITF, role int, value std_core.QVariant_ITF, hits int, flags std_core.Qt__MatchFlag) []*std_core.QModelIndex {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_Moc_PackedList) []*std_core.QModelIndex {
+			out := make([]*std_core.QModelIndex, int(l.len))
+			tmpList := NewTxListModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__match_atList(i)
+			}
+			return out
+		}(C.TxListModel721036_MatchDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(start), C.int(int32(role)), std_core.PointerFromQVariant(value), C.int(int32(hits)), C.longlong(flags)))
+	}
+	return make([]*std_core.QModelIndex, 0)
+}
+
+//export callbackTxListModel721036_Span
+func callbackTxListModel721036_Span(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "span"); signal != nil {
+		return std_core.PointerFromQSize(signal.(func(*std_core.QModelIndex) *std_core.QSize)(std_core.NewQModelIndexFromPointer(index)))
+	}
+
+	return std_core.PointerFromQSize(NewTxListModelFromPointer(ptr).SpanDefault(std_core.NewQModelIndexFromPointer(index)))
+}
+
+func (ptr *TxListModel) SpanDefault(index std_core.QModelIndex_ITF) *std_core.QSize {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQSizeFromPointer(C.TxListModel721036_SpanDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*std_core.QSize).DestroyQSize)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackTxListModel721036_MimeTypes
+func callbackTxListModel721036_MimeTypes(ptr unsafe.Pointer) C.struct_Moc_PackedString {
+	if signal := qt.GetSignal(ptr, "mimeTypes"); signal != nil {
+		tempVal := signal.(func() []string)()
+		return C.struct_Moc_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	}
+	tempVal := NewTxListModelFromPointer(ptr).MimeTypesDefault()
+	return C.struct_Moc_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+}
+
+func (ptr *TxListModel) MimeTypesDefault() []string {
+	if ptr.Pointer() != nil {
+		return strings.Split(cGoUnpackString(C.TxListModel721036_MimeTypesDefault(ptr.Pointer())), "|")
+	}
+	return make([]string, 0)
+}
+
+//export callbackTxListModel721036_Data
+func callbackTxListModel721036_Data(ptr unsafe.Pointer, index unsafe.Pointer, role C.int) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "data"); signal != nil {
+		return std_core.PointerFromQVariant(signal.(func(*std_core.QModelIndex, int) *std_core.QVariant)(std_core.NewQModelIndexFromPointer(index), int(int32(role))))
+	}
+
+	return std_core.PointerFromQVariant(NewTxListModelFromPointer(ptr).DataDefault(std_core.NewQModelIndexFromPointer(index), int(int32(role))))
+}
+
+func (ptr *TxListModel) DataDefault(index std_core.QModelIndex_ITF, role int) *std_core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQVariantFromPointer(C.TxListModel721036_DataDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(index), C.int(int32(role))))
+		runtime.SetFinalizer(tmpValue, (*std_core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackTxListModel721036_HeaderData
+func callbackTxListModel721036_HeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, role C.int) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "headerData"); signal != nil {
+		return std_core.PointerFromQVariant(signal.(func(int, std_core.Qt__Orientation, int) *std_core.QVariant)(int(int32(section)), std_core.Qt__Orientation(orientation), int(int32(role))))
+	}
+
+	return std_core.PointerFromQVariant(NewTxListModelFromPointer(ptr).HeaderDataDefault(int(int32(section)), std_core.Qt__Orientation(orientation), int(int32(role))))
+}
+
+func (ptr *TxListModel) HeaderDataDefault(section int, orientation std_core.Qt__Orientation, role int) *std_core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQVariantFromPointer(C.TxListModel721036_HeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), C.int(int32(role))))
+		runtime.SetFinalizer(tmpValue, (*std_core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackTxListModel721036_SupportedDragActions
+func callbackTxListModel721036_SupportedDragActions(ptr unsafe.Pointer) C.longlong {
+	if signal := qt.GetSignal(ptr, "supportedDragActions"); signal != nil {
+		return C.longlong(signal.(func() std_core.Qt__DropAction)())
+	}
+
+	return C.longlong(NewTxListModelFromPointer(ptr).SupportedDragActionsDefault())
+}
+
+func (ptr *TxListModel) SupportedDragActionsDefault() std_core.Qt__DropAction {
+	if ptr.Pointer() != nil {
+		return std_core.Qt__DropAction(C.TxListModel721036_SupportedDragActionsDefault(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackTxListModel721036_SupportedDropActions
+func callbackTxListModel721036_SupportedDropActions(ptr unsafe.Pointer) C.longlong {
+	if signal := qt.GetSignal(ptr, "supportedDropActions"); signal != nil {
+		return C.longlong(signal.(func() std_core.Qt__DropAction)())
+	}
+
+	return C.longlong(NewTxListModelFromPointer(ptr).SupportedDropActionsDefault())
+}
+
+func (ptr *TxListModel) SupportedDropActionsDefault() std_core.Qt__DropAction {
+	if ptr.Pointer() != nil {
+		return std_core.Qt__DropAction(C.TxListModel721036_SupportedDropActionsDefault(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackTxListModel721036_CanDropMimeData
+func callbackTxListModel721036_CanDropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "canDropMimeData"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QMimeData, std_core.Qt__DropAction, int, int, *std_core.QModelIndex) bool)(std_core.NewQMimeDataFromPointer(data), std_core.Qt__DropAction(action), int(int32(row)), int(int32(column)), std_core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewTxListModelFromPointer(ptr).CanDropMimeDataDefault(std_core.NewQMimeDataFromPointer(data), std_core.Qt__DropAction(action), int(int32(row)), int(int32(column)), std_core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *TxListModel) CanDropMimeDataDefault(data std_core.QMimeData_ITF, action std_core.Qt__DropAction, row int, column int, parent std_core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.TxListModel721036_CanDropMimeDataDefault(ptr.Pointer(), std_core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), std_core.PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+//export callbackTxListModel721036_CanFetchMore
+func callbackTxListModel721036_CanFetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "canFetchMore"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QModelIndex) bool)(std_core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewTxListModelFromPointer(ptr).CanFetchMoreDefault(std_core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *TxListModel) CanFetchMoreDefault(parent std_core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.TxListModel721036_CanFetchMoreDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+//export callbackTxListModel721036_HasChildren
+func callbackTxListModel721036_HasChildren(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "hasChildren"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QModelIndex) bool)(std_core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewTxListModelFromPointer(ptr).HasChildrenDefault(std_core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *TxListModel) HasChildrenDefault(parent std_core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.TxListModel721036_HasChildrenDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+//export callbackTxListModel721036_ColumnCount
+func callbackTxListModel721036_ColumnCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
+	if signal := qt.GetSignal(ptr, "columnCount"); signal != nil {
+		return C.int(int32(signal.(func(*std_core.QModelIndex) int)(std_core.NewQModelIndexFromPointer(parent))))
+	}
+
+	return C.int(int32(NewTxListModelFromPointer(ptr).ColumnCountDefault(std_core.NewQModelIndexFromPointer(parent))))
+}
+
+func (ptr *TxListModel) ColumnCountDefault(parent std_core.QModelIndex_ITF) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.TxListModel721036_ColumnCountDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(parent))))
+	}
+	return 0
+}
+
+//export callbackTxListModel721036_RowCount
+func callbackTxListModel721036_RowCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
+	if signal := qt.GetSignal(ptr, "rowCount"); signal != nil {
+		return C.int(int32(signal.(func(*std_core.QModelIndex) int)(std_core.NewQModelIndexFromPointer(parent))))
+	}
+
+	return C.int(int32(NewTxListModelFromPointer(ptr).RowCountDefault(std_core.NewQModelIndexFromPointer(parent))))
+}
+
+func (ptr *TxListModel) RowCountDefault(parent std_core.QModelIndex_ITF) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.TxListModel721036_RowCountDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(parent))))
+	}
+	return 0
+}
+
+//export callbackTxListModel721036_Event
+func callbackTxListModel721036_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QEvent) bool)(std_core.NewQEventFromPointer(e)))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewApproveNewAccountCtxFromPointer(ptr).EventDefault(std_core.NewQEventFromPointer(e)))))
+	return C.char(int8(qt.GoBoolToInt(NewTxListModelFromPointer(ptr).EventDefault(std_core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *ApproveNewAccountCtx) EventDefault(e std_core.QEvent_ITF) bool {
+func (ptr *TxListModel) EventDefault(e std_core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.ApproveNewAccountCtx721036_EventDefault(ptr.Pointer(), std_core.PointerFromQEvent(e)) != 0
+		return C.TxListModel721036_EventDefault(ptr.Pointer(), std_core.PointerFromQEvent(e)) != 0
 	}
 	return false
 }
 
-//export callbackApproveNewAccountCtx721036_EventFilter
-func callbackApproveNewAccountCtx721036_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+//export callbackTxListModel721036_EventFilter
+func callbackTxListModel721036_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QObject, *std_core.QEvent) bool)(std_core.NewQObjectFromPointer(watched), std_core.NewQEventFromPointer(event)))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewApproveNewAccountCtxFromPointer(ptr).EventFilterDefault(std_core.NewQObjectFromPointer(watched), std_core.NewQEventFromPointer(event)))))
+	return C.char(int8(qt.GoBoolToInt(NewTxListModelFromPointer(ptr).EventFilterDefault(std_core.NewQObjectFromPointer(watched), std_core.NewQEventFromPointer(event)))))
 }
 
-func (ptr *ApproveNewAccountCtx) EventFilterDefault(watched std_core.QObject_ITF, event std_core.QEvent_ITF) bool {
+func (ptr *TxListModel) EventFilterDefault(watched std_core.QObject_ITF, event std_core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.ApproveNewAccountCtx721036_EventFilterDefault(ptr.Pointer(), std_core.PointerFromQObject(watched), std_core.PointerFromQEvent(event)) != 0
+		return C.TxListModel721036_EventFilterDefault(ptr.Pointer(), std_core.PointerFromQObject(watched), std_core.PointerFromQEvent(event)) != 0
 	}
 	return false
 }
 
-//export callbackApproveNewAccountCtx721036_ChildEvent
-func callbackApproveNewAccountCtx721036_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+//export callbackTxListModel721036_ChildEvent
+func callbackTxListModel721036_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
 		signal.(func(*std_core.QChildEvent))(std_core.NewQChildEventFromPointer(event))
 	} else {
-		NewApproveNewAccountCtxFromPointer(ptr).ChildEventDefault(std_core.NewQChildEventFromPointer(event))
+		NewTxListModelFromPointer(ptr).ChildEventDefault(std_core.NewQChildEventFromPointer(event))
 	}
 }
 
-func (ptr *ApproveNewAccountCtx) ChildEventDefault(event std_core.QChildEvent_ITF) {
+func (ptr *TxListModel) ChildEventDefault(event std_core.QChildEvent_ITF) {
 	if ptr.Pointer() != nil {
-		C.ApproveNewAccountCtx721036_ChildEventDefault(ptr.Pointer(), std_core.PointerFromQChildEvent(event))
+		C.TxListModel721036_ChildEventDefault(ptr.Pointer(), std_core.PointerFromQChildEvent(event))
 	}
 }
 
-//export callbackApproveNewAccountCtx721036_ConnectNotify
-func callbackApproveNewAccountCtx721036_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
+//export callbackTxListModel721036_ConnectNotify
+func callbackTxListModel721036_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
 		signal.(func(*std_core.QMetaMethod))(std_core.NewQMetaMethodFromPointer(sign))
 	} else {
-		NewApproveNewAccountCtxFromPointer(ptr).ConnectNotifyDefault(std_core.NewQMetaMethodFromPointer(sign))
+		NewTxListModelFromPointer(ptr).ConnectNotifyDefault(std_core.NewQMetaMethodFromPointer(sign))
 	}
 }
 
-func (ptr *ApproveNewAccountCtx) ConnectNotifyDefault(sign std_core.QMetaMethod_ITF) {
+func (ptr *TxListModel) ConnectNotifyDefault(sign std_core.QMetaMethod_ITF) {
 	if ptr.Pointer() != nil {
-		C.ApproveNewAccountCtx721036_ConnectNotifyDefault(ptr.Pointer(), std_core.PointerFromQMetaMethod(sign))
+		C.TxListModel721036_ConnectNotifyDefault(ptr.Pointer(), std_core.PointerFromQMetaMethod(sign))
 	}
 }
 
-//export callbackApproveNewAccountCtx721036_CustomEvent
-func callbackApproveNewAccountCtx721036_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+//export callbackTxListModel721036_CustomEvent
+func callbackTxListModel721036_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
 		signal.(func(*std_core.QEvent))(std_core.NewQEventFromPointer(event))
 	} else {
-		NewApproveNewAccountCtxFromPointer(ptr).CustomEventDefault(std_core.NewQEventFromPointer(event))
+		NewTxListModelFromPointer(ptr).CustomEventDefault(std_core.NewQEventFromPointer(event))
 	}
 }
 
-func (ptr *ApproveNewAccountCtx) CustomEventDefault(event std_core.QEvent_ITF) {
+func (ptr *TxListModel) CustomEventDefault(event std_core.QEvent_ITF) {
 	if ptr.Pointer() != nil {
-		C.ApproveNewAccountCtx721036_CustomEventDefault(ptr.Pointer(), std_core.PointerFromQEvent(event))
+		C.TxListModel721036_CustomEventDefault(ptr.Pointer(), std_core.PointerFromQEvent(event))
 	}
 }
 
-//export callbackApproveNewAccountCtx721036_DeleteLater
-func callbackApproveNewAccountCtx721036_DeleteLater(ptr unsafe.Pointer) {
+//export callbackTxListModel721036_DeleteLater
+func callbackTxListModel721036_DeleteLater(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
-		NewApproveNewAccountCtxFromPointer(ptr).DeleteLaterDefault()
+		NewTxListModelFromPointer(ptr).DeleteLaterDefault()
 	}
 }
 
-func (ptr *ApproveNewAccountCtx) DeleteLaterDefault() {
+func (ptr *TxListModel) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.ApproveNewAccountCtx721036_DeleteLaterDefault(ptr.Pointer())
+		C.TxListModel721036_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
-//export callbackApproveNewAccountCtx721036_Destroyed
-func callbackApproveNewAccountCtx721036_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
+//export callbackTxListModel721036_Destroyed
+func callbackTxListModel721036_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
 		signal.(func(*std_core.QObject))(std_core.NewQObjectFromPointer(obj))
 	}
 
 }
 
-//export callbackApproveNewAccountCtx721036_DisconnectNotify
-func callbackApproveNewAccountCtx721036_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
+//export callbackTxListModel721036_DisconnectNotify
+func callbackTxListModel721036_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
 		signal.(func(*std_core.QMetaMethod))(std_core.NewQMetaMethodFromPointer(sign))
 	} else {
-		NewApproveNewAccountCtxFromPointer(ptr).DisconnectNotifyDefault(std_core.NewQMetaMethodFromPointer(sign))
+		NewTxListModelFromPointer(ptr).DisconnectNotifyDefault(std_core.NewQMetaMethodFromPointer(sign))
 	}
 }
 
-func (ptr *ApproveNewAccountCtx) DisconnectNotifyDefault(sign std_core.QMetaMethod_ITF) {
+func (ptr *TxListModel) DisconnectNotifyDefault(sign std_core.QMetaMethod_ITF) {
 	if ptr.Pointer() != nil {
-		C.ApproveNewAccountCtx721036_DisconnectNotifyDefault(ptr.Pointer(), std_core.PointerFromQMetaMethod(sign))
+		C.TxListModel721036_DisconnectNotifyDefault(ptr.Pointer(), std_core.PointerFromQMetaMethod(sign))
 	}
 }
 
-//export callbackApproveNewAccountCtx721036_ObjectNameChanged
-func callbackApproveNewAccountCtx721036_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_Moc_PackedString) {
+//export callbackTxListModel721036_ObjectNameChanged
+func callbackTxListModel721036_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_Moc_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
 		signal.(func(string))(cGoUnpackString(objectName))
 	}
 
 }
 
-//export callbackApproveNewAccountCtx721036_TimerEvent
-func callbackApproveNewAccountCtx721036_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+//export callbackTxListModel721036_TimerEvent
+func callbackTxListModel721036_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
 		signal.(func(*std_core.QTimerEvent))(std_core.NewQTimerEventFromPointer(event))
 	} else {
-		NewApproveNewAccountCtxFromPointer(ptr).TimerEventDefault(std_core.NewQTimerEventFromPointer(event))
+		NewTxListModelFromPointer(ptr).TimerEventDefault(std_core.NewQTimerEventFromPointer(event))
 	}
 }
 
-func (ptr *ApproveNewAccountCtx) TimerEventDefault(event std_core.QTimerEvent_ITF) {
+func (ptr *TxListModel) TimerEventDefault(event std_core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		C.ApproveNewAccountCtx721036_TimerEventDefault(ptr.Pointer(), std_core.PointerFromQTimerEvent(event))
+		C.TxListModel721036_TimerEventDefault(ptr.Pointer(), std_core.PointerFromQTimerEvent(event))
 	}
 }
 
@@ -6565,6 +6874,1678 @@ func (ptr *ApproveTxCtx) TimerEventDefault(event std_core.QTimerEvent_ITF) {
 	}
 }
 
+type CustomListModel_ITF interface {
+	std_core.QAbstractListModel_ITF
+	CustomListModel_PTR() *CustomListModel
+}
+
+func (ptr *CustomListModel) CustomListModel_PTR() *CustomListModel {
+	return ptr
+}
+
+func (ptr *CustomListModel) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractListModel_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *CustomListModel) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractListModel_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromCustomListModel(ptr CustomListModel_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.CustomListModel_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewCustomListModelFromPointer(ptr unsafe.Pointer) (n *CustomListModel) {
+	if gPtr, ok := qt.Receive(ptr); !ok {
+		n = new(CustomListModel)
+		n.SetPointer(ptr)
+	} else {
+		switch deduced := gPtr.(type) {
+		case *CustomListModel:
+			n = deduced
+
+		case *std_core.QAbstractListModel:
+			n = &CustomListModel{QAbstractListModel: *deduced}
+
+		default:
+			n = new(CustomListModel)
+			n.SetPointer(ptr)
+		}
+	}
+	return
+}
+
+//export callbackCustomListModel721036_Constructor
+func callbackCustomListModel721036_Constructor(ptr unsafe.Pointer) {
+	this := NewCustomListModelFromPointer(ptr)
+	qt.Register(ptr, this)
+	this.ConnectClear(this.clear)
+	this.ConnectAdd(this.add)
+	this.init()
+}
+
+//export callbackCustomListModel721036_Clear
+func callbackCustomListModel721036_Clear(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "clear"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+func (ptr *CustomListModel) ConnectClear(f func()) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "clear") {
+			C.CustomListModel721036_ConnectClear(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "clear"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "clear", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "clear", f)
+		}
+	}
+}
+
+func (ptr *CustomListModel) DisconnectClear() {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036_DisconnectClear(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "clear")
+	}
+}
+
+func (ptr *CustomListModel) Clear() {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036_Clear(ptr.Pointer())
+	}
+}
+
+//export callbackCustomListModel721036_Add
+func callbackCustomListModel721036_Add(ptr unsafe.Pointer, account C.uintptr_t) {
+	var accountD custom_params_aaf9d9m.ApproveListingAccount
+	if accountI, ok := qt.ReceiveTemp(unsafe.Pointer(uintptr(account))); ok {
+		qt.UnregisterTemp(unsafe.Pointer(uintptr(account)))
+		accountD = accountI.(custom_params_aaf9d9m.ApproveListingAccount)
+	}
+	if signal := qt.GetSignal(ptr, "add"); signal != nil {
+		signal.(func(custom_params_aaf9d9m.ApproveListingAccount))(accountD)
+	}
+
+}
+
+func (ptr *CustomListModel) ConnectAdd(f func(account custom_params_aaf9d9m.ApproveListingAccount)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "add") {
+			C.CustomListModel721036_ConnectAdd(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "add"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "add", func(account custom_params_aaf9d9m.ApproveListingAccount) {
+				signal.(func(custom_params_aaf9d9m.ApproveListingAccount))(account)
+				f(account)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "add", f)
+		}
+	}
+}
+
+func (ptr *CustomListModel) DisconnectAdd() {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036_DisconnectAdd(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "add")
+	}
+}
+
+func (ptr *CustomListModel) Add(account custom_params_aaf9d9m.ApproveListingAccount) {
+	if ptr.Pointer() != nil {
+		qt.RegisterTemp(unsafe.Pointer(&account), account)
+		C.CustomListModel721036_Add(ptr.Pointer(), C.uintptr_t(uintptr(unsafe.Pointer(&account))))
+	}
+}
+
+func CustomListModel_QRegisterMetaType() int {
+	return int(int32(C.CustomListModel721036_CustomListModel721036_QRegisterMetaType()))
+}
+
+func (ptr *CustomListModel) QRegisterMetaType() int {
+	return int(int32(C.CustomListModel721036_CustomListModel721036_QRegisterMetaType()))
+}
+
+func CustomListModel_QRegisterMetaType2(typeName string) int {
+	var typeNameC *C.char
+	if typeName != "" {
+		typeNameC = C.CString(typeName)
+		defer C.free(unsafe.Pointer(typeNameC))
+	}
+	return int(int32(C.CustomListModel721036_CustomListModel721036_QRegisterMetaType2(typeNameC)))
+}
+
+func (ptr *CustomListModel) QRegisterMetaType2(typeName string) int {
+	var typeNameC *C.char
+	if typeName != "" {
+		typeNameC = C.CString(typeName)
+		defer C.free(unsafe.Pointer(typeNameC))
+	}
+	return int(int32(C.CustomListModel721036_CustomListModel721036_QRegisterMetaType2(typeNameC)))
+}
+
+func CustomListModel_QmlRegisterType() int {
+	return int(int32(C.CustomListModel721036_CustomListModel721036_QmlRegisterType()))
+}
+
+func (ptr *CustomListModel) QmlRegisterType() int {
+	return int(int32(C.CustomListModel721036_CustomListModel721036_QmlRegisterType()))
+}
+
+func CustomListModel_QmlRegisterType2(uri string, versionMajor int, versionMinor int, qmlName string) int {
+	var uriC *C.char
+	if uri != "" {
+		uriC = C.CString(uri)
+		defer C.free(unsafe.Pointer(uriC))
+	}
+	var qmlNameC *C.char
+	if qmlName != "" {
+		qmlNameC = C.CString(qmlName)
+		defer C.free(unsafe.Pointer(qmlNameC))
+	}
+	return int(int32(C.CustomListModel721036_CustomListModel721036_QmlRegisterType2(uriC, C.int(int32(versionMajor)), C.int(int32(versionMinor)), qmlNameC)))
+}
+
+func (ptr *CustomListModel) QmlRegisterType2(uri string, versionMajor int, versionMinor int, qmlName string) int {
+	var uriC *C.char
+	if uri != "" {
+		uriC = C.CString(uri)
+		defer C.free(unsafe.Pointer(uriC))
+	}
+	var qmlNameC *C.char
+	if qmlName != "" {
+		qmlNameC = C.CString(qmlName)
+		defer C.free(unsafe.Pointer(qmlNameC))
+	}
+	return int(int32(C.CustomListModel721036_CustomListModel721036_QmlRegisterType2(uriC, C.int(int32(versionMajor)), C.int(int32(versionMinor)), qmlNameC)))
+}
+
+func (ptr *CustomListModel) ____setItemData_roles_keyList_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.CustomListModel721036_____setItemData_roles_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *CustomListModel) ____setItemData_roles_keyList_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036_____setItemData_roles_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *CustomListModel) ____setItemData_roles_keyList_newList() unsafe.Pointer {
+	return C.CustomListModel721036_____setItemData_roles_keyList_newList(ptr.Pointer())
+}
+
+func (ptr *CustomListModel) ____roleNames_keyList_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.CustomListModel721036_____roleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *CustomListModel) ____roleNames_keyList_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036_____roleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *CustomListModel) ____roleNames_keyList_newList() unsafe.Pointer {
+	return C.CustomListModel721036_____roleNames_keyList_newList(ptr.Pointer())
+}
+
+func (ptr *CustomListModel) ____itemData_keyList_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.CustomListModel721036_____itemData_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *CustomListModel) ____itemData_keyList_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036_____itemData_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *CustomListModel) ____itemData_keyList_newList() unsafe.Pointer {
+	return C.CustomListModel721036_____itemData_keyList_newList(ptr.Pointer())
+}
+
+func (ptr *CustomListModel) __setItemData_roles_atList(v int, i int) *std_core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQVariantFromPointer(C.CustomListModel721036___setItemData_roles_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*std_core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *CustomListModel) __setItemData_roles_setList(key int, i std_core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036___setItemData_roles_setList(ptr.Pointer(), C.int(int32(key)), std_core.PointerFromQVariant(i))
+	}
+}
+
+func (ptr *CustomListModel) __setItemData_roles_newList() unsafe.Pointer {
+	return C.CustomListModel721036___setItemData_roles_newList(ptr.Pointer())
+}
+
+func (ptr *CustomListModel) __setItemData_roles_keyList() []int {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_Moc_PackedList) []int {
+			out := make([]int, int(l.len))
+			tmpList := NewCustomListModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____setItemData_roles_keyList_atList(i)
+			}
+			return out
+		}(C.CustomListModel721036___setItemData_roles_keyList(ptr.Pointer()))
+	}
+	return make([]int, 0)
+}
+
+func (ptr *CustomListModel) __changePersistentIndexList_from_atList(i int) *std_core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQModelIndexFromPointer(C.CustomListModel721036___changePersistentIndexList_from_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *CustomListModel) __changePersistentIndexList_from_setList(i std_core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036___changePersistentIndexList_from_setList(ptr.Pointer(), std_core.PointerFromQModelIndex(i))
+	}
+}
+
+func (ptr *CustomListModel) __changePersistentIndexList_from_newList() unsafe.Pointer {
+	return C.CustomListModel721036___changePersistentIndexList_from_newList(ptr.Pointer())
+}
+
+func (ptr *CustomListModel) __changePersistentIndexList_to_atList(i int) *std_core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQModelIndexFromPointer(C.CustomListModel721036___changePersistentIndexList_to_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *CustomListModel) __changePersistentIndexList_to_setList(i std_core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036___changePersistentIndexList_to_setList(ptr.Pointer(), std_core.PointerFromQModelIndex(i))
+	}
+}
+
+func (ptr *CustomListModel) __changePersistentIndexList_to_newList() unsafe.Pointer {
+	return C.CustomListModel721036___changePersistentIndexList_to_newList(ptr.Pointer())
+}
+
+func (ptr *CustomListModel) __dataChanged_roles_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.CustomListModel721036___dataChanged_roles_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *CustomListModel) __dataChanged_roles_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036___dataChanged_roles_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *CustomListModel) __dataChanged_roles_newList() unsafe.Pointer {
+	return C.CustomListModel721036___dataChanged_roles_newList(ptr.Pointer())
+}
+
+func (ptr *CustomListModel) __layoutAboutToBeChanged_parents_atList(i int) *std_core.QPersistentModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQPersistentModelIndexFromPointer(C.CustomListModel721036___layoutAboutToBeChanged_parents_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*std_core.QPersistentModelIndex).DestroyQPersistentModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *CustomListModel) __layoutAboutToBeChanged_parents_setList(i std_core.QPersistentModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036___layoutAboutToBeChanged_parents_setList(ptr.Pointer(), std_core.PointerFromQPersistentModelIndex(i))
+	}
+}
+
+func (ptr *CustomListModel) __layoutAboutToBeChanged_parents_newList() unsafe.Pointer {
+	return C.CustomListModel721036___layoutAboutToBeChanged_parents_newList(ptr.Pointer())
+}
+
+func (ptr *CustomListModel) __layoutChanged_parents_atList(i int) *std_core.QPersistentModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQPersistentModelIndexFromPointer(C.CustomListModel721036___layoutChanged_parents_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*std_core.QPersistentModelIndex).DestroyQPersistentModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *CustomListModel) __layoutChanged_parents_setList(i std_core.QPersistentModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036___layoutChanged_parents_setList(ptr.Pointer(), std_core.PointerFromQPersistentModelIndex(i))
+	}
+}
+
+func (ptr *CustomListModel) __layoutChanged_parents_newList() unsafe.Pointer {
+	return C.CustomListModel721036___layoutChanged_parents_newList(ptr.Pointer())
+}
+
+func (ptr *CustomListModel) __roleNames_atList(v int, i int) *std_core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQByteArrayFromPointer(C.CustomListModel721036___roleNames_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*std_core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *CustomListModel) __roleNames_setList(key int, i std_core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036___roleNames_setList(ptr.Pointer(), C.int(int32(key)), std_core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *CustomListModel) __roleNames_newList() unsafe.Pointer {
+	return C.CustomListModel721036___roleNames_newList(ptr.Pointer())
+}
+
+func (ptr *CustomListModel) __roleNames_keyList() []int {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_Moc_PackedList) []int {
+			out := make([]int, int(l.len))
+			tmpList := NewCustomListModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____roleNames_keyList_atList(i)
+			}
+			return out
+		}(C.CustomListModel721036___roleNames_keyList(ptr.Pointer()))
+	}
+	return make([]int, 0)
+}
+
+func (ptr *CustomListModel) __itemData_atList(v int, i int) *std_core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQVariantFromPointer(C.CustomListModel721036___itemData_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*std_core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *CustomListModel) __itemData_setList(key int, i std_core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036___itemData_setList(ptr.Pointer(), C.int(int32(key)), std_core.PointerFromQVariant(i))
+	}
+}
+
+func (ptr *CustomListModel) __itemData_newList() unsafe.Pointer {
+	return C.CustomListModel721036___itemData_newList(ptr.Pointer())
+}
+
+func (ptr *CustomListModel) __itemData_keyList() []int {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_Moc_PackedList) []int {
+			out := make([]int, int(l.len))
+			tmpList := NewCustomListModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____itemData_keyList_atList(i)
+			}
+			return out
+		}(C.CustomListModel721036___itemData_keyList(ptr.Pointer()))
+	}
+	return make([]int, 0)
+}
+
+func (ptr *CustomListModel) __mimeData_indexes_atList(i int) *std_core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQModelIndexFromPointer(C.CustomListModel721036___mimeData_indexes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *CustomListModel) __mimeData_indexes_setList(i std_core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036___mimeData_indexes_setList(ptr.Pointer(), std_core.PointerFromQModelIndex(i))
+	}
+}
+
+func (ptr *CustomListModel) __mimeData_indexes_newList() unsafe.Pointer {
+	return C.CustomListModel721036___mimeData_indexes_newList(ptr.Pointer())
+}
+
+func (ptr *CustomListModel) __match_atList(i int) *std_core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQModelIndexFromPointer(C.CustomListModel721036___match_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *CustomListModel) __match_setList(i std_core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036___match_setList(ptr.Pointer(), std_core.PointerFromQModelIndex(i))
+	}
+}
+
+func (ptr *CustomListModel) __match_newList() unsafe.Pointer {
+	return C.CustomListModel721036___match_newList(ptr.Pointer())
+}
+
+func (ptr *CustomListModel) __persistentIndexList_atList(i int) *std_core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQModelIndexFromPointer(C.CustomListModel721036___persistentIndexList_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *CustomListModel) __persistentIndexList_setList(i std_core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036___persistentIndexList_setList(ptr.Pointer(), std_core.PointerFromQModelIndex(i))
+	}
+}
+
+func (ptr *CustomListModel) __persistentIndexList_newList() unsafe.Pointer {
+	return C.CustomListModel721036___persistentIndexList_newList(ptr.Pointer())
+}
+
+func (ptr *CustomListModel) ____doSetRoleNames_roleNames_keyList_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.CustomListModel721036_____doSetRoleNames_roleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *CustomListModel) ____doSetRoleNames_roleNames_keyList_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036_____doSetRoleNames_roleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *CustomListModel) ____doSetRoleNames_roleNames_keyList_newList() unsafe.Pointer {
+	return C.CustomListModel721036_____doSetRoleNames_roleNames_keyList_newList(ptr.Pointer())
+}
+
+func (ptr *CustomListModel) ____setRoleNames_roleNames_keyList_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.CustomListModel721036_____setRoleNames_roleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *CustomListModel) ____setRoleNames_roleNames_keyList_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036_____setRoleNames_roleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *CustomListModel) ____setRoleNames_roleNames_keyList_newList() unsafe.Pointer {
+	return C.CustomListModel721036_____setRoleNames_roleNames_keyList_newList(ptr.Pointer())
+}
+
+func (ptr *CustomListModel) __dynamicPropertyNames_atList(i int) *std_core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQByteArrayFromPointer(C.CustomListModel721036___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*std_core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *CustomListModel) __dynamicPropertyNames_setList(i std_core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036___dynamicPropertyNames_setList(ptr.Pointer(), std_core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *CustomListModel) __dynamicPropertyNames_newList() unsafe.Pointer {
+	return C.CustomListModel721036___dynamicPropertyNames_newList(ptr.Pointer())
+}
+
+func (ptr *CustomListModel) __findChildren_atList2(i int) *std_core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQObjectFromPointer(C.CustomListModel721036___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *CustomListModel) __findChildren_setList2(i std_core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036___findChildren_setList2(ptr.Pointer(), std_core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *CustomListModel) __findChildren_newList2() unsafe.Pointer {
+	return C.CustomListModel721036___findChildren_newList2(ptr.Pointer())
+}
+
+func (ptr *CustomListModel) __findChildren_atList3(i int) *std_core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQObjectFromPointer(C.CustomListModel721036___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *CustomListModel) __findChildren_setList3(i std_core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036___findChildren_setList3(ptr.Pointer(), std_core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *CustomListModel) __findChildren_newList3() unsafe.Pointer {
+	return C.CustomListModel721036___findChildren_newList3(ptr.Pointer())
+}
+
+func (ptr *CustomListModel) __findChildren_atList(i int) *std_core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQObjectFromPointer(C.CustomListModel721036___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *CustomListModel) __findChildren_setList(i std_core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036___findChildren_setList(ptr.Pointer(), std_core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *CustomListModel) __findChildren_newList() unsafe.Pointer {
+	return C.CustomListModel721036___findChildren_newList(ptr.Pointer())
+}
+
+func (ptr *CustomListModel) __children_atList(i int) *std_core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQObjectFromPointer(C.CustomListModel721036___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *CustomListModel) __children_setList(i std_core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036___children_setList(ptr.Pointer(), std_core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *CustomListModel) __children_newList() unsafe.Pointer {
+	return C.CustomListModel721036___children_newList(ptr.Pointer())
+}
+
+func NewCustomListModel(parent std_core.QObject_ITF) *CustomListModel {
+	tmpValue := NewCustomListModelFromPointer(C.CustomListModel721036_NewCustomListModel(std_core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
+//export callbackCustomListModel721036_DestroyCustomListModel
+func callbackCustomListModel721036_DestroyCustomListModel(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "~CustomListModel"); signal != nil {
+		signal.(func())()
+	} else {
+		NewCustomListModelFromPointer(ptr).DestroyCustomListModelDefault()
+	}
+}
+
+func (ptr *CustomListModel) ConnectDestroyCustomListModel(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "~CustomListModel"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "~CustomListModel", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "~CustomListModel", f)
+		}
+	}
+}
+
+func (ptr *CustomListModel) DisconnectDestroyCustomListModel() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "~CustomListModel")
+	}
+}
+
+func (ptr *CustomListModel) DestroyCustomListModel() {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036_DestroyCustomListModel(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *CustomListModel) DestroyCustomListModelDefault() {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036_DestroyCustomListModelDefault(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+//export callbackCustomListModel721036_DropMimeData
+func callbackCustomListModel721036_DropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "dropMimeData"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QMimeData, std_core.Qt__DropAction, int, int, *std_core.QModelIndex) bool)(std_core.NewQMimeDataFromPointer(data), std_core.Qt__DropAction(action), int(int32(row)), int(int32(column)), std_core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewCustomListModelFromPointer(ptr).DropMimeDataDefault(std_core.NewQMimeDataFromPointer(data), std_core.Qt__DropAction(action), int(int32(row)), int(int32(column)), std_core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *CustomListModel) DropMimeDataDefault(data std_core.QMimeData_ITF, action std_core.Qt__DropAction, row int, column int, parent std_core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.CustomListModel721036_DropMimeDataDefault(ptr.Pointer(), std_core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), std_core.PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+//export callbackCustomListModel721036_Index
+func callbackCustomListModel721036_Index(ptr unsafe.Pointer, row C.int, column C.int, parent unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "index"); signal != nil {
+		return std_core.PointerFromQModelIndex(signal.(func(int, int, *std_core.QModelIndex) *std_core.QModelIndex)(int(int32(row)), int(int32(column)), std_core.NewQModelIndexFromPointer(parent)))
+	}
+
+	return std_core.PointerFromQModelIndex(NewCustomListModelFromPointer(ptr).IndexDefault(int(int32(row)), int(int32(column)), std_core.NewQModelIndexFromPointer(parent)))
+}
+
+func (ptr *CustomListModel) IndexDefault(row int, column int, parent std_core.QModelIndex_ITF) *std_core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQModelIndexFromPointer(C.CustomListModel721036_IndexDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), std_core.PointerFromQModelIndex(parent)))
+		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackCustomListModel721036_Sibling
+func callbackCustomListModel721036_Sibling(ptr unsafe.Pointer, row C.int, column C.int, idx unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "sibling"); signal != nil {
+		return std_core.PointerFromQModelIndex(signal.(func(int, int, *std_core.QModelIndex) *std_core.QModelIndex)(int(int32(row)), int(int32(column)), std_core.NewQModelIndexFromPointer(idx)))
+	}
+
+	return std_core.PointerFromQModelIndex(NewCustomListModelFromPointer(ptr).SiblingDefault(int(int32(row)), int(int32(column)), std_core.NewQModelIndexFromPointer(idx)))
+}
+
+func (ptr *CustomListModel) SiblingDefault(row int, column int, idx std_core.QModelIndex_ITF) *std_core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQModelIndexFromPointer(C.CustomListModel721036_SiblingDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), std_core.PointerFromQModelIndex(idx)))
+		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackCustomListModel721036_Flags
+func callbackCustomListModel721036_Flags(ptr unsafe.Pointer, index unsafe.Pointer) C.longlong {
+	if signal := qt.GetSignal(ptr, "flags"); signal != nil {
+		return C.longlong(signal.(func(*std_core.QModelIndex) std_core.Qt__ItemFlag)(std_core.NewQModelIndexFromPointer(index)))
+	}
+
+	return C.longlong(NewCustomListModelFromPointer(ptr).FlagsDefault(std_core.NewQModelIndexFromPointer(index)))
+}
+
+func (ptr *CustomListModel) FlagsDefault(index std_core.QModelIndex_ITF) std_core.Qt__ItemFlag {
+	if ptr.Pointer() != nil {
+		return std_core.Qt__ItemFlag(C.CustomListModel721036_FlagsDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(index)))
+	}
+	return 0
+}
+
+//export callbackCustomListModel721036_InsertColumns
+func callbackCustomListModel721036_InsertColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "insertColumns"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *std_core.QModelIndex) bool)(int(int32(column)), int(int32(count)), std_core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewCustomListModelFromPointer(ptr).InsertColumnsDefault(int(int32(column)), int(int32(count)), std_core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *CustomListModel) InsertColumnsDefault(column int, count int, parent std_core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.CustomListModel721036_InsertColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), std_core.PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+//export callbackCustomListModel721036_InsertRows
+func callbackCustomListModel721036_InsertRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "insertRows"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *std_core.QModelIndex) bool)(int(int32(row)), int(int32(count)), std_core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewCustomListModelFromPointer(ptr).InsertRowsDefault(int(int32(row)), int(int32(count)), std_core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *CustomListModel) InsertRowsDefault(row int, count int, parent std_core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.CustomListModel721036_InsertRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), std_core.PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+//export callbackCustomListModel721036_MoveColumns
+func callbackCustomListModel721036_MoveColumns(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceColumn C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
+	if signal := qt.GetSignal(ptr, "moveColumns"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QModelIndex, int, int, *std_core.QModelIndex, int) bool)(std_core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceColumn)), int(int32(count)), std_core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewCustomListModelFromPointer(ptr).MoveColumnsDefault(std_core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceColumn)), int(int32(count)), std_core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
+}
+
+func (ptr *CustomListModel) MoveColumnsDefault(sourceParent std_core.QModelIndex_ITF, sourceColumn int, count int, destinationParent std_core.QModelIndex_ITF, destinationChild int) bool {
+	if ptr.Pointer() != nil {
+		return C.CustomListModel721036_MoveColumnsDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceColumn)), C.int(int32(count)), std_core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
+	}
+	return false
+}
+
+//export callbackCustomListModel721036_MoveRows
+func callbackCustomListModel721036_MoveRows(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceRow C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
+	if signal := qt.GetSignal(ptr, "moveRows"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QModelIndex, int, int, *std_core.QModelIndex, int) bool)(std_core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceRow)), int(int32(count)), std_core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewCustomListModelFromPointer(ptr).MoveRowsDefault(std_core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceRow)), int(int32(count)), std_core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
+}
+
+func (ptr *CustomListModel) MoveRowsDefault(sourceParent std_core.QModelIndex_ITF, sourceRow int, count int, destinationParent std_core.QModelIndex_ITF, destinationChild int) bool {
+	if ptr.Pointer() != nil {
+		return C.CustomListModel721036_MoveRowsDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceRow)), C.int(int32(count)), std_core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
+	}
+	return false
+}
+
+//export callbackCustomListModel721036_RemoveColumns
+func callbackCustomListModel721036_RemoveColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "removeColumns"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *std_core.QModelIndex) bool)(int(int32(column)), int(int32(count)), std_core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewCustomListModelFromPointer(ptr).RemoveColumnsDefault(int(int32(column)), int(int32(count)), std_core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *CustomListModel) RemoveColumnsDefault(column int, count int, parent std_core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.CustomListModel721036_RemoveColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), std_core.PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+//export callbackCustomListModel721036_RemoveRows
+func callbackCustomListModel721036_RemoveRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "removeRows"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *std_core.QModelIndex) bool)(int(int32(row)), int(int32(count)), std_core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewCustomListModelFromPointer(ptr).RemoveRowsDefault(int(int32(row)), int(int32(count)), std_core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *CustomListModel) RemoveRowsDefault(row int, count int, parent std_core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.CustomListModel721036_RemoveRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), std_core.PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+//export callbackCustomListModel721036_SetData
+func callbackCustomListModel721036_SetData(ptr unsafe.Pointer, index unsafe.Pointer, value unsafe.Pointer, role C.int) C.char {
+	if signal := qt.GetSignal(ptr, "setData"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QModelIndex, *std_core.QVariant, int) bool)(std_core.NewQModelIndexFromPointer(index), std_core.NewQVariantFromPointer(value), int(int32(role))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewCustomListModelFromPointer(ptr).SetDataDefault(std_core.NewQModelIndexFromPointer(index), std_core.NewQVariantFromPointer(value), int(int32(role))))))
+}
+
+func (ptr *CustomListModel) SetDataDefault(index std_core.QModelIndex_ITF, value std_core.QVariant_ITF, role int) bool {
+	if ptr.Pointer() != nil {
+		return C.CustomListModel721036_SetDataDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(index), std_core.PointerFromQVariant(value), C.int(int32(role))) != 0
+	}
+	return false
+}
+
+//export callbackCustomListModel721036_SetHeaderData
+func callbackCustomListModel721036_SetHeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, value unsafe.Pointer, role C.int) C.char {
+	if signal := qt.GetSignal(ptr, "setHeaderData"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int, std_core.Qt__Orientation, *std_core.QVariant, int) bool)(int(int32(section)), std_core.Qt__Orientation(orientation), std_core.NewQVariantFromPointer(value), int(int32(role))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewCustomListModelFromPointer(ptr).SetHeaderDataDefault(int(int32(section)), std_core.Qt__Orientation(orientation), std_core.NewQVariantFromPointer(value), int(int32(role))))))
+}
+
+func (ptr *CustomListModel) SetHeaderDataDefault(section int, orientation std_core.Qt__Orientation, value std_core.QVariant_ITF, role int) bool {
+	if ptr.Pointer() != nil {
+		return C.CustomListModel721036_SetHeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), std_core.PointerFromQVariant(value), C.int(int32(role))) != 0
+	}
+	return false
+}
+
+//export callbackCustomListModel721036_SetItemData
+func callbackCustomListModel721036_SetItemData(ptr unsafe.Pointer, index unsafe.Pointer, roles C.struct_Moc_PackedList) C.char {
+	if signal := qt.GetSignal(ptr, "setItemData"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QModelIndex, map[int]*std_core.QVariant) bool)(std_core.NewQModelIndexFromPointer(index), func(l C.struct_Moc_PackedList) map[int]*std_core.QVariant {
+			out := make(map[int]*std_core.QVariant, int(l.len))
+			tmpList := NewCustomListModelFromPointer(l.data)
+			for i, v := range tmpList.__setItemData_roles_keyList() {
+				out[v] = tmpList.__setItemData_roles_atList(v, i)
+			}
+			return out
+		}(roles)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewCustomListModelFromPointer(ptr).SetItemDataDefault(std_core.NewQModelIndexFromPointer(index), func(l C.struct_Moc_PackedList) map[int]*std_core.QVariant {
+		out := make(map[int]*std_core.QVariant, int(l.len))
+		tmpList := NewCustomListModelFromPointer(l.data)
+		for i, v := range tmpList.__setItemData_roles_keyList() {
+			out[v] = tmpList.__setItemData_roles_atList(v, i)
+		}
+		return out
+	}(roles)))))
+}
+
+func (ptr *CustomListModel) SetItemDataDefault(index std_core.QModelIndex_ITF, roles map[int]*std_core.QVariant) bool {
+	if ptr.Pointer() != nil {
+		return C.CustomListModel721036_SetItemDataDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(index), func() unsafe.Pointer {
+			tmpList := NewCustomListModelFromPointer(NewCustomListModelFromPointer(nil).__setItemData_roles_newList())
+			for k, v := range roles {
+				tmpList.__setItemData_roles_setList(k, v)
+			}
+			return tmpList.Pointer()
+		}()) != 0
+	}
+	return false
+}
+
+//export callbackCustomListModel721036_Submit
+func callbackCustomListModel721036_Submit(ptr unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "submit"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewCustomListModelFromPointer(ptr).SubmitDefault())))
+}
+
+func (ptr *CustomListModel) SubmitDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.CustomListModel721036_SubmitDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+//export callbackCustomListModel721036_ColumnsAboutToBeInserted
+func callbackCustomListModel721036_ColumnsAboutToBeInserted(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "columnsAboutToBeInserted"); signal != nil {
+		signal.(func(*std_core.QModelIndex, int, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackCustomListModel721036_ColumnsAboutToBeMoved
+func callbackCustomListModel721036_ColumnsAboutToBeMoved(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceStart C.int, sourceEnd C.int, destinationParent unsafe.Pointer, destinationColumn C.int) {
+	if signal := qt.GetSignal(ptr, "columnsAboutToBeMoved"); signal != nil {
+		signal.(func(*std_core.QModelIndex, int, int, *std_core.QModelIndex, int))(std_core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceStart)), int(int32(sourceEnd)), std_core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationColumn)))
+	}
+
+}
+
+//export callbackCustomListModel721036_ColumnsAboutToBeRemoved
+func callbackCustomListModel721036_ColumnsAboutToBeRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "columnsAboutToBeRemoved"); signal != nil {
+		signal.(func(*std_core.QModelIndex, int, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackCustomListModel721036_ColumnsInserted
+func callbackCustomListModel721036_ColumnsInserted(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "columnsInserted"); signal != nil {
+		signal.(func(*std_core.QModelIndex, int, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackCustomListModel721036_ColumnsMoved
+func callbackCustomListModel721036_ColumnsMoved(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int, destination unsafe.Pointer, column C.int) {
+	if signal := qt.GetSignal(ptr, "columnsMoved"); signal != nil {
+		signal.(func(*std_core.QModelIndex, int, int, *std_core.QModelIndex, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)), std_core.NewQModelIndexFromPointer(destination), int(int32(column)))
+	}
+
+}
+
+//export callbackCustomListModel721036_ColumnsRemoved
+func callbackCustomListModel721036_ColumnsRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "columnsRemoved"); signal != nil {
+		signal.(func(*std_core.QModelIndex, int, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackCustomListModel721036_DataChanged
+func callbackCustomListModel721036_DataChanged(ptr unsafe.Pointer, topLeft unsafe.Pointer, bottomRight unsafe.Pointer, roles C.struct_Moc_PackedList) {
+	if signal := qt.GetSignal(ptr, "dataChanged"); signal != nil {
+		signal.(func(*std_core.QModelIndex, *std_core.QModelIndex, []int))(std_core.NewQModelIndexFromPointer(topLeft), std_core.NewQModelIndexFromPointer(bottomRight), func(l C.struct_Moc_PackedList) []int {
+			out := make([]int, int(l.len))
+			tmpList := NewCustomListModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__dataChanged_roles_atList(i)
+			}
+			return out
+		}(roles))
+	}
+
+}
+
+//export callbackCustomListModel721036_FetchMore
+func callbackCustomListModel721036_FetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "fetchMore"); signal != nil {
+		signal.(func(*std_core.QModelIndex))(std_core.NewQModelIndexFromPointer(parent))
+	} else {
+		NewCustomListModelFromPointer(ptr).FetchMoreDefault(std_core.NewQModelIndexFromPointer(parent))
+	}
+}
+
+func (ptr *CustomListModel) FetchMoreDefault(parent std_core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036_FetchMoreDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(parent))
+	}
+}
+
+//export callbackCustomListModel721036_HeaderDataChanged
+func callbackCustomListModel721036_HeaderDataChanged(ptr unsafe.Pointer, orientation C.longlong, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "headerDataChanged"); signal != nil {
+		signal.(func(std_core.Qt__Orientation, int, int))(std_core.Qt__Orientation(orientation), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackCustomListModel721036_LayoutAboutToBeChanged
+func callbackCustomListModel721036_LayoutAboutToBeChanged(ptr unsafe.Pointer, parents C.struct_Moc_PackedList, hint C.longlong) {
+	if signal := qt.GetSignal(ptr, "layoutAboutToBeChanged"); signal != nil {
+		signal.(func([]*std_core.QPersistentModelIndex, std_core.QAbstractItemModel__LayoutChangeHint))(func(l C.struct_Moc_PackedList) []*std_core.QPersistentModelIndex {
+			out := make([]*std_core.QPersistentModelIndex, int(l.len))
+			tmpList := NewCustomListModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__layoutAboutToBeChanged_parents_atList(i)
+			}
+			return out
+		}(parents), std_core.QAbstractItemModel__LayoutChangeHint(hint))
+	}
+
+}
+
+//export callbackCustomListModel721036_LayoutChanged
+func callbackCustomListModel721036_LayoutChanged(ptr unsafe.Pointer, parents C.struct_Moc_PackedList, hint C.longlong) {
+	if signal := qt.GetSignal(ptr, "layoutChanged"); signal != nil {
+		signal.(func([]*std_core.QPersistentModelIndex, std_core.QAbstractItemModel__LayoutChangeHint))(func(l C.struct_Moc_PackedList) []*std_core.QPersistentModelIndex {
+			out := make([]*std_core.QPersistentModelIndex, int(l.len))
+			tmpList := NewCustomListModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__layoutChanged_parents_atList(i)
+			}
+			return out
+		}(parents), std_core.QAbstractItemModel__LayoutChangeHint(hint))
+	}
+
+}
+
+//export callbackCustomListModel721036_ModelAboutToBeReset
+func callbackCustomListModel721036_ModelAboutToBeReset(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "modelAboutToBeReset"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+//export callbackCustomListModel721036_ModelReset
+func callbackCustomListModel721036_ModelReset(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "modelReset"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+//export callbackCustomListModel721036_ResetInternalData
+func callbackCustomListModel721036_ResetInternalData(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "resetInternalData"); signal != nil {
+		signal.(func())()
+	} else {
+		NewCustomListModelFromPointer(ptr).ResetInternalDataDefault()
+	}
+}
+
+func (ptr *CustomListModel) ResetInternalDataDefault() {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036_ResetInternalDataDefault(ptr.Pointer())
+	}
+}
+
+//export callbackCustomListModel721036_Revert
+func callbackCustomListModel721036_Revert(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "revert"); signal != nil {
+		signal.(func())()
+	} else {
+		NewCustomListModelFromPointer(ptr).RevertDefault()
+	}
+}
+
+func (ptr *CustomListModel) RevertDefault() {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036_RevertDefault(ptr.Pointer())
+	}
+}
+
+//export callbackCustomListModel721036_RowsAboutToBeInserted
+func callbackCustomListModel721036_RowsAboutToBeInserted(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int) {
+	if signal := qt.GetSignal(ptr, "rowsAboutToBeInserted"); signal != nil {
+		signal.(func(*std_core.QModelIndex, int, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)))
+	}
+
+}
+
+//export callbackCustomListModel721036_RowsAboutToBeMoved
+func callbackCustomListModel721036_RowsAboutToBeMoved(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceStart C.int, sourceEnd C.int, destinationParent unsafe.Pointer, destinationRow C.int) {
+	if signal := qt.GetSignal(ptr, "rowsAboutToBeMoved"); signal != nil {
+		signal.(func(*std_core.QModelIndex, int, int, *std_core.QModelIndex, int))(std_core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceStart)), int(int32(sourceEnd)), std_core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationRow)))
+	}
+
+}
+
+//export callbackCustomListModel721036_RowsAboutToBeRemoved
+func callbackCustomListModel721036_RowsAboutToBeRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "rowsAboutToBeRemoved"); signal != nil {
+		signal.(func(*std_core.QModelIndex, int, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackCustomListModel721036_RowsInserted
+func callbackCustomListModel721036_RowsInserted(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "rowsInserted"); signal != nil {
+		signal.(func(*std_core.QModelIndex, int, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackCustomListModel721036_RowsMoved
+func callbackCustomListModel721036_RowsMoved(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int, destination unsafe.Pointer, row C.int) {
+	if signal := qt.GetSignal(ptr, "rowsMoved"); signal != nil {
+		signal.(func(*std_core.QModelIndex, int, int, *std_core.QModelIndex, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)), std_core.NewQModelIndexFromPointer(destination), int(int32(row)))
+	}
+
+}
+
+//export callbackCustomListModel721036_RowsRemoved
+func callbackCustomListModel721036_RowsRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "rowsRemoved"); signal != nil {
+		signal.(func(*std_core.QModelIndex, int, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackCustomListModel721036_Sort
+func callbackCustomListModel721036_Sort(ptr unsafe.Pointer, column C.int, order C.longlong) {
+	if signal := qt.GetSignal(ptr, "sort"); signal != nil {
+		signal.(func(int, std_core.Qt__SortOrder))(int(int32(column)), std_core.Qt__SortOrder(order))
+	} else {
+		NewCustomListModelFromPointer(ptr).SortDefault(int(int32(column)), std_core.Qt__SortOrder(order))
+	}
+}
+
+func (ptr *CustomListModel) SortDefault(column int, order std_core.Qt__SortOrder) {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036_SortDefault(ptr.Pointer(), C.int(int32(column)), C.longlong(order))
+	}
+}
+
+//export callbackCustomListModel721036_RoleNames
+func callbackCustomListModel721036_RoleNames(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "roleNames"); signal != nil {
+		return func() unsafe.Pointer {
+			tmpList := NewCustomListModelFromPointer(NewCustomListModelFromPointer(nil).__roleNames_newList())
+			for k, v := range signal.(func() map[int]*std_core.QByteArray)() {
+				tmpList.__roleNames_setList(k, v)
+			}
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		tmpList := NewCustomListModelFromPointer(NewCustomListModelFromPointer(nil).__roleNames_newList())
+		for k, v := range NewCustomListModelFromPointer(ptr).RoleNamesDefault() {
+			tmpList.__roleNames_setList(k, v)
+		}
+		return tmpList.Pointer()
+	}()
+}
+
+func (ptr *CustomListModel) RoleNamesDefault() map[int]*std_core.QByteArray {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_Moc_PackedList) map[int]*std_core.QByteArray {
+			out := make(map[int]*std_core.QByteArray, int(l.len))
+			tmpList := NewCustomListModelFromPointer(l.data)
+			for i, v := range tmpList.__roleNames_keyList() {
+				out[v] = tmpList.__roleNames_atList(v, i)
+			}
+			return out
+		}(C.CustomListModel721036_RoleNamesDefault(ptr.Pointer()))
+	}
+	return make(map[int]*std_core.QByteArray, 0)
+}
+
+//export callbackCustomListModel721036_ItemData
+func callbackCustomListModel721036_ItemData(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "itemData"); signal != nil {
+		return func() unsafe.Pointer {
+			tmpList := NewCustomListModelFromPointer(NewCustomListModelFromPointer(nil).__itemData_newList())
+			for k, v := range signal.(func(*std_core.QModelIndex) map[int]*std_core.QVariant)(std_core.NewQModelIndexFromPointer(index)) {
+				tmpList.__itemData_setList(k, v)
+			}
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		tmpList := NewCustomListModelFromPointer(NewCustomListModelFromPointer(nil).__itemData_newList())
+		for k, v := range NewCustomListModelFromPointer(ptr).ItemDataDefault(std_core.NewQModelIndexFromPointer(index)) {
+			tmpList.__itemData_setList(k, v)
+		}
+		return tmpList.Pointer()
+	}()
+}
+
+func (ptr *CustomListModel) ItemDataDefault(index std_core.QModelIndex_ITF) map[int]*std_core.QVariant {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_Moc_PackedList) map[int]*std_core.QVariant {
+			out := make(map[int]*std_core.QVariant, int(l.len))
+			tmpList := NewCustomListModelFromPointer(l.data)
+			for i, v := range tmpList.__itemData_keyList() {
+				out[v] = tmpList.__itemData_atList(v, i)
+			}
+			return out
+		}(C.CustomListModel721036_ItemDataDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(index)))
+	}
+	return make(map[int]*std_core.QVariant, 0)
+}
+
+//export callbackCustomListModel721036_MimeData
+func callbackCustomListModel721036_MimeData(ptr unsafe.Pointer, indexes C.struct_Moc_PackedList) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "mimeData"); signal != nil {
+		return std_core.PointerFromQMimeData(signal.(func([]*std_core.QModelIndex) *std_core.QMimeData)(func(l C.struct_Moc_PackedList) []*std_core.QModelIndex {
+			out := make([]*std_core.QModelIndex, int(l.len))
+			tmpList := NewCustomListModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__mimeData_indexes_atList(i)
+			}
+			return out
+		}(indexes)))
+	}
+
+	return std_core.PointerFromQMimeData(NewCustomListModelFromPointer(ptr).MimeDataDefault(func(l C.struct_Moc_PackedList) []*std_core.QModelIndex {
+		out := make([]*std_core.QModelIndex, int(l.len))
+		tmpList := NewCustomListModelFromPointer(l.data)
+		for i := 0; i < len(out); i++ {
+			out[i] = tmpList.__mimeData_indexes_atList(i)
+		}
+		return out
+	}(indexes)))
+}
+
+func (ptr *CustomListModel) MimeDataDefault(indexes []*std_core.QModelIndex) *std_core.QMimeData {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQMimeDataFromPointer(C.CustomListModel721036_MimeDataDefault(ptr.Pointer(), func() unsafe.Pointer {
+			tmpList := NewCustomListModelFromPointer(NewCustomListModelFromPointer(nil).__mimeData_indexes_newList())
+			for _, v := range indexes {
+				tmpList.__mimeData_indexes_setList(v)
+			}
+			return tmpList.Pointer()
+		}()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackCustomListModel721036_Buddy
+func callbackCustomListModel721036_Buddy(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "buddy"); signal != nil {
+		return std_core.PointerFromQModelIndex(signal.(func(*std_core.QModelIndex) *std_core.QModelIndex)(std_core.NewQModelIndexFromPointer(index)))
+	}
+
+	return std_core.PointerFromQModelIndex(NewCustomListModelFromPointer(ptr).BuddyDefault(std_core.NewQModelIndexFromPointer(index)))
+}
+
+func (ptr *CustomListModel) BuddyDefault(index std_core.QModelIndex_ITF) *std_core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQModelIndexFromPointer(C.CustomListModel721036_BuddyDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackCustomListModel721036_Parent
+func callbackCustomListModel721036_Parent(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "parent"); signal != nil {
+		return std_core.PointerFromQModelIndex(signal.(func(*std_core.QModelIndex) *std_core.QModelIndex)(std_core.NewQModelIndexFromPointer(index)))
+	}
+
+	return std_core.PointerFromQModelIndex(NewCustomListModelFromPointer(ptr).ParentDefault(std_core.NewQModelIndexFromPointer(index)))
+}
+
+func (ptr *CustomListModel) ParentDefault(index std_core.QModelIndex_ITF) *std_core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQModelIndexFromPointer(C.CustomListModel721036_ParentDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackCustomListModel721036_Match
+func callbackCustomListModel721036_Match(ptr unsafe.Pointer, start unsafe.Pointer, role C.int, value unsafe.Pointer, hits C.int, flags C.longlong) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "match"); signal != nil {
+		return func() unsafe.Pointer {
+			tmpList := NewCustomListModelFromPointer(NewCustomListModelFromPointer(nil).__match_newList())
+			for _, v := range signal.(func(*std_core.QModelIndex, int, *std_core.QVariant, int, std_core.Qt__MatchFlag) []*std_core.QModelIndex)(std_core.NewQModelIndexFromPointer(start), int(int32(role)), std_core.NewQVariantFromPointer(value), int(int32(hits)), std_core.Qt__MatchFlag(flags)) {
+				tmpList.__match_setList(v)
+			}
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		tmpList := NewCustomListModelFromPointer(NewCustomListModelFromPointer(nil).__match_newList())
+		for _, v := range NewCustomListModelFromPointer(ptr).MatchDefault(std_core.NewQModelIndexFromPointer(start), int(int32(role)), std_core.NewQVariantFromPointer(value), int(int32(hits)), std_core.Qt__MatchFlag(flags)) {
+			tmpList.__match_setList(v)
+		}
+		return tmpList.Pointer()
+	}()
+}
+
+func (ptr *CustomListModel) MatchDefault(start std_core.QModelIndex_ITF, role int, value std_core.QVariant_ITF, hits int, flags std_core.Qt__MatchFlag) []*std_core.QModelIndex {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_Moc_PackedList) []*std_core.QModelIndex {
+			out := make([]*std_core.QModelIndex, int(l.len))
+			tmpList := NewCustomListModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__match_atList(i)
+			}
+			return out
+		}(C.CustomListModel721036_MatchDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(start), C.int(int32(role)), std_core.PointerFromQVariant(value), C.int(int32(hits)), C.longlong(flags)))
+	}
+	return make([]*std_core.QModelIndex, 0)
+}
+
+//export callbackCustomListModel721036_Span
+func callbackCustomListModel721036_Span(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "span"); signal != nil {
+		return std_core.PointerFromQSize(signal.(func(*std_core.QModelIndex) *std_core.QSize)(std_core.NewQModelIndexFromPointer(index)))
+	}
+
+	return std_core.PointerFromQSize(NewCustomListModelFromPointer(ptr).SpanDefault(std_core.NewQModelIndexFromPointer(index)))
+}
+
+func (ptr *CustomListModel) SpanDefault(index std_core.QModelIndex_ITF) *std_core.QSize {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQSizeFromPointer(C.CustomListModel721036_SpanDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*std_core.QSize).DestroyQSize)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackCustomListModel721036_MimeTypes
+func callbackCustomListModel721036_MimeTypes(ptr unsafe.Pointer) C.struct_Moc_PackedString {
+	if signal := qt.GetSignal(ptr, "mimeTypes"); signal != nil {
+		tempVal := signal.(func() []string)()
+		return C.struct_Moc_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	}
+	tempVal := NewCustomListModelFromPointer(ptr).MimeTypesDefault()
+	return C.struct_Moc_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+}
+
+func (ptr *CustomListModel) MimeTypesDefault() []string {
+	if ptr.Pointer() != nil {
+		return strings.Split(cGoUnpackString(C.CustomListModel721036_MimeTypesDefault(ptr.Pointer())), "|")
+	}
+	return make([]string, 0)
+}
+
+//export callbackCustomListModel721036_Data
+func callbackCustomListModel721036_Data(ptr unsafe.Pointer, index unsafe.Pointer, role C.int) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "data"); signal != nil {
+		return std_core.PointerFromQVariant(signal.(func(*std_core.QModelIndex, int) *std_core.QVariant)(std_core.NewQModelIndexFromPointer(index), int(int32(role))))
+	}
+
+	return std_core.PointerFromQVariant(NewCustomListModelFromPointer(ptr).DataDefault(std_core.NewQModelIndexFromPointer(index), int(int32(role))))
+}
+
+func (ptr *CustomListModel) DataDefault(index std_core.QModelIndex_ITF, role int) *std_core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQVariantFromPointer(C.CustomListModel721036_DataDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(index), C.int(int32(role))))
+		runtime.SetFinalizer(tmpValue, (*std_core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackCustomListModel721036_HeaderData
+func callbackCustomListModel721036_HeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, role C.int) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "headerData"); signal != nil {
+		return std_core.PointerFromQVariant(signal.(func(int, std_core.Qt__Orientation, int) *std_core.QVariant)(int(int32(section)), std_core.Qt__Orientation(orientation), int(int32(role))))
+	}
+
+	return std_core.PointerFromQVariant(NewCustomListModelFromPointer(ptr).HeaderDataDefault(int(int32(section)), std_core.Qt__Orientation(orientation), int(int32(role))))
+}
+
+func (ptr *CustomListModel) HeaderDataDefault(section int, orientation std_core.Qt__Orientation, role int) *std_core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := std_core.NewQVariantFromPointer(C.CustomListModel721036_HeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), C.int(int32(role))))
+		runtime.SetFinalizer(tmpValue, (*std_core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackCustomListModel721036_SupportedDragActions
+func callbackCustomListModel721036_SupportedDragActions(ptr unsafe.Pointer) C.longlong {
+	if signal := qt.GetSignal(ptr, "supportedDragActions"); signal != nil {
+		return C.longlong(signal.(func() std_core.Qt__DropAction)())
+	}
+
+	return C.longlong(NewCustomListModelFromPointer(ptr).SupportedDragActionsDefault())
+}
+
+func (ptr *CustomListModel) SupportedDragActionsDefault() std_core.Qt__DropAction {
+	if ptr.Pointer() != nil {
+		return std_core.Qt__DropAction(C.CustomListModel721036_SupportedDragActionsDefault(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackCustomListModel721036_SupportedDropActions
+func callbackCustomListModel721036_SupportedDropActions(ptr unsafe.Pointer) C.longlong {
+	if signal := qt.GetSignal(ptr, "supportedDropActions"); signal != nil {
+		return C.longlong(signal.(func() std_core.Qt__DropAction)())
+	}
+
+	return C.longlong(NewCustomListModelFromPointer(ptr).SupportedDropActionsDefault())
+}
+
+func (ptr *CustomListModel) SupportedDropActionsDefault() std_core.Qt__DropAction {
+	if ptr.Pointer() != nil {
+		return std_core.Qt__DropAction(C.CustomListModel721036_SupportedDropActionsDefault(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackCustomListModel721036_CanDropMimeData
+func callbackCustomListModel721036_CanDropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "canDropMimeData"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QMimeData, std_core.Qt__DropAction, int, int, *std_core.QModelIndex) bool)(std_core.NewQMimeDataFromPointer(data), std_core.Qt__DropAction(action), int(int32(row)), int(int32(column)), std_core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewCustomListModelFromPointer(ptr).CanDropMimeDataDefault(std_core.NewQMimeDataFromPointer(data), std_core.Qt__DropAction(action), int(int32(row)), int(int32(column)), std_core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *CustomListModel) CanDropMimeDataDefault(data std_core.QMimeData_ITF, action std_core.Qt__DropAction, row int, column int, parent std_core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.CustomListModel721036_CanDropMimeDataDefault(ptr.Pointer(), std_core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), std_core.PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+//export callbackCustomListModel721036_CanFetchMore
+func callbackCustomListModel721036_CanFetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "canFetchMore"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QModelIndex) bool)(std_core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewCustomListModelFromPointer(ptr).CanFetchMoreDefault(std_core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *CustomListModel) CanFetchMoreDefault(parent std_core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.CustomListModel721036_CanFetchMoreDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+//export callbackCustomListModel721036_HasChildren
+func callbackCustomListModel721036_HasChildren(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "hasChildren"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QModelIndex) bool)(std_core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewCustomListModelFromPointer(ptr).HasChildrenDefault(std_core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *CustomListModel) HasChildrenDefault(parent std_core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.CustomListModel721036_HasChildrenDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+//export callbackCustomListModel721036_ColumnCount
+func callbackCustomListModel721036_ColumnCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
+	if signal := qt.GetSignal(ptr, "columnCount"); signal != nil {
+		return C.int(int32(signal.(func(*std_core.QModelIndex) int)(std_core.NewQModelIndexFromPointer(parent))))
+	}
+
+	return C.int(int32(NewCustomListModelFromPointer(ptr).ColumnCountDefault(std_core.NewQModelIndexFromPointer(parent))))
+}
+
+func (ptr *CustomListModel) ColumnCountDefault(parent std_core.QModelIndex_ITF) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.CustomListModel721036_ColumnCountDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(parent))))
+	}
+	return 0
+}
+
+//export callbackCustomListModel721036_RowCount
+func callbackCustomListModel721036_RowCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
+	if signal := qt.GetSignal(ptr, "rowCount"); signal != nil {
+		return C.int(int32(signal.(func(*std_core.QModelIndex) int)(std_core.NewQModelIndexFromPointer(parent))))
+	}
+
+	return C.int(int32(NewCustomListModelFromPointer(ptr).RowCountDefault(std_core.NewQModelIndexFromPointer(parent))))
+}
+
+func (ptr *CustomListModel) RowCountDefault(parent std_core.QModelIndex_ITF) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.CustomListModel721036_RowCountDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(parent))))
+	}
+	return 0
+}
+
+//export callbackCustomListModel721036_Event
+func callbackCustomListModel721036_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QEvent) bool)(std_core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewCustomListModelFromPointer(ptr).EventDefault(std_core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *CustomListModel) EventDefault(e std_core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.CustomListModel721036_EventDefault(ptr.Pointer(), std_core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackCustomListModel721036_EventFilter
+func callbackCustomListModel721036_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QObject, *std_core.QEvent) bool)(std_core.NewQObjectFromPointer(watched), std_core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewCustomListModelFromPointer(ptr).EventFilterDefault(std_core.NewQObjectFromPointer(watched), std_core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *CustomListModel) EventFilterDefault(watched std_core.QObject_ITF, event std_core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.CustomListModel721036_EventFilterDefault(ptr.Pointer(), std_core.PointerFromQObject(watched), std_core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+//export callbackCustomListModel721036_ChildEvent
+func callbackCustomListModel721036_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
+		signal.(func(*std_core.QChildEvent))(std_core.NewQChildEventFromPointer(event))
+	} else {
+		NewCustomListModelFromPointer(ptr).ChildEventDefault(std_core.NewQChildEventFromPointer(event))
+	}
+}
+
+func (ptr *CustomListModel) ChildEventDefault(event std_core.QChildEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036_ChildEventDefault(ptr.Pointer(), std_core.PointerFromQChildEvent(event))
+	}
+}
+
+//export callbackCustomListModel721036_ConnectNotify
+func callbackCustomListModel721036_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
+		signal.(func(*std_core.QMetaMethod))(std_core.NewQMetaMethodFromPointer(sign))
+	} else {
+		NewCustomListModelFromPointer(ptr).ConnectNotifyDefault(std_core.NewQMetaMethodFromPointer(sign))
+	}
+}
+
+func (ptr *CustomListModel) ConnectNotifyDefault(sign std_core.QMetaMethod_ITF) {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036_ConnectNotifyDefault(ptr.Pointer(), std_core.PointerFromQMetaMethod(sign))
+	}
+}
+
+//export callbackCustomListModel721036_CustomEvent
+func callbackCustomListModel721036_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
+		signal.(func(*std_core.QEvent))(std_core.NewQEventFromPointer(event))
+	} else {
+		NewCustomListModelFromPointer(ptr).CustomEventDefault(std_core.NewQEventFromPointer(event))
+	}
+}
+
+func (ptr *CustomListModel) CustomEventDefault(event std_core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036_CustomEventDefault(ptr.Pointer(), std_core.PointerFromQEvent(event))
+	}
+}
+
+//export callbackCustomListModel721036_DeleteLater
+func callbackCustomListModel721036_DeleteLater(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
+		signal.(func())()
+	} else {
+		NewCustomListModelFromPointer(ptr).DeleteLaterDefault()
+	}
+}
+
+func (ptr *CustomListModel) DeleteLaterDefault() {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036_DeleteLaterDefault(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+//export callbackCustomListModel721036_Destroyed
+func callbackCustomListModel721036_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
+		signal.(func(*std_core.QObject))(std_core.NewQObjectFromPointer(obj))
+	}
+
+}
+
+//export callbackCustomListModel721036_DisconnectNotify
+func callbackCustomListModel721036_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
+		signal.(func(*std_core.QMetaMethod))(std_core.NewQMetaMethodFromPointer(sign))
+	} else {
+		NewCustomListModelFromPointer(ptr).DisconnectNotifyDefault(std_core.NewQMetaMethodFromPointer(sign))
+	}
+}
+
+func (ptr *CustomListModel) DisconnectNotifyDefault(sign std_core.QMetaMethod_ITF) {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036_DisconnectNotifyDefault(ptr.Pointer(), std_core.PointerFromQMetaMethod(sign))
+	}
+}
+
+//export callbackCustomListModel721036_ObjectNameChanged
+func callbackCustomListModel721036_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
+		signal.(func(string))(cGoUnpackString(objectName))
+	}
+
+}
+
+//export callbackCustomListModel721036_TimerEvent
+func callbackCustomListModel721036_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
+		signal.(func(*std_core.QTimerEvent))(std_core.NewQTimerEventFromPointer(event))
+	} else {
+		NewCustomListModelFromPointer(ptr).TimerEventDefault(std_core.NewQTimerEventFromPointer(event))
+	}
+}
+
+func (ptr *CustomListModel) TimerEventDefault(event std_core.QTimerEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.CustomListModel721036_TimerEventDefault(ptr.Pointer(), std_core.PointerFromQTimerEvent(event))
+	}
+}
+
 type ApproveExportCtx_ITF interface {
 	std_core.QObject_ITF
 	ApproveExportCtx_PTR() *ApproveExportCtx
@@ -9204,183 +11185,1164 @@ func (ptr *ApproveImportCtx) TimerEventDefault(event std_core.QTimerEvent_ITF) {
 	}
 }
 
-type CustomListModel_ITF interface {
-	std_core.QAbstractListModel_ITF
-	CustomListModel_PTR() *CustomListModel
+type ApproveListingCtx_ITF interface {
+	std_core.QObject_ITF
+	ApproveListingCtx_PTR() *ApproveListingCtx
 }
 
-func (ptr *CustomListModel) CustomListModel_PTR() *CustomListModel {
+func (ptr *ApproveListingCtx) ApproveListingCtx_PTR() *ApproveListingCtx {
 	return ptr
 }
 
-func (ptr *CustomListModel) Pointer() unsafe.Pointer {
+func (ptr *ApproveListingCtx) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAbstractListModel_PTR().Pointer()
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (ptr *CustomListModel) SetPointer(p unsafe.Pointer) {
+func (ptr *ApproveListingCtx) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.QAbstractListModel_PTR().SetPointer(p)
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
-func PointerFromCustomListModel(ptr CustomListModel_ITF) unsafe.Pointer {
+func PointerFromApproveListingCtx(ptr ApproveListingCtx_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.CustomListModel_PTR().Pointer()
+		return ptr.ApproveListingCtx_PTR().Pointer()
 	}
 	return nil
 }
 
-func NewCustomListModelFromPointer(ptr unsafe.Pointer) (n *CustomListModel) {
+func NewApproveListingCtxFromPointer(ptr unsafe.Pointer) (n *ApproveListingCtx) {
 	if gPtr, ok := qt.Receive(ptr); !ok {
-		n = new(CustomListModel)
+		n = new(ApproveListingCtx)
 		n.SetPointer(ptr)
 	} else {
 		switch deduced := gPtr.(type) {
-		case *CustomListModel:
+		case *ApproveListingCtx:
 			n = deduced
 
-		case *std_core.QAbstractListModel:
-			n = &CustomListModel{QAbstractListModel: *deduced}
+		case *std_core.QObject:
+			n = &ApproveListingCtx{QObject: *deduced}
 
 		default:
-			n = new(CustomListModel)
+			n = new(ApproveListingCtx)
 			n.SetPointer(ptr)
 		}
 	}
 	return
 }
 
-//export callbackCustomListModel721036_Constructor
-func callbackCustomListModel721036_Constructor(ptr unsafe.Pointer) {
-	this := NewCustomListModelFromPointer(ptr)
+//export callbackApproveListingCtx721036_Constructor
+func callbackApproveListingCtx721036_Constructor(ptr unsafe.Pointer) {
+	this := NewApproveListingCtxFromPointer(ptr)
 	qt.Register(ptr, this)
-	this.ConnectClear(this.clear)
-	this.ConnectAdd(this.add)
+	this.ConnectClicked(this.clicked)
+	this.ConnectOnCheckStateChanged(this.onCheckStateChanged)
 	this.init()
 }
 
-//export callbackCustomListModel721036_Clear
-func callbackCustomListModel721036_Clear(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "clear"); signal != nil {
-		signal.(func())()
+//export callbackApproveListingCtx721036_Clicked
+func callbackApproveListingCtx721036_Clicked(ptr unsafe.Pointer, b C.int) {
+	if signal := qt.GetSignal(ptr, "clicked"); signal != nil {
+		signal.(func(int))(int(int32(b)))
 	}
 
 }
 
-func (ptr *CustomListModel) ConnectClear(f func()) {
+func (ptr *ApproveListingCtx) ConnectClicked(f func(b int)) {
 	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "clear") {
-			C.CustomListModel721036_ConnectClear(ptr.Pointer())
+		if !qt.ExistsSignal(ptr.Pointer(), "clicked") {
+			C.ApproveListingCtx721036_ConnectClicked(ptr.Pointer())
 		}
 
-		if signal := qt.LendSignal(ptr.Pointer(), "clear"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "clear", func() {
-				signal.(func())()
-				f()
+		if signal := qt.LendSignal(ptr.Pointer(), "clicked"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "clicked", func(b int) {
+				signal.(func(int))(b)
+				f(b)
 			})
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "clear", f)
+			qt.ConnectSignal(ptr.Pointer(), "clicked", f)
 		}
 	}
 }
 
-func (ptr *CustomListModel) DisconnectClear() {
+func (ptr *ApproveListingCtx) DisconnectClicked() {
 	if ptr.Pointer() != nil {
-		C.CustomListModel721036_DisconnectClear(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "clear")
+		C.ApproveListingCtx721036_DisconnectClicked(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "clicked")
 	}
 }
 
-func (ptr *CustomListModel) Clear() {
+func (ptr *ApproveListingCtx) Clicked(b int) {
 	if ptr.Pointer() != nil {
-		C.CustomListModel721036_Clear(ptr.Pointer())
+		C.ApproveListingCtx721036_Clicked(ptr.Pointer(), C.int(int32(b)))
 	}
 }
 
-//export callbackCustomListModel721036_Add
-func callbackCustomListModel721036_Add(ptr unsafe.Pointer, account C.uintptr_t) {
-	var accountD custom_params_aaf9d9m.ApproveListingAccount
-	if accountI, ok := qt.ReceiveTemp(unsafe.Pointer(uintptr(account))); ok {
-		qt.UnregisterTemp(unsafe.Pointer(uintptr(account)))
-		accountD = accountI.(custom_params_aaf9d9m.ApproveListingAccount)
-	}
-	if signal := qt.GetSignal(ptr, "add"); signal != nil {
-		signal.(func(custom_params_aaf9d9m.ApproveListingAccount))(accountD)
+//export callbackApproveListingCtx721036_OnCheckStateChanged
+func callbackApproveListingCtx721036_OnCheckStateChanged(ptr unsafe.Pointer, i C.int, checked C.char) {
+	if signal := qt.GetSignal(ptr, "onCheckStateChanged"); signal != nil {
+		signal.(func(int, bool))(int(int32(i)), int8(checked) != 0)
 	}
 
 }
 
-func (ptr *CustomListModel) ConnectAdd(f func(account custom_params_aaf9d9m.ApproveListingAccount)) {
+func (ptr *ApproveListingCtx) ConnectOnCheckStateChanged(f func(i int, checked bool)) {
 	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "add") {
-			C.CustomListModel721036_ConnectAdd(ptr.Pointer())
+		if !qt.ExistsSignal(ptr.Pointer(), "onCheckStateChanged") {
+			C.ApproveListingCtx721036_ConnectOnCheckStateChanged(ptr.Pointer())
 		}
 
-		if signal := qt.LendSignal(ptr.Pointer(), "add"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "add", func(account custom_params_aaf9d9m.ApproveListingAccount) {
-				signal.(func(custom_params_aaf9d9m.ApproveListingAccount))(account)
-				f(account)
+		if signal := qt.LendSignal(ptr.Pointer(), "onCheckStateChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "onCheckStateChanged", func(i int, checked bool) {
+				signal.(func(int, bool))(i, checked)
+				f(i, checked)
 			})
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "add", f)
+			qt.ConnectSignal(ptr.Pointer(), "onCheckStateChanged", f)
 		}
 	}
 }
 
-func (ptr *CustomListModel) DisconnectAdd() {
+func (ptr *ApproveListingCtx) DisconnectOnCheckStateChanged() {
 	if ptr.Pointer() != nil {
-		C.CustomListModel721036_DisconnectAdd(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "add")
+		C.ApproveListingCtx721036_DisconnectOnCheckStateChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "onCheckStateChanged")
 	}
 }
 
-func (ptr *CustomListModel) Add(account custom_params_aaf9d9m.ApproveListingAccount) {
+func (ptr *ApproveListingCtx) OnCheckStateChanged(i int, checked bool) {
 	if ptr.Pointer() != nil {
-		qt.RegisterTemp(unsafe.Pointer(&account), account)
-		C.CustomListModel721036_Add(ptr.Pointer(), C.uintptr_t(uintptr(unsafe.Pointer(&account))))
+		C.ApproveListingCtx721036_OnCheckStateChanged(ptr.Pointer(), C.int(int32(i)), C.char(int8(qt.GoBoolToInt(checked))))
 	}
 }
 
-func CustomListModel_QRegisterMetaType() int {
-	return int(int32(C.CustomListModel721036_CustomListModel721036_QRegisterMetaType()))
+//export callbackApproveListingCtx721036_Remote
+func callbackApproveListingCtx721036_Remote(ptr unsafe.Pointer) C.struct_Moc_PackedString {
+	if signal := qt.GetSignal(ptr, "remote"); signal != nil {
+		tempVal := signal.(func() string)()
+		return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+	}
+	tempVal := NewApproveListingCtxFromPointer(ptr).RemoteDefault()
+	return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
-func (ptr *CustomListModel) QRegisterMetaType() int {
-	return int(int32(C.CustomListModel721036_CustomListModel721036_QRegisterMetaType()))
+func (ptr *ApproveListingCtx) ConnectRemote(f func() string) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "remote"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "remote", func() string {
+				signal.(func() string)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "remote", f)
+		}
+	}
 }
 
-func CustomListModel_QRegisterMetaType2(typeName string) int {
+func (ptr *ApproveListingCtx) DisconnectRemote() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "remote")
+	}
+}
+
+func (ptr *ApproveListingCtx) Remote() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.ApproveListingCtx721036_Remote(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *ApproveListingCtx) RemoteDefault() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.ApproveListingCtx721036_RemoteDefault(ptr.Pointer()))
+	}
+	return ""
+}
+
+//export callbackApproveListingCtx721036_SetRemote
+func callbackApproveListingCtx721036_SetRemote(ptr unsafe.Pointer, remote C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "setRemote"); signal != nil {
+		signal.(func(string))(cGoUnpackString(remote))
+	} else {
+		NewApproveListingCtxFromPointer(ptr).SetRemoteDefault(cGoUnpackString(remote))
+	}
+}
+
+func (ptr *ApproveListingCtx) ConnectSetRemote(f func(remote string)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setRemote"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setRemote", func(remote string) {
+				signal.(func(string))(remote)
+				f(remote)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setRemote", f)
+		}
+	}
+}
+
+func (ptr *ApproveListingCtx) DisconnectSetRemote() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setRemote")
+	}
+}
+
+func (ptr *ApproveListingCtx) SetRemote(remote string) {
+	if ptr.Pointer() != nil {
+		var remoteC *C.char
+		if remote != "" {
+			remoteC = C.CString(remote)
+			defer C.free(unsafe.Pointer(remoteC))
+		}
+		C.ApproveListingCtx721036_SetRemote(ptr.Pointer(), C.struct_Moc_PackedString{data: remoteC, len: C.longlong(len(remote))})
+	}
+}
+
+func (ptr *ApproveListingCtx) SetRemoteDefault(remote string) {
+	if ptr.Pointer() != nil {
+		var remoteC *C.char
+		if remote != "" {
+			remoteC = C.CString(remote)
+			defer C.free(unsafe.Pointer(remoteC))
+		}
+		C.ApproveListingCtx721036_SetRemoteDefault(ptr.Pointer(), C.struct_Moc_PackedString{data: remoteC, len: C.longlong(len(remote))})
+	}
+}
+
+//export callbackApproveListingCtx721036_RemoteChanged
+func callbackApproveListingCtx721036_RemoteChanged(ptr unsafe.Pointer, remote C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "remoteChanged"); signal != nil {
+		signal.(func(string))(cGoUnpackString(remote))
+	}
+
+}
+
+func (ptr *ApproveListingCtx) ConnectRemoteChanged(f func(remote string)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "remoteChanged") {
+			C.ApproveListingCtx721036_ConnectRemoteChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "remoteChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "remoteChanged", func(remote string) {
+				signal.(func(string))(remote)
+				f(remote)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "remoteChanged", f)
+		}
+	}
+}
+
+func (ptr *ApproveListingCtx) DisconnectRemoteChanged() {
+	if ptr.Pointer() != nil {
+		C.ApproveListingCtx721036_DisconnectRemoteChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "remoteChanged")
+	}
+}
+
+func (ptr *ApproveListingCtx) RemoteChanged(remote string) {
+	if ptr.Pointer() != nil {
+		var remoteC *C.char
+		if remote != "" {
+			remoteC = C.CString(remote)
+			defer C.free(unsafe.Pointer(remoteC))
+		}
+		C.ApproveListingCtx721036_RemoteChanged(ptr.Pointer(), C.struct_Moc_PackedString{data: remoteC, len: C.longlong(len(remote))})
+	}
+}
+
+//export callbackApproveListingCtx721036_Transport
+func callbackApproveListingCtx721036_Transport(ptr unsafe.Pointer) C.struct_Moc_PackedString {
+	if signal := qt.GetSignal(ptr, "transport"); signal != nil {
+		tempVal := signal.(func() string)()
+		return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+	}
+	tempVal := NewApproveListingCtxFromPointer(ptr).TransportDefault()
+	return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+}
+
+func (ptr *ApproveListingCtx) ConnectTransport(f func() string) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "transport"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "transport", func() string {
+				signal.(func() string)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "transport", f)
+		}
+	}
+}
+
+func (ptr *ApproveListingCtx) DisconnectTransport() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "transport")
+	}
+}
+
+func (ptr *ApproveListingCtx) Transport() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.ApproveListingCtx721036_Transport(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *ApproveListingCtx) TransportDefault() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.ApproveListingCtx721036_TransportDefault(ptr.Pointer()))
+	}
+	return ""
+}
+
+//export callbackApproveListingCtx721036_SetTransport
+func callbackApproveListingCtx721036_SetTransport(ptr unsafe.Pointer, transport C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "setTransport"); signal != nil {
+		signal.(func(string))(cGoUnpackString(transport))
+	} else {
+		NewApproveListingCtxFromPointer(ptr).SetTransportDefault(cGoUnpackString(transport))
+	}
+}
+
+func (ptr *ApproveListingCtx) ConnectSetTransport(f func(transport string)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setTransport"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setTransport", func(transport string) {
+				signal.(func(string))(transport)
+				f(transport)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setTransport", f)
+		}
+	}
+}
+
+func (ptr *ApproveListingCtx) DisconnectSetTransport() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setTransport")
+	}
+}
+
+func (ptr *ApproveListingCtx) SetTransport(transport string) {
+	if ptr.Pointer() != nil {
+		var transportC *C.char
+		if transport != "" {
+			transportC = C.CString(transport)
+			defer C.free(unsafe.Pointer(transportC))
+		}
+		C.ApproveListingCtx721036_SetTransport(ptr.Pointer(), C.struct_Moc_PackedString{data: transportC, len: C.longlong(len(transport))})
+	}
+}
+
+func (ptr *ApproveListingCtx) SetTransportDefault(transport string) {
+	if ptr.Pointer() != nil {
+		var transportC *C.char
+		if transport != "" {
+			transportC = C.CString(transport)
+			defer C.free(unsafe.Pointer(transportC))
+		}
+		C.ApproveListingCtx721036_SetTransportDefault(ptr.Pointer(), C.struct_Moc_PackedString{data: transportC, len: C.longlong(len(transport))})
+	}
+}
+
+//export callbackApproveListingCtx721036_TransportChanged
+func callbackApproveListingCtx721036_TransportChanged(ptr unsafe.Pointer, transport C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "transportChanged"); signal != nil {
+		signal.(func(string))(cGoUnpackString(transport))
+	}
+
+}
+
+func (ptr *ApproveListingCtx) ConnectTransportChanged(f func(transport string)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "transportChanged") {
+			C.ApproveListingCtx721036_ConnectTransportChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "transportChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "transportChanged", func(transport string) {
+				signal.(func(string))(transport)
+				f(transport)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "transportChanged", f)
+		}
+	}
+}
+
+func (ptr *ApproveListingCtx) DisconnectTransportChanged() {
+	if ptr.Pointer() != nil {
+		C.ApproveListingCtx721036_DisconnectTransportChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "transportChanged")
+	}
+}
+
+func (ptr *ApproveListingCtx) TransportChanged(transport string) {
+	if ptr.Pointer() != nil {
+		var transportC *C.char
+		if transport != "" {
+			transportC = C.CString(transport)
+			defer C.free(unsafe.Pointer(transportC))
+		}
+		C.ApproveListingCtx721036_TransportChanged(ptr.Pointer(), C.struct_Moc_PackedString{data: transportC, len: C.longlong(len(transport))})
+	}
+}
+
+//export callbackApproveListingCtx721036_Endpoint
+func callbackApproveListingCtx721036_Endpoint(ptr unsafe.Pointer) C.struct_Moc_PackedString {
+	if signal := qt.GetSignal(ptr, "endpoint"); signal != nil {
+		tempVal := signal.(func() string)()
+		return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+	}
+	tempVal := NewApproveListingCtxFromPointer(ptr).EndpointDefault()
+	return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+}
+
+func (ptr *ApproveListingCtx) ConnectEndpoint(f func() string) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "endpoint"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "endpoint", func() string {
+				signal.(func() string)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "endpoint", f)
+		}
+	}
+}
+
+func (ptr *ApproveListingCtx) DisconnectEndpoint() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "endpoint")
+	}
+}
+
+func (ptr *ApproveListingCtx) Endpoint() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.ApproveListingCtx721036_Endpoint(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *ApproveListingCtx) EndpointDefault() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.ApproveListingCtx721036_EndpointDefault(ptr.Pointer()))
+	}
+	return ""
+}
+
+//export callbackApproveListingCtx721036_SetEndpoint
+func callbackApproveListingCtx721036_SetEndpoint(ptr unsafe.Pointer, endpoint C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "setEndpoint"); signal != nil {
+		signal.(func(string))(cGoUnpackString(endpoint))
+	} else {
+		NewApproveListingCtxFromPointer(ptr).SetEndpointDefault(cGoUnpackString(endpoint))
+	}
+}
+
+func (ptr *ApproveListingCtx) ConnectSetEndpoint(f func(endpoint string)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setEndpoint"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setEndpoint", func(endpoint string) {
+				signal.(func(string))(endpoint)
+				f(endpoint)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setEndpoint", f)
+		}
+	}
+}
+
+func (ptr *ApproveListingCtx) DisconnectSetEndpoint() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setEndpoint")
+	}
+}
+
+func (ptr *ApproveListingCtx) SetEndpoint(endpoint string) {
+	if ptr.Pointer() != nil {
+		var endpointC *C.char
+		if endpoint != "" {
+			endpointC = C.CString(endpoint)
+			defer C.free(unsafe.Pointer(endpointC))
+		}
+		C.ApproveListingCtx721036_SetEndpoint(ptr.Pointer(), C.struct_Moc_PackedString{data: endpointC, len: C.longlong(len(endpoint))})
+	}
+}
+
+func (ptr *ApproveListingCtx) SetEndpointDefault(endpoint string) {
+	if ptr.Pointer() != nil {
+		var endpointC *C.char
+		if endpoint != "" {
+			endpointC = C.CString(endpoint)
+			defer C.free(unsafe.Pointer(endpointC))
+		}
+		C.ApproveListingCtx721036_SetEndpointDefault(ptr.Pointer(), C.struct_Moc_PackedString{data: endpointC, len: C.longlong(len(endpoint))})
+	}
+}
+
+//export callbackApproveListingCtx721036_EndpointChanged
+func callbackApproveListingCtx721036_EndpointChanged(ptr unsafe.Pointer, endpoint C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "endpointChanged"); signal != nil {
+		signal.(func(string))(cGoUnpackString(endpoint))
+	}
+
+}
+
+func (ptr *ApproveListingCtx) ConnectEndpointChanged(f func(endpoint string)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "endpointChanged") {
+			C.ApproveListingCtx721036_ConnectEndpointChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "endpointChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "endpointChanged", func(endpoint string) {
+				signal.(func(string))(endpoint)
+				f(endpoint)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "endpointChanged", f)
+		}
+	}
+}
+
+func (ptr *ApproveListingCtx) DisconnectEndpointChanged() {
+	if ptr.Pointer() != nil {
+		C.ApproveListingCtx721036_DisconnectEndpointChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "endpointChanged")
+	}
+}
+
+func (ptr *ApproveListingCtx) EndpointChanged(endpoint string) {
+	if ptr.Pointer() != nil {
+		var endpointC *C.char
+		if endpoint != "" {
+			endpointC = C.CString(endpoint)
+			defer C.free(unsafe.Pointer(endpointC))
+		}
+		C.ApproveListingCtx721036_EndpointChanged(ptr.Pointer(), C.struct_Moc_PackedString{data: endpointC, len: C.longlong(len(endpoint))})
+	}
+}
+
+//export callbackApproveListingCtx721036_From
+func callbackApproveListingCtx721036_From(ptr unsafe.Pointer) C.struct_Moc_PackedString {
+	if signal := qt.GetSignal(ptr, "from"); signal != nil {
+		tempVal := signal.(func() string)()
+		return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+	}
+	tempVal := NewApproveListingCtxFromPointer(ptr).FromDefault()
+	return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+}
+
+func (ptr *ApproveListingCtx) ConnectFrom(f func() string) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "from"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "from", func() string {
+				signal.(func() string)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "from", f)
+		}
+	}
+}
+
+func (ptr *ApproveListingCtx) DisconnectFrom() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "from")
+	}
+}
+
+func (ptr *ApproveListingCtx) From() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.ApproveListingCtx721036_From(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *ApproveListingCtx) FromDefault() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.ApproveListingCtx721036_FromDefault(ptr.Pointer()))
+	}
+	return ""
+}
+
+//export callbackApproveListingCtx721036_SetFrom
+func callbackApproveListingCtx721036_SetFrom(ptr unsafe.Pointer, from C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "setFrom"); signal != nil {
+		signal.(func(string))(cGoUnpackString(from))
+	} else {
+		NewApproveListingCtxFromPointer(ptr).SetFromDefault(cGoUnpackString(from))
+	}
+}
+
+func (ptr *ApproveListingCtx) ConnectSetFrom(f func(from string)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setFrom"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setFrom", func(from string) {
+				signal.(func(string))(from)
+				f(from)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setFrom", f)
+		}
+	}
+}
+
+func (ptr *ApproveListingCtx) DisconnectSetFrom() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setFrom")
+	}
+}
+
+func (ptr *ApproveListingCtx) SetFrom(from string) {
+	if ptr.Pointer() != nil {
+		var fromC *C.char
+		if from != "" {
+			fromC = C.CString(from)
+			defer C.free(unsafe.Pointer(fromC))
+		}
+		C.ApproveListingCtx721036_SetFrom(ptr.Pointer(), C.struct_Moc_PackedString{data: fromC, len: C.longlong(len(from))})
+	}
+}
+
+func (ptr *ApproveListingCtx) SetFromDefault(from string) {
+	if ptr.Pointer() != nil {
+		var fromC *C.char
+		if from != "" {
+			fromC = C.CString(from)
+			defer C.free(unsafe.Pointer(fromC))
+		}
+		C.ApproveListingCtx721036_SetFromDefault(ptr.Pointer(), C.struct_Moc_PackedString{data: fromC, len: C.longlong(len(from))})
+	}
+}
+
+//export callbackApproveListingCtx721036_FromChanged
+func callbackApproveListingCtx721036_FromChanged(ptr unsafe.Pointer, from C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "fromChanged"); signal != nil {
+		signal.(func(string))(cGoUnpackString(from))
+	}
+
+}
+
+func (ptr *ApproveListingCtx) ConnectFromChanged(f func(from string)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "fromChanged") {
+			C.ApproveListingCtx721036_ConnectFromChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "fromChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "fromChanged", func(from string) {
+				signal.(func(string))(from)
+				f(from)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "fromChanged", f)
+		}
+	}
+}
+
+func (ptr *ApproveListingCtx) DisconnectFromChanged() {
+	if ptr.Pointer() != nil {
+		C.ApproveListingCtx721036_DisconnectFromChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "fromChanged")
+	}
+}
+
+func (ptr *ApproveListingCtx) FromChanged(from string) {
+	if ptr.Pointer() != nil {
+		var fromC *C.char
+		if from != "" {
+			fromC = C.CString(from)
+			defer C.free(unsafe.Pointer(fromC))
+		}
+		C.ApproveListingCtx721036_FromChanged(ptr.Pointer(), C.struct_Moc_PackedString{data: fromC, len: C.longlong(len(from))})
+	}
+}
+
+//export callbackApproveListingCtx721036_Message
+func callbackApproveListingCtx721036_Message(ptr unsafe.Pointer) C.struct_Moc_PackedString {
+	if signal := qt.GetSignal(ptr, "message"); signal != nil {
+		tempVal := signal.(func() string)()
+		return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+	}
+	tempVal := NewApproveListingCtxFromPointer(ptr).MessageDefault()
+	return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+}
+
+func (ptr *ApproveListingCtx) ConnectMessage(f func() string) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "message"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "message", func() string {
+				signal.(func() string)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "message", f)
+		}
+	}
+}
+
+func (ptr *ApproveListingCtx) DisconnectMessage() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "message")
+	}
+}
+
+func (ptr *ApproveListingCtx) Message() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.ApproveListingCtx721036_Message(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *ApproveListingCtx) MessageDefault() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.ApproveListingCtx721036_MessageDefault(ptr.Pointer()))
+	}
+	return ""
+}
+
+//export callbackApproveListingCtx721036_SetMessage
+func callbackApproveListingCtx721036_SetMessage(ptr unsafe.Pointer, message C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "setMessage"); signal != nil {
+		signal.(func(string))(cGoUnpackString(message))
+	} else {
+		NewApproveListingCtxFromPointer(ptr).SetMessageDefault(cGoUnpackString(message))
+	}
+}
+
+func (ptr *ApproveListingCtx) ConnectSetMessage(f func(message string)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setMessage"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setMessage", func(message string) {
+				signal.(func(string))(message)
+				f(message)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setMessage", f)
+		}
+	}
+}
+
+func (ptr *ApproveListingCtx) DisconnectSetMessage() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setMessage")
+	}
+}
+
+func (ptr *ApproveListingCtx) SetMessage(message string) {
+	if ptr.Pointer() != nil {
+		var messageC *C.char
+		if message != "" {
+			messageC = C.CString(message)
+			defer C.free(unsafe.Pointer(messageC))
+		}
+		C.ApproveListingCtx721036_SetMessage(ptr.Pointer(), C.struct_Moc_PackedString{data: messageC, len: C.longlong(len(message))})
+	}
+}
+
+func (ptr *ApproveListingCtx) SetMessageDefault(message string) {
+	if ptr.Pointer() != nil {
+		var messageC *C.char
+		if message != "" {
+			messageC = C.CString(message)
+			defer C.free(unsafe.Pointer(messageC))
+		}
+		C.ApproveListingCtx721036_SetMessageDefault(ptr.Pointer(), C.struct_Moc_PackedString{data: messageC, len: C.longlong(len(message))})
+	}
+}
+
+//export callbackApproveListingCtx721036_MessageChanged
+func callbackApproveListingCtx721036_MessageChanged(ptr unsafe.Pointer, message C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "messageChanged"); signal != nil {
+		signal.(func(string))(cGoUnpackString(message))
+	}
+
+}
+
+func (ptr *ApproveListingCtx) ConnectMessageChanged(f func(message string)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "messageChanged") {
+			C.ApproveListingCtx721036_ConnectMessageChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "messageChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "messageChanged", func(message string) {
+				signal.(func(string))(message)
+				f(message)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "messageChanged", f)
+		}
+	}
+}
+
+func (ptr *ApproveListingCtx) DisconnectMessageChanged() {
+	if ptr.Pointer() != nil {
+		C.ApproveListingCtx721036_DisconnectMessageChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "messageChanged")
+	}
+}
+
+func (ptr *ApproveListingCtx) MessageChanged(message string) {
+	if ptr.Pointer() != nil {
+		var messageC *C.char
+		if message != "" {
+			messageC = C.CString(message)
+			defer C.free(unsafe.Pointer(messageC))
+		}
+		C.ApproveListingCtx721036_MessageChanged(ptr.Pointer(), C.struct_Moc_PackedString{data: messageC, len: C.longlong(len(message))})
+	}
+}
+
+//export callbackApproveListingCtx721036_RawData
+func callbackApproveListingCtx721036_RawData(ptr unsafe.Pointer) C.struct_Moc_PackedString {
+	if signal := qt.GetSignal(ptr, "rawData"); signal != nil {
+		tempVal := signal.(func() string)()
+		return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+	}
+	tempVal := NewApproveListingCtxFromPointer(ptr).RawDataDefault()
+	return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+}
+
+func (ptr *ApproveListingCtx) ConnectRawData(f func() string) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "rawData"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "rawData", func() string {
+				signal.(func() string)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "rawData", f)
+		}
+	}
+}
+
+func (ptr *ApproveListingCtx) DisconnectRawData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "rawData")
+	}
+}
+
+func (ptr *ApproveListingCtx) RawData() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.ApproveListingCtx721036_RawData(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *ApproveListingCtx) RawDataDefault() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.ApproveListingCtx721036_RawDataDefault(ptr.Pointer()))
+	}
+	return ""
+}
+
+//export callbackApproveListingCtx721036_SetRawData
+func callbackApproveListingCtx721036_SetRawData(ptr unsafe.Pointer, rawData C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "setRawData"); signal != nil {
+		signal.(func(string))(cGoUnpackString(rawData))
+	} else {
+		NewApproveListingCtxFromPointer(ptr).SetRawDataDefault(cGoUnpackString(rawData))
+	}
+}
+
+func (ptr *ApproveListingCtx) ConnectSetRawData(f func(rawData string)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setRawData"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setRawData", func(rawData string) {
+				signal.(func(string))(rawData)
+				f(rawData)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setRawData", f)
+		}
+	}
+}
+
+func (ptr *ApproveListingCtx) DisconnectSetRawData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setRawData")
+	}
+}
+
+func (ptr *ApproveListingCtx) SetRawData(rawData string) {
+	if ptr.Pointer() != nil {
+		var rawDataC *C.char
+		if rawData != "" {
+			rawDataC = C.CString(rawData)
+			defer C.free(unsafe.Pointer(rawDataC))
+		}
+		C.ApproveListingCtx721036_SetRawData(ptr.Pointer(), C.struct_Moc_PackedString{data: rawDataC, len: C.longlong(len(rawData))})
+	}
+}
+
+func (ptr *ApproveListingCtx) SetRawDataDefault(rawData string) {
+	if ptr.Pointer() != nil {
+		var rawDataC *C.char
+		if rawData != "" {
+			rawDataC = C.CString(rawData)
+			defer C.free(unsafe.Pointer(rawDataC))
+		}
+		C.ApproveListingCtx721036_SetRawDataDefault(ptr.Pointer(), C.struct_Moc_PackedString{data: rawDataC, len: C.longlong(len(rawData))})
+	}
+}
+
+//export callbackApproveListingCtx721036_RawDataChanged
+func callbackApproveListingCtx721036_RawDataChanged(ptr unsafe.Pointer, rawData C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "rawDataChanged"); signal != nil {
+		signal.(func(string))(cGoUnpackString(rawData))
+	}
+
+}
+
+func (ptr *ApproveListingCtx) ConnectRawDataChanged(f func(rawData string)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "rawDataChanged") {
+			C.ApproveListingCtx721036_ConnectRawDataChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "rawDataChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "rawDataChanged", func(rawData string) {
+				signal.(func(string))(rawData)
+				f(rawData)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "rawDataChanged", f)
+		}
+	}
+}
+
+func (ptr *ApproveListingCtx) DisconnectRawDataChanged() {
+	if ptr.Pointer() != nil {
+		C.ApproveListingCtx721036_DisconnectRawDataChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "rawDataChanged")
+	}
+}
+
+func (ptr *ApproveListingCtx) RawDataChanged(rawData string) {
+	if ptr.Pointer() != nil {
+		var rawDataC *C.char
+		if rawData != "" {
+			rawDataC = C.CString(rawData)
+			defer C.free(unsafe.Pointer(rawDataC))
+		}
+		C.ApproveListingCtx721036_RawDataChanged(ptr.Pointer(), C.struct_Moc_PackedString{data: rawDataC, len: C.longlong(len(rawData))})
+	}
+}
+
+//export callbackApproveListingCtx721036_Hash
+func callbackApproveListingCtx721036_Hash(ptr unsafe.Pointer) C.struct_Moc_PackedString {
+	if signal := qt.GetSignal(ptr, "hash"); signal != nil {
+		tempVal := signal.(func() string)()
+		return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+	}
+	tempVal := NewApproveListingCtxFromPointer(ptr).HashDefault()
+	return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+}
+
+func (ptr *ApproveListingCtx) ConnectHash(f func() string) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "hash"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "hash", func() string {
+				signal.(func() string)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "hash", f)
+		}
+	}
+}
+
+func (ptr *ApproveListingCtx) DisconnectHash() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "hash")
+	}
+}
+
+func (ptr *ApproveListingCtx) Hash() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.ApproveListingCtx721036_Hash(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *ApproveListingCtx) HashDefault() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.ApproveListingCtx721036_HashDefault(ptr.Pointer()))
+	}
+	return ""
+}
+
+//export callbackApproveListingCtx721036_SetHash
+func callbackApproveListingCtx721036_SetHash(ptr unsafe.Pointer, hash C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "setHash"); signal != nil {
+		signal.(func(string))(cGoUnpackString(hash))
+	} else {
+		NewApproveListingCtxFromPointer(ptr).SetHashDefault(cGoUnpackString(hash))
+	}
+}
+
+func (ptr *ApproveListingCtx) ConnectSetHash(f func(hash string)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setHash"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setHash", func(hash string) {
+				signal.(func(string))(hash)
+				f(hash)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setHash", f)
+		}
+	}
+}
+
+func (ptr *ApproveListingCtx) DisconnectSetHash() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setHash")
+	}
+}
+
+func (ptr *ApproveListingCtx) SetHash(hash string) {
+	if ptr.Pointer() != nil {
+		var hashC *C.char
+		if hash != "" {
+			hashC = C.CString(hash)
+			defer C.free(unsafe.Pointer(hashC))
+		}
+		C.ApproveListingCtx721036_SetHash(ptr.Pointer(), C.struct_Moc_PackedString{data: hashC, len: C.longlong(len(hash))})
+	}
+}
+
+func (ptr *ApproveListingCtx) SetHashDefault(hash string) {
+	if ptr.Pointer() != nil {
+		var hashC *C.char
+		if hash != "" {
+			hashC = C.CString(hash)
+			defer C.free(unsafe.Pointer(hashC))
+		}
+		C.ApproveListingCtx721036_SetHashDefault(ptr.Pointer(), C.struct_Moc_PackedString{data: hashC, len: C.longlong(len(hash))})
+	}
+}
+
+//export callbackApproveListingCtx721036_HashChanged
+func callbackApproveListingCtx721036_HashChanged(ptr unsafe.Pointer, hash C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "hashChanged"); signal != nil {
+		signal.(func(string))(cGoUnpackString(hash))
+	}
+
+}
+
+func (ptr *ApproveListingCtx) ConnectHashChanged(f func(hash string)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "hashChanged") {
+			C.ApproveListingCtx721036_ConnectHashChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "hashChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "hashChanged", func(hash string) {
+				signal.(func(string))(hash)
+				f(hash)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "hashChanged", f)
+		}
+	}
+}
+
+func (ptr *ApproveListingCtx) DisconnectHashChanged() {
+	if ptr.Pointer() != nil {
+		C.ApproveListingCtx721036_DisconnectHashChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "hashChanged")
+	}
+}
+
+func (ptr *ApproveListingCtx) HashChanged(hash string) {
+	if ptr.Pointer() != nil {
+		var hashC *C.char
+		if hash != "" {
+			hashC = C.CString(hash)
+			defer C.free(unsafe.Pointer(hashC))
+		}
+		C.ApproveListingCtx721036_HashChanged(ptr.Pointer(), C.struct_Moc_PackedString{data: hashC, len: C.longlong(len(hash))})
+	}
+}
+
+func ApproveListingCtx_QRegisterMetaType() int {
+	return int(int32(C.ApproveListingCtx721036_ApproveListingCtx721036_QRegisterMetaType()))
+}
+
+func (ptr *ApproveListingCtx) QRegisterMetaType() int {
+	return int(int32(C.ApproveListingCtx721036_ApproveListingCtx721036_QRegisterMetaType()))
+}
+
+func ApproveListingCtx_QRegisterMetaType2(typeName string) int {
 	var typeNameC *C.char
 	if typeName != "" {
 		typeNameC = C.CString(typeName)
 		defer C.free(unsafe.Pointer(typeNameC))
 	}
-	return int(int32(C.CustomListModel721036_CustomListModel721036_QRegisterMetaType2(typeNameC)))
+	return int(int32(C.ApproveListingCtx721036_ApproveListingCtx721036_QRegisterMetaType2(typeNameC)))
 }
 
-func (ptr *CustomListModel) QRegisterMetaType2(typeName string) int {
+func (ptr *ApproveListingCtx) QRegisterMetaType2(typeName string) int {
 	var typeNameC *C.char
 	if typeName != "" {
 		typeNameC = C.CString(typeName)
 		defer C.free(unsafe.Pointer(typeNameC))
 	}
-	return int(int32(C.CustomListModel721036_CustomListModel721036_QRegisterMetaType2(typeNameC)))
+	return int(int32(C.ApproveListingCtx721036_ApproveListingCtx721036_QRegisterMetaType2(typeNameC)))
 }
 
-func CustomListModel_QmlRegisterType() int {
-	return int(int32(C.CustomListModel721036_CustomListModel721036_QmlRegisterType()))
+func ApproveListingCtx_QmlRegisterType() int {
+	return int(int32(C.ApproveListingCtx721036_ApproveListingCtx721036_QmlRegisterType()))
 }
 
-func (ptr *CustomListModel) QmlRegisterType() int {
-	return int(int32(C.CustomListModel721036_CustomListModel721036_QmlRegisterType()))
+func (ptr *ApproveListingCtx) QmlRegisterType() int {
+	return int(int32(C.ApproveListingCtx721036_ApproveListingCtx721036_QmlRegisterType()))
 }
 
-func CustomListModel_QmlRegisterType2(uri string, versionMajor int, versionMinor int, qmlName string) int {
+func ApproveListingCtx_QmlRegisterType2(uri string, versionMajor int, versionMinor int, qmlName string) int {
 	var uriC *C.char
 	if uri != "" {
 		uriC = C.CString(uri)
@@ -9391,10 +12353,10 @@ func CustomListModel_QmlRegisterType2(uri string, versionMajor int, versionMinor
 		qmlNameC = C.CString(qmlName)
 		defer C.free(unsafe.Pointer(qmlNameC))
 	}
-	return int(int32(C.CustomListModel721036_CustomListModel721036_QmlRegisterType2(uriC, C.int(int32(versionMajor)), C.int(int32(versionMinor)), qmlNameC)))
+	return int(int32(C.ApproveListingCtx721036_ApproveListingCtx721036_QmlRegisterType2(uriC, C.int(int32(versionMajor)), C.int(int32(versionMinor)), qmlNameC)))
 }
 
-func (ptr *CustomListModel) QmlRegisterType2(uri string, versionMajor int, versionMinor int, qmlName string) int {
+func (ptr *ApproveListingCtx) QmlRegisterType2(uri string, versionMajor int, versionMinor int, qmlName string) int {
 	var uriC *C.char
 	if uri != "" {
 		uriC = C.CString(uri)
@@ -9405,365 +12367,31 @@ func (ptr *CustomListModel) QmlRegisterType2(uri string, versionMajor int, versi
 		qmlNameC = C.CString(qmlName)
 		defer C.free(unsafe.Pointer(qmlNameC))
 	}
-	return int(int32(C.CustomListModel721036_CustomListModel721036_QmlRegisterType2(uriC, C.int(int32(versionMajor)), C.int(int32(versionMinor)), qmlNameC)))
+	return int(int32(C.ApproveListingCtx721036_ApproveListingCtx721036_QmlRegisterType2(uriC, C.int(int32(versionMajor)), C.int(int32(versionMinor)), qmlNameC)))
 }
 
-func (ptr *CustomListModel) ____setItemData_roles_keyList_atList(i int) int {
+func (ptr *ApproveListingCtx) __dynamicPropertyNames_atList(i int) *std_core.QByteArray {
 	if ptr.Pointer() != nil {
-		return int(int32(C.CustomListModel721036_____setItemData_roles_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
-}
-
-func (ptr *CustomListModel) ____setItemData_roles_keyList_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.CustomListModel721036_____setItemData_roles_keyList_setList(ptr.Pointer(), C.int(int32(i)))
-	}
-}
-
-func (ptr *CustomListModel) ____setItemData_roles_keyList_newList() unsafe.Pointer {
-	return C.CustomListModel721036_____setItemData_roles_keyList_newList(ptr.Pointer())
-}
-
-func (ptr *CustomListModel) ____roleNames_keyList_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.CustomListModel721036_____roleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
-}
-
-func (ptr *CustomListModel) ____roleNames_keyList_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.CustomListModel721036_____roleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
-	}
-}
-
-func (ptr *CustomListModel) ____roleNames_keyList_newList() unsafe.Pointer {
-	return C.CustomListModel721036_____roleNames_keyList_newList(ptr.Pointer())
-}
-
-func (ptr *CustomListModel) ____itemData_keyList_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.CustomListModel721036_____itemData_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
-}
-
-func (ptr *CustomListModel) ____itemData_keyList_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.CustomListModel721036_____itemData_keyList_setList(ptr.Pointer(), C.int(int32(i)))
-	}
-}
-
-func (ptr *CustomListModel) ____itemData_keyList_newList() unsafe.Pointer {
-	return C.CustomListModel721036_____itemData_keyList_newList(ptr.Pointer())
-}
-
-func (ptr *CustomListModel) __setItemData_roles_atList(v int, i int) *std_core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQVariantFromPointer(C.CustomListModel721036___setItemData_roles_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*std_core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *CustomListModel) __setItemData_roles_setList(key int, i std_core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		C.CustomListModel721036___setItemData_roles_setList(ptr.Pointer(), C.int(int32(key)), std_core.PointerFromQVariant(i))
-	}
-}
-
-func (ptr *CustomListModel) __setItemData_roles_newList() unsafe.Pointer {
-	return C.CustomListModel721036___setItemData_roles_newList(ptr.Pointer())
-}
-
-func (ptr *CustomListModel) __setItemData_roles_keyList() []int {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_Moc_PackedList) []int {
-			out := make([]int, int(l.len))
-			tmpList := NewCustomListModelFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____setItemData_roles_keyList_atList(i)
-			}
-			return out
-		}(C.CustomListModel721036___setItemData_roles_keyList(ptr.Pointer()))
-	}
-	return make([]int, 0)
-}
-
-func (ptr *CustomListModel) __changePersistentIndexList_from_atList(i int) *std_core.QModelIndex {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQModelIndexFromPointer(C.CustomListModel721036___changePersistentIndexList_from_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *CustomListModel) __changePersistentIndexList_from_setList(i std_core.QModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.CustomListModel721036___changePersistentIndexList_from_setList(ptr.Pointer(), std_core.PointerFromQModelIndex(i))
-	}
-}
-
-func (ptr *CustomListModel) __changePersistentIndexList_from_newList() unsafe.Pointer {
-	return C.CustomListModel721036___changePersistentIndexList_from_newList(ptr.Pointer())
-}
-
-func (ptr *CustomListModel) __changePersistentIndexList_to_atList(i int) *std_core.QModelIndex {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQModelIndexFromPointer(C.CustomListModel721036___changePersistentIndexList_to_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *CustomListModel) __changePersistentIndexList_to_setList(i std_core.QModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.CustomListModel721036___changePersistentIndexList_to_setList(ptr.Pointer(), std_core.PointerFromQModelIndex(i))
-	}
-}
-
-func (ptr *CustomListModel) __changePersistentIndexList_to_newList() unsafe.Pointer {
-	return C.CustomListModel721036___changePersistentIndexList_to_newList(ptr.Pointer())
-}
-
-func (ptr *CustomListModel) __dataChanged_roles_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.CustomListModel721036___dataChanged_roles_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
-}
-
-func (ptr *CustomListModel) __dataChanged_roles_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.CustomListModel721036___dataChanged_roles_setList(ptr.Pointer(), C.int(int32(i)))
-	}
-}
-
-func (ptr *CustomListModel) __dataChanged_roles_newList() unsafe.Pointer {
-	return C.CustomListModel721036___dataChanged_roles_newList(ptr.Pointer())
-}
-
-func (ptr *CustomListModel) __layoutAboutToBeChanged_parents_atList(i int) *std_core.QPersistentModelIndex {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQPersistentModelIndexFromPointer(C.CustomListModel721036___layoutAboutToBeChanged_parents_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*std_core.QPersistentModelIndex).DestroyQPersistentModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *CustomListModel) __layoutAboutToBeChanged_parents_setList(i std_core.QPersistentModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.CustomListModel721036___layoutAboutToBeChanged_parents_setList(ptr.Pointer(), std_core.PointerFromQPersistentModelIndex(i))
-	}
-}
-
-func (ptr *CustomListModel) __layoutAboutToBeChanged_parents_newList() unsafe.Pointer {
-	return C.CustomListModel721036___layoutAboutToBeChanged_parents_newList(ptr.Pointer())
-}
-
-func (ptr *CustomListModel) __layoutChanged_parents_atList(i int) *std_core.QPersistentModelIndex {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQPersistentModelIndexFromPointer(C.CustomListModel721036___layoutChanged_parents_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*std_core.QPersistentModelIndex).DestroyQPersistentModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *CustomListModel) __layoutChanged_parents_setList(i std_core.QPersistentModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.CustomListModel721036___layoutChanged_parents_setList(ptr.Pointer(), std_core.PointerFromQPersistentModelIndex(i))
-	}
-}
-
-func (ptr *CustomListModel) __layoutChanged_parents_newList() unsafe.Pointer {
-	return C.CustomListModel721036___layoutChanged_parents_newList(ptr.Pointer())
-}
-
-func (ptr *CustomListModel) __roleNames_atList(v int, i int) *std_core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQByteArrayFromPointer(C.CustomListModel721036___roleNames_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
+		tmpValue := std_core.NewQByteArrayFromPointer(C.ApproveListingCtx721036___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
 		runtime.SetFinalizer(tmpValue, (*std_core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *CustomListModel) __roleNames_setList(key int, i std_core.QByteArray_ITF) {
+func (ptr *ApproveListingCtx) __dynamicPropertyNames_setList(i std_core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		C.CustomListModel721036___roleNames_setList(ptr.Pointer(), C.int(int32(key)), std_core.PointerFromQByteArray(i))
+		C.ApproveListingCtx721036___dynamicPropertyNames_setList(ptr.Pointer(), std_core.PointerFromQByteArray(i))
 	}
 }
 
-func (ptr *CustomListModel) __roleNames_newList() unsafe.Pointer {
-	return C.CustomListModel721036___roleNames_newList(ptr.Pointer())
+func (ptr *ApproveListingCtx) __dynamicPropertyNames_newList() unsafe.Pointer {
+	return C.ApproveListingCtx721036___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *CustomListModel) __roleNames_keyList() []int {
+func (ptr *ApproveListingCtx) __findChildren_atList2(i int) *std_core.QObject {
 	if ptr.Pointer() != nil {
-		return func(l C.struct_Moc_PackedList) []int {
-			out := make([]int, int(l.len))
-			tmpList := NewCustomListModelFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____roleNames_keyList_atList(i)
-			}
-			return out
-		}(C.CustomListModel721036___roleNames_keyList(ptr.Pointer()))
-	}
-	return make([]int, 0)
-}
-
-func (ptr *CustomListModel) __itemData_atList(v int, i int) *std_core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQVariantFromPointer(C.CustomListModel721036___itemData_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*std_core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *CustomListModel) __itemData_setList(key int, i std_core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		C.CustomListModel721036___itemData_setList(ptr.Pointer(), C.int(int32(key)), std_core.PointerFromQVariant(i))
-	}
-}
-
-func (ptr *CustomListModel) __itemData_newList() unsafe.Pointer {
-	return C.CustomListModel721036___itemData_newList(ptr.Pointer())
-}
-
-func (ptr *CustomListModel) __itemData_keyList() []int {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_Moc_PackedList) []int {
-			out := make([]int, int(l.len))
-			tmpList := NewCustomListModelFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____itemData_keyList_atList(i)
-			}
-			return out
-		}(C.CustomListModel721036___itemData_keyList(ptr.Pointer()))
-	}
-	return make([]int, 0)
-}
-
-func (ptr *CustomListModel) __mimeData_indexes_atList(i int) *std_core.QModelIndex {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQModelIndexFromPointer(C.CustomListModel721036___mimeData_indexes_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *CustomListModel) __mimeData_indexes_setList(i std_core.QModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.CustomListModel721036___mimeData_indexes_setList(ptr.Pointer(), std_core.PointerFromQModelIndex(i))
-	}
-}
-
-func (ptr *CustomListModel) __mimeData_indexes_newList() unsafe.Pointer {
-	return C.CustomListModel721036___mimeData_indexes_newList(ptr.Pointer())
-}
-
-func (ptr *CustomListModel) __match_atList(i int) *std_core.QModelIndex {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQModelIndexFromPointer(C.CustomListModel721036___match_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *CustomListModel) __match_setList(i std_core.QModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.CustomListModel721036___match_setList(ptr.Pointer(), std_core.PointerFromQModelIndex(i))
-	}
-}
-
-func (ptr *CustomListModel) __match_newList() unsafe.Pointer {
-	return C.CustomListModel721036___match_newList(ptr.Pointer())
-}
-
-func (ptr *CustomListModel) __persistentIndexList_atList(i int) *std_core.QModelIndex {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQModelIndexFromPointer(C.CustomListModel721036___persistentIndexList_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *CustomListModel) __persistentIndexList_setList(i std_core.QModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.CustomListModel721036___persistentIndexList_setList(ptr.Pointer(), std_core.PointerFromQModelIndex(i))
-	}
-}
-
-func (ptr *CustomListModel) __persistentIndexList_newList() unsafe.Pointer {
-	return C.CustomListModel721036___persistentIndexList_newList(ptr.Pointer())
-}
-
-func (ptr *CustomListModel) ____doSetRoleNames_roleNames_keyList_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.CustomListModel721036_____doSetRoleNames_roleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
-}
-
-func (ptr *CustomListModel) ____doSetRoleNames_roleNames_keyList_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.CustomListModel721036_____doSetRoleNames_roleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
-	}
-}
-
-func (ptr *CustomListModel) ____doSetRoleNames_roleNames_keyList_newList() unsafe.Pointer {
-	return C.CustomListModel721036_____doSetRoleNames_roleNames_keyList_newList(ptr.Pointer())
-}
-
-func (ptr *CustomListModel) ____setRoleNames_roleNames_keyList_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.CustomListModel721036_____setRoleNames_roleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
-}
-
-func (ptr *CustomListModel) ____setRoleNames_roleNames_keyList_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.CustomListModel721036_____setRoleNames_roleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
-	}
-}
-
-func (ptr *CustomListModel) ____setRoleNames_roleNames_keyList_newList() unsafe.Pointer {
-	return C.CustomListModel721036_____setRoleNames_roleNames_keyList_newList(ptr.Pointer())
-}
-
-func (ptr *CustomListModel) __dynamicPropertyNames_atList(i int) *std_core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQByteArrayFromPointer(C.CustomListModel721036___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*std_core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *CustomListModel) __dynamicPropertyNames_setList(i std_core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.CustomListModel721036___dynamicPropertyNames_setList(ptr.Pointer(), std_core.PointerFromQByteArray(i))
-	}
-}
-
-func (ptr *CustomListModel) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.CustomListModel721036___dynamicPropertyNames_newList(ptr.Pointer())
-}
-
-func (ptr *CustomListModel) __findChildren_atList2(i int) *std_core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQObjectFromPointer(C.CustomListModel721036___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := std_core.NewQObjectFromPointer(C.ApproveListingCtx721036___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -9772,19 +12400,19 @@ func (ptr *CustomListModel) __findChildren_atList2(i int) *std_core.QObject {
 	return nil
 }
 
-func (ptr *CustomListModel) __findChildren_setList2(i std_core.QObject_ITF) {
+func (ptr *ApproveListingCtx) __findChildren_setList2(i std_core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.CustomListModel721036___findChildren_setList2(ptr.Pointer(), std_core.PointerFromQObject(i))
+		C.ApproveListingCtx721036___findChildren_setList2(ptr.Pointer(), std_core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *CustomListModel) __findChildren_newList2() unsafe.Pointer {
-	return C.CustomListModel721036___findChildren_newList2(ptr.Pointer())
+func (ptr *ApproveListingCtx) __findChildren_newList2() unsafe.Pointer {
+	return C.ApproveListingCtx721036___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *CustomListModel) __findChildren_atList3(i int) *std_core.QObject {
+func (ptr *ApproveListingCtx) __findChildren_atList3(i int) *std_core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQObjectFromPointer(C.CustomListModel721036___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := std_core.NewQObjectFromPointer(C.ApproveListingCtx721036___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -9793,19 +12421,19 @@ func (ptr *CustomListModel) __findChildren_atList3(i int) *std_core.QObject {
 	return nil
 }
 
-func (ptr *CustomListModel) __findChildren_setList3(i std_core.QObject_ITF) {
+func (ptr *ApproveListingCtx) __findChildren_setList3(i std_core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.CustomListModel721036___findChildren_setList3(ptr.Pointer(), std_core.PointerFromQObject(i))
+		C.ApproveListingCtx721036___findChildren_setList3(ptr.Pointer(), std_core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *CustomListModel) __findChildren_newList3() unsafe.Pointer {
-	return C.CustomListModel721036___findChildren_newList3(ptr.Pointer())
+func (ptr *ApproveListingCtx) __findChildren_newList3() unsafe.Pointer {
+	return C.ApproveListingCtx721036___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *CustomListModel) __findChildren_atList(i int) *std_core.QObject {
+func (ptr *ApproveListingCtx) __findChildren_atList(i int) *std_core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQObjectFromPointer(C.CustomListModel721036___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := std_core.NewQObjectFromPointer(C.ApproveListingCtx721036___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -9814,19 +12442,19 @@ func (ptr *CustomListModel) __findChildren_atList(i int) *std_core.QObject {
 	return nil
 }
 
-func (ptr *CustomListModel) __findChildren_setList(i std_core.QObject_ITF) {
+func (ptr *ApproveListingCtx) __findChildren_setList(i std_core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.CustomListModel721036___findChildren_setList(ptr.Pointer(), std_core.PointerFromQObject(i))
+		C.ApproveListingCtx721036___findChildren_setList(ptr.Pointer(), std_core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *CustomListModel) __findChildren_newList() unsafe.Pointer {
-	return C.CustomListModel721036___findChildren_newList(ptr.Pointer())
+func (ptr *ApproveListingCtx) __findChildren_newList() unsafe.Pointer {
+	return C.ApproveListingCtx721036___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *CustomListModel) __children_atList(i int) *std_core.QObject {
+func (ptr *ApproveListingCtx) __children_atList(i int) *std_core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQObjectFromPointer(C.CustomListModel721036___children_atList(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := std_core.NewQObjectFromPointer(C.ApproveListingCtx721036___children_atList(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -9835,1264 +12463,1136 @@ func (ptr *CustomListModel) __children_atList(i int) *std_core.QObject {
 	return nil
 }
 
-func (ptr *CustomListModel) __children_setList(i std_core.QObject_ITF) {
+func (ptr *ApproveListingCtx) __children_setList(i std_core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.CustomListModel721036___children_setList(ptr.Pointer(), std_core.PointerFromQObject(i))
+		C.ApproveListingCtx721036___children_setList(ptr.Pointer(), std_core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *CustomListModel) __children_newList() unsafe.Pointer {
-	return C.CustomListModel721036___children_newList(ptr.Pointer())
+func (ptr *ApproveListingCtx) __children_newList() unsafe.Pointer {
+	return C.ApproveListingCtx721036___children_newList(ptr.Pointer())
 }
 
-func NewCustomListModel(parent std_core.QObject_ITF) *CustomListModel {
-	tmpValue := NewCustomListModelFromPointer(C.CustomListModel721036_NewCustomListModel(std_core.PointerFromQObject(parent)))
+func NewApproveListingCtx(parent std_core.QObject_ITF) *ApproveListingCtx {
+	tmpValue := NewApproveListingCtxFromPointer(C.ApproveListingCtx721036_NewApproveListingCtx(std_core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
 
-//export callbackCustomListModel721036_DestroyCustomListModel
-func callbackCustomListModel721036_DestroyCustomListModel(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~CustomListModel"); signal != nil {
+//export callbackApproveListingCtx721036_DestroyApproveListingCtx
+func callbackApproveListingCtx721036_DestroyApproveListingCtx(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "~ApproveListingCtx"); signal != nil {
 		signal.(func())()
 	} else {
-		NewCustomListModelFromPointer(ptr).DestroyCustomListModelDefault()
+		NewApproveListingCtxFromPointer(ptr).DestroyApproveListingCtxDefault()
 	}
 }
 
-func (ptr *CustomListModel) ConnectDestroyCustomListModel(f func()) {
+func (ptr *ApproveListingCtx) ConnectDestroyApproveListingCtx(f func()) {
 	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~CustomListModel"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "~CustomListModel", func() {
+		if signal := qt.LendSignal(ptr.Pointer(), "~ApproveListingCtx"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "~ApproveListingCtx", func() {
 				signal.(func())()
 				f()
 			})
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~CustomListModel", f)
+			qt.ConnectSignal(ptr.Pointer(), "~ApproveListingCtx", f)
 		}
 	}
 }
 
-func (ptr *CustomListModel) DisconnectDestroyCustomListModel() {
+func (ptr *ApproveListingCtx) DisconnectDestroyApproveListingCtx() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~CustomListModel")
+		qt.DisconnectSignal(ptr.Pointer(), "~ApproveListingCtx")
 	}
 }
 
-func (ptr *CustomListModel) DestroyCustomListModel() {
+func (ptr *ApproveListingCtx) DestroyApproveListingCtx() {
 	if ptr.Pointer() != nil {
-		C.CustomListModel721036_DestroyCustomListModel(ptr.Pointer())
+		C.ApproveListingCtx721036_DestroyApproveListingCtx(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
-func (ptr *CustomListModel) DestroyCustomListModelDefault() {
+func (ptr *ApproveListingCtx) DestroyApproveListingCtxDefault() {
 	if ptr.Pointer() != nil {
-		C.CustomListModel721036_DestroyCustomListModelDefault(ptr.Pointer())
+		C.ApproveListingCtx721036_DestroyApproveListingCtxDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
-//export callbackCustomListModel721036_DropMimeData
-func callbackCustomListModel721036_DropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "dropMimeData"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QMimeData, std_core.Qt__DropAction, int, int, *std_core.QModelIndex) bool)(std_core.NewQMimeDataFromPointer(data), std_core.Qt__DropAction(action), int(int32(row)), int(int32(column)), std_core.NewQModelIndexFromPointer(parent)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewCustomListModelFromPointer(ptr).DropMimeDataDefault(std_core.NewQMimeDataFromPointer(data), std_core.Qt__DropAction(action), int(int32(row)), int(int32(column)), std_core.NewQModelIndexFromPointer(parent)))))
-}
-
-func (ptr *CustomListModel) DropMimeDataDefault(data std_core.QMimeData_ITF, action std_core.Qt__DropAction, row int, column int, parent std_core.QModelIndex_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.CustomListModel721036_DropMimeDataDefault(ptr.Pointer(), std_core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), std_core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-//export callbackCustomListModel721036_Index
-func callbackCustomListModel721036_Index(ptr unsafe.Pointer, row C.int, column C.int, parent unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "index"); signal != nil {
-		return std_core.PointerFromQModelIndex(signal.(func(int, int, *std_core.QModelIndex) *std_core.QModelIndex)(int(int32(row)), int(int32(column)), std_core.NewQModelIndexFromPointer(parent)))
-	}
-
-	return std_core.PointerFromQModelIndex(NewCustomListModelFromPointer(ptr).IndexDefault(int(int32(row)), int(int32(column)), std_core.NewQModelIndexFromPointer(parent)))
-}
-
-func (ptr *CustomListModel) IndexDefault(row int, column int, parent std_core.QModelIndex_ITF) *std_core.QModelIndex {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQModelIndexFromPointer(C.CustomListModel721036_IndexDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), std_core.PointerFromQModelIndex(parent)))
-		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackCustomListModel721036_Sibling
-func callbackCustomListModel721036_Sibling(ptr unsafe.Pointer, row C.int, column C.int, idx unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "sibling"); signal != nil {
-		return std_core.PointerFromQModelIndex(signal.(func(int, int, *std_core.QModelIndex) *std_core.QModelIndex)(int(int32(row)), int(int32(column)), std_core.NewQModelIndexFromPointer(idx)))
-	}
-
-	return std_core.PointerFromQModelIndex(NewCustomListModelFromPointer(ptr).SiblingDefault(int(int32(row)), int(int32(column)), std_core.NewQModelIndexFromPointer(idx)))
-}
-
-func (ptr *CustomListModel) SiblingDefault(row int, column int, idx std_core.QModelIndex_ITF) *std_core.QModelIndex {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQModelIndexFromPointer(C.CustomListModel721036_SiblingDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), std_core.PointerFromQModelIndex(idx)))
-		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackCustomListModel721036_Flags
-func callbackCustomListModel721036_Flags(ptr unsafe.Pointer, index unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(ptr, "flags"); signal != nil {
-		return C.longlong(signal.(func(*std_core.QModelIndex) std_core.Qt__ItemFlag)(std_core.NewQModelIndexFromPointer(index)))
-	}
-
-	return C.longlong(NewCustomListModelFromPointer(ptr).FlagsDefault(std_core.NewQModelIndexFromPointer(index)))
-}
-
-func (ptr *CustomListModel) FlagsDefault(index std_core.QModelIndex_ITF) std_core.Qt__ItemFlag {
-	if ptr.Pointer() != nil {
-		return std_core.Qt__ItemFlag(C.CustomListModel721036_FlagsDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(index)))
-	}
-	return 0
-}
-
-//export callbackCustomListModel721036_InsertColumns
-func callbackCustomListModel721036_InsertColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "insertColumns"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *std_core.QModelIndex) bool)(int(int32(column)), int(int32(count)), std_core.NewQModelIndexFromPointer(parent)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewCustomListModelFromPointer(ptr).InsertColumnsDefault(int(int32(column)), int(int32(count)), std_core.NewQModelIndexFromPointer(parent)))))
-}
-
-func (ptr *CustomListModel) InsertColumnsDefault(column int, count int, parent std_core.QModelIndex_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.CustomListModel721036_InsertColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), std_core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-//export callbackCustomListModel721036_InsertRows
-func callbackCustomListModel721036_InsertRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "insertRows"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *std_core.QModelIndex) bool)(int(int32(row)), int(int32(count)), std_core.NewQModelIndexFromPointer(parent)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewCustomListModelFromPointer(ptr).InsertRowsDefault(int(int32(row)), int(int32(count)), std_core.NewQModelIndexFromPointer(parent)))))
-}
-
-func (ptr *CustomListModel) InsertRowsDefault(row int, count int, parent std_core.QModelIndex_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.CustomListModel721036_InsertRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), std_core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-//export callbackCustomListModel721036_MoveColumns
-func callbackCustomListModel721036_MoveColumns(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceColumn C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
-	if signal := qt.GetSignal(ptr, "moveColumns"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QModelIndex, int, int, *std_core.QModelIndex, int) bool)(std_core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceColumn)), int(int32(count)), std_core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewCustomListModelFromPointer(ptr).MoveColumnsDefault(std_core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceColumn)), int(int32(count)), std_core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
-}
-
-func (ptr *CustomListModel) MoveColumnsDefault(sourceParent std_core.QModelIndex_ITF, sourceColumn int, count int, destinationParent std_core.QModelIndex_ITF, destinationChild int) bool {
-	if ptr.Pointer() != nil {
-		return C.CustomListModel721036_MoveColumnsDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceColumn)), C.int(int32(count)), std_core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
-	}
-	return false
-}
-
-//export callbackCustomListModel721036_MoveRows
-func callbackCustomListModel721036_MoveRows(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceRow C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
-	if signal := qt.GetSignal(ptr, "moveRows"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QModelIndex, int, int, *std_core.QModelIndex, int) bool)(std_core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceRow)), int(int32(count)), std_core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewCustomListModelFromPointer(ptr).MoveRowsDefault(std_core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceRow)), int(int32(count)), std_core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
-}
-
-func (ptr *CustomListModel) MoveRowsDefault(sourceParent std_core.QModelIndex_ITF, sourceRow int, count int, destinationParent std_core.QModelIndex_ITF, destinationChild int) bool {
-	if ptr.Pointer() != nil {
-		return C.CustomListModel721036_MoveRowsDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceRow)), C.int(int32(count)), std_core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
-	}
-	return false
-}
-
-//export callbackCustomListModel721036_RemoveColumns
-func callbackCustomListModel721036_RemoveColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "removeColumns"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *std_core.QModelIndex) bool)(int(int32(column)), int(int32(count)), std_core.NewQModelIndexFromPointer(parent)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewCustomListModelFromPointer(ptr).RemoveColumnsDefault(int(int32(column)), int(int32(count)), std_core.NewQModelIndexFromPointer(parent)))))
-}
-
-func (ptr *CustomListModel) RemoveColumnsDefault(column int, count int, parent std_core.QModelIndex_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.CustomListModel721036_RemoveColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), std_core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-//export callbackCustomListModel721036_RemoveRows
-func callbackCustomListModel721036_RemoveRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "removeRows"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *std_core.QModelIndex) bool)(int(int32(row)), int(int32(count)), std_core.NewQModelIndexFromPointer(parent)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewCustomListModelFromPointer(ptr).RemoveRowsDefault(int(int32(row)), int(int32(count)), std_core.NewQModelIndexFromPointer(parent)))))
-}
-
-func (ptr *CustomListModel) RemoveRowsDefault(row int, count int, parent std_core.QModelIndex_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.CustomListModel721036_RemoveRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), std_core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-//export callbackCustomListModel721036_SetData
-func callbackCustomListModel721036_SetData(ptr unsafe.Pointer, index unsafe.Pointer, value unsafe.Pointer, role C.int) C.char {
-	if signal := qt.GetSignal(ptr, "setData"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QModelIndex, *std_core.QVariant, int) bool)(std_core.NewQModelIndexFromPointer(index), std_core.NewQVariantFromPointer(value), int(int32(role))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewCustomListModelFromPointer(ptr).SetDataDefault(std_core.NewQModelIndexFromPointer(index), std_core.NewQVariantFromPointer(value), int(int32(role))))))
-}
-
-func (ptr *CustomListModel) SetDataDefault(index std_core.QModelIndex_ITF, value std_core.QVariant_ITF, role int) bool {
-	if ptr.Pointer() != nil {
-		return C.CustomListModel721036_SetDataDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(index), std_core.PointerFromQVariant(value), C.int(int32(role))) != 0
-	}
-	return false
-}
-
-//export callbackCustomListModel721036_SetHeaderData
-func callbackCustomListModel721036_SetHeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, value unsafe.Pointer, role C.int) C.char {
-	if signal := qt.GetSignal(ptr, "setHeaderData"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(int, std_core.Qt__Orientation, *std_core.QVariant, int) bool)(int(int32(section)), std_core.Qt__Orientation(orientation), std_core.NewQVariantFromPointer(value), int(int32(role))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewCustomListModelFromPointer(ptr).SetHeaderDataDefault(int(int32(section)), std_core.Qt__Orientation(orientation), std_core.NewQVariantFromPointer(value), int(int32(role))))))
-}
-
-func (ptr *CustomListModel) SetHeaderDataDefault(section int, orientation std_core.Qt__Orientation, value std_core.QVariant_ITF, role int) bool {
-	if ptr.Pointer() != nil {
-		return C.CustomListModel721036_SetHeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), std_core.PointerFromQVariant(value), C.int(int32(role))) != 0
-	}
-	return false
-}
-
-//export callbackCustomListModel721036_SetItemData
-func callbackCustomListModel721036_SetItemData(ptr unsafe.Pointer, index unsafe.Pointer, roles C.struct_Moc_PackedList) C.char {
-	if signal := qt.GetSignal(ptr, "setItemData"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QModelIndex, map[int]*std_core.QVariant) bool)(std_core.NewQModelIndexFromPointer(index), func(l C.struct_Moc_PackedList) map[int]*std_core.QVariant {
-			out := make(map[int]*std_core.QVariant, int(l.len))
-			tmpList := NewCustomListModelFromPointer(l.data)
-			for i, v := range tmpList.__setItemData_roles_keyList() {
-				out[v] = tmpList.__setItemData_roles_atList(v, i)
-			}
-			return out
-		}(roles)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewCustomListModelFromPointer(ptr).SetItemDataDefault(std_core.NewQModelIndexFromPointer(index), func(l C.struct_Moc_PackedList) map[int]*std_core.QVariant {
-		out := make(map[int]*std_core.QVariant, int(l.len))
-		tmpList := NewCustomListModelFromPointer(l.data)
-		for i, v := range tmpList.__setItemData_roles_keyList() {
-			out[v] = tmpList.__setItemData_roles_atList(v, i)
-		}
-		return out
-	}(roles)))))
-}
-
-func (ptr *CustomListModel) SetItemDataDefault(index std_core.QModelIndex_ITF, roles map[int]*std_core.QVariant) bool {
-	if ptr.Pointer() != nil {
-		return C.CustomListModel721036_SetItemDataDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(index), func() unsafe.Pointer {
-			tmpList := NewCustomListModelFromPointer(NewCustomListModelFromPointer(nil).__setItemData_roles_newList())
-			for k, v := range roles {
-				tmpList.__setItemData_roles_setList(k, v)
-			}
-			return tmpList.Pointer()
-		}()) != 0
-	}
-	return false
-}
-
-//export callbackCustomListModel721036_Submit
-func callbackCustomListModel721036_Submit(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "submit"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewCustomListModelFromPointer(ptr).SubmitDefault())))
-}
-
-func (ptr *CustomListModel) SubmitDefault() bool {
-	if ptr.Pointer() != nil {
-		return C.CustomListModel721036_SubmitDefault(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-//export callbackCustomListModel721036_ColumnsAboutToBeInserted
-func callbackCustomListModel721036_ColumnsAboutToBeInserted(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
-	if signal := qt.GetSignal(ptr, "columnsAboutToBeInserted"); signal != nil {
-		signal.(func(*std_core.QModelIndex, int, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
-	}
-
-}
-
-//export callbackCustomListModel721036_ColumnsAboutToBeMoved
-func callbackCustomListModel721036_ColumnsAboutToBeMoved(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceStart C.int, sourceEnd C.int, destinationParent unsafe.Pointer, destinationColumn C.int) {
-	if signal := qt.GetSignal(ptr, "columnsAboutToBeMoved"); signal != nil {
-		signal.(func(*std_core.QModelIndex, int, int, *std_core.QModelIndex, int))(std_core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceStart)), int(int32(sourceEnd)), std_core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationColumn)))
-	}
-
-}
-
-//export callbackCustomListModel721036_ColumnsAboutToBeRemoved
-func callbackCustomListModel721036_ColumnsAboutToBeRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
-	if signal := qt.GetSignal(ptr, "columnsAboutToBeRemoved"); signal != nil {
-		signal.(func(*std_core.QModelIndex, int, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
-	}
-
-}
-
-//export callbackCustomListModel721036_ColumnsInserted
-func callbackCustomListModel721036_ColumnsInserted(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
-	if signal := qt.GetSignal(ptr, "columnsInserted"); signal != nil {
-		signal.(func(*std_core.QModelIndex, int, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
-	}
-
-}
-
-//export callbackCustomListModel721036_ColumnsMoved
-func callbackCustomListModel721036_ColumnsMoved(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int, destination unsafe.Pointer, column C.int) {
-	if signal := qt.GetSignal(ptr, "columnsMoved"); signal != nil {
-		signal.(func(*std_core.QModelIndex, int, int, *std_core.QModelIndex, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)), std_core.NewQModelIndexFromPointer(destination), int(int32(column)))
-	}
-
-}
-
-//export callbackCustomListModel721036_ColumnsRemoved
-func callbackCustomListModel721036_ColumnsRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
-	if signal := qt.GetSignal(ptr, "columnsRemoved"); signal != nil {
-		signal.(func(*std_core.QModelIndex, int, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
-	}
-
-}
-
-//export callbackCustomListModel721036_DataChanged
-func callbackCustomListModel721036_DataChanged(ptr unsafe.Pointer, topLeft unsafe.Pointer, bottomRight unsafe.Pointer, roles C.struct_Moc_PackedList) {
-	if signal := qt.GetSignal(ptr, "dataChanged"); signal != nil {
-		signal.(func(*std_core.QModelIndex, *std_core.QModelIndex, []int))(std_core.NewQModelIndexFromPointer(topLeft), std_core.NewQModelIndexFromPointer(bottomRight), func(l C.struct_Moc_PackedList) []int {
-			out := make([]int, int(l.len))
-			tmpList := NewCustomListModelFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__dataChanged_roles_atList(i)
-			}
-			return out
-		}(roles))
-	}
-
-}
-
-//export callbackCustomListModel721036_FetchMore
-func callbackCustomListModel721036_FetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "fetchMore"); signal != nil {
-		signal.(func(*std_core.QModelIndex))(std_core.NewQModelIndexFromPointer(parent))
-	} else {
-		NewCustomListModelFromPointer(ptr).FetchMoreDefault(std_core.NewQModelIndexFromPointer(parent))
-	}
-}
-
-func (ptr *CustomListModel) FetchMoreDefault(parent std_core.QModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.CustomListModel721036_FetchMoreDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(parent))
-	}
-}
-
-//export callbackCustomListModel721036_HeaderDataChanged
-func callbackCustomListModel721036_HeaderDataChanged(ptr unsafe.Pointer, orientation C.longlong, first C.int, last C.int) {
-	if signal := qt.GetSignal(ptr, "headerDataChanged"); signal != nil {
-		signal.(func(std_core.Qt__Orientation, int, int))(std_core.Qt__Orientation(orientation), int(int32(first)), int(int32(last)))
-	}
-
-}
-
-//export callbackCustomListModel721036_LayoutAboutToBeChanged
-func callbackCustomListModel721036_LayoutAboutToBeChanged(ptr unsafe.Pointer, parents C.struct_Moc_PackedList, hint C.longlong) {
-	if signal := qt.GetSignal(ptr, "layoutAboutToBeChanged"); signal != nil {
-		signal.(func([]*std_core.QPersistentModelIndex, std_core.QAbstractItemModel__LayoutChangeHint))(func(l C.struct_Moc_PackedList) []*std_core.QPersistentModelIndex {
-			out := make([]*std_core.QPersistentModelIndex, int(l.len))
-			tmpList := NewCustomListModelFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__layoutAboutToBeChanged_parents_atList(i)
-			}
-			return out
-		}(parents), std_core.QAbstractItemModel__LayoutChangeHint(hint))
-	}
-
-}
-
-//export callbackCustomListModel721036_LayoutChanged
-func callbackCustomListModel721036_LayoutChanged(ptr unsafe.Pointer, parents C.struct_Moc_PackedList, hint C.longlong) {
-	if signal := qt.GetSignal(ptr, "layoutChanged"); signal != nil {
-		signal.(func([]*std_core.QPersistentModelIndex, std_core.QAbstractItemModel__LayoutChangeHint))(func(l C.struct_Moc_PackedList) []*std_core.QPersistentModelIndex {
-			out := make([]*std_core.QPersistentModelIndex, int(l.len))
-			tmpList := NewCustomListModelFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__layoutChanged_parents_atList(i)
-			}
-			return out
-		}(parents), std_core.QAbstractItemModel__LayoutChangeHint(hint))
-	}
-
-}
-
-//export callbackCustomListModel721036_ModelAboutToBeReset
-func callbackCustomListModel721036_ModelAboutToBeReset(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "modelAboutToBeReset"); signal != nil {
-		signal.(func())()
-	}
-
-}
-
-//export callbackCustomListModel721036_ModelReset
-func callbackCustomListModel721036_ModelReset(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "modelReset"); signal != nil {
-		signal.(func())()
-	}
-
-}
-
-//export callbackCustomListModel721036_ResetInternalData
-func callbackCustomListModel721036_ResetInternalData(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "resetInternalData"); signal != nil {
-		signal.(func())()
-	} else {
-		NewCustomListModelFromPointer(ptr).ResetInternalDataDefault()
-	}
-}
-
-func (ptr *CustomListModel) ResetInternalDataDefault() {
-	if ptr.Pointer() != nil {
-		C.CustomListModel721036_ResetInternalDataDefault(ptr.Pointer())
-	}
-}
-
-//export callbackCustomListModel721036_Revert
-func callbackCustomListModel721036_Revert(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "revert"); signal != nil {
-		signal.(func())()
-	} else {
-		NewCustomListModelFromPointer(ptr).RevertDefault()
-	}
-}
-
-func (ptr *CustomListModel) RevertDefault() {
-	if ptr.Pointer() != nil {
-		C.CustomListModel721036_RevertDefault(ptr.Pointer())
-	}
-}
-
-//export callbackCustomListModel721036_RowsAboutToBeInserted
-func callbackCustomListModel721036_RowsAboutToBeInserted(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int) {
-	if signal := qt.GetSignal(ptr, "rowsAboutToBeInserted"); signal != nil {
-		signal.(func(*std_core.QModelIndex, int, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)))
-	}
-
-}
-
-//export callbackCustomListModel721036_RowsAboutToBeMoved
-func callbackCustomListModel721036_RowsAboutToBeMoved(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceStart C.int, sourceEnd C.int, destinationParent unsafe.Pointer, destinationRow C.int) {
-	if signal := qt.GetSignal(ptr, "rowsAboutToBeMoved"); signal != nil {
-		signal.(func(*std_core.QModelIndex, int, int, *std_core.QModelIndex, int))(std_core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceStart)), int(int32(sourceEnd)), std_core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationRow)))
-	}
-
-}
-
-//export callbackCustomListModel721036_RowsAboutToBeRemoved
-func callbackCustomListModel721036_RowsAboutToBeRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
-	if signal := qt.GetSignal(ptr, "rowsAboutToBeRemoved"); signal != nil {
-		signal.(func(*std_core.QModelIndex, int, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
-	}
-
-}
-
-//export callbackCustomListModel721036_RowsInserted
-func callbackCustomListModel721036_RowsInserted(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
-	if signal := qt.GetSignal(ptr, "rowsInserted"); signal != nil {
-		signal.(func(*std_core.QModelIndex, int, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
-	}
-
-}
-
-//export callbackCustomListModel721036_RowsMoved
-func callbackCustomListModel721036_RowsMoved(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int, destination unsafe.Pointer, row C.int) {
-	if signal := qt.GetSignal(ptr, "rowsMoved"); signal != nil {
-		signal.(func(*std_core.QModelIndex, int, int, *std_core.QModelIndex, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)), std_core.NewQModelIndexFromPointer(destination), int(int32(row)))
-	}
-
-}
-
-//export callbackCustomListModel721036_RowsRemoved
-func callbackCustomListModel721036_RowsRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
-	if signal := qt.GetSignal(ptr, "rowsRemoved"); signal != nil {
-		signal.(func(*std_core.QModelIndex, int, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
-	}
-
-}
-
-//export callbackCustomListModel721036_Sort
-func callbackCustomListModel721036_Sort(ptr unsafe.Pointer, column C.int, order C.longlong) {
-	if signal := qt.GetSignal(ptr, "sort"); signal != nil {
-		signal.(func(int, std_core.Qt__SortOrder))(int(int32(column)), std_core.Qt__SortOrder(order))
-	} else {
-		NewCustomListModelFromPointer(ptr).SortDefault(int(int32(column)), std_core.Qt__SortOrder(order))
-	}
-}
-
-func (ptr *CustomListModel) SortDefault(column int, order std_core.Qt__SortOrder) {
-	if ptr.Pointer() != nil {
-		C.CustomListModel721036_SortDefault(ptr.Pointer(), C.int(int32(column)), C.longlong(order))
-	}
-}
-
-//export callbackCustomListModel721036_RoleNames
-func callbackCustomListModel721036_RoleNames(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "roleNames"); signal != nil {
-		return func() unsafe.Pointer {
-			tmpList := NewCustomListModelFromPointer(NewCustomListModelFromPointer(nil).__roleNames_newList())
-			for k, v := range signal.(func() map[int]*std_core.QByteArray)() {
-				tmpList.__roleNames_setList(k, v)
-			}
-			return tmpList.Pointer()
-		}()
-	}
-
-	return func() unsafe.Pointer {
-		tmpList := NewCustomListModelFromPointer(NewCustomListModelFromPointer(nil).__roleNames_newList())
-		for k, v := range NewCustomListModelFromPointer(ptr).RoleNamesDefault() {
-			tmpList.__roleNames_setList(k, v)
-		}
-		return tmpList.Pointer()
-	}()
-}
-
-func (ptr *CustomListModel) RoleNamesDefault() map[int]*std_core.QByteArray {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_Moc_PackedList) map[int]*std_core.QByteArray {
-			out := make(map[int]*std_core.QByteArray, int(l.len))
-			tmpList := NewCustomListModelFromPointer(l.data)
-			for i, v := range tmpList.__roleNames_keyList() {
-				out[v] = tmpList.__roleNames_atList(v, i)
-			}
-			return out
-		}(C.CustomListModel721036_RoleNamesDefault(ptr.Pointer()))
-	}
-	return make(map[int]*std_core.QByteArray, 0)
-}
-
-//export callbackCustomListModel721036_ItemData
-func callbackCustomListModel721036_ItemData(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "itemData"); signal != nil {
-		return func() unsafe.Pointer {
-			tmpList := NewCustomListModelFromPointer(NewCustomListModelFromPointer(nil).__itemData_newList())
-			for k, v := range signal.(func(*std_core.QModelIndex) map[int]*std_core.QVariant)(std_core.NewQModelIndexFromPointer(index)) {
-				tmpList.__itemData_setList(k, v)
-			}
-			return tmpList.Pointer()
-		}()
-	}
-
-	return func() unsafe.Pointer {
-		tmpList := NewCustomListModelFromPointer(NewCustomListModelFromPointer(nil).__itemData_newList())
-		for k, v := range NewCustomListModelFromPointer(ptr).ItemDataDefault(std_core.NewQModelIndexFromPointer(index)) {
-			tmpList.__itemData_setList(k, v)
-		}
-		return tmpList.Pointer()
-	}()
-}
-
-func (ptr *CustomListModel) ItemDataDefault(index std_core.QModelIndex_ITF) map[int]*std_core.QVariant {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_Moc_PackedList) map[int]*std_core.QVariant {
-			out := make(map[int]*std_core.QVariant, int(l.len))
-			tmpList := NewCustomListModelFromPointer(l.data)
-			for i, v := range tmpList.__itemData_keyList() {
-				out[v] = tmpList.__itemData_atList(v, i)
-			}
-			return out
-		}(C.CustomListModel721036_ItemDataDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(index)))
-	}
-	return make(map[int]*std_core.QVariant, 0)
-}
-
-//export callbackCustomListModel721036_MimeData
-func callbackCustomListModel721036_MimeData(ptr unsafe.Pointer, indexes C.struct_Moc_PackedList) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "mimeData"); signal != nil {
-		return std_core.PointerFromQMimeData(signal.(func([]*std_core.QModelIndex) *std_core.QMimeData)(func(l C.struct_Moc_PackedList) []*std_core.QModelIndex {
-			out := make([]*std_core.QModelIndex, int(l.len))
-			tmpList := NewCustomListModelFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__mimeData_indexes_atList(i)
-			}
-			return out
-		}(indexes)))
-	}
-
-	return std_core.PointerFromQMimeData(NewCustomListModelFromPointer(ptr).MimeDataDefault(func(l C.struct_Moc_PackedList) []*std_core.QModelIndex {
-		out := make([]*std_core.QModelIndex, int(l.len))
-		tmpList := NewCustomListModelFromPointer(l.data)
-		for i := 0; i < len(out); i++ {
-			out[i] = tmpList.__mimeData_indexes_atList(i)
-		}
-		return out
-	}(indexes)))
-}
-
-func (ptr *CustomListModel) MimeDataDefault(indexes []*std_core.QModelIndex) *std_core.QMimeData {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQMimeDataFromPointer(C.CustomListModel721036_MimeDataDefault(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewCustomListModelFromPointer(NewCustomListModelFromPointer(nil).__mimeData_indexes_newList())
-			for _, v := range indexes {
-				tmpList.__mimeData_indexes_setList(v)
-			}
-			return tmpList.Pointer()
-		}()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackCustomListModel721036_Buddy
-func callbackCustomListModel721036_Buddy(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "buddy"); signal != nil {
-		return std_core.PointerFromQModelIndex(signal.(func(*std_core.QModelIndex) *std_core.QModelIndex)(std_core.NewQModelIndexFromPointer(index)))
-	}
-
-	return std_core.PointerFromQModelIndex(NewCustomListModelFromPointer(ptr).BuddyDefault(std_core.NewQModelIndexFromPointer(index)))
-}
-
-func (ptr *CustomListModel) BuddyDefault(index std_core.QModelIndex_ITF) *std_core.QModelIndex {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQModelIndexFromPointer(C.CustomListModel721036_BuddyDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackCustomListModel721036_Parent
-func callbackCustomListModel721036_Parent(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "parent"); signal != nil {
-		return std_core.PointerFromQModelIndex(signal.(func(*std_core.QModelIndex) *std_core.QModelIndex)(std_core.NewQModelIndexFromPointer(index)))
-	}
-
-	return std_core.PointerFromQModelIndex(NewCustomListModelFromPointer(ptr).ParentDefault(std_core.NewQModelIndexFromPointer(index)))
-}
-
-func (ptr *CustomListModel) ParentDefault(index std_core.QModelIndex_ITF) *std_core.QModelIndex {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQModelIndexFromPointer(C.CustomListModel721036_ParentDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackCustomListModel721036_Match
-func callbackCustomListModel721036_Match(ptr unsafe.Pointer, start unsafe.Pointer, role C.int, value unsafe.Pointer, hits C.int, flags C.longlong) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "match"); signal != nil {
-		return func() unsafe.Pointer {
-			tmpList := NewCustomListModelFromPointer(NewCustomListModelFromPointer(nil).__match_newList())
-			for _, v := range signal.(func(*std_core.QModelIndex, int, *std_core.QVariant, int, std_core.Qt__MatchFlag) []*std_core.QModelIndex)(std_core.NewQModelIndexFromPointer(start), int(int32(role)), std_core.NewQVariantFromPointer(value), int(int32(hits)), std_core.Qt__MatchFlag(flags)) {
-				tmpList.__match_setList(v)
-			}
-			return tmpList.Pointer()
-		}()
-	}
-
-	return func() unsafe.Pointer {
-		tmpList := NewCustomListModelFromPointer(NewCustomListModelFromPointer(nil).__match_newList())
-		for _, v := range NewCustomListModelFromPointer(ptr).MatchDefault(std_core.NewQModelIndexFromPointer(start), int(int32(role)), std_core.NewQVariantFromPointer(value), int(int32(hits)), std_core.Qt__MatchFlag(flags)) {
-			tmpList.__match_setList(v)
-		}
-		return tmpList.Pointer()
-	}()
-}
-
-func (ptr *CustomListModel) MatchDefault(start std_core.QModelIndex_ITF, role int, value std_core.QVariant_ITF, hits int, flags std_core.Qt__MatchFlag) []*std_core.QModelIndex {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_Moc_PackedList) []*std_core.QModelIndex {
-			out := make([]*std_core.QModelIndex, int(l.len))
-			tmpList := NewCustomListModelFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__match_atList(i)
-			}
-			return out
-		}(C.CustomListModel721036_MatchDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(start), C.int(int32(role)), std_core.PointerFromQVariant(value), C.int(int32(hits)), C.longlong(flags)))
-	}
-	return make([]*std_core.QModelIndex, 0)
-}
-
-//export callbackCustomListModel721036_Span
-func callbackCustomListModel721036_Span(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "span"); signal != nil {
-		return std_core.PointerFromQSize(signal.(func(*std_core.QModelIndex) *std_core.QSize)(std_core.NewQModelIndexFromPointer(index)))
-	}
-
-	return std_core.PointerFromQSize(NewCustomListModelFromPointer(ptr).SpanDefault(std_core.NewQModelIndexFromPointer(index)))
-}
-
-func (ptr *CustomListModel) SpanDefault(index std_core.QModelIndex_ITF) *std_core.QSize {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQSizeFromPointer(C.CustomListModel721036_SpanDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*std_core.QSize).DestroyQSize)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackCustomListModel721036_MimeTypes
-func callbackCustomListModel721036_MimeTypes(ptr unsafe.Pointer) C.struct_Moc_PackedString {
-	if signal := qt.GetSignal(ptr, "mimeTypes"); signal != nil {
-		tempVal := signal.(func() []string)()
-		return C.struct_Moc_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
-	}
-	tempVal := NewCustomListModelFromPointer(ptr).MimeTypesDefault()
-	return C.struct_Moc_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
-}
-
-func (ptr *CustomListModel) MimeTypesDefault() []string {
-	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.CustomListModel721036_MimeTypesDefault(ptr.Pointer())), "|")
-	}
-	return make([]string, 0)
-}
-
-//export callbackCustomListModel721036_Data
-func callbackCustomListModel721036_Data(ptr unsafe.Pointer, index unsafe.Pointer, role C.int) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "data"); signal != nil {
-		return std_core.PointerFromQVariant(signal.(func(*std_core.QModelIndex, int) *std_core.QVariant)(std_core.NewQModelIndexFromPointer(index), int(int32(role))))
-	}
-
-	return std_core.PointerFromQVariant(NewCustomListModelFromPointer(ptr).DataDefault(std_core.NewQModelIndexFromPointer(index), int(int32(role))))
-}
-
-func (ptr *CustomListModel) DataDefault(index std_core.QModelIndex_ITF, role int) *std_core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQVariantFromPointer(C.CustomListModel721036_DataDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(index), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*std_core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackCustomListModel721036_HeaderData
-func callbackCustomListModel721036_HeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, role C.int) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "headerData"); signal != nil {
-		return std_core.PointerFromQVariant(signal.(func(int, std_core.Qt__Orientation, int) *std_core.QVariant)(int(int32(section)), std_core.Qt__Orientation(orientation), int(int32(role))))
-	}
-
-	return std_core.PointerFromQVariant(NewCustomListModelFromPointer(ptr).HeaderDataDefault(int(int32(section)), std_core.Qt__Orientation(orientation), int(int32(role))))
-}
-
-func (ptr *CustomListModel) HeaderDataDefault(section int, orientation std_core.Qt__Orientation, role int) *std_core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQVariantFromPointer(C.CustomListModel721036_HeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*std_core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackCustomListModel721036_SupportedDragActions
-func callbackCustomListModel721036_SupportedDragActions(ptr unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(ptr, "supportedDragActions"); signal != nil {
-		return C.longlong(signal.(func() std_core.Qt__DropAction)())
-	}
-
-	return C.longlong(NewCustomListModelFromPointer(ptr).SupportedDragActionsDefault())
-}
-
-func (ptr *CustomListModel) SupportedDragActionsDefault() std_core.Qt__DropAction {
-	if ptr.Pointer() != nil {
-		return std_core.Qt__DropAction(C.CustomListModel721036_SupportedDragActionsDefault(ptr.Pointer()))
-	}
-	return 0
-}
-
-//export callbackCustomListModel721036_SupportedDropActions
-func callbackCustomListModel721036_SupportedDropActions(ptr unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(ptr, "supportedDropActions"); signal != nil {
-		return C.longlong(signal.(func() std_core.Qt__DropAction)())
-	}
-
-	return C.longlong(NewCustomListModelFromPointer(ptr).SupportedDropActionsDefault())
-}
-
-func (ptr *CustomListModel) SupportedDropActionsDefault() std_core.Qt__DropAction {
-	if ptr.Pointer() != nil {
-		return std_core.Qt__DropAction(C.CustomListModel721036_SupportedDropActionsDefault(ptr.Pointer()))
-	}
-	return 0
-}
-
-//export callbackCustomListModel721036_CanDropMimeData
-func callbackCustomListModel721036_CanDropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "canDropMimeData"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QMimeData, std_core.Qt__DropAction, int, int, *std_core.QModelIndex) bool)(std_core.NewQMimeDataFromPointer(data), std_core.Qt__DropAction(action), int(int32(row)), int(int32(column)), std_core.NewQModelIndexFromPointer(parent)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewCustomListModelFromPointer(ptr).CanDropMimeDataDefault(std_core.NewQMimeDataFromPointer(data), std_core.Qt__DropAction(action), int(int32(row)), int(int32(column)), std_core.NewQModelIndexFromPointer(parent)))))
-}
-
-func (ptr *CustomListModel) CanDropMimeDataDefault(data std_core.QMimeData_ITF, action std_core.Qt__DropAction, row int, column int, parent std_core.QModelIndex_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.CustomListModel721036_CanDropMimeDataDefault(ptr.Pointer(), std_core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), std_core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-//export callbackCustomListModel721036_CanFetchMore
-func callbackCustomListModel721036_CanFetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "canFetchMore"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QModelIndex) bool)(std_core.NewQModelIndexFromPointer(parent)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewCustomListModelFromPointer(ptr).CanFetchMoreDefault(std_core.NewQModelIndexFromPointer(parent)))))
-}
-
-func (ptr *CustomListModel) CanFetchMoreDefault(parent std_core.QModelIndex_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.CustomListModel721036_CanFetchMoreDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-//export callbackCustomListModel721036_HasChildren
-func callbackCustomListModel721036_HasChildren(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "hasChildren"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QModelIndex) bool)(std_core.NewQModelIndexFromPointer(parent)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewCustomListModelFromPointer(ptr).HasChildrenDefault(std_core.NewQModelIndexFromPointer(parent)))))
-}
-
-func (ptr *CustomListModel) HasChildrenDefault(parent std_core.QModelIndex_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.CustomListModel721036_HasChildrenDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-//export callbackCustomListModel721036_ColumnCount
-func callbackCustomListModel721036_ColumnCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
-	if signal := qt.GetSignal(ptr, "columnCount"); signal != nil {
-		return C.int(int32(signal.(func(*std_core.QModelIndex) int)(std_core.NewQModelIndexFromPointer(parent))))
-	}
-
-	return C.int(int32(NewCustomListModelFromPointer(ptr).ColumnCountDefault(std_core.NewQModelIndexFromPointer(parent))))
-}
-
-func (ptr *CustomListModel) ColumnCountDefault(parent std_core.QModelIndex_ITF) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.CustomListModel721036_ColumnCountDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(parent))))
-	}
-	return 0
-}
-
-//export callbackCustomListModel721036_RowCount
-func callbackCustomListModel721036_RowCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
-	if signal := qt.GetSignal(ptr, "rowCount"); signal != nil {
-		return C.int(int32(signal.(func(*std_core.QModelIndex) int)(std_core.NewQModelIndexFromPointer(parent))))
-	}
-
-	return C.int(int32(NewCustomListModelFromPointer(ptr).RowCountDefault(std_core.NewQModelIndexFromPointer(parent))))
-}
-
-func (ptr *CustomListModel) RowCountDefault(parent std_core.QModelIndex_ITF) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.CustomListModel721036_RowCountDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(parent))))
-	}
-	return 0
-}
-
-//export callbackCustomListModel721036_Event
-func callbackCustomListModel721036_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+//export callbackApproveListingCtx721036_Event
+func callbackApproveListingCtx721036_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QEvent) bool)(std_core.NewQEventFromPointer(e)))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewCustomListModelFromPointer(ptr).EventDefault(std_core.NewQEventFromPointer(e)))))
+	return C.char(int8(qt.GoBoolToInt(NewApproveListingCtxFromPointer(ptr).EventDefault(std_core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *CustomListModel) EventDefault(e std_core.QEvent_ITF) bool {
+func (ptr *ApproveListingCtx) EventDefault(e std_core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.CustomListModel721036_EventDefault(ptr.Pointer(), std_core.PointerFromQEvent(e)) != 0
+		return C.ApproveListingCtx721036_EventDefault(ptr.Pointer(), std_core.PointerFromQEvent(e)) != 0
 	}
 	return false
 }
 
-//export callbackCustomListModel721036_EventFilter
-func callbackCustomListModel721036_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+//export callbackApproveListingCtx721036_EventFilter
+func callbackApproveListingCtx721036_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QObject, *std_core.QEvent) bool)(std_core.NewQObjectFromPointer(watched), std_core.NewQEventFromPointer(event)))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewCustomListModelFromPointer(ptr).EventFilterDefault(std_core.NewQObjectFromPointer(watched), std_core.NewQEventFromPointer(event)))))
+	return C.char(int8(qt.GoBoolToInt(NewApproveListingCtxFromPointer(ptr).EventFilterDefault(std_core.NewQObjectFromPointer(watched), std_core.NewQEventFromPointer(event)))))
 }
 
-func (ptr *CustomListModel) EventFilterDefault(watched std_core.QObject_ITF, event std_core.QEvent_ITF) bool {
+func (ptr *ApproveListingCtx) EventFilterDefault(watched std_core.QObject_ITF, event std_core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.CustomListModel721036_EventFilterDefault(ptr.Pointer(), std_core.PointerFromQObject(watched), std_core.PointerFromQEvent(event)) != 0
+		return C.ApproveListingCtx721036_EventFilterDefault(ptr.Pointer(), std_core.PointerFromQObject(watched), std_core.PointerFromQEvent(event)) != 0
 	}
 	return false
 }
 
-//export callbackCustomListModel721036_ChildEvent
-func callbackCustomListModel721036_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+//export callbackApproveListingCtx721036_ChildEvent
+func callbackApproveListingCtx721036_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
 		signal.(func(*std_core.QChildEvent))(std_core.NewQChildEventFromPointer(event))
 	} else {
-		NewCustomListModelFromPointer(ptr).ChildEventDefault(std_core.NewQChildEventFromPointer(event))
+		NewApproveListingCtxFromPointer(ptr).ChildEventDefault(std_core.NewQChildEventFromPointer(event))
 	}
 }
 
-func (ptr *CustomListModel) ChildEventDefault(event std_core.QChildEvent_ITF) {
+func (ptr *ApproveListingCtx) ChildEventDefault(event std_core.QChildEvent_ITF) {
 	if ptr.Pointer() != nil {
-		C.CustomListModel721036_ChildEventDefault(ptr.Pointer(), std_core.PointerFromQChildEvent(event))
+		C.ApproveListingCtx721036_ChildEventDefault(ptr.Pointer(), std_core.PointerFromQChildEvent(event))
 	}
 }
 
-//export callbackCustomListModel721036_ConnectNotify
-func callbackCustomListModel721036_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
+//export callbackApproveListingCtx721036_ConnectNotify
+func callbackApproveListingCtx721036_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
 		signal.(func(*std_core.QMetaMethod))(std_core.NewQMetaMethodFromPointer(sign))
 	} else {
-		NewCustomListModelFromPointer(ptr).ConnectNotifyDefault(std_core.NewQMetaMethodFromPointer(sign))
+		NewApproveListingCtxFromPointer(ptr).ConnectNotifyDefault(std_core.NewQMetaMethodFromPointer(sign))
 	}
 }
 
-func (ptr *CustomListModel) ConnectNotifyDefault(sign std_core.QMetaMethod_ITF) {
+func (ptr *ApproveListingCtx) ConnectNotifyDefault(sign std_core.QMetaMethod_ITF) {
 	if ptr.Pointer() != nil {
-		C.CustomListModel721036_ConnectNotifyDefault(ptr.Pointer(), std_core.PointerFromQMetaMethod(sign))
+		C.ApproveListingCtx721036_ConnectNotifyDefault(ptr.Pointer(), std_core.PointerFromQMetaMethod(sign))
 	}
 }
 
-//export callbackCustomListModel721036_CustomEvent
-func callbackCustomListModel721036_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+//export callbackApproveListingCtx721036_CustomEvent
+func callbackApproveListingCtx721036_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
 		signal.(func(*std_core.QEvent))(std_core.NewQEventFromPointer(event))
 	} else {
-		NewCustomListModelFromPointer(ptr).CustomEventDefault(std_core.NewQEventFromPointer(event))
+		NewApproveListingCtxFromPointer(ptr).CustomEventDefault(std_core.NewQEventFromPointer(event))
 	}
 }
 
-func (ptr *CustomListModel) CustomEventDefault(event std_core.QEvent_ITF) {
+func (ptr *ApproveListingCtx) CustomEventDefault(event std_core.QEvent_ITF) {
 	if ptr.Pointer() != nil {
-		C.CustomListModel721036_CustomEventDefault(ptr.Pointer(), std_core.PointerFromQEvent(event))
+		C.ApproveListingCtx721036_CustomEventDefault(ptr.Pointer(), std_core.PointerFromQEvent(event))
 	}
 }
 
-//export callbackCustomListModel721036_DeleteLater
-func callbackCustomListModel721036_DeleteLater(ptr unsafe.Pointer) {
+//export callbackApproveListingCtx721036_DeleteLater
+func callbackApproveListingCtx721036_DeleteLater(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
-		NewCustomListModelFromPointer(ptr).DeleteLaterDefault()
+		NewApproveListingCtxFromPointer(ptr).DeleteLaterDefault()
 	}
 }
 
-func (ptr *CustomListModel) DeleteLaterDefault() {
+func (ptr *ApproveListingCtx) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.CustomListModel721036_DeleteLaterDefault(ptr.Pointer())
+		C.ApproveListingCtx721036_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
-//export callbackCustomListModel721036_Destroyed
-func callbackCustomListModel721036_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
+//export callbackApproveListingCtx721036_Destroyed
+func callbackApproveListingCtx721036_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
 		signal.(func(*std_core.QObject))(std_core.NewQObjectFromPointer(obj))
 	}
 
 }
 
-//export callbackCustomListModel721036_DisconnectNotify
-func callbackCustomListModel721036_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
+//export callbackApproveListingCtx721036_DisconnectNotify
+func callbackApproveListingCtx721036_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
 		signal.(func(*std_core.QMetaMethod))(std_core.NewQMetaMethodFromPointer(sign))
 	} else {
-		NewCustomListModelFromPointer(ptr).DisconnectNotifyDefault(std_core.NewQMetaMethodFromPointer(sign))
+		NewApproveListingCtxFromPointer(ptr).DisconnectNotifyDefault(std_core.NewQMetaMethodFromPointer(sign))
 	}
 }
 
-func (ptr *CustomListModel) DisconnectNotifyDefault(sign std_core.QMetaMethod_ITF) {
+func (ptr *ApproveListingCtx) DisconnectNotifyDefault(sign std_core.QMetaMethod_ITF) {
 	if ptr.Pointer() != nil {
-		C.CustomListModel721036_DisconnectNotifyDefault(ptr.Pointer(), std_core.PointerFromQMetaMethod(sign))
+		C.ApproveListingCtx721036_DisconnectNotifyDefault(ptr.Pointer(), std_core.PointerFromQMetaMethod(sign))
 	}
 }
 
-//export callbackCustomListModel721036_ObjectNameChanged
-func callbackCustomListModel721036_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_Moc_PackedString) {
+//export callbackApproveListingCtx721036_ObjectNameChanged
+func callbackApproveListingCtx721036_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_Moc_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
 		signal.(func(string))(cGoUnpackString(objectName))
 	}
 
 }
 
-//export callbackCustomListModel721036_TimerEvent
-func callbackCustomListModel721036_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+//export callbackApproveListingCtx721036_TimerEvent
+func callbackApproveListingCtx721036_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
 		signal.(func(*std_core.QTimerEvent))(std_core.NewQTimerEventFromPointer(event))
 	} else {
-		NewCustomListModelFromPointer(ptr).TimerEventDefault(std_core.NewQTimerEventFromPointer(event))
+		NewApproveListingCtxFromPointer(ptr).TimerEventDefault(std_core.NewQTimerEventFromPointer(event))
 	}
 }
 
-func (ptr *CustomListModel) TimerEventDefault(event std_core.QTimerEvent_ITF) {
+func (ptr *ApproveListingCtx) TimerEventDefault(event std_core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		C.CustomListModel721036_TimerEventDefault(ptr.Pointer(), std_core.PointerFromQTimerEvent(event))
+		C.ApproveListingCtx721036_TimerEventDefault(ptr.Pointer(), std_core.PointerFromQTimerEvent(event))
 	}
 }
 
-type TxListModel_ITF interface {
-	std_core.QAbstractListModel_ITF
-	TxListModel_PTR() *TxListModel
+type ApproveNewAccountCtx_ITF interface {
+	std_core.QObject_ITF
+	ApproveNewAccountCtx_PTR() *ApproveNewAccountCtx
 }
 
-func (ptr *TxListModel) TxListModel_PTR() *TxListModel {
+func (ptr *ApproveNewAccountCtx) ApproveNewAccountCtx_PTR() *ApproveNewAccountCtx {
 	return ptr
 }
 
-func (ptr *TxListModel) Pointer() unsafe.Pointer {
+func (ptr *ApproveNewAccountCtx) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAbstractListModel_PTR().Pointer()
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (ptr *TxListModel) SetPointer(p unsafe.Pointer) {
+func (ptr *ApproveNewAccountCtx) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.QAbstractListModel_PTR().SetPointer(p)
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
-func PointerFromTxListModel(ptr TxListModel_ITF) unsafe.Pointer {
+func PointerFromApproveNewAccountCtx(ptr ApproveNewAccountCtx_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.TxListModel_PTR().Pointer()
+		return ptr.ApproveNewAccountCtx_PTR().Pointer()
 	}
 	return nil
 }
 
-func NewTxListModelFromPointer(ptr unsafe.Pointer) (n *TxListModel) {
+func NewApproveNewAccountCtxFromPointer(ptr unsafe.Pointer) (n *ApproveNewAccountCtx) {
 	if gPtr, ok := qt.Receive(ptr); !ok {
-		n = new(TxListModel)
+		n = new(ApproveNewAccountCtx)
 		n.SetPointer(ptr)
 	} else {
 		switch deduced := gPtr.(type) {
-		case *TxListModel:
+		case *ApproveNewAccountCtx:
 			n = deduced
 
-		case *std_core.QAbstractListModel:
-			n = &TxListModel{QAbstractListModel: *deduced}
+		case *std_core.QObject:
+			n = &ApproveNewAccountCtx{QObject: *deduced}
 
 		default:
-			n = new(TxListModel)
+			n = new(ApproveNewAccountCtx)
 			n.SetPointer(ptr)
 		}
 	}
 	return
 }
 
-//export callbackTxListModel721036_Constructor
-func callbackTxListModel721036_Constructor(ptr unsafe.Pointer) {
-	this := NewTxListModelFromPointer(ptr)
+//export callbackApproveNewAccountCtx721036_Constructor
+func callbackApproveNewAccountCtx721036_Constructor(ptr unsafe.Pointer) {
+	this := NewApproveNewAccountCtxFromPointer(ptr)
 	qt.Register(ptr, this)
-	this.ConnectClear(this.clear)
-	this.ConnectAdd(this.add)
-	this.ConnectRemove(this.remove)
+	this.ConnectClicked(this.clicked)
+	this.ConnectPasswordEdited(this.passwordEdited)
+	this.ConnectConfirmPasswordEdited(this.confirmPasswordEdited)
 	this.init()
 }
 
-//export callbackTxListModel721036_Clear
-func callbackTxListModel721036_Clear(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "clear"); signal != nil {
-		signal.(func())()
+//export callbackApproveNewAccountCtx721036_Clicked
+func callbackApproveNewAccountCtx721036_Clicked(ptr unsafe.Pointer, b C.int) {
+	if signal := qt.GetSignal(ptr, "clicked"); signal != nil {
+		signal.(func(int))(int(int32(b)))
 	}
 
 }
 
-func (ptr *TxListModel) ConnectClear(f func()) {
+func (ptr *ApproveNewAccountCtx) ConnectClicked(f func(b int)) {
 	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "clear") {
-			C.TxListModel721036_ConnectClear(ptr.Pointer())
+		if !qt.ExistsSignal(ptr.Pointer(), "clicked") {
+			C.ApproveNewAccountCtx721036_ConnectClicked(ptr.Pointer())
 		}
 
-		if signal := qt.LendSignal(ptr.Pointer(), "clear"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "clear", func() {
-				signal.(func())()
-				f()
+		if signal := qt.LendSignal(ptr.Pointer(), "clicked"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "clicked", func(b int) {
+				signal.(func(int))(b)
+				f(b)
 			})
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "clear", f)
+			qt.ConnectSignal(ptr.Pointer(), "clicked", f)
 		}
 	}
 }
 
-func (ptr *TxListModel) DisconnectClear() {
+func (ptr *ApproveNewAccountCtx) DisconnectClicked() {
 	if ptr.Pointer() != nil {
-		C.TxListModel721036_DisconnectClear(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "clear")
+		C.ApproveNewAccountCtx721036_DisconnectClicked(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "clicked")
 	}
 }
 
-func (ptr *TxListModel) Clear() {
+func (ptr *ApproveNewAccountCtx) Clicked(b int) {
 	if ptr.Pointer() != nil {
-		C.TxListModel721036_Clear(ptr.Pointer())
+		C.ApproveNewAccountCtx721036_Clicked(ptr.Pointer(), C.int(int32(b)))
 	}
 }
 
-//export callbackTxListModel721036_Add
-func callbackTxListModel721036_Add(ptr unsafe.Pointer, tx C.uintptr_t) {
-	var txD *TxListItem
-	if txI, ok := qt.ReceiveTemp(unsafe.Pointer(uintptr(tx))); ok {
-		qt.UnregisterTemp(unsafe.Pointer(uintptr(tx)))
-		txD = txI.(*TxListItem)
-	}
-	if signal := qt.GetSignal(ptr, "add"); signal != nil {
-		signal.(func(*TxListItem))(txD)
+//export callbackApproveNewAccountCtx721036_PasswordEdited
+func callbackApproveNewAccountCtx721036_PasswordEdited(ptr unsafe.Pointer, b C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "passwordEdited"); signal != nil {
+		signal.(func(string))(cGoUnpackString(b))
 	}
 
 }
 
-func (ptr *TxListModel) ConnectAdd(f func(tx *TxListItem)) {
+func (ptr *ApproveNewAccountCtx) ConnectPasswordEdited(f func(b string)) {
 	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "add") {
-			C.TxListModel721036_ConnectAdd(ptr.Pointer())
+		if !qt.ExistsSignal(ptr.Pointer(), "passwordEdited") {
+			C.ApproveNewAccountCtx721036_ConnectPasswordEdited(ptr.Pointer())
 		}
 
-		if signal := qt.LendSignal(ptr.Pointer(), "add"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "add", func(tx *TxListItem) {
-				signal.(func(*TxListItem))(tx)
-				f(tx)
+		if signal := qt.LendSignal(ptr.Pointer(), "passwordEdited"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "passwordEdited", func(b string) {
+				signal.(func(string))(b)
+				f(b)
 			})
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "add", f)
+			qt.ConnectSignal(ptr.Pointer(), "passwordEdited", f)
 		}
 	}
 }
 
-func (ptr *TxListModel) DisconnectAdd() {
+func (ptr *ApproveNewAccountCtx) DisconnectPasswordEdited() {
 	if ptr.Pointer() != nil {
-		C.TxListModel721036_DisconnectAdd(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "add")
+		C.ApproveNewAccountCtx721036_DisconnectPasswordEdited(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "passwordEdited")
 	}
 }
 
-func (ptr *TxListModel) Add(tx *TxListItem) {
+func (ptr *ApproveNewAccountCtx) PasswordEdited(b string) {
 	if ptr.Pointer() != nil {
-		qt.RegisterTemp(unsafe.Pointer(tx), tx)
-		C.TxListModel721036_Add(ptr.Pointer(), C.uintptr_t(uintptr(unsafe.Pointer(tx))))
+		var bC *C.char
+		if b != "" {
+			bC = C.CString(b)
+			defer C.free(unsafe.Pointer(bC))
+		}
+		C.ApproveNewAccountCtx721036_PasswordEdited(ptr.Pointer(), C.struct_Moc_PackedString{data: bC, len: C.longlong(len(b))})
 	}
 }
 
-//export callbackTxListModel721036_Remove
-func callbackTxListModel721036_Remove(ptr unsafe.Pointer, i C.int) {
-	if signal := qt.GetSignal(ptr, "remove"); signal != nil {
-		signal.(func(int))(int(int32(i)))
+//export callbackApproveNewAccountCtx721036_ConfirmPasswordEdited
+func callbackApproveNewAccountCtx721036_ConfirmPasswordEdited(ptr unsafe.Pointer, b C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "confirmPasswordEdited"); signal != nil {
+		signal.(func(string))(cGoUnpackString(b))
 	}
 
 }
 
-func (ptr *TxListModel) ConnectRemove(f func(i int)) {
+func (ptr *ApproveNewAccountCtx) ConnectConfirmPasswordEdited(f func(b string)) {
 	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "remove") {
-			C.TxListModel721036_ConnectRemove(ptr.Pointer())
+		if !qt.ExistsSignal(ptr.Pointer(), "confirmPasswordEdited") {
+			C.ApproveNewAccountCtx721036_ConnectConfirmPasswordEdited(ptr.Pointer())
 		}
 
-		if signal := qt.LendSignal(ptr.Pointer(), "remove"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "remove", func(i int) {
-				signal.(func(int))(i)
-				f(i)
+		if signal := qt.LendSignal(ptr.Pointer(), "confirmPasswordEdited"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "confirmPasswordEdited", func(b string) {
+				signal.(func(string))(b)
+				f(b)
 			})
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "remove", f)
+			qt.ConnectSignal(ptr.Pointer(), "confirmPasswordEdited", f)
 		}
 	}
 }
 
-func (ptr *TxListModel) DisconnectRemove() {
+func (ptr *ApproveNewAccountCtx) DisconnectConfirmPasswordEdited() {
 	if ptr.Pointer() != nil {
-		C.TxListModel721036_DisconnectRemove(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "remove")
+		C.ApproveNewAccountCtx721036_DisconnectConfirmPasswordEdited(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "confirmPasswordEdited")
 	}
 }
 
-func (ptr *TxListModel) Remove(i int) {
+func (ptr *ApproveNewAccountCtx) ConfirmPasswordEdited(b string) {
 	if ptr.Pointer() != nil {
-		C.TxListModel721036_Remove(ptr.Pointer(), C.int(int32(i)))
+		var bC *C.char
+		if b != "" {
+			bC = C.CString(b)
+			defer C.free(unsafe.Pointer(bC))
+		}
+		C.ApproveNewAccountCtx721036_ConfirmPasswordEdited(ptr.Pointer(), C.struct_Moc_PackedString{data: bC, len: C.longlong(len(b))})
 	}
 }
 
-func TxListModel_QRegisterMetaType() int {
-	return int(int32(C.TxListModel721036_TxListModel721036_QRegisterMetaType()))
+//export callbackApproveNewAccountCtx721036_Remote
+func callbackApproveNewAccountCtx721036_Remote(ptr unsafe.Pointer) C.struct_Moc_PackedString {
+	if signal := qt.GetSignal(ptr, "remote"); signal != nil {
+		tempVal := signal.(func() string)()
+		return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+	}
+	tempVal := NewApproveNewAccountCtxFromPointer(ptr).RemoteDefault()
+	return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
-func (ptr *TxListModel) QRegisterMetaType() int {
-	return int(int32(C.TxListModel721036_TxListModel721036_QRegisterMetaType()))
+func (ptr *ApproveNewAccountCtx) ConnectRemote(f func() string) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "remote"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "remote", func() string {
+				signal.(func() string)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "remote", f)
+		}
+	}
 }
 
-func TxListModel_QRegisterMetaType2(typeName string) int {
+func (ptr *ApproveNewAccountCtx) DisconnectRemote() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "remote")
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) Remote() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.ApproveNewAccountCtx721036_Remote(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *ApproveNewAccountCtx) RemoteDefault() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.ApproveNewAccountCtx721036_RemoteDefault(ptr.Pointer()))
+	}
+	return ""
+}
+
+//export callbackApproveNewAccountCtx721036_SetRemote
+func callbackApproveNewAccountCtx721036_SetRemote(ptr unsafe.Pointer, remote C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "setRemote"); signal != nil {
+		signal.(func(string))(cGoUnpackString(remote))
+	} else {
+		NewApproveNewAccountCtxFromPointer(ptr).SetRemoteDefault(cGoUnpackString(remote))
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) ConnectSetRemote(f func(remote string)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setRemote"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setRemote", func(remote string) {
+				signal.(func(string))(remote)
+				f(remote)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setRemote", f)
+		}
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) DisconnectSetRemote() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setRemote")
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) SetRemote(remote string) {
+	if ptr.Pointer() != nil {
+		var remoteC *C.char
+		if remote != "" {
+			remoteC = C.CString(remote)
+			defer C.free(unsafe.Pointer(remoteC))
+		}
+		C.ApproveNewAccountCtx721036_SetRemote(ptr.Pointer(), C.struct_Moc_PackedString{data: remoteC, len: C.longlong(len(remote))})
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) SetRemoteDefault(remote string) {
+	if ptr.Pointer() != nil {
+		var remoteC *C.char
+		if remote != "" {
+			remoteC = C.CString(remote)
+			defer C.free(unsafe.Pointer(remoteC))
+		}
+		C.ApproveNewAccountCtx721036_SetRemoteDefault(ptr.Pointer(), C.struct_Moc_PackedString{data: remoteC, len: C.longlong(len(remote))})
+	}
+}
+
+//export callbackApproveNewAccountCtx721036_RemoteChanged
+func callbackApproveNewAccountCtx721036_RemoteChanged(ptr unsafe.Pointer, remote C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "remoteChanged"); signal != nil {
+		signal.(func(string))(cGoUnpackString(remote))
+	}
+
+}
+
+func (ptr *ApproveNewAccountCtx) ConnectRemoteChanged(f func(remote string)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "remoteChanged") {
+			C.ApproveNewAccountCtx721036_ConnectRemoteChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "remoteChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "remoteChanged", func(remote string) {
+				signal.(func(string))(remote)
+				f(remote)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "remoteChanged", f)
+		}
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) DisconnectRemoteChanged() {
+	if ptr.Pointer() != nil {
+		C.ApproveNewAccountCtx721036_DisconnectRemoteChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "remoteChanged")
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) RemoteChanged(remote string) {
+	if ptr.Pointer() != nil {
+		var remoteC *C.char
+		if remote != "" {
+			remoteC = C.CString(remote)
+			defer C.free(unsafe.Pointer(remoteC))
+		}
+		C.ApproveNewAccountCtx721036_RemoteChanged(ptr.Pointer(), C.struct_Moc_PackedString{data: remoteC, len: C.longlong(len(remote))})
+	}
+}
+
+//export callbackApproveNewAccountCtx721036_Transport
+func callbackApproveNewAccountCtx721036_Transport(ptr unsafe.Pointer) C.struct_Moc_PackedString {
+	if signal := qt.GetSignal(ptr, "transport"); signal != nil {
+		tempVal := signal.(func() string)()
+		return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+	}
+	tempVal := NewApproveNewAccountCtxFromPointer(ptr).TransportDefault()
+	return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+}
+
+func (ptr *ApproveNewAccountCtx) ConnectTransport(f func() string) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "transport"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "transport", func() string {
+				signal.(func() string)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "transport", f)
+		}
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) DisconnectTransport() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "transport")
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) Transport() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.ApproveNewAccountCtx721036_Transport(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *ApproveNewAccountCtx) TransportDefault() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.ApproveNewAccountCtx721036_TransportDefault(ptr.Pointer()))
+	}
+	return ""
+}
+
+//export callbackApproveNewAccountCtx721036_SetTransport
+func callbackApproveNewAccountCtx721036_SetTransport(ptr unsafe.Pointer, transport C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "setTransport"); signal != nil {
+		signal.(func(string))(cGoUnpackString(transport))
+	} else {
+		NewApproveNewAccountCtxFromPointer(ptr).SetTransportDefault(cGoUnpackString(transport))
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) ConnectSetTransport(f func(transport string)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setTransport"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setTransport", func(transport string) {
+				signal.(func(string))(transport)
+				f(transport)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setTransport", f)
+		}
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) DisconnectSetTransport() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setTransport")
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) SetTransport(transport string) {
+	if ptr.Pointer() != nil {
+		var transportC *C.char
+		if transport != "" {
+			transportC = C.CString(transport)
+			defer C.free(unsafe.Pointer(transportC))
+		}
+		C.ApproveNewAccountCtx721036_SetTransport(ptr.Pointer(), C.struct_Moc_PackedString{data: transportC, len: C.longlong(len(transport))})
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) SetTransportDefault(transport string) {
+	if ptr.Pointer() != nil {
+		var transportC *C.char
+		if transport != "" {
+			transportC = C.CString(transport)
+			defer C.free(unsafe.Pointer(transportC))
+		}
+		C.ApproveNewAccountCtx721036_SetTransportDefault(ptr.Pointer(), C.struct_Moc_PackedString{data: transportC, len: C.longlong(len(transport))})
+	}
+}
+
+//export callbackApproveNewAccountCtx721036_TransportChanged
+func callbackApproveNewAccountCtx721036_TransportChanged(ptr unsafe.Pointer, transport C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "transportChanged"); signal != nil {
+		signal.(func(string))(cGoUnpackString(transport))
+	}
+
+}
+
+func (ptr *ApproveNewAccountCtx) ConnectTransportChanged(f func(transport string)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "transportChanged") {
+			C.ApproveNewAccountCtx721036_ConnectTransportChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "transportChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "transportChanged", func(transport string) {
+				signal.(func(string))(transport)
+				f(transport)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "transportChanged", f)
+		}
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) DisconnectTransportChanged() {
+	if ptr.Pointer() != nil {
+		C.ApproveNewAccountCtx721036_DisconnectTransportChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "transportChanged")
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) TransportChanged(transport string) {
+	if ptr.Pointer() != nil {
+		var transportC *C.char
+		if transport != "" {
+			transportC = C.CString(transport)
+			defer C.free(unsafe.Pointer(transportC))
+		}
+		C.ApproveNewAccountCtx721036_TransportChanged(ptr.Pointer(), C.struct_Moc_PackedString{data: transportC, len: C.longlong(len(transport))})
+	}
+}
+
+//export callbackApproveNewAccountCtx721036_Endpoint
+func callbackApproveNewAccountCtx721036_Endpoint(ptr unsafe.Pointer) C.struct_Moc_PackedString {
+	if signal := qt.GetSignal(ptr, "endpoint"); signal != nil {
+		tempVal := signal.(func() string)()
+		return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+	}
+	tempVal := NewApproveNewAccountCtxFromPointer(ptr).EndpointDefault()
+	return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+}
+
+func (ptr *ApproveNewAccountCtx) ConnectEndpoint(f func() string) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "endpoint"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "endpoint", func() string {
+				signal.(func() string)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "endpoint", f)
+		}
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) DisconnectEndpoint() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "endpoint")
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) Endpoint() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.ApproveNewAccountCtx721036_Endpoint(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *ApproveNewAccountCtx) EndpointDefault() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.ApproveNewAccountCtx721036_EndpointDefault(ptr.Pointer()))
+	}
+	return ""
+}
+
+//export callbackApproveNewAccountCtx721036_SetEndpoint
+func callbackApproveNewAccountCtx721036_SetEndpoint(ptr unsafe.Pointer, endpoint C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "setEndpoint"); signal != nil {
+		signal.(func(string))(cGoUnpackString(endpoint))
+	} else {
+		NewApproveNewAccountCtxFromPointer(ptr).SetEndpointDefault(cGoUnpackString(endpoint))
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) ConnectSetEndpoint(f func(endpoint string)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setEndpoint"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setEndpoint", func(endpoint string) {
+				signal.(func(string))(endpoint)
+				f(endpoint)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setEndpoint", f)
+		}
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) DisconnectSetEndpoint() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setEndpoint")
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) SetEndpoint(endpoint string) {
+	if ptr.Pointer() != nil {
+		var endpointC *C.char
+		if endpoint != "" {
+			endpointC = C.CString(endpoint)
+			defer C.free(unsafe.Pointer(endpointC))
+		}
+		C.ApproveNewAccountCtx721036_SetEndpoint(ptr.Pointer(), C.struct_Moc_PackedString{data: endpointC, len: C.longlong(len(endpoint))})
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) SetEndpointDefault(endpoint string) {
+	if ptr.Pointer() != nil {
+		var endpointC *C.char
+		if endpoint != "" {
+			endpointC = C.CString(endpoint)
+			defer C.free(unsafe.Pointer(endpointC))
+		}
+		C.ApproveNewAccountCtx721036_SetEndpointDefault(ptr.Pointer(), C.struct_Moc_PackedString{data: endpointC, len: C.longlong(len(endpoint))})
+	}
+}
+
+//export callbackApproveNewAccountCtx721036_EndpointChanged
+func callbackApproveNewAccountCtx721036_EndpointChanged(ptr unsafe.Pointer, endpoint C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "endpointChanged"); signal != nil {
+		signal.(func(string))(cGoUnpackString(endpoint))
+	}
+
+}
+
+func (ptr *ApproveNewAccountCtx) ConnectEndpointChanged(f func(endpoint string)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "endpointChanged") {
+			C.ApproveNewAccountCtx721036_ConnectEndpointChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "endpointChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "endpointChanged", func(endpoint string) {
+				signal.(func(string))(endpoint)
+				f(endpoint)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "endpointChanged", f)
+		}
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) DisconnectEndpointChanged() {
+	if ptr.Pointer() != nil {
+		C.ApproveNewAccountCtx721036_DisconnectEndpointChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "endpointChanged")
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) EndpointChanged(endpoint string) {
+	if ptr.Pointer() != nil {
+		var endpointC *C.char
+		if endpoint != "" {
+			endpointC = C.CString(endpoint)
+			defer C.free(unsafe.Pointer(endpointC))
+		}
+		C.ApproveNewAccountCtx721036_EndpointChanged(ptr.Pointer(), C.struct_Moc_PackedString{data: endpointC, len: C.longlong(len(endpoint))})
+	}
+}
+
+//export callbackApproveNewAccountCtx721036_Password
+func callbackApproveNewAccountCtx721036_Password(ptr unsafe.Pointer) C.struct_Moc_PackedString {
+	if signal := qt.GetSignal(ptr, "password"); signal != nil {
+		tempVal := signal.(func() string)()
+		return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+	}
+	tempVal := NewApproveNewAccountCtxFromPointer(ptr).PasswordDefault()
+	return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+}
+
+func (ptr *ApproveNewAccountCtx) ConnectPassword(f func() string) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "password"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "password", func() string {
+				signal.(func() string)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "password", f)
+		}
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) DisconnectPassword() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "password")
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) Password() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.ApproveNewAccountCtx721036_Password(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *ApproveNewAccountCtx) PasswordDefault() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.ApproveNewAccountCtx721036_PasswordDefault(ptr.Pointer()))
+	}
+	return ""
+}
+
+//export callbackApproveNewAccountCtx721036_SetPassword
+func callbackApproveNewAccountCtx721036_SetPassword(ptr unsafe.Pointer, password C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "setPassword"); signal != nil {
+		signal.(func(string))(cGoUnpackString(password))
+	} else {
+		NewApproveNewAccountCtxFromPointer(ptr).SetPasswordDefault(cGoUnpackString(password))
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) ConnectSetPassword(f func(password string)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setPassword"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setPassword", func(password string) {
+				signal.(func(string))(password)
+				f(password)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setPassword", f)
+		}
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) DisconnectSetPassword() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setPassword")
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) SetPassword(password string) {
+	if ptr.Pointer() != nil {
+		var passwordC *C.char
+		if password != "" {
+			passwordC = C.CString(password)
+			defer C.free(unsafe.Pointer(passwordC))
+		}
+		C.ApproveNewAccountCtx721036_SetPassword(ptr.Pointer(), C.struct_Moc_PackedString{data: passwordC, len: C.longlong(len(password))})
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) SetPasswordDefault(password string) {
+	if ptr.Pointer() != nil {
+		var passwordC *C.char
+		if password != "" {
+			passwordC = C.CString(password)
+			defer C.free(unsafe.Pointer(passwordC))
+		}
+		C.ApproveNewAccountCtx721036_SetPasswordDefault(ptr.Pointer(), C.struct_Moc_PackedString{data: passwordC, len: C.longlong(len(password))})
+	}
+}
+
+//export callbackApproveNewAccountCtx721036_PasswordChanged
+func callbackApproveNewAccountCtx721036_PasswordChanged(ptr unsafe.Pointer, password C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "passwordChanged"); signal != nil {
+		signal.(func(string))(cGoUnpackString(password))
+	}
+
+}
+
+func (ptr *ApproveNewAccountCtx) ConnectPasswordChanged(f func(password string)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "passwordChanged") {
+			C.ApproveNewAccountCtx721036_ConnectPasswordChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "passwordChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "passwordChanged", func(password string) {
+				signal.(func(string))(password)
+				f(password)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "passwordChanged", f)
+		}
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) DisconnectPasswordChanged() {
+	if ptr.Pointer() != nil {
+		C.ApproveNewAccountCtx721036_DisconnectPasswordChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "passwordChanged")
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) PasswordChanged(password string) {
+	if ptr.Pointer() != nil {
+		var passwordC *C.char
+		if password != "" {
+			passwordC = C.CString(password)
+			defer C.free(unsafe.Pointer(passwordC))
+		}
+		C.ApproveNewAccountCtx721036_PasswordChanged(ptr.Pointer(), C.struct_Moc_PackedString{data: passwordC, len: C.longlong(len(password))})
+	}
+}
+
+//export callbackApproveNewAccountCtx721036_ConfirmPassword
+func callbackApproveNewAccountCtx721036_ConfirmPassword(ptr unsafe.Pointer) C.struct_Moc_PackedString {
+	if signal := qt.GetSignal(ptr, "confirmPassword"); signal != nil {
+		tempVal := signal.(func() string)()
+		return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+	}
+	tempVal := NewApproveNewAccountCtxFromPointer(ptr).ConfirmPasswordDefault()
+	return C.struct_Moc_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+}
+
+func (ptr *ApproveNewAccountCtx) ConnectConfirmPassword(f func() string) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "confirmPassword"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "confirmPassword", func() string {
+				signal.(func() string)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "confirmPassword", f)
+		}
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) DisconnectConfirmPassword() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "confirmPassword")
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) ConfirmPassword() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.ApproveNewAccountCtx721036_ConfirmPassword(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *ApproveNewAccountCtx) ConfirmPasswordDefault() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.ApproveNewAccountCtx721036_ConfirmPasswordDefault(ptr.Pointer()))
+	}
+	return ""
+}
+
+//export callbackApproveNewAccountCtx721036_SetConfirmPassword
+func callbackApproveNewAccountCtx721036_SetConfirmPassword(ptr unsafe.Pointer, confirmPassword C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "setConfirmPassword"); signal != nil {
+		signal.(func(string))(cGoUnpackString(confirmPassword))
+	} else {
+		NewApproveNewAccountCtxFromPointer(ptr).SetConfirmPasswordDefault(cGoUnpackString(confirmPassword))
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) ConnectSetConfirmPassword(f func(confirmPassword string)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setConfirmPassword"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setConfirmPassword", func(confirmPassword string) {
+				signal.(func(string))(confirmPassword)
+				f(confirmPassword)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setConfirmPassword", f)
+		}
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) DisconnectSetConfirmPassword() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setConfirmPassword")
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) SetConfirmPassword(confirmPassword string) {
+	if ptr.Pointer() != nil {
+		var confirmPasswordC *C.char
+		if confirmPassword != "" {
+			confirmPasswordC = C.CString(confirmPassword)
+			defer C.free(unsafe.Pointer(confirmPasswordC))
+		}
+		C.ApproveNewAccountCtx721036_SetConfirmPassword(ptr.Pointer(), C.struct_Moc_PackedString{data: confirmPasswordC, len: C.longlong(len(confirmPassword))})
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) SetConfirmPasswordDefault(confirmPassword string) {
+	if ptr.Pointer() != nil {
+		var confirmPasswordC *C.char
+		if confirmPassword != "" {
+			confirmPasswordC = C.CString(confirmPassword)
+			defer C.free(unsafe.Pointer(confirmPasswordC))
+		}
+		C.ApproveNewAccountCtx721036_SetConfirmPasswordDefault(ptr.Pointer(), C.struct_Moc_PackedString{data: confirmPasswordC, len: C.longlong(len(confirmPassword))})
+	}
+}
+
+//export callbackApproveNewAccountCtx721036_ConfirmPasswordChanged
+func callbackApproveNewAccountCtx721036_ConfirmPasswordChanged(ptr unsafe.Pointer, confirmPassword C.struct_Moc_PackedString) {
+	if signal := qt.GetSignal(ptr, "confirmPasswordChanged"); signal != nil {
+		signal.(func(string))(cGoUnpackString(confirmPassword))
+	}
+
+}
+
+func (ptr *ApproveNewAccountCtx) ConnectConfirmPasswordChanged(f func(confirmPassword string)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "confirmPasswordChanged") {
+			C.ApproveNewAccountCtx721036_ConnectConfirmPasswordChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "confirmPasswordChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "confirmPasswordChanged", func(confirmPassword string) {
+				signal.(func(string))(confirmPassword)
+				f(confirmPassword)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "confirmPasswordChanged", f)
+		}
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) DisconnectConfirmPasswordChanged() {
+	if ptr.Pointer() != nil {
+		C.ApproveNewAccountCtx721036_DisconnectConfirmPasswordChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "confirmPasswordChanged")
+	}
+}
+
+func (ptr *ApproveNewAccountCtx) ConfirmPasswordChanged(confirmPassword string) {
+	if ptr.Pointer() != nil {
+		var confirmPasswordC *C.char
+		if confirmPassword != "" {
+			confirmPasswordC = C.CString(confirmPassword)
+			defer C.free(unsafe.Pointer(confirmPasswordC))
+		}
+		C.ApproveNewAccountCtx721036_ConfirmPasswordChanged(ptr.Pointer(), C.struct_Moc_PackedString{data: confirmPasswordC, len: C.longlong(len(confirmPassword))})
+	}
+}
+
+func ApproveNewAccountCtx_QRegisterMetaType() int {
+	return int(int32(C.ApproveNewAccountCtx721036_ApproveNewAccountCtx721036_QRegisterMetaType()))
+}
+
+func (ptr *ApproveNewAccountCtx) QRegisterMetaType() int {
+	return int(int32(C.ApproveNewAccountCtx721036_ApproveNewAccountCtx721036_QRegisterMetaType()))
+}
+
+func ApproveNewAccountCtx_QRegisterMetaType2(typeName string) int {
 	var typeNameC *C.char
 	if typeName != "" {
 		typeNameC = C.CString(typeName)
 		defer C.free(unsafe.Pointer(typeNameC))
 	}
-	return int(int32(C.TxListModel721036_TxListModel721036_QRegisterMetaType2(typeNameC)))
+	return int(int32(C.ApproveNewAccountCtx721036_ApproveNewAccountCtx721036_QRegisterMetaType2(typeNameC)))
 }
 
-func (ptr *TxListModel) QRegisterMetaType2(typeName string) int {
+func (ptr *ApproveNewAccountCtx) QRegisterMetaType2(typeName string) int {
 	var typeNameC *C.char
 	if typeName != "" {
 		typeNameC = C.CString(typeName)
 		defer C.free(unsafe.Pointer(typeNameC))
 	}
-	return int(int32(C.TxListModel721036_TxListModel721036_QRegisterMetaType2(typeNameC)))
+	return int(int32(C.ApproveNewAccountCtx721036_ApproveNewAccountCtx721036_QRegisterMetaType2(typeNameC)))
 }
 
-func TxListModel_QmlRegisterType() int {
-	return int(int32(C.TxListModel721036_TxListModel721036_QmlRegisterType()))
+func ApproveNewAccountCtx_QmlRegisterType() int {
+	return int(int32(C.ApproveNewAccountCtx721036_ApproveNewAccountCtx721036_QmlRegisterType()))
 }
 
-func (ptr *TxListModel) QmlRegisterType() int {
-	return int(int32(C.TxListModel721036_TxListModel721036_QmlRegisterType()))
+func (ptr *ApproveNewAccountCtx) QmlRegisterType() int {
+	return int(int32(C.ApproveNewAccountCtx721036_ApproveNewAccountCtx721036_QmlRegisterType()))
 }
 
-func TxListModel_QmlRegisterType2(uri string, versionMajor int, versionMinor int, qmlName string) int {
+func ApproveNewAccountCtx_QmlRegisterType2(uri string, versionMajor int, versionMinor int, qmlName string) int {
 	var uriC *C.char
 	if uri != "" {
 		uriC = C.CString(uri)
@@ -11103,10 +13603,10 @@ func TxListModel_QmlRegisterType2(uri string, versionMajor int, versionMinor int
 		qmlNameC = C.CString(qmlName)
 		defer C.free(unsafe.Pointer(qmlNameC))
 	}
-	return int(int32(C.TxListModel721036_TxListModel721036_QmlRegisterType2(uriC, C.int(int32(versionMajor)), C.int(int32(versionMinor)), qmlNameC)))
+	return int(int32(C.ApproveNewAccountCtx721036_ApproveNewAccountCtx721036_QmlRegisterType2(uriC, C.int(int32(versionMajor)), C.int(int32(versionMinor)), qmlNameC)))
 }
 
-func (ptr *TxListModel) QmlRegisterType2(uri string, versionMajor int, versionMinor int, qmlName string) int {
+func (ptr *ApproveNewAccountCtx) QmlRegisterType2(uri string, versionMajor int, versionMinor int, qmlName string) int {
 	var uriC *C.char
 	if uri != "" {
 		uriC = C.CString(uri)
@@ -11117,365 +13617,31 @@ func (ptr *TxListModel) QmlRegisterType2(uri string, versionMajor int, versionMi
 		qmlNameC = C.CString(qmlName)
 		defer C.free(unsafe.Pointer(qmlNameC))
 	}
-	return int(int32(C.TxListModel721036_TxListModel721036_QmlRegisterType2(uriC, C.int(int32(versionMajor)), C.int(int32(versionMinor)), qmlNameC)))
+	return int(int32(C.ApproveNewAccountCtx721036_ApproveNewAccountCtx721036_QmlRegisterType2(uriC, C.int(int32(versionMajor)), C.int(int32(versionMinor)), qmlNameC)))
 }
 
-func (ptr *TxListModel) ____setItemData_roles_keyList_atList(i int) int {
+func (ptr *ApproveNewAccountCtx) __dynamicPropertyNames_atList(i int) *std_core.QByteArray {
 	if ptr.Pointer() != nil {
-		return int(int32(C.TxListModel721036_____setItemData_roles_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
-}
-
-func (ptr *TxListModel) ____setItemData_roles_keyList_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.TxListModel721036_____setItemData_roles_keyList_setList(ptr.Pointer(), C.int(int32(i)))
-	}
-}
-
-func (ptr *TxListModel) ____setItemData_roles_keyList_newList() unsafe.Pointer {
-	return C.TxListModel721036_____setItemData_roles_keyList_newList(ptr.Pointer())
-}
-
-func (ptr *TxListModel) ____roleNames_keyList_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.TxListModel721036_____roleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
-}
-
-func (ptr *TxListModel) ____roleNames_keyList_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.TxListModel721036_____roleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
-	}
-}
-
-func (ptr *TxListModel) ____roleNames_keyList_newList() unsafe.Pointer {
-	return C.TxListModel721036_____roleNames_keyList_newList(ptr.Pointer())
-}
-
-func (ptr *TxListModel) ____itemData_keyList_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.TxListModel721036_____itemData_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
-}
-
-func (ptr *TxListModel) ____itemData_keyList_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.TxListModel721036_____itemData_keyList_setList(ptr.Pointer(), C.int(int32(i)))
-	}
-}
-
-func (ptr *TxListModel) ____itemData_keyList_newList() unsafe.Pointer {
-	return C.TxListModel721036_____itemData_keyList_newList(ptr.Pointer())
-}
-
-func (ptr *TxListModel) __setItemData_roles_atList(v int, i int) *std_core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQVariantFromPointer(C.TxListModel721036___setItemData_roles_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*std_core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *TxListModel) __setItemData_roles_setList(key int, i std_core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		C.TxListModel721036___setItemData_roles_setList(ptr.Pointer(), C.int(int32(key)), std_core.PointerFromQVariant(i))
-	}
-}
-
-func (ptr *TxListModel) __setItemData_roles_newList() unsafe.Pointer {
-	return C.TxListModel721036___setItemData_roles_newList(ptr.Pointer())
-}
-
-func (ptr *TxListModel) __setItemData_roles_keyList() []int {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_Moc_PackedList) []int {
-			out := make([]int, int(l.len))
-			tmpList := NewTxListModelFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____setItemData_roles_keyList_atList(i)
-			}
-			return out
-		}(C.TxListModel721036___setItemData_roles_keyList(ptr.Pointer()))
-	}
-	return make([]int, 0)
-}
-
-func (ptr *TxListModel) __changePersistentIndexList_from_atList(i int) *std_core.QModelIndex {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQModelIndexFromPointer(C.TxListModel721036___changePersistentIndexList_from_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *TxListModel) __changePersistentIndexList_from_setList(i std_core.QModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.TxListModel721036___changePersistentIndexList_from_setList(ptr.Pointer(), std_core.PointerFromQModelIndex(i))
-	}
-}
-
-func (ptr *TxListModel) __changePersistentIndexList_from_newList() unsafe.Pointer {
-	return C.TxListModel721036___changePersistentIndexList_from_newList(ptr.Pointer())
-}
-
-func (ptr *TxListModel) __changePersistentIndexList_to_atList(i int) *std_core.QModelIndex {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQModelIndexFromPointer(C.TxListModel721036___changePersistentIndexList_to_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *TxListModel) __changePersistentIndexList_to_setList(i std_core.QModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.TxListModel721036___changePersistentIndexList_to_setList(ptr.Pointer(), std_core.PointerFromQModelIndex(i))
-	}
-}
-
-func (ptr *TxListModel) __changePersistentIndexList_to_newList() unsafe.Pointer {
-	return C.TxListModel721036___changePersistentIndexList_to_newList(ptr.Pointer())
-}
-
-func (ptr *TxListModel) __dataChanged_roles_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.TxListModel721036___dataChanged_roles_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
-}
-
-func (ptr *TxListModel) __dataChanged_roles_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.TxListModel721036___dataChanged_roles_setList(ptr.Pointer(), C.int(int32(i)))
-	}
-}
-
-func (ptr *TxListModel) __dataChanged_roles_newList() unsafe.Pointer {
-	return C.TxListModel721036___dataChanged_roles_newList(ptr.Pointer())
-}
-
-func (ptr *TxListModel) __layoutAboutToBeChanged_parents_atList(i int) *std_core.QPersistentModelIndex {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQPersistentModelIndexFromPointer(C.TxListModel721036___layoutAboutToBeChanged_parents_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*std_core.QPersistentModelIndex).DestroyQPersistentModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *TxListModel) __layoutAboutToBeChanged_parents_setList(i std_core.QPersistentModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.TxListModel721036___layoutAboutToBeChanged_parents_setList(ptr.Pointer(), std_core.PointerFromQPersistentModelIndex(i))
-	}
-}
-
-func (ptr *TxListModel) __layoutAboutToBeChanged_parents_newList() unsafe.Pointer {
-	return C.TxListModel721036___layoutAboutToBeChanged_parents_newList(ptr.Pointer())
-}
-
-func (ptr *TxListModel) __layoutChanged_parents_atList(i int) *std_core.QPersistentModelIndex {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQPersistentModelIndexFromPointer(C.TxListModel721036___layoutChanged_parents_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*std_core.QPersistentModelIndex).DestroyQPersistentModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *TxListModel) __layoutChanged_parents_setList(i std_core.QPersistentModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.TxListModel721036___layoutChanged_parents_setList(ptr.Pointer(), std_core.PointerFromQPersistentModelIndex(i))
-	}
-}
-
-func (ptr *TxListModel) __layoutChanged_parents_newList() unsafe.Pointer {
-	return C.TxListModel721036___layoutChanged_parents_newList(ptr.Pointer())
-}
-
-func (ptr *TxListModel) __roleNames_atList(v int, i int) *std_core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQByteArrayFromPointer(C.TxListModel721036___roleNames_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
+		tmpValue := std_core.NewQByteArrayFromPointer(C.ApproveNewAccountCtx721036___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
 		runtime.SetFinalizer(tmpValue, (*std_core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *TxListModel) __roleNames_setList(key int, i std_core.QByteArray_ITF) {
+func (ptr *ApproveNewAccountCtx) __dynamicPropertyNames_setList(i std_core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		C.TxListModel721036___roleNames_setList(ptr.Pointer(), C.int(int32(key)), std_core.PointerFromQByteArray(i))
+		C.ApproveNewAccountCtx721036___dynamicPropertyNames_setList(ptr.Pointer(), std_core.PointerFromQByteArray(i))
 	}
 }
 
-func (ptr *TxListModel) __roleNames_newList() unsafe.Pointer {
-	return C.TxListModel721036___roleNames_newList(ptr.Pointer())
+func (ptr *ApproveNewAccountCtx) __dynamicPropertyNames_newList() unsafe.Pointer {
+	return C.ApproveNewAccountCtx721036___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *TxListModel) __roleNames_keyList() []int {
+func (ptr *ApproveNewAccountCtx) __findChildren_atList2(i int) *std_core.QObject {
 	if ptr.Pointer() != nil {
-		return func(l C.struct_Moc_PackedList) []int {
-			out := make([]int, int(l.len))
-			tmpList := NewTxListModelFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____roleNames_keyList_atList(i)
-			}
-			return out
-		}(C.TxListModel721036___roleNames_keyList(ptr.Pointer()))
-	}
-	return make([]int, 0)
-}
-
-func (ptr *TxListModel) __itemData_atList(v int, i int) *std_core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQVariantFromPointer(C.TxListModel721036___itemData_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*std_core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *TxListModel) __itemData_setList(key int, i std_core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		C.TxListModel721036___itemData_setList(ptr.Pointer(), C.int(int32(key)), std_core.PointerFromQVariant(i))
-	}
-}
-
-func (ptr *TxListModel) __itemData_newList() unsafe.Pointer {
-	return C.TxListModel721036___itemData_newList(ptr.Pointer())
-}
-
-func (ptr *TxListModel) __itemData_keyList() []int {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_Moc_PackedList) []int {
-			out := make([]int, int(l.len))
-			tmpList := NewTxListModelFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____itemData_keyList_atList(i)
-			}
-			return out
-		}(C.TxListModel721036___itemData_keyList(ptr.Pointer()))
-	}
-	return make([]int, 0)
-}
-
-func (ptr *TxListModel) __mimeData_indexes_atList(i int) *std_core.QModelIndex {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQModelIndexFromPointer(C.TxListModel721036___mimeData_indexes_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *TxListModel) __mimeData_indexes_setList(i std_core.QModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.TxListModel721036___mimeData_indexes_setList(ptr.Pointer(), std_core.PointerFromQModelIndex(i))
-	}
-}
-
-func (ptr *TxListModel) __mimeData_indexes_newList() unsafe.Pointer {
-	return C.TxListModel721036___mimeData_indexes_newList(ptr.Pointer())
-}
-
-func (ptr *TxListModel) __match_atList(i int) *std_core.QModelIndex {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQModelIndexFromPointer(C.TxListModel721036___match_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *TxListModel) __match_setList(i std_core.QModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.TxListModel721036___match_setList(ptr.Pointer(), std_core.PointerFromQModelIndex(i))
-	}
-}
-
-func (ptr *TxListModel) __match_newList() unsafe.Pointer {
-	return C.TxListModel721036___match_newList(ptr.Pointer())
-}
-
-func (ptr *TxListModel) __persistentIndexList_atList(i int) *std_core.QModelIndex {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQModelIndexFromPointer(C.TxListModel721036___persistentIndexList_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *TxListModel) __persistentIndexList_setList(i std_core.QModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.TxListModel721036___persistentIndexList_setList(ptr.Pointer(), std_core.PointerFromQModelIndex(i))
-	}
-}
-
-func (ptr *TxListModel) __persistentIndexList_newList() unsafe.Pointer {
-	return C.TxListModel721036___persistentIndexList_newList(ptr.Pointer())
-}
-
-func (ptr *TxListModel) ____doSetRoleNames_roleNames_keyList_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.TxListModel721036_____doSetRoleNames_roleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
-}
-
-func (ptr *TxListModel) ____doSetRoleNames_roleNames_keyList_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.TxListModel721036_____doSetRoleNames_roleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
-	}
-}
-
-func (ptr *TxListModel) ____doSetRoleNames_roleNames_keyList_newList() unsafe.Pointer {
-	return C.TxListModel721036_____doSetRoleNames_roleNames_keyList_newList(ptr.Pointer())
-}
-
-func (ptr *TxListModel) ____setRoleNames_roleNames_keyList_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.TxListModel721036_____setRoleNames_roleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
-}
-
-func (ptr *TxListModel) ____setRoleNames_roleNames_keyList_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.TxListModel721036_____setRoleNames_roleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
-	}
-}
-
-func (ptr *TxListModel) ____setRoleNames_roleNames_keyList_newList() unsafe.Pointer {
-	return C.TxListModel721036_____setRoleNames_roleNames_keyList_newList(ptr.Pointer())
-}
-
-func (ptr *TxListModel) __dynamicPropertyNames_atList(i int) *std_core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQByteArrayFromPointer(C.TxListModel721036___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*std_core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *TxListModel) __dynamicPropertyNames_setList(i std_core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.TxListModel721036___dynamicPropertyNames_setList(ptr.Pointer(), std_core.PointerFromQByteArray(i))
-	}
-}
-
-func (ptr *TxListModel) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.TxListModel721036___dynamicPropertyNames_newList(ptr.Pointer())
-}
-
-func (ptr *TxListModel) __findChildren_atList2(i int) *std_core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQObjectFromPointer(C.TxListModel721036___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := std_core.NewQObjectFromPointer(C.ApproveNewAccountCtx721036___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -11484,19 +13650,19 @@ func (ptr *TxListModel) __findChildren_atList2(i int) *std_core.QObject {
 	return nil
 }
 
-func (ptr *TxListModel) __findChildren_setList2(i std_core.QObject_ITF) {
+func (ptr *ApproveNewAccountCtx) __findChildren_setList2(i std_core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.TxListModel721036___findChildren_setList2(ptr.Pointer(), std_core.PointerFromQObject(i))
+		C.ApproveNewAccountCtx721036___findChildren_setList2(ptr.Pointer(), std_core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *TxListModel) __findChildren_newList2() unsafe.Pointer {
-	return C.TxListModel721036___findChildren_newList2(ptr.Pointer())
+func (ptr *ApproveNewAccountCtx) __findChildren_newList2() unsafe.Pointer {
+	return C.ApproveNewAccountCtx721036___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *TxListModel) __findChildren_atList3(i int) *std_core.QObject {
+func (ptr *ApproveNewAccountCtx) __findChildren_atList3(i int) *std_core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQObjectFromPointer(C.TxListModel721036___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := std_core.NewQObjectFromPointer(C.ApproveNewAccountCtx721036___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -11505,19 +13671,19 @@ func (ptr *TxListModel) __findChildren_atList3(i int) *std_core.QObject {
 	return nil
 }
 
-func (ptr *TxListModel) __findChildren_setList3(i std_core.QObject_ITF) {
+func (ptr *ApproveNewAccountCtx) __findChildren_setList3(i std_core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.TxListModel721036___findChildren_setList3(ptr.Pointer(), std_core.PointerFromQObject(i))
+		C.ApproveNewAccountCtx721036___findChildren_setList3(ptr.Pointer(), std_core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *TxListModel) __findChildren_newList3() unsafe.Pointer {
-	return C.TxListModel721036___findChildren_newList3(ptr.Pointer())
+func (ptr *ApproveNewAccountCtx) __findChildren_newList3() unsafe.Pointer {
+	return C.ApproveNewAccountCtx721036___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *TxListModel) __findChildren_atList(i int) *std_core.QObject {
+func (ptr *ApproveNewAccountCtx) __findChildren_atList(i int) *std_core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQObjectFromPointer(C.TxListModel721036___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := std_core.NewQObjectFromPointer(C.ApproveNewAccountCtx721036___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -11526,19 +13692,19 @@ func (ptr *TxListModel) __findChildren_atList(i int) *std_core.QObject {
 	return nil
 }
 
-func (ptr *TxListModel) __findChildren_setList(i std_core.QObject_ITF) {
+func (ptr *ApproveNewAccountCtx) __findChildren_setList(i std_core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.TxListModel721036___findChildren_setList(ptr.Pointer(), std_core.PointerFromQObject(i))
+		C.ApproveNewAccountCtx721036___findChildren_setList(ptr.Pointer(), std_core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *TxListModel) __findChildren_newList() unsafe.Pointer {
-	return C.TxListModel721036___findChildren_newList(ptr.Pointer())
+func (ptr *ApproveNewAccountCtx) __findChildren_newList() unsafe.Pointer {
+	return C.ApproveNewAccountCtx721036___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *TxListModel) __children_atList(i int) *std_core.QObject {
+func (ptr *ApproveNewAccountCtx) __children_atList(i int) *std_core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQObjectFromPointer(C.TxListModel721036___children_atList(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := std_core.NewQObjectFromPointer(C.ApproveNewAccountCtx721036___children_atList(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -11547,1043 +13713,206 @@ func (ptr *TxListModel) __children_atList(i int) *std_core.QObject {
 	return nil
 }
 
-func (ptr *TxListModel) __children_setList(i std_core.QObject_ITF) {
+func (ptr *ApproveNewAccountCtx) __children_setList(i std_core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.TxListModel721036___children_setList(ptr.Pointer(), std_core.PointerFromQObject(i))
+		C.ApproveNewAccountCtx721036___children_setList(ptr.Pointer(), std_core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *TxListModel) __children_newList() unsafe.Pointer {
-	return C.TxListModel721036___children_newList(ptr.Pointer())
+func (ptr *ApproveNewAccountCtx) __children_newList() unsafe.Pointer {
+	return C.ApproveNewAccountCtx721036___children_newList(ptr.Pointer())
 }
 
-func NewTxListModel(parent std_core.QObject_ITF) *TxListModel {
-	tmpValue := NewTxListModelFromPointer(C.TxListModel721036_NewTxListModel(std_core.PointerFromQObject(parent)))
+func NewApproveNewAccountCtx(parent std_core.QObject_ITF) *ApproveNewAccountCtx {
+	tmpValue := NewApproveNewAccountCtxFromPointer(C.ApproveNewAccountCtx721036_NewApproveNewAccountCtx(std_core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
 
-//export callbackTxListModel721036_DestroyTxListModel
-func callbackTxListModel721036_DestroyTxListModel(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~TxListModel"); signal != nil {
+//export callbackApproveNewAccountCtx721036_DestroyApproveNewAccountCtx
+func callbackApproveNewAccountCtx721036_DestroyApproveNewAccountCtx(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "~ApproveNewAccountCtx"); signal != nil {
 		signal.(func())()
 	} else {
-		NewTxListModelFromPointer(ptr).DestroyTxListModelDefault()
+		NewApproveNewAccountCtxFromPointer(ptr).DestroyApproveNewAccountCtxDefault()
 	}
 }
 
-func (ptr *TxListModel) ConnectDestroyTxListModel(f func()) {
+func (ptr *ApproveNewAccountCtx) ConnectDestroyApproveNewAccountCtx(f func()) {
 	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~TxListModel"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "~TxListModel", func() {
+		if signal := qt.LendSignal(ptr.Pointer(), "~ApproveNewAccountCtx"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "~ApproveNewAccountCtx", func() {
 				signal.(func())()
 				f()
 			})
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~TxListModel", f)
+			qt.ConnectSignal(ptr.Pointer(), "~ApproveNewAccountCtx", f)
 		}
 	}
 }
 
-func (ptr *TxListModel) DisconnectDestroyTxListModel() {
+func (ptr *ApproveNewAccountCtx) DisconnectDestroyApproveNewAccountCtx() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~TxListModel")
+		qt.DisconnectSignal(ptr.Pointer(), "~ApproveNewAccountCtx")
 	}
 }
 
-func (ptr *TxListModel) DestroyTxListModel() {
+func (ptr *ApproveNewAccountCtx) DestroyApproveNewAccountCtx() {
 	if ptr.Pointer() != nil {
-		C.TxListModel721036_DestroyTxListModel(ptr.Pointer())
+		C.ApproveNewAccountCtx721036_DestroyApproveNewAccountCtx(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
-func (ptr *TxListModel) DestroyTxListModelDefault() {
+func (ptr *ApproveNewAccountCtx) DestroyApproveNewAccountCtxDefault() {
 	if ptr.Pointer() != nil {
-		C.TxListModel721036_DestroyTxListModelDefault(ptr.Pointer())
+		C.ApproveNewAccountCtx721036_DestroyApproveNewAccountCtxDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
-//export callbackTxListModel721036_DropMimeData
-func callbackTxListModel721036_DropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "dropMimeData"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QMimeData, std_core.Qt__DropAction, int, int, *std_core.QModelIndex) bool)(std_core.NewQMimeDataFromPointer(data), std_core.Qt__DropAction(action), int(int32(row)), int(int32(column)), std_core.NewQModelIndexFromPointer(parent)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewTxListModelFromPointer(ptr).DropMimeDataDefault(std_core.NewQMimeDataFromPointer(data), std_core.Qt__DropAction(action), int(int32(row)), int(int32(column)), std_core.NewQModelIndexFromPointer(parent)))))
-}
-
-func (ptr *TxListModel) DropMimeDataDefault(data std_core.QMimeData_ITF, action std_core.Qt__DropAction, row int, column int, parent std_core.QModelIndex_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.TxListModel721036_DropMimeDataDefault(ptr.Pointer(), std_core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), std_core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-//export callbackTxListModel721036_Index
-func callbackTxListModel721036_Index(ptr unsafe.Pointer, row C.int, column C.int, parent unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "index"); signal != nil {
-		return std_core.PointerFromQModelIndex(signal.(func(int, int, *std_core.QModelIndex) *std_core.QModelIndex)(int(int32(row)), int(int32(column)), std_core.NewQModelIndexFromPointer(parent)))
-	}
-
-	return std_core.PointerFromQModelIndex(NewTxListModelFromPointer(ptr).IndexDefault(int(int32(row)), int(int32(column)), std_core.NewQModelIndexFromPointer(parent)))
-}
-
-func (ptr *TxListModel) IndexDefault(row int, column int, parent std_core.QModelIndex_ITF) *std_core.QModelIndex {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQModelIndexFromPointer(C.TxListModel721036_IndexDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), std_core.PointerFromQModelIndex(parent)))
-		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackTxListModel721036_Sibling
-func callbackTxListModel721036_Sibling(ptr unsafe.Pointer, row C.int, column C.int, idx unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "sibling"); signal != nil {
-		return std_core.PointerFromQModelIndex(signal.(func(int, int, *std_core.QModelIndex) *std_core.QModelIndex)(int(int32(row)), int(int32(column)), std_core.NewQModelIndexFromPointer(idx)))
-	}
-
-	return std_core.PointerFromQModelIndex(NewTxListModelFromPointer(ptr).SiblingDefault(int(int32(row)), int(int32(column)), std_core.NewQModelIndexFromPointer(idx)))
-}
-
-func (ptr *TxListModel) SiblingDefault(row int, column int, idx std_core.QModelIndex_ITF) *std_core.QModelIndex {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQModelIndexFromPointer(C.TxListModel721036_SiblingDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), std_core.PointerFromQModelIndex(idx)))
-		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackTxListModel721036_Flags
-func callbackTxListModel721036_Flags(ptr unsafe.Pointer, index unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(ptr, "flags"); signal != nil {
-		return C.longlong(signal.(func(*std_core.QModelIndex) std_core.Qt__ItemFlag)(std_core.NewQModelIndexFromPointer(index)))
-	}
-
-	return C.longlong(NewTxListModelFromPointer(ptr).FlagsDefault(std_core.NewQModelIndexFromPointer(index)))
-}
-
-func (ptr *TxListModel) FlagsDefault(index std_core.QModelIndex_ITF) std_core.Qt__ItemFlag {
-	if ptr.Pointer() != nil {
-		return std_core.Qt__ItemFlag(C.TxListModel721036_FlagsDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(index)))
-	}
-	return 0
-}
-
-//export callbackTxListModel721036_InsertColumns
-func callbackTxListModel721036_InsertColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "insertColumns"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *std_core.QModelIndex) bool)(int(int32(column)), int(int32(count)), std_core.NewQModelIndexFromPointer(parent)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewTxListModelFromPointer(ptr).InsertColumnsDefault(int(int32(column)), int(int32(count)), std_core.NewQModelIndexFromPointer(parent)))))
-}
-
-func (ptr *TxListModel) InsertColumnsDefault(column int, count int, parent std_core.QModelIndex_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.TxListModel721036_InsertColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), std_core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-//export callbackTxListModel721036_InsertRows
-func callbackTxListModel721036_InsertRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "insertRows"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *std_core.QModelIndex) bool)(int(int32(row)), int(int32(count)), std_core.NewQModelIndexFromPointer(parent)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewTxListModelFromPointer(ptr).InsertRowsDefault(int(int32(row)), int(int32(count)), std_core.NewQModelIndexFromPointer(parent)))))
-}
-
-func (ptr *TxListModel) InsertRowsDefault(row int, count int, parent std_core.QModelIndex_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.TxListModel721036_InsertRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), std_core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-//export callbackTxListModel721036_MoveColumns
-func callbackTxListModel721036_MoveColumns(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceColumn C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
-	if signal := qt.GetSignal(ptr, "moveColumns"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QModelIndex, int, int, *std_core.QModelIndex, int) bool)(std_core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceColumn)), int(int32(count)), std_core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewTxListModelFromPointer(ptr).MoveColumnsDefault(std_core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceColumn)), int(int32(count)), std_core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
-}
-
-func (ptr *TxListModel) MoveColumnsDefault(sourceParent std_core.QModelIndex_ITF, sourceColumn int, count int, destinationParent std_core.QModelIndex_ITF, destinationChild int) bool {
-	if ptr.Pointer() != nil {
-		return C.TxListModel721036_MoveColumnsDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceColumn)), C.int(int32(count)), std_core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
-	}
-	return false
-}
-
-//export callbackTxListModel721036_MoveRows
-func callbackTxListModel721036_MoveRows(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceRow C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
-	if signal := qt.GetSignal(ptr, "moveRows"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QModelIndex, int, int, *std_core.QModelIndex, int) bool)(std_core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceRow)), int(int32(count)), std_core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewTxListModelFromPointer(ptr).MoveRowsDefault(std_core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceRow)), int(int32(count)), std_core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
-}
-
-func (ptr *TxListModel) MoveRowsDefault(sourceParent std_core.QModelIndex_ITF, sourceRow int, count int, destinationParent std_core.QModelIndex_ITF, destinationChild int) bool {
-	if ptr.Pointer() != nil {
-		return C.TxListModel721036_MoveRowsDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceRow)), C.int(int32(count)), std_core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
-	}
-	return false
-}
-
-//export callbackTxListModel721036_RemoveColumns
-func callbackTxListModel721036_RemoveColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "removeColumns"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *std_core.QModelIndex) bool)(int(int32(column)), int(int32(count)), std_core.NewQModelIndexFromPointer(parent)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewTxListModelFromPointer(ptr).RemoveColumnsDefault(int(int32(column)), int(int32(count)), std_core.NewQModelIndexFromPointer(parent)))))
-}
-
-func (ptr *TxListModel) RemoveColumnsDefault(column int, count int, parent std_core.QModelIndex_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.TxListModel721036_RemoveColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), std_core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-//export callbackTxListModel721036_RemoveRows
-func callbackTxListModel721036_RemoveRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "removeRows"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *std_core.QModelIndex) bool)(int(int32(row)), int(int32(count)), std_core.NewQModelIndexFromPointer(parent)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewTxListModelFromPointer(ptr).RemoveRowsDefault(int(int32(row)), int(int32(count)), std_core.NewQModelIndexFromPointer(parent)))))
-}
-
-func (ptr *TxListModel) RemoveRowsDefault(row int, count int, parent std_core.QModelIndex_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.TxListModel721036_RemoveRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), std_core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-//export callbackTxListModel721036_SetData
-func callbackTxListModel721036_SetData(ptr unsafe.Pointer, index unsafe.Pointer, value unsafe.Pointer, role C.int) C.char {
-	if signal := qt.GetSignal(ptr, "setData"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QModelIndex, *std_core.QVariant, int) bool)(std_core.NewQModelIndexFromPointer(index), std_core.NewQVariantFromPointer(value), int(int32(role))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewTxListModelFromPointer(ptr).SetDataDefault(std_core.NewQModelIndexFromPointer(index), std_core.NewQVariantFromPointer(value), int(int32(role))))))
-}
-
-func (ptr *TxListModel) SetDataDefault(index std_core.QModelIndex_ITF, value std_core.QVariant_ITF, role int) bool {
-	if ptr.Pointer() != nil {
-		return C.TxListModel721036_SetDataDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(index), std_core.PointerFromQVariant(value), C.int(int32(role))) != 0
-	}
-	return false
-}
-
-//export callbackTxListModel721036_SetHeaderData
-func callbackTxListModel721036_SetHeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, value unsafe.Pointer, role C.int) C.char {
-	if signal := qt.GetSignal(ptr, "setHeaderData"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(int, std_core.Qt__Orientation, *std_core.QVariant, int) bool)(int(int32(section)), std_core.Qt__Orientation(orientation), std_core.NewQVariantFromPointer(value), int(int32(role))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewTxListModelFromPointer(ptr).SetHeaderDataDefault(int(int32(section)), std_core.Qt__Orientation(orientation), std_core.NewQVariantFromPointer(value), int(int32(role))))))
-}
-
-func (ptr *TxListModel) SetHeaderDataDefault(section int, orientation std_core.Qt__Orientation, value std_core.QVariant_ITF, role int) bool {
-	if ptr.Pointer() != nil {
-		return C.TxListModel721036_SetHeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), std_core.PointerFromQVariant(value), C.int(int32(role))) != 0
-	}
-	return false
-}
-
-//export callbackTxListModel721036_SetItemData
-func callbackTxListModel721036_SetItemData(ptr unsafe.Pointer, index unsafe.Pointer, roles C.struct_Moc_PackedList) C.char {
-	if signal := qt.GetSignal(ptr, "setItemData"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QModelIndex, map[int]*std_core.QVariant) bool)(std_core.NewQModelIndexFromPointer(index), func(l C.struct_Moc_PackedList) map[int]*std_core.QVariant {
-			out := make(map[int]*std_core.QVariant, int(l.len))
-			tmpList := NewTxListModelFromPointer(l.data)
-			for i, v := range tmpList.__setItemData_roles_keyList() {
-				out[v] = tmpList.__setItemData_roles_atList(v, i)
-			}
-			return out
-		}(roles)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewTxListModelFromPointer(ptr).SetItemDataDefault(std_core.NewQModelIndexFromPointer(index), func(l C.struct_Moc_PackedList) map[int]*std_core.QVariant {
-		out := make(map[int]*std_core.QVariant, int(l.len))
-		tmpList := NewTxListModelFromPointer(l.data)
-		for i, v := range tmpList.__setItemData_roles_keyList() {
-			out[v] = tmpList.__setItemData_roles_atList(v, i)
-		}
-		return out
-	}(roles)))))
-}
-
-func (ptr *TxListModel) SetItemDataDefault(index std_core.QModelIndex_ITF, roles map[int]*std_core.QVariant) bool {
-	if ptr.Pointer() != nil {
-		return C.TxListModel721036_SetItemDataDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(index), func() unsafe.Pointer {
-			tmpList := NewTxListModelFromPointer(NewTxListModelFromPointer(nil).__setItemData_roles_newList())
-			for k, v := range roles {
-				tmpList.__setItemData_roles_setList(k, v)
-			}
-			return tmpList.Pointer()
-		}()) != 0
-	}
-	return false
-}
-
-//export callbackTxListModel721036_Submit
-func callbackTxListModel721036_Submit(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "submit"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewTxListModelFromPointer(ptr).SubmitDefault())))
-}
-
-func (ptr *TxListModel) SubmitDefault() bool {
-	if ptr.Pointer() != nil {
-		return C.TxListModel721036_SubmitDefault(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-//export callbackTxListModel721036_ColumnsAboutToBeInserted
-func callbackTxListModel721036_ColumnsAboutToBeInserted(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
-	if signal := qt.GetSignal(ptr, "columnsAboutToBeInserted"); signal != nil {
-		signal.(func(*std_core.QModelIndex, int, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
-	}
-
-}
-
-//export callbackTxListModel721036_ColumnsAboutToBeMoved
-func callbackTxListModel721036_ColumnsAboutToBeMoved(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceStart C.int, sourceEnd C.int, destinationParent unsafe.Pointer, destinationColumn C.int) {
-	if signal := qt.GetSignal(ptr, "columnsAboutToBeMoved"); signal != nil {
-		signal.(func(*std_core.QModelIndex, int, int, *std_core.QModelIndex, int))(std_core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceStart)), int(int32(sourceEnd)), std_core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationColumn)))
-	}
-
-}
-
-//export callbackTxListModel721036_ColumnsAboutToBeRemoved
-func callbackTxListModel721036_ColumnsAboutToBeRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
-	if signal := qt.GetSignal(ptr, "columnsAboutToBeRemoved"); signal != nil {
-		signal.(func(*std_core.QModelIndex, int, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
-	}
-
-}
-
-//export callbackTxListModel721036_ColumnsInserted
-func callbackTxListModel721036_ColumnsInserted(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
-	if signal := qt.GetSignal(ptr, "columnsInserted"); signal != nil {
-		signal.(func(*std_core.QModelIndex, int, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
-	}
-
-}
-
-//export callbackTxListModel721036_ColumnsMoved
-func callbackTxListModel721036_ColumnsMoved(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int, destination unsafe.Pointer, column C.int) {
-	if signal := qt.GetSignal(ptr, "columnsMoved"); signal != nil {
-		signal.(func(*std_core.QModelIndex, int, int, *std_core.QModelIndex, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)), std_core.NewQModelIndexFromPointer(destination), int(int32(column)))
-	}
-
-}
-
-//export callbackTxListModel721036_ColumnsRemoved
-func callbackTxListModel721036_ColumnsRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
-	if signal := qt.GetSignal(ptr, "columnsRemoved"); signal != nil {
-		signal.(func(*std_core.QModelIndex, int, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
-	}
-
-}
-
-//export callbackTxListModel721036_DataChanged
-func callbackTxListModel721036_DataChanged(ptr unsafe.Pointer, topLeft unsafe.Pointer, bottomRight unsafe.Pointer, roles C.struct_Moc_PackedList) {
-	if signal := qt.GetSignal(ptr, "dataChanged"); signal != nil {
-		signal.(func(*std_core.QModelIndex, *std_core.QModelIndex, []int))(std_core.NewQModelIndexFromPointer(topLeft), std_core.NewQModelIndexFromPointer(bottomRight), func(l C.struct_Moc_PackedList) []int {
-			out := make([]int, int(l.len))
-			tmpList := NewTxListModelFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__dataChanged_roles_atList(i)
-			}
-			return out
-		}(roles))
-	}
-
-}
-
-//export callbackTxListModel721036_FetchMore
-func callbackTxListModel721036_FetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "fetchMore"); signal != nil {
-		signal.(func(*std_core.QModelIndex))(std_core.NewQModelIndexFromPointer(parent))
-	} else {
-		NewTxListModelFromPointer(ptr).FetchMoreDefault(std_core.NewQModelIndexFromPointer(parent))
-	}
-}
-
-func (ptr *TxListModel) FetchMoreDefault(parent std_core.QModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.TxListModel721036_FetchMoreDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(parent))
-	}
-}
-
-//export callbackTxListModel721036_HeaderDataChanged
-func callbackTxListModel721036_HeaderDataChanged(ptr unsafe.Pointer, orientation C.longlong, first C.int, last C.int) {
-	if signal := qt.GetSignal(ptr, "headerDataChanged"); signal != nil {
-		signal.(func(std_core.Qt__Orientation, int, int))(std_core.Qt__Orientation(orientation), int(int32(first)), int(int32(last)))
-	}
-
-}
-
-//export callbackTxListModel721036_LayoutAboutToBeChanged
-func callbackTxListModel721036_LayoutAboutToBeChanged(ptr unsafe.Pointer, parents C.struct_Moc_PackedList, hint C.longlong) {
-	if signal := qt.GetSignal(ptr, "layoutAboutToBeChanged"); signal != nil {
-		signal.(func([]*std_core.QPersistentModelIndex, std_core.QAbstractItemModel__LayoutChangeHint))(func(l C.struct_Moc_PackedList) []*std_core.QPersistentModelIndex {
-			out := make([]*std_core.QPersistentModelIndex, int(l.len))
-			tmpList := NewTxListModelFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__layoutAboutToBeChanged_parents_atList(i)
-			}
-			return out
-		}(parents), std_core.QAbstractItemModel__LayoutChangeHint(hint))
-	}
-
-}
-
-//export callbackTxListModel721036_LayoutChanged
-func callbackTxListModel721036_LayoutChanged(ptr unsafe.Pointer, parents C.struct_Moc_PackedList, hint C.longlong) {
-	if signal := qt.GetSignal(ptr, "layoutChanged"); signal != nil {
-		signal.(func([]*std_core.QPersistentModelIndex, std_core.QAbstractItemModel__LayoutChangeHint))(func(l C.struct_Moc_PackedList) []*std_core.QPersistentModelIndex {
-			out := make([]*std_core.QPersistentModelIndex, int(l.len))
-			tmpList := NewTxListModelFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__layoutChanged_parents_atList(i)
-			}
-			return out
-		}(parents), std_core.QAbstractItemModel__LayoutChangeHint(hint))
-	}
-
-}
-
-//export callbackTxListModel721036_ModelAboutToBeReset
-func callbackTxListModel721036_ModelAboutToBeReset(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "modelAboutToBeReset"); signal != nil {
-		signal.(func())()
-	}
-
-}
-
-//export callbackTxListModel721036_ModelReset
-func callbackTxListModel721036_ModelReset(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "modelReset"); signal != nil {
-		signal.(func())()
-	}
-
-}
-
-//export callbackTxListModel721036_ResetInternalData
-func callbackTxListModel721036_ResetInternalData(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "resetInternalData"); signal != nil {
-		signal.(func())()
-	} else {
-		NewTxListModelFromPointer(ptr).ResetInternalDataDefault()
-	}
-}
-
-func (ptr *TxListModel) ResetInternalDataDefault() {
-	if ptr.Pointer() != nil {
-		C.TxListModel721036_ResetInternalDataDefault(ptr.Pointer())
-	}
-}
-
-//export callbackTxListModel721036_Revert
-func callbackTxListModel721036_Revert(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "revert"); signal != nil {
-		signal.(func())()
-	} else {
-		NewTxListModelFromPointer(ptr).RevertDefault()
-	}
-}
-
-func (ptr *TxListModel) RevertDefault() {
-	if ptr.Pointer() != nil {
-		C.TxListModel721036_RevertDefault(ptr.Pointer())
-	}
-}
-
-//export callbackTxListModel721036_RowsAboutToBeInserted
-func callbackTxListModel721036_RowsAboutToBeInserted(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int) {
-	if signal := qt.GetSignal(ptr, "rowsAboutToBeInserted"); signal != nil {
-		signal.(func(*std_core.QModelIndex, int, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)))
-	}
-
-}
-
-//export callbackTxListModel721036_RowsAboutToBeMoved
-func callbackTxListModel721036_RowsAboutToBeMoved(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceStart C.int, sourceEnd C.int, destinationParent unsafe.Pointer, destinationRow C.int) {
-	if signal := qt.GetSignal(ptr, "rowsAboutToBeMoved"); signal != nil {
-		signal.(func(*std_core.QModelIndex, int, int, *std_core.QModelIndex, int))(std_core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceStart)), int(int32(sourceEnd)), std_core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationRow)))
-	}
-
-}
-
-//export callbackTxListModel721036_RowsAboutToBeRemoved
-func callbackTxListModel721036_RowsAboutToBeRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
-	if signal := qt.GetSignal(ptr, "rowsAboutToBeRemoved"); signal != nil {
-		signal.(func(*std_core.QModelIndex, int, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
-	}
-
-}
-
-//export callbackTxListModel721036_RowsInserted
-func callbackTxListModel721036_RowsInserted(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
-	if signal := qt.GetSignal(ptr, "rowsInserted"); signal != nil {
-		signal.(func(*std_core.QModelIndex, int, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
-	}
-
-}
-
-//export callbackTxListModel721036_RowsMoved
-func callbackTxListModel721036_RowsMoved(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int, destination unsafe.Pointer, row C.int) {
-	if signal := qt.GetSignal(ptr, "rowsMoved"); signal != nil {
-		signal.(func(*std_core.QModelIndex, int, int, *std_core.QModelIndex, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)), std_core.NewQModelIndexFromPointer(destination), int(int32(row)))
-	}
-
-}
-
-//export callbackTxListModel721036_RowsRemoved
-func callbackTxListModel721036_RowsRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
-	if signal := qt.GetSignal(ptr, "rowsRemoved"); signal != nil {
-		signal.(func(*std_core.QModelIndex, int, int))(std_core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
-	}
-
-}
-
-//export callbackTxListModel721036_Sort
-func callbackTxListModel721036_Sort(ptr unsafe.Pointer, column C.int, order C.longlong) {
-	if signal := qt.GetSignal(ptr, "sort"); signal != nil {
-		signal.(func(int, std_core.Qt__SortOrder))(int(int32(column)), std_core.Qt__SortOrder(order))
-	} else {
-		NewTxListModelFromPointer(ptr).SortDefault(int(int32(column)), std_core.Qt__SortOrder(order))
-	}
-}
-
-func (ptr *TxListModel) SortDefault(column int, order std_core.Qt__SortOrder) {
-	if ptr.Pointer() != nil {
-		C.TxListModel721036_SortDefault(ptr.Pointer(), C.int(int32(column)), C.longlong(order))
-	}
-}
-
-//export callbackTxListModel721036_RoleNames
-func callbackTxListModel721036_RoleNames(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "roleNames"); signal != nil {
-		return func() unsafe.Pointer {
-			tmpList := NewTxListModelFromPointer(NewTxListModelFromPointer(nil).__roleNames_newList())
-			for k, v := range signal.(func() map[int]*std_core.QByteArray)() {
-				tmpList.__roleNames_setList(k, v)
-			}
-			return tmpList.Pointer()
-		}()
-	}
-
-	return func() unsafe.Pointer {
-		tmpList := NewTxListModelFromPointer(NewTxListModelFromPointer(nil).__roleNames_newList())
-		for k, v := range NewTxListModelFromPointer(ptr).RoleNamesDefault() {
-			tmpList.__roleNames_setList(k, v)
-		}
-		return tmpList.Pointer()
-	}()
-}
-
-func (ptr *TxListModel) RoleNamesDefault() map[int]*std_core.QByteArray {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_Moc_PackedList) map[int]*std_core.QByteArray {
-			out := make(map[int]*std_core.QByteArray, int(l.len))
-			tmpList := NewTxListModelFromPointer(l.data)
-			for i, v := range tmpList.__roleNames_keyList() {
-				out[v] = tmpList.__roleNames_atList(v, i)
-			}
-			return out
-		}(C.TxListModel721036_RoleNamesDefault(ptr.Pointer()))
-	}
-	return make(map[int]*std_core.QByteArray, 0)
-}
-
-//export callbackTxListModel721036_ItemData
-func callbackTxListModel721036_ItemData(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "itemData"); signal != nil {
-		return func() unsafe.Pointer {
-			tmpList := NewTxListModelFromPointer(NewTxListModelFromPointer(nil).__itemData_newList())
-			for k, v := range signal.(func(*std_core.QModelIndex) map[int]*std_core.QVariant)(std_core.NewQModelIndexFromPointer(index)) {
-				tmpList.__itemData_setList(k, v)
-			}
-			return tmpList.Pointer()
-		}()
-	}
-
-	return func() unsafe.Pointer {
-		tmpList := NewTxListModelFromPointer(NewTxListModelFromPointer(nil).__itemData_newList())
-		for k, v := range NewTxListModelFromPointer(ptr).ItemDataDefault(std_core.NewQModelIndexFromPointer(index)) {
-			tmpList.__itemData_setList(k, v)
-		}
-		return tmpList.Pointer()
-	}()
-}
-
-func (ptr *TxListModel) ItemDataDefault(index std_core.QModelIndex_ITF) map[int]*std_core.QVariant {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_Moc_PackedList) map[int]*std_core.QVariant {
-			out := make(map[int]*std_core.QVariant, int(l.len))
-			tmpList := NewTxListModelFromPointer(l.data)
-			for i, v := range tmpList.__itemData_keyList() {
-				out[v] = tmpList.__itemData_atList(v, i)
-			}
-			return out
-		}(C.TxListModel721036_ItemDataDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(index)))
-	}
-	return make(map[int]*std_core.QVariant, 0)
-}
-
-//export callbackTxListModel721036_MimeData
-func callbackTxListModel721036_MimeData(ptr unsafe.Pointer, indexes C.struct_Moc_PackedList) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "mimeData"); signal != nil {
-		return std_core.PointerFromQMimeData(signal.(func([]*std_core.QModelIndex) *std_core.QMimeData)(func(l C.struct_Moc_PackedList) []*std_core.QModelIndex {
-			out := make([]*std_core.QModelIndex, int(l.len))
-			tmpList := NewTxListModelFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__mimeData_indexes_atList(i)
-			}
-			return out
-		}(indexes)))
-	}
-
-	return std_core.PointerFromQMimeData(NewTxListModelFromPointer(ptr).MimeDataDefault(func(l C.struct_Moc_PackedList) []*std_core.QModelIndex {
-		out := make([]*std_core.QModelIndex, int(l.len))
-		tmpList := NewTxListModelFromPointer(l.data)
-		for i := 0; i < len(out); i++ {
-			out[i] = tmpList.__mimeData_indexes_atList(i)
-		}
-		return out
-	}(indexes)))
-}
-
-func (ptr *TxListModel) MimeDataDefault(indexes []*std_core.QModelIndex) *std_core.QMimeData {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQMimeDataFromPointer(C.TxListModel721036_MimeDataDefault(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewTxListModelFromPointer(NewTxListModelFromPointer(nil).__mimeData_indexes_newList())
-			for _, v := range indexes {
-				tmpList.__mimeData_indexes_setList(v)
-			}
-			return tmpList.Pointer()
-		}()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*std_core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackTxListModel721036_Buddy
-func callbackTxListModel721036_Buddy(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "buddy"); signal != nil {
-		return std_core.PointerFromQModelIndex(signal.(func(*std_core.QModelIndex) *std_core.QModelIndex)(std_core.NewQModelIndexFromPointer(index)))
-	}
-
-	return std_core.PointerFromQModelIndex(NewTxListModelFromPointer(ptr).BuddyDefault(std_core.NewQModelIndexFromPointer(index)))
-}
-
-func (ptr *TxListModel) BuddyDefault(index std_core.QModelIndex_ITF) *std_core.QModelIndex {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQModelIndexFromPointer(C.TxListModel721036_BuddyDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackTxListModel721036_Parent
-func callbackTxListModel721036_Parent(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "parent"); signal != nil {
-		return std_core.PointerFromQModelIndex(signal.(func(*std_core.QModelIndex) *std_core.QModelIndex)(std_core.NewQModelIndexFromPointer(index)))
-	}
-
-	return std_core.PointerFromQModelIndex(NewTxListModelFromPointer(ptr).ParentDefault(std_core.NewQModelIndexFromPointer(index)))
-}
-
-func (ptr *TxListModel) ParentDefault(index std_core.QModelIndex_ITF) *std_core.QModelIndex {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQModelIndexFromPointer(C.TxListModel721036_ParentDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*std_core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackTxListModel721036_Match
-func callbackTxListModel721036_Match(ptr unsafe.Pointer, start unsafe.Pointer, role C.int, value unsafe.Pointer, hits C.int, flags C.longlong) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "match"); signal != nil {
-		return func() unsafe.Pointer {
-			tmpList := NewTxListModelFromPointer(NewTxListModelFromPointer(nil).__match_newList())
-			for _, v := range signal.(func(*std_core.QModelIndex, int, *std_core.QVariant, int, std_core.Qt__MatchFlag) []*std_core.QModelIndex)(std_core.NewQModelIndexFromPointer(start), int(int32(role)), std_core.NewQVariantFromPointer(value), int(int32(hits)), std_core.Qt__MatchFlag(flags)) {
-				tmpList.__match_setList(v)
-			}
-			return tmpList.Pointer()
-		}()
-	}
-
-	return func() unsafe.Pointer {
-		tmpList := NewTxListModelFromPointer(NewTxListModelFromPointer(nil).__match_newList())
-		for _, v := range NewTxListModelFromPointer(ptr).MatchDefault(std_core.NewQModelIndexFromPointer(start), int(int32(role)), std_core.NewQVariantFromPointer(value), int(int32(hits)), std_core.Qt__MatchFlag(flags)) {
-			tmpList.__match_setList(v)
-		}
-		return tmpList.Pointer()
-	}()
-}
-
-func (ptr *TxListModel) MatchDefault(start std_core.QModelIndex_ITF, role int, value std_core.QVariant_ITF, hits int, flags std_core.Qt__MatchFlag) []*std_core.QModelIndex {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_Moc_PackedList) []*std_core.QModelIndex {
-			out := make([]*std_core.QModelIndex, int(l.len))
-			tmpList := NewTxListModelFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__match_atList(i)
-			}
-			return out
-		}(C.TxListModel721036_MatchDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(start), C.int(int32(role)), std_core.PointerFromQVariant(value), C.int(int32(hits)), C.longlong(flags)))
-	}
-	return make([]*std_core.QModelIndex, 0)
-}
-
-//export callbackTxListModel721036_Span
-func callbackTxListModel721036_Span(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "span"); signal != nil {
-		return std_core.PointerFromQSize(signal.(func(*std_core.QModelIndex) *std_core.QSize)(std_core.NewQModelIndexFromPointer(index)))
-	}
-
-	return std_core.PointerFromQSize(NewTxListModelFromPointer(ptr).SpanDefault(std_core.NewQModelIndexFromPointer(index)))
-}
-
-func (ptr *TxListModel) SpanDefault(index std_core.QModelIndex_ITF) *std_core.QSize {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQSizeFromPointer(C.TxListModel721036_SpanDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*std_core.QSize).DestroyQSize)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackTxListModel721036_MimeTypes
-func callbackTxListModel721036_MimeTypes(ptr unsafe.Pointer) C.struct_Moc_PackedString {
-	if signal := qt.GetSignal(ptr, "mimeTypes"); signal != nil {
-		tempVal := signal.(func() []string)()
-		return C.struct_Moc_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
-	}
-	tempVal := NewTxListModelFromPointer(ptr).MimeTypesDefault()
-	return C.struct_Moc_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
-}
-
-func (ptr *TxListModel) MimeTypesDefault() []string {
-	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.TxListModel721036_MimeTypesDefault(ptr.Pointer())), "|")
-	}
-	return make([]string, 0)
-}
-
-//export callbackTxListModel721036_Data
-func callbackTxListModel721036_Data(ptr unsafe.Pointer, index unsafe.Pointer, role C.int) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "data"); signal != nil {
-		return std_core.PointerFromQVariant(signal.(func(*std_core.QModelIndex, int) *std_core.QVariant)(std_core.NewQModelIndexFromPointer(index), int(int32(role))))
-	}
-
-	return std_core.PointerFromQVariant(NewTxListModelFromPointer(ptr).DataDefault(std_core.NewQModelIndexFromPointer(index), int(int32(role))))
-}
-
-func (ptr *TxListModel) DataDefault(index std_core.QModelIndex_ITF, role int) *std_core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQVariantFromPointer(C.TxListModel721036_DataDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(index), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*std_core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackTxListModel721036_HeaderData
-func callbackTxListModel721036_HeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, role C.int) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "headerData"); signal != nil {
-		return std_core.PointerFromQVariant(signal.(func(int, std_core.Qt__Orientation, int) *std_core.QVariant)(int(int32(section)), std_core.Qt__Orientation(orientation), int(int32(role))))
-	}
-
-	return std_core.PointerFromQVariant(NewTxListModelFromPointer(ptr).HeaderDataDefault(int(int32(section)), std_core.Qt__Orientation(orientation), int(int32(role))))
-}
-
-func (ptr *TxListModel) HeaderDataDefault(section int, orientation std_core.Qt__Orientation, role int) *std_core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := std_core.NewQVariantFromPointer(C.TxListModel721036_HeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*std_core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackTxListModel721036_SupportedDragActions
-func callbackTxListModel721036_SupportedDragActions(ptr unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(ptr, "supportedDragActions"); signal != nil {
-		return C.longlong(signal.(func() std_core.Qt__DropAction)())
-	}
-
-	return C.longlong(NewTxListModelFromPointer(ptr).SupportedDragActionsDefault())
-}
-
-func (ptr *TxListModel) SupportedDragActionsDefault() std_core.Qt__DropAction {
-	if ptr.Pointer() != nil {
-		return std_core.Qt__DropAction(C.TxListModel721036_SupportedDragActionsDefault(ptr.Pointer()))
-	}
-	return 0
-}
-
-//export callbackTxListModel721036_SupportedDropActions
-func callbackTxListModel721036_SupportedDropActions(ptr unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(ptr, "supportedDropActions"); signal != nil {
-		return C.longlong(signal.(func() std_core.Qt__DropAction)())
-	}
-
-	return C.longlong(NewTxListModelFromPointer(ptr).SupportedDropActionsDefault())
-}
-
-func (ptr *TxListModel) SupportedDropActionsDefault() std_core.Qt__DropAction {
-	if ptr.Pointer() != nil {
-		return std_core.Qt__DropAction(C.TxListModel721036_SupportedDropActionsDefault(ptr.Pointer()))
-	}
-	return 0
-}
-
-//export callbackTxListModel721036_CanDropMimeData
-func callbackTxListModel721036_CanDropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "canDropMimeData"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QMimeData, std_core.Qt__DropAction, int, int, *std_core.QModelIndex) bool)(std_core.NewQMimeDataFromPointer(data), std_core.Qt__DropAction(action), int(int32(row)), int(int32(column)), std_core.NewQModelIndexFromPointer(parent)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewTxListModelFromPointer(ptr).CanDropMimeDataDefault(std_core.NewQMimeDataFromPointer(data), std_core.Qt__DropAction(action), int(int32(row)), int(int32(column)), std_core.NewQModelIndexFromPointer(parent)))))
-}
-
-func (ptr *TxListModel) CanDropMimeDataDefault(data std_core.QMimeData_ITF, action std_core.Qt__DropAction, row int, column int, parent std_core.QModelIndex_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.TxListModel721036_CanDropMimeDataDefault(ptr.Pointer(), std_core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), std_core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-//export callbackTxListModel721036_CanFetchMore
-func callbackTxListModel721036_CanFetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "canFetchMore"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QModelIndex) bool)(std_core.NewQModelIndexFromPointer(parent)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewTxListModelFromPointer(ptr).CanFetchMoreDefault(std_core.NewQModelIndexFromPointer(parent)))))
-}
-
-func (ptr *TxListModel) CanFetchMoreDefault(parent std_core.QModelIndex_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.TxListModel721036_CanFetchMoreDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-//export callbackTxListModel721036_HasChildren
-func callbackTxListModel721036_HasChildren(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "hasChildren"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QModelIndex) bool)(std_core.NewQModelIndexFromPointer(parent)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewTxListModelFromPointer(ptr).HasChildrenDefault(std_core.NewQModelIndexFromPointer(parent)))))
-}
-
-func (ptr *TxListModel) HasChildrenDefault(parent std_core.QModelIndex_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.TxListModel721036_HasChildrenDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-//export callbackTxListModel721036_ColumnCount
-func callbackTxListModel721036_ColumnCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
-	if signal := qt.GetSignal(ptr, "columnCount"); signal != nil {
-		return C.int(int32(signal.(func(*std_core.QModelIndex) int)(std_core.NewQModelIndexFromPointer(parent))))
-	}
-
-	return C.int(int32(NewTxListModelFromPointer(ptr).ColumnCountDefault(std_core.NewQModelIndexFromPointer(parent))))
-}
-
-func (ptr *TxListModel) ColumnCountDefault(parent std_core.QModelIndex_ITF) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.TxListModel721036_ColumnCountDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(parent))))
-	}
-	return 0
-}
-
-//export callbackTxListModel721036_RowCount
-func callbackTxListModel721036_RowCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
-	if signal := qt.GetSignal(ptr, "rowCount"); signal != nil {
-		return C.int(int32(signal.(func(*std_core.QModelIndex) int)(std_core.NewQModelIndexFromPointer(parent))))
-	}
-
-	return C.int(int32(NewTxListModelFromPointer(ptr).RowCountDefault(std_core.NewQModelIndexFromPointer(parent))))
-}
-
-func (ptr *TxListModel) RowCountDefault(parent std_core.QModelIndex_ITF) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.TxListModel721036_RowCountDefault(ptr.Pointer(), std_core.PointerFromQModelIndex(parent))))
-	}
-	return 0
-}
-
-//export callbackTxListModel721036_Event
-func callbackTxListModel721036_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+//export callbackApproveNewAccountCtx721036_Event
+func callbackApproveNewAccountCtx721036_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QEvent) bool)(std_core.NewQEventFromPointer(e)))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewTxListModelFromPointer(ptr).EventDefault(std_core.NewQEventFromPointer(e)))))
+	return C.char(int8(qt.GoBoolToInt(NewApproveNewAccountCtxFromPointer(ptr).EventDefault(std_core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *TxListModel) EventDefault(e std_core.QEvent_ITF) bool {
+func (ptr *ApproveNewAccountCtx) EventDefault(e std_core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.TxListModel721036_EventDefault(ptr.Pointer(), std_core.PointerFromQEvent(e)) != 0
+		return C.ApproveNewAccountCtx721036_EventDefault(ptr.Pointer(), std_core.PointerFromQEvent(e)) != 0
 	}
 	return false
 }
 
-//export callbackTxListModel721036_EventFilter
-func callbackTxListModel721036_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+//export callbackApproveNewAccountCtx721036_EventFilter
+func callbackApproveNewAccountCtx721036_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*std_core.QObject, *std_core.QEvent) bool)(std_core.NewQObjectFromPointer(watched), std_core.NewQEventFromPointer(event)))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewTxListModelFromPointer(ptr).EventFilterDefault(std_core.NewQObjectFromPointer(watched), std_core.NewQEventFromPointer(event)))))
+	return C.char(int8(qt.GoBoolToInt(NewApproveNewAccountCtxFromPointer(ptr).EventFilterDefault(std_core.NewQObjectFromPointer(watched), std_core.NewQEventFromPointer(event)))))
 }
 
-func (ptr *TxListModel) EventFilterDefault(watched std_core.QObject_ITF, event std_core.QEvent_ITF) bool {
+func (ptr *ApproveNewAccountCtx) EventFilterDefault(watched std_core.QObject_ITF, event std_core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.TxListModel721036_EventFilterDefault(ptr.Pointer(), std_core.PointerFromQObject(watched), std_core.PointerFromQEvent(event)) != 0
+		return C.ApproveNewAccountCtx721036_EventFilterDefault(ptr.Pointer(), std_core.PointerFromQObject(watched), std_core.PointerFromQEvent(event)) != 0
 	}
 	return false
 }
 
-//export callbackTxListModel721036_ChildEvent
-func callbackTxListModel721036_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+//export callbackApproveNewAccountCtx721036_ChildEvent
+func callbackApproveNewAccountCtx721036_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
 		signal.(func(*std_core.QChildEvent))(std_core.NewQChildEventFromPointer(event))
 	} else {
-		NewTxListModelFromPointer(ptr).ChildEventDefault(std_core.NewQChildEventFromPointer(event))
+		NewApproveNewAccountCtxFromPointer(ptr).ChildEventDefault(std_core.NewQChildEventFromPointer(event))
 	}
 }
 
-func (ptr *TxListModel) ChildEventDefault(event std_core.QChildEvent_ITF) {
+func (ptr *ApproveNewAccountCtx) ChildEventDefault(event std_core.QChildEvent_ITF) {
 	if ptr.Pointer() != nil {
-		C.TxListModel721036_ChildEventDefault(ptr.Pointer(), std_core.PointerFromQChildEvent(event))
+		C.ApproveNewAccountCtx721036_ChildEventDefault(ptr.Pointer(), std_core.PointerFromQChildEvent(event))
 	}
 }
 
-//export callbackTxListModel721036_ConnectNotify
-func callbackTxListModel721036_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
+//export callbackApproveNewAccountCtx721036_ConnectNotify
+func callbackApproveNewAccountCtx721036_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
 		signal.(func(*std_core.QMetaMethod))(std_core.NewQMetaMethodFromPointer(sign))
 	} else {
-		NewTxListModelFromPointer(ptr).ConnectNotifyDefault(std_core.NewQMetaMethodFromPointer(sign))
+		NewApproveNewAccountCtxFromPointer(ptr).ConnectNotifyDefault(std_core.NewQMetaMethodFromPointer(sign))
 	}
 }
 
-func (ptr *TxListModel) ConnectNotifyDefault(sign std_core.QMetaMethod_ITF) {
+func (ptr *ApproveNewAccountCtx) ConnectNotifyDefault(sign std_core.QMetaMethod_ITF) {
 	if ptr.Pointer() != nil {
-		C.TxListModel721036_ConnectNotifyDefault(ptr.Pointer(), std_core.PointerFromQMetaMethod(sign))
+		C.ApproveNewAccountCtx721036_ConnectNotifyDefault(ptr.Pointer(), std_core.PointerFromQMetaMethod(sign))
 	}
 }
 
-//export callbackTxListModel721036_CustomEvent
-func callbackTxListModel721036_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+//export callbackApproveNewAccountCtx721036_CustomEvent
+func callbackApproveNewAccountCtx721036_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
 		signal.(func(*std_core.QEvent))(std_core.NewQEventFromPointer(event))
 	} else {
-		NewTxListModelFromPointer(ptr).CustomEventDefault(std_core.NewQEventFromPointer(event))
+		NewApproveNewAccountCtxFromPointer(ptr).CustomEventDefault(std_core.NewQEventFromPointer(event))
 	}
 }
 
-func (ptr *TxListModel) CustomEventDefault(event std_core.QEvent_ITF) {
+func (ptr *ApproveNewAccountCtx) CustomEventDefault(event std_core.QEvent_ITF) {
 	if ptr.Pointer() != nil {
-		C.TxListModel721036_CustomEventDefault(ptr.Pointer(), std_core.PointerFromQEvent(event))
+		C.ApproveNewAccountCtx721036_CustomEventDefault(ptr.Pointer(), std_core.PointerFromQEvent(event))
 	}
 }
 
-//export callbackTxListModel721036_DeleteLater
-func callbackTxListModel721036_DeleteLater(ptr unsafe.Pointer) {
+//export callbackApproveNewAccountCtx721036_DeleteLater
+func callbackApproveNewAccountCtx721036_DeleteLater(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
-		NewTxListModelFromPointer(ptr).DeleteLaterDefault()
+		NewApproveNewAccountCtxFromPointer(ptr).DeleteLaterDefault()
 	}
 }
 
-func (ptr *TxListModel) DeleteLaterDefault() {
+func (ptr *ApproveNewAccountCtx) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.TxListModel721036_DeleteLaterDefault(ptr.Pointer())
+		C.ApproveNewAccountCtx721036_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
-//export callbackTxListModel721036_Destroyed
-func callbackTxListModel721036_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
+//export callbackApproveNewAccountCtx721036_Destroyed
+func callbackApproveNewAccountCtx721036_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
 		signal.(func(*std_core.QObject))(std_core.NewQObjectFromPointer(obj))
 	}
 
 }
 
-//export callbackTxListModel721036_DisconnectNotify
-func callbackTxListModel721036_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
+//export callbackApproveNewAccountCtx721036_DisconnectNotify
+func callbackApproveNewAccountCtx721036_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
 		signal.(func(*std_core.QMetaMethod))(std_core.NewQMetaMethodFromPointer(sign))
 	} else {
-		NewTxListModelFromPointer(ptr).DisconnectNotifyDefault(std_core.NewQMetaMethodFromPointer(sign))
+		NewApproveNewAccountCtxFromPointer(ptr).DisconnectNotifyDefault(std_core.NewQMetaMethodFromPointer(sign))
 	}
 }
 
-func (ptr *TxListModel) DisconnectNotifyDefault(sign std_core.QMetaMethod_ITF) {
+func (ptr *ApproveNewAccountCtx) DisconnectNotifyDefault(sign std_core.QMetaMethod_ITF) {
 	if ptr.Pointer() != nil {
-		C.TxListModel721036_DisconnectNotifyDefault(ptr.Pointer(), std_core.PointerFromQMetaMethod(sign))
+		C.ApproveNewAccountCtx721036_DisconnectNotifyDefault(ptr.Pointer(), std_core.PointerFromQMetaMethod(sign))
 	}
 }
 
-//export callbackTxListModel721036_ObjectNameChanged
-func callbackTxListModel721036_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_Moc_PackedString) {
+//export callbackApproveNewAccountCtx721036_ObjectNameChanged
+func callbackApproveNewAccountCtx721036_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_Moc_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
 		signal.(func(string))(cGoUnpackString(objectName))
 	}
 
 }
 
-//export callbackTxListModel721036_TimerEvent
-func callbackTxListModel721036_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+//export callbackApproveNewAccountCtx721036_TimerEvent
+func callbackApproveNewAccountCtx721036_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
 		signal.(func(*std_core.QTimerEvent))(std_core.NewQTimerEventFromPointer(event))
 	} else {
-		NewTxListModelFromPointer(ptr).TimerEventDefault(std_core.NewQTimerEventFromPointer(event))
+		NewApproveNewAccountCtxFromPointer(ptr).TimerEventDefault(std_core.NewQTimerEventFromPointer(event))
 	}
 }
 
-func (ptr *TxListModel) TimerEventDefault(event std_core.QTimerEvent_ITF) {
+func (ptr *ApproveNewAccountCtx) TimerEventDefault(event std_core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		C.TxListModel721036_TimerEventDefault(ptr.Pointer(), std_core.PointerFromQTimerEvent(event))
+		C.ApproveNewAccountCtx721036_TimerEventDefault(ptr.Pointer(), std_core.PointerFromQTimerEvent(event))
 	}
 }

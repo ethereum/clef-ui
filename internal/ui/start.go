@@ -72,6 +72,7 @@ type ClefUI struct {
 	approveimport 				*quick.QQuickWidget
 	approveexport 				*quick.QQuickWidget
 	txlist 						*quick.QQuickWidget
+	login 						*quick.QQuickWidget
 }
 
 func (c *ClefUI) initApp() {
@@ -123,9 +124,10 @@ func (c *ClefUI) hideAll() {
 	c.approveexport.Hide()
 	c.approvenewaccount.Hide()
 	c.txlist.Hide()
+	c.login.Hide()
 }
 
-func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
+func NewClefUI(ctx context.Context, uiClose chan bool, readyToStart chan string) *ClefUI {
 	c := &ClefUI{}
 	c.initApp()
 
@@ -136,6 +138,7 @@ func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
 	approveimport := NewApproveImportUI(c)
 	approveexport := NewApproveExportUI(c)
 	txlist := NewTxListUI(c)
+	login := NewLoginUI(c, readyToStart)
 
 	c.approvesigndata = approvesigndata.UI
 	c.approvelisting = approvelisting.UI
@@ -143,6 +146,7 @@ func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
 	c.approvenewaccount = approvenewaccount.UI
 	c.approveimport = approveimport.UI
 	c.approveexport = approveexport.UI
+	c.login = login.UI
 	c.txlist = txlist.UI
 
 	c.Mainw.Layout().AddWidget(approvesigndata.UI)
@@ -152,9 +156,13 @@ func NewClefUI(ctx context.Context, uiClose chan bool) *ClefUI {
 	c.Mainw.Layout().AddWidget(approveimport.UI)
 	c.Mainw.Layout().AddWidget(approveexport.UI)
 	c.Mainw.Layout().AddWidget(txlist.UI)
+	c.Mainw.Layout().AddWidget(login.UI)
 	c.Mainw.SetFixedSize2(400, 680	)
 
-	c.txlist.Show()
+	//c.txlist.Show()
+	c.hideAll()
+	login.UI.Show()
+	login.ContextObject.SetGopath(os.Getenv("GOPATH"))
 
 	go func() {
 		for {

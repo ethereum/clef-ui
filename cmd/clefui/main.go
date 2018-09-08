@@ -16,6 +16,7 @@ func main() {
 	uiClose := make(chan bool)
 	appCancel := make(chan os.Signal, 1)
 	readyToClose := make(chan bool)
+	readyToStart := make(chan string)
 
 	// notify appCancel channel on Ctrl + C
 	signal.Notify(appCancel, os.Interrupt)
@@ -23,21 +24,29 @@ func main() {
 	// trap Ctrl+C and call cancel on the context
 	ctx, cancel := context.WithCancel(context.Background())
 
-	// Start Clef Client
-	stdin, stdout, stderr, err := clefclient.StartClef(ctx)
-	if err != nil {
-		log.Panicf("Cannot start clef: %s", err)
-		return
-	}
+	clefUi := ui.NewClefUI(ctx, uiClose, readyToStart)
 
-	// Just Copy stderr to terminal for now
-	// TODO: Handle Standard Error properly
-	go io.Copy(os.Stderr, stderr)
+	go func() {
+		select {
+		case gopath := <- readyToStart:
+			log.Println(gopath)
+			// Start Clef Client
+			stdin, stdout, stderr, err := clefclient.StartClef(ctx, gopath)
+			if err != nil {
+				log.Panicf("Cannot start clef: %s", err)
+				return
+			}
 
-	clefUi := ui.NewClefUI(ctx, uiClose)
+			// Just Copy stderr to terminal for now
+			// TODO: Handle Standard Error properly
+			go io.Copy(os.Stderr, stderr)
 
-	server := rpc.NewServer(ctx, stdin, stdout)
-	server.Start(*clefUi)
+
+			server := rpc.NewServer(ctx, stdin, stdout)
+			server.Start(*clefUi)
+		}
+	}()
+
 
 	// Watch for os interrupt
 	go func() {

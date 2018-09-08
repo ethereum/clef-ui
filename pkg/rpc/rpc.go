@@ -1,7 +1,6 @@
 package rpc
 
 import (
-	"fmt"
 	"github.com/kyokan/clef-ui/internal/params"
 	"github.com/kyokan/clef-ui/internal/ui"
 )
@@ -16,13 +15,7 @@ type ClefResponse struct {
 }
 
 func (c *ClefService) OnSignerStartup(params []*params.OnSignerStartupParam, _ *struct{}) error {
-	//fmt.Println(params[0].Info.Extapi_http)
-	fmt.Println("hihihihihihihi")
-	//r := ui.RpcRequest{
-	//	Method: ui.OnSignerStartup,
-	//}
-
-	//c.ui.IncomingRequest <- r
+	c.ui.BackToMain <- true
 	return nil
 }
 

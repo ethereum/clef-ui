@@ -9,8 +9,7 @@ import (
 	"log"
 )
 
-func StartClef(ctx context.Context) (io.WriteCloser, io.ReadCloser, io.ReadCloser, error) {
-	goPath := os.Getenv("GOPATH")
+func StartClef(ctx context.Context, goPath string) (io.WriteCloser, io.ReadCloser, io.ReadCloser, error) {
 	cmd := exec.Command(
 		path.Join(goPath, "bin", "clef"),
 		"--rpc",
