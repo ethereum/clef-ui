@@ -57,13 +57,32 @@ Item {
             color: "#ffffff"
 
             Button {
-                id: control1
+                id: cta
                 x: 125
                 y: 11
                 width: 150
                 height: 36
                 opacity: ctxObject.isValid ? 1 : 0.5
                 onClicked: ctxObject.clicked()
+
+                states: [
+                    State {
+                        name: "valid"
+                        PropertyChanges { target: cta; opacity: 1 }
+                    },
+                    State {
+                        name: "invalid"
+                        PropertyChanges { target: cta; opacity: 0.5 }
+                    }
+                ]
+
+                transitions: Transition {
+                   NumberAnimation {
+                       duration: 200
+                       properties: "opacity"
+                   }
+                }
+
                 contentItem: Text {
                     x: 1
                     y: 1
@@ -99,7 +118,7 @@ Item {
         }
 
         Rectangle {
-            id: rectangle2
+            id: logo
             x: 158
             y: 137
             width: 84
@@ -107,21 +126,33 @@ Item {
             color: "#ffffff"
             border.color: "#00000000"
 
+            states: [
+                State {
+                    name: "valid"
+                    PropertyChanges { target: text1; color: "#76e09f" }
+                },
+                State {
+                    name: "invalid"
+                    PropertyChanges { target: text1; color: "#e07688" }
+                }
+            ]
+
+            transitions: Transition {
+                ColorAnimation { duration: 200 }
+            }
+
             Text {
                 id: text1
                 x: -2
                 y: -11
                 width: 84
                 height: 115
-                color: ctxObject.isValid ? "#76e09f" : "#e07688"
+                color: "#efefef"
                 text: "𝄞"
                 font.family: "Verdana"
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
                 font.pixelSize: 128
-                transitions: Transition {
-                    ColorAnimation { duration: 1000 }
-                }
             }
         }
 
@@ -143,6 +174,13 @@ Item {
             height: 28
             color: "#efefef"
             radius: 2
+
+            function onChange(text) {
+                ctxObject.edited(text)
+                logo.state = ctxObject.isValid ? "valid" : "invalid"
+                cta.state = ctxObject.isValid ? "valid" : "invalid"
+            }
+
             TextInput {
                 id: textInput
                 x: 7
@@ -151,7 +189,7 @@ Item {
                 height: 14
                 color: "#646464"
                 text: ctxObject.gopath
-                onTextChanged: ctxObject.edited(text)
+                onTextChanged: rectangle3.onChange(text)
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.Center
                 font.pixelSize: 14
