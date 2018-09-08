@@ -202,6 +202,19 @@ Item {
                     }
                 }
             }
+
+            Text {
+                id: text5
+                x: 117
+                y: 293
+                color: "#c9c9c9"
+                text: qsTr("No More Reuqests")
+                font.bold: false
+                font.capitalization: Font.AllUppercase
+                font.family: "Verdana"
+                font.pixelSize: 14
+                visible: transactions.isEmpty
+            }
         }
 
 

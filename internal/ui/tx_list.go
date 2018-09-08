@@ -4,7 +4,6 @@ import (
 	"github.com/kyokan/clef-ui/internal/identicon"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quick"
-	"log"
 )
 
 func init() {CustomListModel_QmlRegisterType2("CustomQmlTypes", 1, 0, "TxListModel")}
@@ -34,6 +33,8 @@ func (item *TxListItem) Remove() {
 
 type TxListModel struct {
 	core.QAbstractListModel
+
+	_ bool 						`property:"isEmpty"`
 
 	_ func() 					`constructor:"init"`
 	_ func()                    `signal:"clear,auto"`
@@ -109,6 +110,7 @@ func (m *TxListModel) add(tx *TxListItem) {
 	tx.OnRemove = m.OnRemove
 	m.modelData = append(m.modelData, tx)
 	m.idCounter++
+	m.SetIsEmpty(false)
 	m.EndInsertRows()
 }
 
@@ -127,7 +129,7 @@ func (m *TxListModel) remove(id int) {
 		}
 	}
 
-	log.Println(len(m.modelData))
+	m.SetIsEmpty(len(m.modelData) == 0)
 }
 
 type TxListCtx struct {
