@@ -126,7 +126,7 @@ Item {
                             PropertyAnimation {
                                 properties:"color,border.color,corder.width"
                                 duration: 200
-                                easing: Easing.OutElastic
+//                                easing: Easing.OutElastic
                             }
                         }
                     ]

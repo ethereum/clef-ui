@@ -8,6 +8,7 @@ import (
 	"github.com/therecipe/qt/quick"
 	"github.com/therecipe/qt/quickcontrols2"
 	"github.com/therecipe/qt/widgets"
+	"log"
 	"os"
 )
 
@@ -169,11 +170,14 @@ func NewClefUI(ctx context.Context, uiClose chan bool, readyToStart chan string)
 		for {
 			select {
 			case <-c.BackToMain:
+				log.Println("Back to Main")
 				c.hideAll()
 				txlist.UI.Show()
 			case req := <-c.IncomingRequest:
+				log.Println("New Request")
 				txlist.CtxObject.transactions.Add(req)
 			case req := <-c.ApproveListingRequest:
+				log.Println("Approve Listing")
 				c.hideAll()
 				param := req.Params[0]
 

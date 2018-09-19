@@ -46,6 +46,7 @@ Item {
                     width: parent.width
                     height: parent.height
                     onClicked: ctxObject.back()
+                    cursorShape: Qt.PointingHandCursor
                 }
 
                 contentItem: Text {
@@ -258,6 +259,7 @@ Item {
                     width: parent.width
                     height: parent.height
                     onClicked: ctxObject.clicked(1)
+                    cursorShape: Qt.PointingHandCursor
                 }
                 contentItem: Text {
                     x: 1
@@ -298,6 +300,7 @@ Item {
                     width: parent.width
                     height: parent.height
                     onClicked: ctxObject.clicked(2)
+                    cursorShape: Qt.PointingHandCursor
                 }
                 contentItem: Text {
                     x: 1

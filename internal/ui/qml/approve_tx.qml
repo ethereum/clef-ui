@@ -215,15 +215,17 @@ Item {
                 y: 18
                 width: 342
                 height: 24
-                color: "#efefef"
+                color: ctxObject.fromVisible ? "#fff1b7" : "#efefef"
                 radius: 2
+                border.width: 1
+                border.color: ctxObject.fromVisible ? "#ffda3f" : "#efefef"
                 TextInput {
                     id: textInput
                     x: 4
                     y: 7
                     width: parent.width - 8
                     height: parent.height - 12
-                    text: "0x07a565b7ed7d7a678680a4c162885bedbb695fe0"
+                    text: ctxObject.from
                     font.family: "Courier"
                     horizontalAlignment: Text.AlignLeft
                     verticalAlignment: Text.AlignHCenter
@@ -252,6 +254,36 @@ Item {
                 source: ctxObject.toSrc
 //                source: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAaQAAAGkCAMAAABJkqEHAAAABlBMVEXw8PAt1X4FwF7+AAAFW0lEQVR4nOzcsZUgKRBEwTv/nV59Xyvs8Cg+E+FAVpIt938AAAAAAAAAAAAAAAAAAPzU/wdMd/wWah46dbNQ89Cpm4Wah07dLNQ8dOpmoeahUzcLNQ+dulmoeejUzULNQ6duFmoeOnWzUPPQqZuFmodO3SzUPHTqZqHmoVM3CzUPnbpZqHno1M1CzUOnbhZqHjp1s1Dz0KmbhZqHTt0s1Dx06mah5qFTNws1D526Wah56NTNQs1Dp24Wah46dbNQ89Cpm4Wah07dLNQ8dOpmoeahUzcLNQ+dulmoeejUzULNQ6duFmoeOnWzUPPQqZuFmodO3SzUPHTqZqHmoVM3CzUPnbpZqHno1M1CzUOnbhZqHjp1s1Dz0KmbhZqHTt0s1Dx06mah5qFTNws1D526Wah56NTNQs1Dp24Wah46dbNQ8xOn/l5GCjBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGChgb6ZUP4c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcCAAAAAAAAAAAAAAAAAAAAAAAAAIC/+PVmgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjBSgJF+aL3cCb+3x9Plpi/+ZqQnezxdbvrib0Z6ssfT5aYv/makJ3s8XW764m9GerLH0+WmL/5mpCd7PF1u+uJvRnqyx9Plpi/+ZqQnezxdbvrib0Z6ssfT5aYv/makJ3s8XW764m9GerLH0+WmL/5mpCd7PF1u+uJvRnqyx9Plpi/+ZqQnezxdbvrib0Z6ssfT5aYv/makJ3s8XW764m9GerLH0+WmL/5mpCd7PF1u+uJvRnqyx9Plpi/+ZqQnezxdbvrib0Z6ssfT5aYv/makJ3s8XW764m9GerLH0+WmL/5mpCd7PF1u+uJvRnqyx9Plpi/+tmmkE06Ue/oBTzBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjASAAAAAAAAAAAAAAAAAAD/6k8AAAD//6Wc/enO7LAAAAAAAElFTkSuQmCC"
                 fillMode: Image.Stretch
+            }
+
+            Text {
+                id: text4
+                x: 47
+                y: 6
+                width: 303
+                height: 10
+                color: "#e4b409"
+                text: ctxObject.fromWarning
+                horizontalAlignment: Text.AlignRight
+                font.capitalization: Font.AllUppercase
+                font.family: "Verdana"
+                verticalAlignment: Text.AlignVCenter
+                font.pixelSize: 10
+            }
+
+            Text {
+                id: text5
+                x: 47
+                y: 58
+                width: 303
+                height: 10
+                text: ctxObject.toWarning
+                color: "#e4b409"
+                font.family: "Verdana"
+                verticalAlignment: Text.AlignVCenter
+                font.capitalization: Font.AllUppercase
+                font.pixelSize: 10
+                horizontalAlignment: Text.AlignRight
             }
 
 
@@ -388,8 +420,12 @@ Item {
                 y: 18
                 width: 342
                 height: 24
-                color: "#efefef"
+//                color: ctxObject.toInputBgColor
+                color: ctxObject.toVisible ? "#fff1b7" : "#efefef"
                 radius: 2
+                border.width: 1
+//                border.color: ctxObject.toInputBorderColor
+                border.color: ctxObject.toVisible ? "#ffda3f" : "#efefef"
                 TextInput {
                     id: textInput1
                     x: 4
@@ -795,8 +831,3 @@ Item {
         }
     }
 }
-
-/*##^## Designer {
-    D{i:181;anchors_height:36;anchors_width:36;anchors_x:0;anchors_y:0}D{i:183;anchors_height:36;anchors_width:36;anchors_x:0;anchors_y:0}
-}
- ##^##*/

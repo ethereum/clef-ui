@@ -4,6 +4,7 @@ import (
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/kyokan/clef-ui/internal/identicon"
 	"github.com/kyokan/clef-ui/internal/params"
+	"github.com/kyokan/clef-ui/internal/utils"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quick"
 	"strconv"
@@ -24,7 +25,11 @@ type ApproveTxCtx struct {
 	_ string `property:"endpoint"`
 	_ string `property:"data"`
 	_ string `property:"from"`
+	_ string `property:"fromWarning"`
+	_ bool 	 `property:"fromVisible"`
 	_ string `property:"to"`
+	_ string `property:"toWarning"`
+	_ bool   `property:"toVisible"`
 	_ string `property:"gas"`
 	_ string `property:"gasPrice"`
 	_ string `property:"nonce"`
@@ -85,6 +90,10 @@ func (t *ApproveTxCtx) Reset() {
 	t.SetFrom("")
 	t.SetTo("")
 	t.SetPassword("")
+	t.SetFromVisible(false)
+	t.SetToVisible(false)
+	t.SetFromWarning("")
+	t.SetToWarning("")
 	t.ClefUI.BackToMain <- true
 }
 
@@ -96,8 +105,36 @@ func (t *ApproveTxCtx) edited(name string, value string) {
 		t.SetNonce(value)
 	case "from":
 		t.SetFrom(value)
+		checksum, err := clefutils.ToChecksumAddress(value)
+		if err != nil {
+			t.SetFromWarning("Invalid Address")
+			t.SetFromVisible(true)
+			return
+		}
+		if checksum != value {
+			t.SetFromWarning("Invalid Checksum")
+			t.SetFromVisible(true)
+			return
+		}
+
+		t.SetFromWarning("")
+		t.SetFromVisible(false)
 	case "to":
 		t.SetTo(value)
+		checksum, err := clefutils.ToChecksumAddress(value)
+		if err != nil {
+			t.SetToWarning("Invalid Address")
+			t.SetToVisible(true)
+			return
+		}
+		if checksum != value {
+			t.SetToWarning("Invalid Checksum")
+			t.SetToVisible(true)
+			return
+		}
+
+		t.SetToWarning("")
+		t.SetToVisible(false)
 	case "gas":
 		t.SetGas(value)
 	case "gasPrice":
