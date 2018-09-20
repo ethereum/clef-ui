@@ -6,7 +6,9 @@ import (
 	"github.com/therecipe/qt/quick"
 )
 
-func init() {CustomListModel_QmlRegisterType2("CustomQmlTypes", 1, 0, "TxListModel")}
+func init() {
+	CustomListModel_QmlRegisterType2("CustomQmlTypes", 1, 0, "TxListModel")
+}
 
 const (
 	From = int(core.Qt__UserRole) + 1<<iota
@@ -132,6 +134,7 @@ func (m *TxListModel) remove(id int) {
 	m.SetIsEmpty(len(m.modelData) == 0)
 }
 
+// Context Object for the view
 type TxListCtx struct {
 	core.QObject
 
@@ -139,11 +142,16 @@ type TxListCtx struct {
 	_ func(b int) 	`signal:"clicked,auto"`
 
 	transactions 	*TxListModel
+	accounts 		*TxListAccountsModel
 	ClefUI 			*ClefUI
 }
 
 func (c *TxListCtx) init() {
 	c.transactions = NewTxListModel(nil	)
+	c.accounts = NewTxListAccountsModel(nil)
+	c.accounts.Add("ALL TRANSACTIONS")
+	c.accounts.Add("0xdf5700961e4fc6462dfcde9f2c361118d5c3a898")
+	c.accounts.Add("0x6dcfe11ed24897fbeb64423a39fd421e278dd55e")
 }
 
 func (c *TxListCtx) clicked(index int) {
@@ -185,6 +193,7 @@ func NewTxListUI(clefUi *ClefUI) *TxListUI {
 	widget.SetStyleSheet("margin: 0;")
 	widget.RootContext().SetContextProperty("ctxObject", c)
 	widget.RootContext().SetContextProperty(	"transactions", c.transactions)
+	widget.RootContext().SetContextProperty(	"accounts", c.accounts)
 	widget.SetResizeMode(quick.QQuickWidget__SizeRootObjectToView)
 	widget.Hide()
 	return v

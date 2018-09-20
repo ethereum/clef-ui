@@ -34,8 +34,8 @@ Item {
 
             Text {
                 id: transport
-                x: 155
-                y: 22
+                x: 497
+                y: 36
                 width: 90
                 height: 20
                 text: "All Transactions"
@@ -45,6 +45,32 @@ Item {
                 font.pixelSize: 14
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
+            }
+
+            ComboBox {
+                id: comboBox
+                x: 0
+                y: 0
+                width: 400
+                height: 64
+                font.letterSpacing: -0.1
+                hoverEnabled: true
+                currentIndex: -1
+                font.bold: true
+                font.pointSize: 14
+                font.weight: Font.Medium
+                font.capitalization: Font.MixedCase
+                font.family: "Courier"
+
+                model: accounts
+
+                background: Rectangle {
+                    x: 0
+                    y: 0
+                    width: parent.width
+                    height: parent.height
+                    color: "#ffffff"
+                }
             }
         }
 
@@ -262,6 +288,7 @@ Item {
                 font.pixelSize: 14
                 visible: transactions.isEmpty
             }
+
         }
 
 
