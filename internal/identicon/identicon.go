@@ -32,6 +32,7 @@ import (
 	"encoding/base64"
 	"fmt"
 	"github.com/dchest/siphash"
+	"github.com/kyokan/clef-ui/internal/utils"
 	"hash"
 	"image"
 	"image/color"
@@ -135,9 +136,13 @@ func (icon *identicon) Render(data []byte) []byte {
 var renderer = New7x7([]byte("0x4b594f4b414e20495320415745534f4d45"))
 var identicons = make(map[string]string)
 
-func ToBase64Img(address string) (b string) {
-	cached := identicons[address]
+func ToBase64Img(ad string) (b string) {
+	address, err := clefutils.ToChecksumAddress(ad)
+	if err != nil {
+		return ""
+	}
 
+	cached := identicons[address]
 	if len(cached) > 0 {
 		return cached
 	}
