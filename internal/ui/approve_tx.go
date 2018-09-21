@@ -7,6 +7,7 @@ import (
 	"github.com/kyokan/clef-ui/internal/utils"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quick"
+	"math/big"
 	"strconv"
 )
 
@@ -20,6 +21,7 @@ type ApproveTxCtx struct {
 
 	_ func() `constructor:"init"`
 
+	_ string `property:"valueUnit"`
 	_ string `property:"remote"`
 	_ string `property:"transport"`
 	_ string `property:"endpoint"`
@@ -31,7 +33,9 @@ type ApproveTxCtx struct {
 	_ string `property:"toWarning"`
 	_ bool   `property:"toVisible"`
 	_ string `property:"gas"`
+	_ string `property:"gasUnit"`
 	_ string `property:"gasPrice"`
+	_ string `property:"gasPriceUnit"`
 	_ string `property:"nonce"`
 	_ string `property:"value"`
 	_ string `property:"password"`
@@ -66,11 +70,16 @@ func (t *ApproveTxCtx) SetTransaction(tx params.Transaction) {
 	t.SetToSrc(identicon.ToBase64Img(tx.To))
 	t.SetData(tx.Data)
 	t.SetNonce(nonce.String())
-	t.SetValue(value.String())
+	//t.SetValue(value.String())
 	t.SetGas(gas.String())
 	t.SetGasPrice(gasPrice.String())
 	t.SetFrom(tx.From)
 	t.SetTo(tx.To)
+
+	floatValue, _, _ := big.ParseFloat(value.String(), 10, 0, big.ToNearestEven)
+
+	bigFloat := big.NewFloat(0).Quo(floatValue, big.NewFloat(clefutils.Ether))
+	t.SetValue(bigFloat.String())
 }
 
 func (t *ApproveTxCtx) clicked(b int) {

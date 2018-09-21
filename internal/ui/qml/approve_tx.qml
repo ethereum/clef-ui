@@ -1,5 +1,6 @@
 import QtQuick 2.4
 import QtQuick.Controls 2.3
+import QtQuick.Controls.Private 1.0
 
 Item {
     id: item1
@@ -483,6 +484,45 @@ Item {
                     verticalAlignment: Text.AlignHCenter
                     onTextChanged: ctxObject.edited("value", text)
                 }
+
+                ComboBox {
+                    id: comboBox
+                    x: 271
+                    y: 0
+                    width: 112
+                    height: 24
+                    spacing: -3
+                    rightPadding: 0
+                    font.pointSize: 13
+                    font.bold: true
+                    font.family: "Verdana"
+
+                    model: ListModel {
+                        ListElement { text: "WEI" }
+                        ListElement { text: "GWEI" }
+                        ListElement { text: "ETH" }
+                    }
+
+                    background: Rectangle {
+                        x:0
+                        y:0
+                        width: parent.width
+                        height:parent.height
+                        color: "#efefef"
+                        radius: 0
+                        border.color: "#393939"
+                        border.width: 0
+                    }
+                }
+
+                Rectangle {
+                    id: rectangle24
+                    x: 271
+                    y: 0
+                    width: 1
+                    height: 24
+                    color: "#d9d9d9"
+                }
             }
         }
 
@@ -527,6 +567,43 @@ Item {
                     verticalAlignment: Text.AlignHCenter
                     onTextChanged: ctxObject.edited("gas", text)
                 }
+
+                ComboBox {
+                    x: 271
+                    y: 0
+                    width: 112
+                    height: 24
+                    spacing: -3
+                    rightPadding: 0
+                    font.pointSize: 13
+                    font.bold: true
+                    font.family: "Verdana"
+
+                    model: ListModel {
+                        ListElement { text: "WEI" }
+                        ListElement { text: "GWEI" }
+                        ListElement { text: "ETH" }
+                    }
+
+                    background: Rectangle {
+                        x:0
+                        y:0
+                        width: parent.width
+                        height:parent.height
+                        color: "#efefef"
+                        radius: 0
+                        border.color: "#393939"
+                        border.width: 0
+                    }
+                }
+
+                Rectangle {
+                    x: 271
+                    y: 0
+                    width: 1
+                    height: 24
+                    color: "#d9d9d9"
+                }
             }
         }
 
@@ -570,6 +647,42 @@ Item {
                     font.family: "Courier"
                     verticalAlignment: Text.AlignHCenter
                     onTextChanged: ctxObject.edited("gasPrice", text)
+                }
+                ComboBox {
+                    x: 271
+                    y: 0
+                    width: 112
+                    height: 24
+                    spacing: -3
+                    rightPadding: 0
+                    font.pointSize: 13
+                    font.bold: true
+                    font.family: "Verdana"
+
+                    model: ListModel {
+                        ListElement { text: "WEI" }
+                        ListElement { text: "GWEI" }
+                        ListElement { text: "ETH" }
+                    }
+
+                    background: Rectangle {
+                        x:0
+                        y:0
+                        width: parent.width
+                        height:parent.height
+                        color: "#efefef"
+                        radius: 0
+                        border.color: "#393939"
+                        border.width: 0
+                    }
+                }
+
+                Rectangle {
+                    x: 271
+                    y: 0
+                    width: 1
+                    height: 24
+                    color: "#d9d9d9"
                 }
             }
         }
