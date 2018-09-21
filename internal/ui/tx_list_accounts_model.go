@@ -2,7 +2,6 @@ package ui
 
 import (
 	"github.com/therecipe/qt/core"
-	"log"
 )
 
 func init() {CustomListModel_QmlRegisterType2("CustomQmlTypes", 1, 0, "TxListAccountsModel")}
@@ -45,7 +44,13 @@ func (m *TxListAccountsModel) roleNames() map[int]*core.QByteArray {
 }
 
 func (m *TxListAccountsModel) data(index *core.QModelIndex, role int) *core.QVariant {
-	item := m.modelData[index.Row()]
+	row := index.Row()
+	item := m.modelData[row]
+
+	if row == 0 {
+		return core.NewQVariant14(item)
+	}
+
 	if role == int(Text) {
 		return core.NewQVariant14(item)
 	}
@@ -54,7 +59,6 @@ func (m *TxListAccountsModel) data(index *core.QModelIndex, role int) *core.QVar
 }
 
 func (m *TxListAccountsModel) add(address string) {
-	log.Println(address)
 	m.BeginInsertRows(core.NewQModelIndex(), len(m.modelData), len(m.modelData))
 	m.modelData = append(m.modelData, address)
 	m.EndInsertRows()

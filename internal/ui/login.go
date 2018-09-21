@@ -39,7 +39,6 @@ func (t *LoginCtx) clicked() {
 		return
 	}
 	gopath := t.Gopath()
-	log.Println(gopath)
 	t.ReadyToStart <- gopath
 }
 

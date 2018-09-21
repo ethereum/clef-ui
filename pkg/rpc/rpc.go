@@ -14,12 +14,18 @@ type ClefResponse struct {
 	Password		string
 }
 
+var (
+	Counter = 0
+)
+
 func (c *ClefService) OnSignerStartup(params []*params.OnSignerStartupParam, _ *struct{}) error {
+	Counter++
 	c.ui.BackToMain <- true
 	return nil
 }
 
 func (c *ClefService) ApproveExport(p []*params.ApproveExportParams, reply *params.ApproveExportResponse) error {
+	Counter++
 	ch := make(chan bool)
 	r := ui.ApproveExportRequest{
 		Params: p,
@@ -42,6 +48,7 @@ func (c *ClefService) ApproveExport(p []*params.ApproveExportParams, reply *para
 }
 
 func (c *ClefService) ApproveImport(p []*params.ApproveImportParams, reply *params.ApproveImportResponse) error {
+	Counter++
 	ch := make(chan bool)
 	r := ui.ApproveImportRequest{
 		Params: p,
@@ -60,6 +67,7 @@ func (c *ClefService) ApproveImport(p []*params.ApproveImportParams, reply *para
 }
 
 func (c *ClefService) ApproveNewAccount(p []*params.ApproveNewAccountParams, reply *params.ApproveNewAccountResponse) error {
+	Counter++
 	ch := make(chan bool)
 	r := ui.ApproveNewAccountRequest{
 		Params: p,
@@ -78,6 +86,7 @@ func (c *ClefService) ApproveNewAccount(p []*params.ApproveNewAccountParams, rep
 }
 
 func (c *ClefService) ApproveTx(p []*params.ApproveTxParams, reply *params.ApproveTxResponse) error {
+	Counter++
 	ch := make(chan bool)
 	r := ui.ApproveTxRequest{
 		Params: p,
@@ -98,6 +107,13 @@ func (c *ClefService) ApproveTx(p []*params.ApproveTxParams, reply *params.Appro
 }
 
 func (c *ClefService) ApproveListing(p []*params.ApproveListingParams, reply *params.ApproveListingResponse) error {
+	Counter++
+
+	if Counter == 2 {
+		reply.Accounts = p[0].Accounts
+		return nil
+	}
+
 	ch := make(chan bool)
 	r := ui.ApproveListingRequest{
 		Params: p,
@@ -117,6 +133,7 @@ func (c *ClefService) ApproveListing(p []*params.ApproveListingParams, reply *pa
 }
 
 func (c *ClefService) ApproveSignData(params []*params.ApproveSignDataParams, reply *params.ApproveSignDataResponse) error {
+	Counter++
 	ch := make(chan bool)
 	r := ui.ApproveSignDataRequest{
 		Params: params,

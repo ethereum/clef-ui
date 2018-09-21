@@ -172,6 +172,7 @@ func NewClefUI(ctx context.Context, uiClose chan bool, readyToStart chan string)
 			case <-c.BackToMain:
 				log.Println("Back to Main")
 				c.hideAll()
+				txlist.CtxObject.RequestAccounts()
 				txlist.UI.Show()
 			case req := <-c.IncomingRequest:
 				log.Println("New Request")

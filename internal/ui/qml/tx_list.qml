@@ -32,35 +32,39 @@ Item {
                 color: "#efefef"
             }
 
-            Text {
-                id: transport
-                x: 497
-                y: 36
-                width: 90
-                height: 20
-                text: "All Transactions"
-                font.capitalization: Font.AllUppercase
-                font.family: "Verdana"
-                font.bold: true
-                font.pixelSize: 14
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
+            Image {
+                id: image1
+                x: 2
+                y: 2
+                width: 60
+                height: 60
+                z: 1
+                source: ctxObject.selectedSrc
+//                source: "./identicon.png"
             }
 
             ComboBox {
-                id: comboBox
+                id: control
                 x: 0
                 y: 0
                 width: 400
                 height: 64
+                leftPadding: 64
+                font.wordSpacing: 0
+                spacing: 0
                 font.letterSpacing: -0.1
+//                displayText: "0x6dcfe1e1...e1e1d55e"
+//                displayText: "ALL TRANSACTIONS"
+                displayText: ctxObject.shortenAddress
                 hoverEnabled: true
                 currentIndex: -1
-                font.bold: true
-                font.pointSize: 14
-                font.weight: Font.Medium
+                font.bold: false
+                font.pointSize: 18
+                font.weight: Font.Bold
                 font.capitalization: Font.MixedCase
                 font.family: "Courier"
+
+                onCurrentIndexChanged: ctxObject.accountChanged(currentIndex)
 
                 model: accounts
 
@@ -70,6 +74,16 @@ Item {
                     width: parent.width
                     height: parent.height
                     color: "#ffffff"
+                }
+
+                delegate: ItemDelegate {
+                    width: control.width
+                    text: modelData
+                    font.pointSize: 13
+                    font.family: "Courier"
+                    font.weight: control.currentIndex === index ? Font.DemiBold : Font.Normal
+                    highlighted: control.highlightedIndex === index
+                    hoverEnabled: control.hoverEnabled
                 }
             }
         }
@@ -81,6 +95,12 @@ Item {
             width: 384
             height: 602
             model: transactions
+            function shouldShow(address) {
+                if (transactions.selectedAddress === '') {
+                    return true;
+                }
+                return transactions.selectedAddress.toLowerCase() === address.toLowerCase()
+            }
 //            model: ListModel {
 //                ListElement {
 //                    from: "0xe2381fa3cb12f054a0d237f6d34b2cbf39400de4"
@@ -106,7 +126,9 @@ Item {
                 x: 0
                 y: 0
                 width: parent.width
-                height: 90
+                height: listView.shouldShow(from) ? 90 : 0
+                visible: listView.shouldShow(from)
+
                 Rectangle {
                     id: rectangle2
                     x: 0

@@ -1,10 +1,21 @@
 package ui
 
 import (
+	"bytes"
+	"encoding/json"
 	"github.com/kyokan/clef-ui/internal/identicon"
+	"github.com/kyokan/clef-ui/internal/params"
+	"github.com/kyokan/clef-ui/internal/utils"
+	"strings"
+
+	//"github.com/kyokan/clef-ui/internal/params"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quick"
+	"log"
+	"net/http"
 )
+
+const ALL_ACCOUNTS = "ALL ACCOUNTS"
 
 func init() {
 	CustomListModel_QmlRegisterType2("CustomQmlTypes", 1, 0, "TxListModel")
@@ -36,16 +47,17 @@ func (item *TxListItem) Remove() {
 type TxListModel struct {
 	core.QAbstractListModel
 
-	_ bool 						`property:"isEmpty"`
+	_ bool 							`property:"isEmpty"`
+	_ string 						`property:"selectedAddress"`
 
-	_ func() 					`constructor:"init"`
-	_ func()                    `signal:"clear,auto"`
-	_ func(tx *TxListItem)    	`signal:"add,auto"`
-	_ func(i int)    			`signal:"remove,auto"`
+	_ func() 						`constructor:"init"`
+	_ func()                    	`signal:"clear,auto"`
+	_ func(tx *TxListItem)    		`signal:"add,auto"`
+	_ func(i int)					`signal:"remove,auto"`
 
-	modelData 					[]*TxListItem
-	idCounter 					int
-	OnRemove 					chan int
+	modelData 						[]*TxListItem
+	idCounter 						int
+	OnRemove 						chan int
 }
 
 func (m *TxListModel) init() {
@@ -112,8 +124,28 @@ func (m *TxListModel) add(tx *TxListItem) {
 	tx.OnRemove = m.OnRemove
 	m.modelData = append(m.modelData, tx)
 	m.idCounter++
-	m.SetIsEmpty(false)
+	m.evalIsEmpty()
 	m.EndInsertRows()
+}
+
+func (m *TxListModel) evalIsEmpty() {
+	transactions := m.modelData
+	selected := m.SelectedAddress()
+	selectedLower := strings.ToLower(selected)
+
+	if selected == "" {
+		m.SetIsEmpty(len(transactions) == 0)
+		return
+	}
+
+	for _, tx := range transactions {
+		if strings.ToLower(tx.From) == selectedLower {
+			m.SetIsEmpty(false)
+			return
+		}
+	}
+
+	m.SetIsEmpty(true)
 }
 
 func (m *TxListModel) remove(id int) {
@@ -131,8 +163,18 @@ func (m *TxListModel) remove(id int) {
 		}
 	}
 
-	m.SetIsEmpty(len(m.modelData) == 0)
+	m.evalIsEmpty()
 }
+
+//func (m*TxListModel) shouldShow(address string) (visible bool) {
+//	selected := m.SelectedAddress()
+//
+//	if selected == "" {
+//		return true
+//	}
+//
+//	return strings.ToLower(selected) == strings.ToLower(address)
+//}
 
 // Context Object for the view
 type TxListCtx struct {
@@ -140,18 +182,54 @@ type TxListCtx struct {
 
 	_ func() 		`constructor:"init"`
 	_ func(b int) 	`signal:"clicked,auto"`
+	_ func(b int) 	`signal:"accountChanged,auto"`
 
+	_ string `property:"shortenAddress"`
+	_ string `property:"selectedAddress"`
+	_ string `property:"selectedSrc"`
+
+	selectedIndex 	int
 	transactions 	*TxListModel
 	accounts 		*TxListAccountsModel
 	ClefUI 			*ClefUI
 }
 
+var shouldRequest = true
+func (c *TxListCtx) RequestAccounts() {
+	if !shouldRequest {
+		return
+	}
+	shouldRequest = false
+	url := "http://localhost:8550"
+
+	var jsonStr = []byte(`{"jsonrpc":"2.0","method":"account_list","id":0}`)
+	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
+	req.Header.Set("Content-Type", "application/json")
+
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	var data struct {
+		Jsonrpc 	string `json:"jsonrpc"`
+		Id 			int `json:"id"`
+		Result 		[]params.ApproveListingAccount `json:"result"`
+	}
+	json.NewDecoder(resp.Body).Decode(&data)
+	for _, account := range data.Result {
+		address, _ := clefutils.ToChecksumAddress(account.Address)
+		c.accounts.Add(address)
+	}
+
+}
+
 func (c *TxListCtx) init() {
 	c.transactions = NewTxListModel(nil	)
 	c.accounts = NewTxListAccountsModel(nil)
-	c.accounts.Add("ALL TRANSACTIONS")
-	c.accounts.Add("0xdf5700961e4fc6462dfcde9f2c361118d5c3a898")
-	c.accounts.Add("0x6dcfe11ed24897fbeb64423a39fd421e278dd55e")
+	c.SetShortenAddress(ALL_ACCOUNTS)
+	c.accounts.Add(ALL_ACCOUNTS)
 }
 
 func (c *TxListCtx) clicked(index int) {
@@ -179,6 +257,26 @@ func (c *TxListCtx) clicked(index int) {
 		ui.ApproveExportRequest <- rpc
 	}
 
+}
+
+func (c *TxListCtx) accountChanged(index int) {
+	selected := c.accounts.modelData[index]
+	selected, _ = clefutils.ToChecksumAddress(selected)
+
+	c.selectedIndex = index
+
+	if index == 0 {
+		c.SetShortenAddress(ALL_ACCOUNTS)
+		c.SetSelectedSrc("")
+		c.transactions.SetSelectedAddress("")
+	} else {
+		//"0x6dcfe1e1...e1e1d55e"
+		c.SetShortenAddress(selected[:10] + "..." + selected[35:])
+		c.SetSelectedSrc(identicon.ToBase64Img(selected))
+		c.transactions.SetSelectedAddress(selected)
+	}
+
+	c.transactions.evalIsEmpty()
 }
 
 func NewTxListUI(clefUi *ClefUI) *TxListUI {
