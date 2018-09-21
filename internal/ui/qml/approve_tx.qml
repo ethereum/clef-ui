@@ -1,10 +1,22 @@
 import QtQuick 2.4
 import QtQuick.Controls 2.3
+import QtQuick.Controls.Private 1.0
 
 Item {
-    id: item1
+    id: approvetx
     width: 400
     height: 680
+
+    function setUnit(field, unitIndex) {
+        switch(field) {
+        case "VALUE":
+            ctxObject.changeValueUnit(unitIndex)
+            return;
+        case "GAS_PRICE":
+            ctxObject.changeGasPriceUnit(unitIndex)
+            return;
+        }
+    }
 
     Rectangle {
         id: rectangle
@@ -483,13 +495,55 @@ Item {
                     verticalAlignment: Text.AlignHCenter
                     onTextChanged: ctxObject.edited("value", text)
                 }
+
+                ComboBox {
+                    id: comboBox
+                    x: 271
+                    y: 0
+                    width: 112
+                    height: 24
+                    spacing: -3
+                    rightPadding: 0
+                    font.pointSize: 13
+                    font.bold: true
+                    font.family: "Verdana"
+                    currentIndex: 2
+
+                    model: ListModel {
+                        ListElement { text: "WEI" }
+                        ListElement { text: "GWEI" }
+                        ListElement { text: "ETH" }
+                    }
+
+                    onCurrentIndexChanged: approvetx.setUnit("VALUE", currentIndex)
+
+                    background: Rectangle {
+                        x:0
+                        y:0
+                        width: parent.width
+                        height:parent.height
+                        color: "#efefef"
+                        radius: 0
+                        border.color: "#393939"
+                        border.width: 0
+                    }
+                }
+
+                Rectangle {
+                    id: rectangle24
+                    x: 271
+                    y: 0
+                    width: 1
+                    height: 24
+                    color: "#d9d9d9"
+                }
             }
         }
 
         Rectangle {
             id: rectangle14
             x: 0
-            y: 226
+            y: 278
             width: 400
             height: 46
             color: "#00000000"
@@ -533,7 +587,7 @@ Item {
         Rectangle {
             id: rectangle15
             x: 0
-            y: 278
+            y: 226
             width: 400
             height: 46
             color: "#00000000"
@@ -570,6 +624,45 @@ Item {
                     font.family: "Courier"
                     verticalAlignment: Text.AlignHCenter
                     onTextChanged: ctxObject.edited("gasPrice", text)
+                }
+                ComboBox {
+                    x: 271
+                    y: 0
+                    width: 112
+                    height: 24
+                    spacing: -3
+                    rightPadding: 0
+                    font.pointSize: 13
+                    font.bold: true
+                    font.family: "Verdana"
+                    currentIndex: 1
+
+                    model: ListModel {
+                        ListElement { text: "WEI" }
+                        ListElement { text: "GWEI" }
+                        ListElement { text: "ETH" }
+                    }
+
+                    onCurrentIndexChanged: approvetx.setUnit("GAS_PRICE", currentIndex)
+
+                    background: Rectangle {
+                        x:0
+                        y:0
+                        width: parent.width
+                        height:parent.height
+                        color: "#efefef"
+                        radius: 0
+                        border.color: "#393939"
+                        border.width: 0
+                    }
+                }
+
+                Rectangle {
+                    x: 271
+                    y: 0
+                    width: 1
+                    height: 24
+                    color: "#d9d9d9"
                 }
             }
         }

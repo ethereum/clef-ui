@@ -7,7 +7,15 @@ import (
 	"github.com/kyokan/clef-ui/internal/utils"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quick"
+	"log"
+	"math/big"
 	"strconv"
+)
+
+const (
+	WEI  	= 0
+	GWEI 	= 1
+	ETH		= 2
 )
 
 type ApproveTxUI struct {
@@ -18,29 +26,33 @@ type ApproveTxUI struct {
 type ApproveTxCtx struct {
 	core.QObject
 
-	_ func() `constructor:"init"`
+	_ func() 					`constructor:"init"`
 
-	_ string `property:"remote"`
-	_ string `property:"transport"`
-	_ string `property:"endpoint"`
-	_ string `property:"data"`
-	_ string `property:"from"`
-	_ string `property:"fromWarning"`
-	_ bool 	 `property:"fromVisible"`
-	_ string `property:"to"`
-	_ string `property:"toWarning"`
-	_ bool   `property:"toVisible"`
-	_ string `property:"gas"`
-	_ string `property:"gasPrice"`
-	_ string `property:"nonce"`
-	_ string `property:"value"`
-	_ string `property:"password"`
-	_ string `property:"fromSrc"`
-	_ string `property:"toSrc"`
+	_ float64 					`property:"valueUnit"`
+	_ string 					`property:"remote"`
+	_ string 					`property:"transport"`
+	_ string 					`property:"endpoint"`
+	_ string 					`property:"data"`
+	_ string 					`property:"from"`
+	_ string 					`property:"fromWarning"`
+	_ bool 	 					`property:"fromVisible"`
+	_ string 					`property:"to"`
+	_ string 					`property:"toWarning"`
+	_ bool   					`property:"toVisible"`
+	_ string 					`property:"gas"`
+	_ string 					`property:"gasPrice"`
+	_ float64 					`property:"gasPriceUnit"`
+	_ string 					`property:"nonce"`
+	_ string 					`property:"value"`
+	_ string 					`property:"password"`
+	_ string 					`property:"fromSrc"`
+	_ string 					`property:"toSrc"`
 
-	_ func(b int) `signal:"clicked,auto"`
-	_ func() `signal:"back,auto"`
-	_ func(s string, v string) `signal:"edited,auto"`
+	_ func(b int) 				`signal:"clicked,auto"`
+	_ func() 					`signal:"back,auto"`
+	_ func(s string, v string) 	`signal:"edited,auto"`
+	_ func(v int) 				`signal:"changeValueUnit,auto"`
+	_ func(v int) 				`signal:"changeGasPriceUnit,auto"`
 
 	answer 		int
 	formData 	params.Transaction
@@ -49,6 +61,8 @@ type ApproveTxCtx struct {
 
 func (t *ApproveTxCtx) init() {
 	t.formData = params.Transaction{}
+	t.SetValueUnit(clefutils.Ether)
+	t.SetGasPriceUnit(clefutils.GWei)
 }
 
 func (t *ApproveTxCtx) back() {
@@ -66,15 +80,89 @@ func (t *ApproveTxCtx) SetTransaction(tx params.Transaction) {
 	t.SetToSrc(identicon.ToBase64Img(tx.To))
 	t.SetData(tx.Data)
 	t.SetNonce(nonce.String())
-	t.SetValue(value.String())
+	t.changeValue(value.String(), clefutils.Wei, t.ValueUnit())
 	t.SetGas(gas.String())
-	t.SetGasPrice(gasPrice.String())
+	t.changeGasPrice(gasPrice.String(), clefutils.Wei, t.GasPriceUnit())
 	t.SetFrom(tx.From)
 	t.SetTo(tx.To)
 }
 
+func (t *ApproveTxCtx) changeValue(value string, fromUnit float64, toUnit float64) {
+	floatValue, _, err := big.ParseFloat(value, 10, 0, big.ToNearestEven)
+	if err != nil {
+		log.Printf("Cannot parse float value %v", value)
+		return
+	}
+
+	valueString := clefutils.ConvertUnitAndGetString(floatValue, fromUnit, toUnit)
+	t.SetValue(valueString)
+}
+
+func (t *ApproveTxCtx) changeGasPrice(value string, fromUnit float64, toUnit float64) {
+	floatValue, _, err := big.ParseFloat(value, 10, 0, big.ToNearestEven)
+	if err != nil {
+		log.Printf("Cannot parse float value %v", value)
+		return
+	}
+
+	valueString := clefutils.ConvertUnitAndGetString(floatValue, fromUnit, toUnit)
+	t.SetGasPrice(valueString)
+}
+
 func (t *ApproveTxCtx) clicked(b int) {
 	t.answer = b
+}
+
+func (t *ApproveTxCtx) changeValueUnit(unitIndex int) {
+	value := t.Value()
+	floatValue, _, err := big.ParseFloat(value, 10, 0, big.ToNearestEven)
+	previousUnit := t.ValueUnit()
+
+	if err != nil {
+		log.Printf("Cannot parse value %v", value)
+		return
+	}
+
+	switch unitIndex {
+	case WEI:
+		value = clefutils.ConvertUnitAndGetString(floatValue, previousUnit, clefutils.Wei)
+		t.SetValueUnit(clefutils.Wei)
+		t.SetValue(value)
+		return
+	case GWEI:
+		value = clefutils.ConvertUnitAndGetString(floatValue, previousUnit, clefutils.GWei)
+		t.SetValueUnit(clefutils.GWei)
+		t.SetValue(value)
+	case ETH:
+		value = clefutils.ConvertUnitAndGetString(floatValue, previousUnit, clefutils.Ether)
+		t.SetValueUnit(clefutils.Ether)
+		t.SetValue(value)
+	}
+}
+
+func (t *ApproveTxCtx) changeGasPriceUnit(unitIndex int) {
+	gasPrice := t.GasPrice()
+	floatValue, _, err := big.ParseFloat(gasPrice, 10, 0, big.ToNearestEven)
+	previousUnit := t.GasPriceUnit()
+
+	if err != nil {
+		log.Printf("Cannot parse value %v", gasPrice)
+		return
+	}
+	switch unitIndex {
+	case WEI:
+		gasPrice = clefutils.ConvertUnitAndGetString(floatValue, previousUnit, clefutils.Wei)
+		t.SetGasPriceUnit(clefutils.Wei)
+		t.SetGasPrice(gasPrice)
+	case GWEI:
+		gasPrice = clefutils.ConvertUnitAndGetString(floatValue, previousUnit, clefutils.GWei)
+		t.SetGasPriceUnit(clefutils.GWei)
+		t.SetGasPrice(gasPrice)
+	case ETH:
+		gasPrice = clefutils.ConvertUnitAndGetString(floatValue, previousUnit, clefutils.Ether)
+		t.SetGasPriceUnit(clefutils.Ether)
+		t.SetGasPrice(gasPrice)
+	}
 }
 
 func (t *ApproveTxCtx) Reset() {
@@ -152,10 +240,26 @@ func (t *ApproveTxCtx) ClickResponse(reply *params.ApproveTxResponse, response c
 		for !done {
 			if t.answer != 0 {
 				done = true
+				gasPriceFloat, _, err := big.ParseFloat(t.GasPrice(), 10, 0, big.ToNearestEven)
+				if err != nil {
+					log.Printf("Cannot parse float value %v", t.GasPrice())
+					return
+				}
+				gasPriceString := clefutils.ConvertUnitAndGetString(gasPriceFloat, t.GasPriceUnit(), clefutils.Wei)
+
+				valueFloat, _, err := big.ParseFloat(t.Value(), 10, 0, big.ToNearestEven)
+				if err != nil {
+					log.Printf("Cannot parse float value %v", t.Value())
+					return
+				}
+				valueString := clefutils.ConvertUnitAndGetString(valueFloat, t.ValueUnit(), clefutils.Wei)
+
+
+				gasPrice, _ := strconv.ParseUint(gasPriceString, 10, 64)
 				gas, _ := strconv.ParseUint(t.Gas(), 10, 64)
-				gasPrice, _ := strconv.ParseUint(t.GasPrice(), 10, 64)
-				v, _ := strconv.ParseUint(t.Value(), 10, 64)
+				v, _ := strconv.ParseUint(valueString, 10, 64)
 				nonce, _ := strconv.ParseUint(t.Nonce(), 10, 64)
+
 				reply.Transaction = params.Transaction{
 					Data: t.Data(),
 					Nonce: hexutil.EncodeUint64(nonce),
