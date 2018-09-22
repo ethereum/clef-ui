@@ -6,8 +6,6 @@ import (
 	"github.com/kyokan/clef-ui/internal/identicon"
 	"github.com/kyokan/clef-ui/internal/params"
 	"github.com/kyokan/clef-ui/internal/utils"
-	"strings"
-
 	//"github.com/kyokan/clef-ui/internal/params"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quick"
@@ -48,7 +46,6 @@ type TxListModel struct {
 	core.QAbstractListModel
 
 	_ bool 							`property:"isEmpty"`
-	_ string 						`property:"selectedAddress"`
 
 	_ func() 						`constructor:"init"`
 	_ func()                    	`signal:"clear,auto"`
@@ -130,22 +127,7 @@ func (m *TxListModel) add(tx *TxListItem) {
 
 func (m *TxListModel) evalIsEmpty() {
 	transactions := m.modelData
-	selected := m.SelectedAddress()
-	selectedLower := strings.ToLower(selected)
-
-	if selected == "" {
-		m.SetIsEmpty(len(transactions) == 0)
-		return
-	}
-
-	for _, tx := range transactions {
-		if strings.ToLower(tx.From) == selectedLower {
-			m.SetIsEmpty(false)
-			return
-		}
-	}
-
-	m.SetIsEmpty(true)
+	m.SetIsEmpty(len(transactions) == 0)
 }
 
 func (m *TxListModel) remove(id int) {
@@ -182,10 +164,8 @@ type TxListCtx struct {
 
 	_ func() 		`constructor:"init"`
 	_ func(b int) 	`signal:"clicked,auto"`
-	_ func(b int) 	`signal:"accountChanged,auto"`
 
 	_ string `property:"shortenAddress"`
-	_ string `property:"selectedAddress"`
 	_ string `property:"selectedSrc"`
 
 	selectedIndex 	int
@@ -257,26 +237,6 @@ func (c *TxListCtx) clicked(index int) {
 		ui.ApproveExportRequest <- rpc
 	}
 
-}
-
-func (c *TxListCtx) accountChanged(index int) {
-	selected := c.accounts.modelData[index]
-	selected, _ = clefutils.ToChecksumAddress(selected)
-
-	c.selectedIndex = index
-
-	if index == 0 {
-		c.SetShortenAddress(ALL_ACCOUNTS)
-		c.SetSelectedSrc("")
-		c.transactions.SetSelectedAddress("")
-	} else {
-		//"0x6dcfe1e1...e1e1d55e"
-		c.SetShortenAddress(selected[:10] + "..." + selected[35:])
-		c.SetSelectedSrc(identicon.ToBase64Img(selected))
-		c.transactions.SetSelectedAddress(selected)
-	}
-
-	c.transactions.evalIsEmpty()
 }
 
 func NewTxListUI(clefUi *ClefUI) *TxListUI {
