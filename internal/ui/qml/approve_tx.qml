@@ -254,7 +254,7 @@ Item {
                 height: 36
                 fillMode: Image.Stretch
                 source: ctxObject.fromSrc
-//                source: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAaQAAAGkCAMAAABJkqEHAAAABlBMVEXw8PAt1X4FwF7+AAAFW0lEQVR4nOzcsZUgKRBEwTv/nV59Xyvs8Cg+E+FAVpIt938AAAAAAAAAAAAAAAAAAPzU/wdMd/wWah46dbNQ89Cpm4Wah07dLNQ8dOpmoeahUzcLNQ+dulmoeejUzULNQ6duFmoeOnWzUPPQqZuFmodO3SzUPHTqZqHmoVM3CzUPnbpZqHno1M1CzUOnbhZqHjp1s1Dz0KmbhZqHTt0s1Dx06mah5qFTNws1D526Wah56NTNQs1Dp24Wah46dbNQ89Cpm4Wah07dLNQ8dOpmoeahUzcLNQ+dulmoeejUzULNQ6duFmoeOnWzUPPQqZuFmodO3SzUPHTqZqHmoVM3CzUPnbpZqHno1M1CzUOnbhZqHjp1s1Dz0KmbhZqHTt0s1Dx06mah5qFTNws1D526Wah56NTNQs1Dp24Wah46dbNQ8xOn/l5GCjBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGChgb6ZUP4c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcCAAAAAAAAAAAAAAAAAAAAAAAAAIC/+PVmgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjBSgJF+aL3cCb+3x9Plpi/+ZqQnezxdbvrib0Z6ssfT5aYv/makJ3s8XW764m9GerLH0+WmL/5mpCd7PF1u+uJvRnqyx9Plpi/+ZqQnezxdbvrib0Z6ssfT5aYv/makJ3s8XW764m9GerLH0+WmL/5mpCd7PF1u+uJvRnqyx9Plpi/+ZqQnezxdbvrib0Z6ssfT5aYv/makJ3s8XW764m9GerLH0+WmL/5mpCd7PF1u+uJvRnqyx9Plpi/+ZqQnezxdbvrib0Z6ssfT5aYv/makJ3s8XW764m9GerLH0+WmL/5mpCd7PF1u+uJvRnqyx9Plpi/+tmmkE06Ue/oBTzBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjASAAAAAAAAAAAAAAAAAAD/6k8AAAD//6Wc/enO7LAAAAAAAElFTkSuQmCC"
+                //                source: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAaQAAAGkCAMAAABJkqEHAAAABlBMVEXw8PAt1X4FwF7+AAAFW0lEQVR4nOzcsZUgKRBEwTv/nV59Xyvs8Cg+E+FAVpIt938AAAAAAAAAAAAAAAAAAPzU/wdMd/wWah46dbNQ89Cpm4Wah07dLNQ8dOpmoeahUzcLNQ+dulmoeejUzULNQ6duFmoeOnWzUPPQqZuFmodO3SzUPHTqZqHmoVM3CzUPnbpZqHno1M1CzUOnbhZqHjp1s1Dz0KmbhZqHTt0s1Dx06mah5qFTNws1D526Wah56NTNQs1Dp24Wah46dbNQ89Cpm4Wah07dLNQ8dOpmoeahUzcLNQ+dulmoeejUzULNQ6duFmoeOnWzUPPQqZuFmodO3SzUPHTqZqHmoVM3CzUPnbpZqHno1M1CzUOnbhZqHjp1s1Dz0KmbhZqHTt0s1Dx06mah5qFTNws1D526Wah56NTNQs1Dp24Wah46dbNQ8xOn/l5GCjBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGChgb6ZUP4c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcCAAAAAAAAAAAAAAAAAAAAAAAAAIC/+PVmgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjBSgJF+aL3cCb+3x9Plpi/+ZqQnezxdbvrib0Z6ssfT5aYv/makJ3s8XW764m9GerLH0+WmL/5mpCd7PF1u+uJvRnqyx9Plpi/+ZqQnezxdbvrib0Z6ssfT5aYv/makJ3s8XW764m9GerLH0+WmL/5mpCd7PF1u+uJvRnqyx9Plpi/+ZqQnezxdbvrib0Z6ssfT5aYv/makJ3s8XW764m9GerLH0+WmL/5mpCd7PF1u+uJvRnqyx9Plpi/+ZqQnezxdbvrib0Z6ssfT5aYv/makJ3s8XW764m9GerLH0+WmL/5mpCd7PF1u+uJvRnqyx9Plpi/+tmmkE06Ue/oBTzBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjASAAAAAAAAAAAAAAAAAAD/6k8AAAD//6Wc/enO7LAAAAAAAElFTkSuQmCC"
             }
 
             Image {
@@ -264,7 +264,7 @@ Item {
                 width: 36
                 height: 36
                 source: ctxObject.toSrc
-//                source: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAaQAAAGkCAMAAABJkqEHAAAABlBMVEXw8PAt1X4FwF7+AAAFW0lEQVR4nOzcsZUgKRBEwTv/nV59Xyvs8Cg+E+FAVpIt938AAAAAAAAAAAAAAAAAAPzU/wdMd/wWah46dbNQ89Cpm4Wah07dLNQ8dOpmoeahUzcLNQ+dulmoeejUzULNQ6duFmoeOnWzUPPQqZuFmodO3SzUPHTqZqHmoVM3CzUPnbpZqHno1M1CzUOnbhZqHjp1s1Dz0KmbhZqHTt0s1Dx06mah5qFTNws1D526Wah56NTNQs1Dp24Wah46dbNQ89Cpm4Wah07dLNQ8dOpmoeahUzcLNQ+dulmoeejUzULNQ6duFmoeOnWzUPPQqZuFmodO3SzUPHTqZqHmoVM3CzUPnbpZqHno1M1CzUOnbhZqHjp1s1Dz0KmbhZqHTt0s1Dx06mah5qFTNws1D526Wah56NTNQs1Dp24Wah46dbNQ8xOn/l5GCjBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGChgb6ZUP4c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcCAAAAAAAAAAAAAAAAAAAAAAAAAIC/+PVmgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjBSgJF+aL3cCb+3x9Plpi/+ZqQnezxdbvrib0Z6ssfT5aYv/makJ3s8XW764m9GerLH0+WmL/5mpCd7PF1u+uJvRnqyx9Plpi/+ZqQnezxdbvrib0Z6ssfT5aYv/makJ3s8XW764m9GerLH0+WmL/5mpCd7PF1u+uJvRnqyx9Plpi/+ZqQnezxdbvrib0Z6ssfT5aYv/makJ3s8XW764m9GerLH0+WmL/5mpCd7PF1u+uJvRnqyx9Plpi/+ZqQnezxdbvrib0Z6ssfT5aYv/makJ3s8XW764m9GerLH0+WmL/5mpCd7PF1u+uJvRnqyx9Plpi/+tmmkE06Ue/oBTzBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjASAAAAAAAAAAAAAAAAAAD/6k8AAAD//6Wc/enO7LAAAAAAAElFTkSuQmCC"
+                //                source: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAaQAAAGkCAMAAABJkqEHAAAABlBMVEXw8PAt1X4FwF7+AAAFW0lEQVR4nOzcsZUgKRBEwTv/nV59Xyvs8Cg+E+FAVpIt938AAAAAAAAAAAAAAAAAAPzU/wdMd/wWah46dbNQ89Cpm4Wah07dLNQ8dOpmoeahUzcLNQ+dulmoeejUzULNQ6duFmoeOnWzUPPQqZuFmodO3SzUPHTqZqHmoVM3CzUPnbpZqHno1M1CzUOnbhZqHjp1s1Dz0KmbhZqHTt0s1Dx06mah5qFTNws1D526Wah56NTNQs1Dp24Wah46dbNQ89Cpm4Wah07dLNQ8dOpmoeahUzcLNQ+dulmoeejUzULNQ6duFmoeOnWzUPPQqZuFmodO3SzUPHTqZqHmoVM3CzUPnbpZqHno1M1CzUOnbhZqHjp1s1Dz0KmbhZqHTt0s1Dx06mah5qFTNws1D526Wah56NTNQs1Dp24Wah46dbNQ8xOn/l5GCjBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGChgb6ZUP4c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcCAAAAAAAAAAAAAAAAAAAAAAAAAIC/+PVmgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjBSgJF+aL3cCb+3x9Plpi/+ZqQnezxdbvrib0Z6ssfT5aYv/makJ3s8XW764m9GerLH0+WmL/5mpCd7PF1u+uJvRnqyx9Plpi/+ZqQnezxdbvrib0Z6ssfT5aYv/makJ3s8XW764m9GerLH0+WmL/5mpCd7PF1u+uJvRnqyx9Plpi/+ZqQnezxdbvrib0Z6ssfT5aYv/makJ3s8XW764m9GerLH0+WmL/5mpCd7PF1u+uJvRnqyx9Plpi/+ZqQnezxdbvrib0Z6ssfT5aYv/makJ3s8XW764m9GerLH0+WmL/5mpCd7PF1u+uJvRnqyx9Plpi/+tmmkE06Ue/oBTzBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjASAAAAAAAAAAAAAAAAAAD/6k8AAAD//6Wc/enO7LAAAAAAAElFTkSuQmCC"
                 fillMode: Image.Stretch
             }
 
@@ -354,11 +354,20 @@ Item {
             }
 
             Button {
-                id: control1
+                id: approveBtn
                 x: 225
                 y: 10
                 height: 36
                 width: 150
+
+                function onClick() {
+                    ctxObject.checkTxDiff()
+                    if (!ctxObject.diff.length) {
+                        pwInput.state = "show"
+                    } else {
+                        diffModal.state = "show"
+                    }
+                }
 
                 MouseArea {
                     x: 0
@@ -366,7 +375,8 @@ Item {
                     width: parent.width
                     height: parent.height
                     cursorShape: Qt.PointingHandCursor
-                    onClicked: pwInput.state = "show"
+                    //                    onClicked: pwInput.state = "show"
+                    onClicked: approveBtn.onClick()
                 }
 
                 contentItem: Text {
@@ -432,11 +442,11 @@ Item {
                 y: 18
                 width: 342
                 height: 24
-//                color: ctxObject.toInputBgColor
+                //                color: ctxObject.toInputBgColor
                 color: ctxObject.toVisible ? "#fff1b7" : "#efefef"
                 radius: 2
                 border.width: 1
-//                border.color: ctxObject.toInputBorderColor
+                //                border.color: ctxObject.toInputBorderColor
                 border.color: ctxObject.toVisible ? "#ffda3f" : "#efefef"
                 TextInput {
                     id: textInput1
@@ -734,7 +744,7 @@ Item {
             Rectangle {
                 id: rectangle22
                 x: 8
-                y: 18
+                y: 20
                 width: 384
                 height: 181
                 color: "#efefef"
@@ -755,6 +765,193 @@ Item {
         }
 
 
+    }
+
+    Rectangle {
+        id: diffModal
+        x: 0
+        y: 0
+        width: 400
+        height: 680
+        color: "#00000000"
+        opacity: 0.5
+        visible: false
+
+        states: [
+            State {
+                name: "show"
+                PropertyChanges { target: diffModal; opacity: 1; visible: true}
+            },
+            State {
+                name: "hide"
+                PropertyChanges { target: diffModal; opacity: 0.5; visible: false}
+            }
+        ]
+
+        transitions: Transition {
+            NumberAnimation {
+                duration: 150
+                properties: "opacity"
+            }
+        }
+
+
+        Rectangle {
+            id: diffModalBg
+            x: 0
+            y: 0
+            width: 400
+            height: 680
+            color: "#000000"
+            opacity: 0.8
+        }
+
+
+
+        Rectangle {
+            x: 33
+            y: 90
+            width: 334
+            height: 500
+            color: "#ffffff"
+            radius: 6
+
+            Text {
+                x: 22
+                y: 32
+                width: 291
+                height: 35
+                color: "#646464"
+                text: qsTr("The transaction has been modified by the UI. Do you wish to proceed? ")
+                horizontalAlignment: Text.AlignHCenter
+                wrapMode: Text.WordWrap
+                font.family: "Verdana"
+                font.capitalization: Font.MixedCase
+            }
+
+            Button {
+                id: diffConfirmBtn
+                x: 187
+                y: 437
+                width: 100
+                height: 36
+                function onClick() {
+                    diffModal.state = "hide"
+                    pwInput.state = "show"
+                }
+
+                background: Rectangle {
+                    x: 0
+                    y: 0
+                    width: parent.width
+                    height: parent.height
+                    color: "#b4b4b4"
+                    radius: 18
+
+                    MouseArea {
+                        x: 0
+                        y: 0
+                        width: parent.width
+                        height: parent.height
+                        cursorShape: Qt.PointingHandCursor
+                        onClicked: diffConfirmBtn.onClick()
+                    }
+                }
+
+                contentItem: Text {
+                    color: "#ffffff"
+                    text: "Confirm"
+                    font.capitalization: Font.AllUppercase
+                    font.bold: true
+                    font.family: "Verdana"
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                }
+            }
+
+            Button {
+                id: diffCancelBtn
+                x: 53
+                y: 437
+                width: 100
+                height: 36
+
+                function onClick() {
+                    diffModal.state = "hide"
+                }
+
+                contentItem: Text {
+                    color: "#b4b4b4"
+                    text: "Cancel"
+                    font.family: "Verdana"
+                    font.bold: true
+                    horizontalAlignment: Text.AlignHCenter
+                    font.capitalization: Font.AllUppercase
+                    verticalAlignment: Text.AlignVCenter
+                }
+                background: Rectangle {
+                    x: 0
+                    y: 0
+                    width: parent.width
+                    height: parent.height
+                    color: "#ffffff"
+                    radius: 18
+                    border.color: "#b4b4b4"
+                    border.width: 2
+                    MouseArea {
+                        x: 0
+                        y: 0
+                        width: parent.width
+                        height: parent.height
+                        onClicked: diffCancelBtn.onClick()
+                        cursorShape: Qt.PointingHandCursor
+                    }
+                }
+            }
+
+            Rectangle {
+                id: rectangle25
+                x: 22
+                y: 92
+                width: 291
+                height: 319
+                color: "#efefef"
+                radius: 2
+
+
+            }
+
+            Text {
+                id: text12
+                x: 127
+                y: 78
+                color: "#646464"
+                text: qsTr("Change Log")
+                font.bold: true
+                font.capitalization: Font.AllUppercase
+                font.letterSpacing: 0
+                font.family: "Arial"
+                font.pixelSize: 12
+            }
+
+            TextArea {
+                id: text13
+                x: 30
+                y: 100
+                width: 275
+                height: 303
+                text: ctxObject.diff
+                font.letterSpacing: -0.2
+                font.family: "Courier"
+                padding: 0
+                rightPadding: 0
+                leftPadding: 0
+                bottomPadding: 0
+                topPadding: 0
+                wrapMode: Text.WrapAnywhere
+                font.pixelSize: 10
+            }
+        }
     }
 
     Rectangle {

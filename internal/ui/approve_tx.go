@@ -1,6 +1,7 @@
 package ui
 
 import (
+	"fmt"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/kyokan/clef-ui/internal/identicon"
 	"github.com/kyokan/clef-ui/internal/params"
@@ -10,6 +11,7 @@ import (
 	"log"
 	"math/big"
 	"strconv"
+	"strings"
 )
 
 const (
@@ -17,6 +19,12 @@ const (
 	GWEI 	= 1
 	ETH		= 2
 )
+
+type Diff struct {
+	Key 			string
+	OriginalValue 	string
+	NewValue 		string
+}
 
 type ApproveTxUI struct {
 	UI 					*quick.QQuickWidget
@@ -47,8 +55,10 @@ type ApproveTxCtx struct {
 	_ string 					`property:"password"`
 	_ string 					`property:"fromSrc"`
 	_ string 					`property:"toSrc"`
+	_ string 					`property:"diff"`
 
 	_ func(b int) 				`signal:"clicked,auto"`
+	_ func() 					`signal:"checkTxDiff,auto"`
 	_ func() 					`signal:"back,auto"`
 	_ func(s string, v string) 	`signal:"edited,auto"`
 	_ func(v int) 				`signal:"changeValueUnit,auto"`
@@ -57,6 +67,7 @@ type ApproveTxCtx struct {
 	answer 		int
 	formData 	params.Transaction
 	ClefUI 		*ClefUI
+	rawTx 		params.Transaction
 }
 
 func (t *ApproveTxCtx) init() {
@@ -71,10 +82,12 @@ func (t *ApproveTxCtx) back() {
 }
 
 func (t *ApproveTxCtx) SetTransaction(tx params.Transaction) {
+
 	value, _ := hexutil.DecodeBig(tx.Value)
 	gas, _ := hexutil.DecodeBig(tx.Gas)
 	gasPrice, _ := hexutil.DecodeBig(tx.GasPrice)
 	nonce, _ := hexutil.DecodeBig(tx.Nonce)
+	t.rawTx = tx
 
 	t.SetFromSrc(identicon.ToBase64Img(tx.From))
 	t.SetToSrc(identicon.ToBase64Img(tx.To))
@@ -173,15 +186,22 @@ func (t *ApproveTxCtx) Reset() {
 	t.SetData("")
 	t.SetNonce("")
 	t.SetValue("")
+	t.SetValueUnit(clefutils.Ether)
 	t.SetGas("")
 	t.SetGasPrice("")
+	t.SetGasPriceUnit(clefutils.GWei)
 	t.SetFrom("")
+	t.SetFromSrc("")
 	t.SetTo("")
+	t.SetToSrc("")
 	t.SetPassword("")
 	t.SetFromVisible(false)
 	t.SetToVisible(false)
 	t.SetFromWarning("")
 	t.SetToWarning("")
+	t.SetDiff("")
+	t.rawTx = params.Transaction{}
+
 	t.ClefUI.BackToMain <- true
 }
 
@@ -234,41 +254,65 @@ func (t *ApproveTxCtx) edited(name string, value string) {
 	}
 }
 
+func (t *ApproveTxCtx) getNewTx() params.Transaction {
+	gasPriceFloat, _, err := big.ParseFloat(t.GasPrice(), 10, 0, big.ToNearestEven)
+	if err != nil {
+		log.Printf("Cannot parse float value %v", t.GasPrice())
+		return params.Transaction{}
+	}
+	gasPriceString := clefutils.ConvertUnitAndGetString(gasPriceFloat, t.GasPriceUnit(), clefutils.Wei)
+
+	valueFloat, _, err := big.ParseFloat(t.Value(), 10, 0, big.ToNearestEven)
+	if err != nil {
+		log.Printf("Cannot parse float value %v", t.Value())
+		return params.Transaction{}
+	}
+	valueString := clefutils.ConvertUnitAndGetString(valueFloat, t.ValueUnit(), clefutils.Wei)
+
+
+	gasPrice, _ := strconv.ParseUint(gasPriceString, 10, 64)
+	gas, _ := strconv.ParseUint(t.Gas(), 10, 64)
+	v, _ := strconv.ParseUint(valueString, 10, 64)
+	nonce, _ := strconv.ParseUint(t.Nonce(), 10, 64)
+
+	return params.Transaction{
+		Data: t.Data(),
+		Nonce: hexutil.EncodeUint64(nonce),
+		Value: hexutil.EncodeUint64(v),
+		Gas: hexutil.EncodeUint64(gas),
+		GasPrice: hexutil.EncodeUint64(gasPrice),
+		From: t.From(),
+		To: t.To(),
+	}
+}
+
+func (t *ApproveTxCtx) checkTxDiff() {
+	diffs := compareTransactions(t.rawTx,  t.getNewTx())
+
+	if len(diffs) == 0 {
+		t.SetDiff("")
+		return
+	}
+
+	changes := ""
+
+	for _, diff := range diffs {
+		diffString := fmt.Sprintf("[%v]\nFrom:%v\nTo:%v\n\n", strings.ToUpper(diff.Key), diff.OriginalValue, diff.NewValue)
+		changes += diffString
+	}
+
+	t.SetDiff(changes)
+}
+
 func (t *ApproveTxCtx) ClickResponse(reply *params.ApproveTxResponse, response chan bool) {
 	go func() {
 		done := false
 		for !done {
 			if t.answer != 0 {
 				done = true
-				gasPriceFloat, _, err := big.ParseFloat(t.GasPrice(), 10, 0, big.ToNearestEven)
-				if err != nil {
-					log.Printf("Cannot parse float value %v", t.GasPrice())
-					return
-				}
-				gasPriceString := clefutils.ConvertUnitAndGetString(gasPriceFloat, t.GasPriceUnit(), clefutils.Wei)
+				replyTx := t.getNewTx()
 
-				valueFloat, _, err := big.ParseFloat(t.Value(), 10, 0, big.ToNearestEven)
-				if err != nil {
-					log.Printf("Cannot parse float value %v", t.Value())
-					return
-				}
-				valueString := clefutils.ConvertUnitAndGetString(valueFloat, t.ValueUnit(), clefutils.Wei)
-
-
-				gasPrice, _ := strconv.ParseUint(gasPriceString, 10, 64)
-				gas, _ := strconv.ParseUint(t.Gas(), 10, 64)
-				v, _ := strconv.ParseUint(valueString, 10, 64)
-				nonce, _ := strconv.ParseUint(t.Nonce(), 10, 64)
-
-				reply.Transaction = params.Transaction{
-					Data: t.Data(),
-					Nonce: hexutil.EncodeUint64(nonce),
-					Value: hexutil.EncodeUint64(v),
-					Gas: hexutil.EncodeUint64(gas),
-					GasPrice: hexutil.EncodeUint64(gasPrice),
-					From: t.From(),
-					To: t.To(),
-				}
+				reply.Transaction = replyTx
 
 				if t.answer == 1 {
 					reply.Approved = false
@@ -284,6 +328,34 @@ func (t *ApproveTxCtx) ClickResponse(reply *params.ApproveTxResponse, response c
 			}
 		}
 	}()
+}
+
+func maybeAddDiff(diffs *[]Diff, o string, n string, key string) {
+	if o == n {
+		return
+	}
+
+	diff := Diff{
+		Key: key,
+		OriginalValue: o,
+		NewValue: n,
+	}
+
+	*diffs = append(*diffs, diff)
+}
+
+func compareTransactions(o params.Transaction, n params.Transaction) []Diff {
+	var diffs []Diff
+
+	maybeAddDiff(&diffs, o.Data, n.Data, "data")
+	maybeAddDiff(&diffs, o.Nonce, n.Nonce, "nonce")
+	maybeAddDiff(&diffs, o.Value, n.Value, "value")
+	maybeAddDiff(&diffs, o.Gas, n.Gas, "gas")
+	maybeAddDiff(&diffs, o.GasPrice, n.GasPrice, "gasPrice")
+	maybeAddDiff(&diffs, strings.ToLower(o.From), strings.ToLower(n.From), "from")
+	maybeAddDiff(&diffs, strings.ToLower(o.To), strings.ToLower(n.To), "to")
+
+	return diffs
 }
 
 func NewApproveTxUI(clefUi *ClefUI) *ApproveTxUI {
