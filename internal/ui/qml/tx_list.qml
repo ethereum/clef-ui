@@ -40,51 +40,23 @@ Item {
                 height: 60
                 z: 1
                 source: ctxObject.selectedSrc
-//                source: "./identicon.png"
+                //                source: "./identicon.png"
             }
 
-            ComboBox {
-                id: control
-                x: 0
-                y: 0
-                width: 400
-                height: 64
-                leftPadding: 64
-                font.wordSpacing: 0
-                spacing: 0
-                font.letterSpacing: -0.1
-//                displayText: "0x6dcfe1e1...e1e1d55e"
-//                displayText: "ALL TRANSACTIONS"
-                displayText: ctxObject.shortenAddress
-                hoverEnabled: true
-                currentIndex: -1
+            Text {
+                id: text6
+                x: 8
+                y: 8
+                width: 384
+                height: 50
+                color: "#000000"
+                text: qsTr("Pending Requests")
+                fontSizeMode: Text.Fit
                 font.bold: false
-                font.pointSize: 18
-                font.weight: Font.Bold
-                font.capitalization: Font.MixedCase
                 font.family: "Courier"
-
-                onCurrentIndexChanged: ctxObject.accountChanged(currentIndex)
-
-                model: accounts
-
-                background: Rectangle {
-                    x: 0
-                    y: 0
-                    width: parent.width
-                    height: parent.height
-                    color: "#ffffff"
-                }
-
-                delegate: ItemDelegate {
-                    width: control.width
-                    text: modelData
-                    font.pointSize: 13
-                    font.family: "Courier"
-                    font.weight: control.currentIndex === index ? Font.DemiBold : Font.Normal
-                    highlighted: control.highlightedIndex === index
-                    hoverEnabled: control.hoverEnabled
-                }
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                font.pixelSize: 24
             }
         }
 
@@ -95,12 +67,12 @@ Item {
             width: 384
             height: 602
             model: transactions
-            function shouldShow(address) {
-                if (transactions.selectedAddress === '') {
-                    return true;
-                }
-                return transactions.selectedAddress.toLowerCase() === address.toLowerCase()
-            }
+//            function shouldShow(address) {
+//                if (transactions.selectedAddress === '') {
+//                    return true;
+//                }
+//                return transactions.selectedAddress.toLowerCase() === address.toLowerCase()
+//            }
 //            model: ListModel {
 //                ListElement {
 //                    from: "0xe2381fa3cb12f054a0d237f6d34b2cbf39400de4"
@@ -126,8 +98,8 @@ Item {
                 x: 0
                 y: 0
                 width: parent.width
-                height: listView.shouldShow(from) ? 90 : 0
-                visible: listView.shouldShow(from)
+                height: 90
+//                visible: listView.shouldShow(from)
 
                 Rectangle {
                     id: rectangle2
