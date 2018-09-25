@@ -96,7 +96,10 @@ func (t *ApproveTxCtx) SetTransaction(tx params.Transaction) {
 	t.changeValue(value.String(), clefutils.Wei, t.ValueUnit())
 	t.SetGas(gas.String())
 	t.changeGasPrice(gasPrice.String(), clefutils.Wei, t.GasPriceUnit())
-	t.SetFrom(tx.From)
+
+	address, _ := clefutils.ToChecksumAddress(tx.From)
+
+	t.SetFrom(address)
 	t.SetTo(tx.To)
 }
 

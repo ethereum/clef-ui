@@ -211,7 +211,9 @@ func NewClefUI(ctx context.Context, uiClose chan bool, readyToStart chan string)
 				co.SetHash(param.Hash)
 				co.SetMessage(param.Message)
 				co.SetRawData(param.Raw_data)
-				co.SetFrom(param.Address)
+
+				address, _ := clefutils.ToChecksumAddress(param.Address)
+				co.SetFrom(address)
 				co.SetFromSrc(identicon.ToBase64Img(param.Address))
 
 				co.ClickResponse(req.Reply, req.Response)

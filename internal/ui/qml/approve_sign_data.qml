@@ -468,6 +468,7 @@ Item {
                     width: parent.width + 4
                     height: parent.height
                     text: ctxObject.hash
+                    wrapMode: Text.WrapAnywhere
                     font.family: "Courier"
                     font.pointSize: 12
                     readOnly: true
