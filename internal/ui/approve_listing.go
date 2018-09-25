@@ -2,6 +2,7 @@ package ui
 
 import (
 	"github.com/kyokan/clef-ui/internal/params"
+	"github.com/kyokan/clef-ui/internal/utils"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quick"
 )
@@ -105,7 +106,8 @@ func (m *CustomListModel) data(index *core.QModelIndex, role int) *core.QVariant
 	item := m.modelData[index.Row()]
 
 	if role == int(Address) {
-		return core.NewQVariant14(item.Address)
+		address, _ := clefutils.ToChecksumAddress(item.Address)
+		return core.NewQVariant14(address)
 	}
 
 	if role == int(Checked) {

@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/kyokan/clef-ui/internal/identicon"
 	"github.com/kyokan/clef-ui/internal/params"
+	"github.com/kyokan/clef-ui/internal/utils"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quick"
 	"github.com/therecipe/qt/quickcontrols2"
@@ -262,8 +263,11 @@ func NewClefUI(ctx context.Context, uiClose chan bool, readyToStart chan string)
 				co.SetTransport(param.Meta.Transport)
 				co.SetRemote(param.Meta.Remote)
 				co.SetEndpoint(param.Meta.Local)
-				co.SetAddress(param.Address)
-				co.SetFromSrc(identicon.ToBase64Img(param.Address))
+
+				address, _ := clefutils.ToChecksumAddress(param.Address)
+
+				co.SetAddress(address)
+				co.SetFromSrc(identicon.ToBase64Img(address))
 				co.ClickResponse(req.Reply, req.Response)
 
 				approveexport.UI.Show()

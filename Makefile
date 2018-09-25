@@ -11,6 +11,9 @@ dep-tools:
 	go get -u github.com/ethereum/go-ethereum
 	go get -u github.com/therecipe/qt
 	go get -u github.com/sirupsen/logrus
+	go get -u github.com/dchest/siphash
+	go get -u github.com/powerman/rpc-codec/jsonrpc2
+	go get -u golang.org/x/tools/imports
 	cd $(GOPATH)/src/github.com/ethereum/go-ethereum && go install ./cmd/clef
 	cd $(GOPATH)/src/github.com/therecipe/qt && go install ./cmd/qtdeploy && go install ./cmd/qtsetup
 

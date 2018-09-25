@@ -95,7 +95,8 @@ func (m *TxListModel) data(index *core.QModelIndex, role int) *core.QVariant {
 	item := m.modelData[index.Row()]
 
 	if role == int(From) {
-		return core.NewQVariant14(item.From)
+		address, _ := clefutils.ToChecksumAddress(item.From)
+		return core.NewQVariant14(address)
 	}
 
 	if role == int(Method) {
