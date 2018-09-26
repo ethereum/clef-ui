@@ -67,6 +67,7 @@ type ClefUI struct {
 	ApproveNewAccountRequest 	chan ApproveNewAccountRequest
 	ApproveImportRequest 		chan ApproveImportRequest
 	ApproveExportRequest 		chan ApproveExportRequest
+	ErrorDialog 				chan string
 
 	approvesigndata 			*quick.QQuickWidget
 	approvetx	 	 			*quick.QQuickWidget
@@ -92,7 +93,6 @@ func (c *ClefUI) initApp() {
 	mainw.SetWindowTitle(core.QCoreApplication_ApplicationName())
 	mainw.SetStyleSheetDefault("background-color: #ecf0f1;")
 
-
 	widget := widgets.NewQWidget(nil, 0)
 	box := widgets.NewQVBoxLayout()
 	box.SetSpacing(0)
@@ -117,6 +117,7 @@ func (c *ClefUI) initApp() {
 	c.ApproveImportRequest = make(chan ApproveImportRequest)
 	c.ApproveExportRequest = make(chan ApproveExportRequest)
 	c.BackToMain = make(chan bool)
+	c.ErrorDialog = make(chan string)
 }
 
 func (c *ClefUI) hideAll() {
@@ -142,6 +143,8 @@ func NewClefUI(ctx context.Context, uiClose chan bool, readyToStart chan string)
 	approveexport := NewApproveExportUI(c)
 	txlist := NewTxListUI(c)
 	login := NewLoginUI(c, readyToStart)
+	errordialog := widgets.NewQErrorMessage(nil)
+	errordialog.SetFixedSize2(350, 200)
 
 	c.approvesigndata = approvesigndata.UI
 	c.approvelisting = approvelisting.UI
@@ -162,7 +165,6 @@ func NewClefUI(ctx context.Context, uiClose chan bool, readyToStart chan string)
 	c.Mainw.Layout().AddWidget(login.UI)
 	c.Mainw.SetFixedSize2(400, 680	)
 
-	//c.txlist.Show()
 	c.hideAll()
 	login.UI.Show()
 	login.ContextObject.SetGopath(os.Getenv("GOPATH"))
@@ -170,6 +172,8 @@ func NewClefUI(ctx context.Context, uiClose chan bool, readyToStart chan string)
 	go func() {
 		for {
 			select {
+			case text := <-c.ErrorDialog:
+				errordialog.ShowMessage(text)
 			case <-c.BackToMain:
 				log.Println("Back to Main")
 				c.hideAll()
