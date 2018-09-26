@@ -3,6 +3,7 @@ package rpc
 import (
 	"github.com/kyokan/clef-ui/internal/params"
 	"github.com/kyokan/clef-ui/internal/ui"
+	"strings"
 )
 
 type ClefService struct {
@@ -21,6 +22,12 @@ var (
 func (c *ClefService) OnSignerStartup(params []*params.OnSignerStartupParam, _ *struct{}) error {
 	Counter++
 	c.ui.BackToMain <- true
+	return nil
+}
+
+func (c *ClefService) ShowError(p []*params.ShowErrorParam, _ *struct{}) error {
+	text := strings.Replace(p[0].Text, "\u003c", "less than ", -1)
+	c.ui.ErrorDialog <- text
 	return nil
 }
 

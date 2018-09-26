@@ -104,3 +104,7 @@ type ApproveExportParams struct {
 type ApproveExportResponse struct {
 	Approved 		bool
 }
+
+type ShowErrorParam struct {
+	Text 			string
+}
