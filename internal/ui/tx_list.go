@@ -4,16 +4,15 @@ import (
 	"bytes"
 	"encoding/json"
 	"github.com/kyokan/clef-ui/internal/identicon"
-	"github.com/kyokan/clef-ui/internal/params"
 	"github.com/kyokan/clef-ui/internal/utils"
+	"strings"
+
 	//"github.com/kyokan/clef-ui/internal/params"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quick"
 	"log"
 	"net/http"
 )
-
-const ALL_ACCOUNTS = "ALL ACCOUNTS"
 
 func init() {
 	CustomListModel_QmlRegisterType2("CustomQmlTypes", 1, 0, "TxListModel")
@@ -23,7 +22,10 @@ const (
 	From = int(core.Qt__UserRole) + 1<<iota
 	Method
 	FromSrc
+	IsUnknown
 )
+
+var KnownAccounts = make(map[string]string)
 
 type TxListUI struct {
 	UI 				*quick.QQuickWidget
@@ -34,6 +36,7 @@ type TxListItem struct {
 	From   		string
 	Method 		string
 	RPC    		interface{}
+	IsUnknown   int
 	OnRemove 	chan int
 	ID 			int
 }
@@ -88,6 +91,7 @@ func (m *TxListModel) roleNames() map[int]*core.QByteArray {
 		From: core.NewQByteArray2("from", -1),
 		Method:  core.NewQByteArray2("method", -1),
 		FromSrc: core.NewQByteArray2("fromSrc", -1),
+		IsUnknown: core.NewQByteArray2("isUnknown", -1),
 	}
 }
 
@@ -107,6 +111,10 @@ func (m *TxListModel) data(index *core.QModelIndex, role int) *core.QVariant {
 		return core.NewQVariant14(identicon.ToBase64Img(item.From))
 	}
 
+	if role == int(IsUnknown) {
+		return core.NewQVariant7(item.IsUnknown)
+	}
+
 	return core.NewQVariant()
 }
 
@@ -117,9 +125,17 @@ func (m *TxListModel) clear() {
 }
 
 func (m *TxListModel) add(tx *TxListItem) {
+	address := strings.ToLower(tx.From)
 	m.BeginInsertRows(core.NewQModelIndex(), len(m.modelData), len(m.modelData))
 	tx.ID = m.idCounter
 	tx.OnRemove = m.OnRemove
+
+	if address == " - " || KnownAccounts[address] == address {
+		tx.IsUnknown = 0
+	} else {
+		tx.IsUnknown = 1
+	}
+
 	m.modelData = append(m.modelData, tx)
 	m.idCounter++
 	m.evalIsEmpty()
@@ -148,16 +164,6 @@ func (m *TxListModel) remove(id int) {
 
 	m.evalIsEmpty()
 }
-
-//func (m*TxListModel) shouldShow(address string) (visible bool) {
-//	selected := m.SelectedAddress()
-//
-//	if selected == "" {
-//		return true
-//	}
-//
-//	return strings.ToLower(selected) == strings.ToLower(address)
-//}
 
 // Context Object for the view
 type TxListCtx struct {
@@ -193,15 +199,17 @@ func (c *TxListCtx) RequestAccounts() {
 		log.Println(err)
 		return
 	}
+
 	var data struct {
 		Jsonrpc 	string `json:"jsonrpc"`
 		Id 			int `json:"id"`
-		Result 		[]params.ApproveListingAccount `json:"result"`
+		Result 		[]string `json:"result"`
 	}
 	json.NewDecoder(resp.Body).Decode(&data)
+	c.accounts = NewTxListAccountsModel(nil)
 	for _, account := range data.Result {
-		address, _ := clefutils.ToChecksumAddress(account.Address)
-		c.accounts.Add(address)
+		address := strings.ToLower(account)
+		KnownAccounts[address] = address
 	}
 
 }
@@ -209,8 +217,8 @@ func (c *TxListCtx) RequestAccounts() {
 func (c *TxListCtx) init() {
 	c.transactions = NewTxListModel(nil	)
 	c.accounts = NewTxListAccountsModel(nil)
-	c.SetShortenAddress(ALL_ACCOUNTS)
-	c.accounts.Add(ALL_ACCOUNTS)
+	//c.SetShortenAddress(ALL_ACCOUNTS)
+	//c.accounts.Add(ALL_ACCOUNTS)
 }
 
 func (c *TxListCtx) clicked(index int) {
