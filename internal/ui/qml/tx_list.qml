@@ -77,11 +77,13 @@ Item {
 //                ListElement {
 //                    from: "0xe2381fa3cb12f054a0d237f6d34b2cbf39400de4"
 //                    method: "ApproveSignData"
+//                    isUnknown: 1
 //                }
 
 //                ListElement {
 //                    from: "0xe2381fa3cb12f054a0d237f6d34b2cbf39400de4"
 //                    method: "ApproveTx"
+//                    isUnknown: 0
 //                }
 
 //                ListElement {
@@ -189,6 +191,21 @@ Item {
                             height: 14
                             color: "#747474"
                             text: qsTr("From")
+                            font.capitalization: Font.AllUppercase
+                            verticalAlignment: Text.AlignVCenter
+                            horizontalAlignment: Text.AlignLeft
+                            font.pixelSize: 10
+                        }
+
+                        Text {
+                            id: unknownAccount
+                            x: 184
+                            y: 0
+                            width: parent.width - 8
+                            height: 14
+                            color: "#ff5252"
+                            text: "unknown account"
+                            visible: isUnknown
                             font.capitalization: Font.AllUppercase
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignLeft
