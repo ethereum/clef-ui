@@ -3,15 +3,15 @@ package clefutils
 import (
 	"encoding/hex"
 	"fmt"
-	"github.com/ethereum/go-ethereum/crypto/sha3"
+	"golang.org/x/crypto/sha3"
 	"regexp"
 	"strings"
 )
 
 // Errors
 var (
-	ErrOddLength     		= &decError{"hex string of odd length"}
-	ErrInvalidAddress     	= &decError{"address is invalid"}
+	ErrOddLength      = &decError{"hex string of odd length"}
+	ErrInvalidAddress = &decError{"address is invalid"}
 )
 
 var AddressPattern = regexp.MustCompile(`(?i)(^0x)?([0-9]|[A-Z]){40}`)
@@ -34,7 +34,7 @@ func ToChecksumAddress(rawAddress string) (returnAddress string, err error) {
 
 	address := []byte(strings.ToLower(rawAddress[2:]))
 
-	h := sha3.NewKeccak256()
+	h := sha3.NewLegacyKeccak256()
 	h.Write(address)
 	hash := h.Sum(nil)
 	hashStrings := hex.EncodeToString(hash[:])
@@ -63,7 +63,6 @@ func IsValidAddress(rawAddress string) bool {
 	return ret == rawAddress
 }
 
-
 func decodeNibble(in byte) uint64 {
 	if in <= 55 {
 		return 0
@@ -71,5 +70,3 @@ func decodeNibble(in byte) uint64 {
 		return 9
 	}
 }
-
-

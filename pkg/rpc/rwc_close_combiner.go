@@ -1,42 +1,26 @@
 package rpc
 
 import (
-	"bytes"
 	"io"
-	"log"
-	"sync"
 )
 
 type RWCloseCombiner struct {
-	mtx         sync.Mutex
-	w           io.Writer
-	Buf         *bytes.Buffer
-	newDataChan chan bool
+	w io.Writer
+	r io.Reader
 }
 
-func NewRWCloseCombiner(w io.Writer) *RWCloseCombiner {
-	var buf bytes.Buffer
-
+func NewRWCloseCombiner(w io.Writer, r io.Reader) *RWCloseCombiner {
 	return &RWCloseCombiner{
-		w:   w,
-		Buf: &buf,
+		w: w,
+		r: r,
 	}
 }
 
 func (rwc *RWCloseCombiner) Read(p []byte) (int, error) {
-	rwc.mtx.Lock()
-	defer rwc.mtx.Unlock()
-	if rwc.Buf.Len() == 0 {
-		return 0, nil
-	} else {
-		log.Println(rwc.Buf.String())
-	}
-	return rwc.Buf.Read(p)
+	return rwc.r.Read(p)
 }
 
 func (rwc *RWCloseCombiner) Write(p []byte) (int, error) {
-	rwc.mtx.Lock()
-	defer rwc.mtx.Unlock()
 	return rwc.w.Write(p)
 }
 

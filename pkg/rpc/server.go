@@ -2,7 +2,6 @@ package rpc
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"github.com/kyokan/clef-ui/internal/ui"
 	"github.com/powerman/rpc-codec/jsonrpc2"
@@ -20,9 +19,9 @@ type Server struct {
 
 func NewServer(ctx context.Context, stdin io.Writer, stdout io.Reader) *Server {
 	s := &Server{
-		ctx:ctx,
-		stdin:stdin,
-		stdout:stdout,
+		ctx:    ctx,
+		stdin:  stdin,
+		stdout: stdout,
 	}
 
 	go func() {
@@ -34,36 +33,34 @@ func NewServer(ctx context.Context, stdin io.Writer, stdout io.Reader) *Server {
 	return s
 }
 
+// meddlingCodec is used since the native json-rpc server expects the request
+// methods to be on the type <servicename>.<methodname> , separated with a dot (.).
+// This codec artificially adds a servicename
+type meddlingCodec struct {
+	backend rpc.ServerCodec
+}
+
+func (c *meddlingCodec) ReadRequestHeader(request *rpc.Request) error {
+	err := c.backend.ReadRequestHeader(request)
+	if err == nil {
+		request.ServiceMethod = fmt.Sprintf("ClefService.%s", request.ServiceMethod)
+	}
+	return err
+}
+func (c *meddlingCodec) Close() error {
+	return c.backend.Close()
+}
+func (c *meddlingCodec) ReadRequestBody(a interface{}) error {
+	return c.backend.ReadRequestBody(a)
+}
+func (c *meddlingCodec) WriteResponse(r *rpc.Response, v interface{}) error {
+	return c.backend.WriteResponse(r, v)
+}
+
 func (s *Server) Start(clefUI ui.ClefUI) {
-	rpc.Register(&ClefService{ ui: clefUI })
-	rwc := NewRWCloseCombiner(s.stdin)
-	enc := json.NewEncoder(rwc.Buf)
-	dec := json.NewDecoder(s.stdout)
-
-	go func() {
-		for !s.stopHandling {
-			// Decode JSON
-			var v map[string]interface{}
-			if err := dec.Decode(&v); err != nil {
-				log.Println("Failed to decode JSON:", err)
-				continue
-			}
-			method, ok := v["method"]
-			if !ok {
-				log.Printf("No RPC method found in JSON.")
-				continue
-			}
-
-			// Change method name from "RPCMethodName" to "ClefService.RPCMethodName"
-			// The jsonrpc2 library we use expect a dot-separated method name
-			v["method"] = fmt.Sprintf("%s.%s", "ClefService", method)
-			log.Printf("Incoming RPC Request - %v", method)
-			if err := enc.Encode(&v); err != nil {
-				log.Println("Failed to encode JSON:", err)
-				continue
-			}
-		}
-	}()
-
-	go jsonrpc2.ServeConnContext(s.ctx, rwc)
+	rpc.Register(&ClefService{ui: clefUI})
+	codec := &meddlingCodec{
+		backend: jsonrpc2.NewServerCodecContext(s.ctx, NewRWCloseCombiner(s.stdin, s.stdout), nil),
+	}
+	go rpc.ServeCodec(codec)
 }
