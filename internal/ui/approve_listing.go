@@ -32,6 +32,7 @@ type ApproveListingCtx struct {
 	answer 		int
 	accounts 	*CustomListModel
 	ClefUI 		*ClefUI
+	doneCh      chan(bool)
 }
 
 func (ctx *ApproveListingCtx) init() {
@@ -132,6 +133,8 @@ func (m *CustomListModel) add(account params.ApproveListingAccount) {
 
 func (t *ApproveListingCtx) clicked(b int) {
 	t.answer = b
+	t.doneCh <- true
+
 }
 
 func (t *ApproveListingCtx) onCheckStateChanged(i int, checked bool) {
@@ -140,26 +143,21 @@ func (t *ApproveListingCtx) onCheckStateChanged(i int, checked bool) {
 
 func (t *ApproveListingCtx) ClickResponse(reply *params.ApproveListingResponse, res chan bool) {
 	go func() {
-		done := false
-		for !done {
-			if t.answer != 0 {
-				done = true
-				if t.answer == 1 {
-					res <- true
-				} else if t.answer == 2 {
-					accounts := make([]params.ApproveListingAccount, 0)
-
-					for i, account := range t.accounts.modelData {
-						if t.accounts.checkState[i] {
-							accounts = append(accounts, account)
-						}
-					}
-					reply.Accounts = accounts
-					res <- true
+		// Wait for user to complete the form
+		<-t.doneCh
+		if t.answer == 2 { // TODO make this atomic
+			accounts := make([]params.ApproveListingAccount, 0)
+			for i, account := range t.accounts.modelData {
+				if t.accounts.checkState[i] {
+					accounts = append(accounts, account)
 				}
-				t.Reset()
 			}
+			reply.Accounts = accounts
+			res <- true
+		}else{
+			res <- false
 		}
+		t.Reset()
 	}()
 }
 
@@ -169,6 +167,7 @@ func NewApproveListingUI(clefUi *ClefUI) *ApproveListingUI {
 	widget.SetSource(core.NewQUrl3("qrc:/qml/approve_listing.qml", 0))
 	c := NewApproveListingCtx(nil)
 	c.ClefUI = clefUi
+	c.doneCh = make(chan bool)
 	v := &ApproveListingUI{
 		UI: widget,
 		ContextObject: c,
