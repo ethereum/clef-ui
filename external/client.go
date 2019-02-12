@@ -1,21 +1,21 @@
-package clefclient
+package external
 
 import (
+	"context"
+	"io"
+	"log"
 	"os"
 	"os/exec"
 	"path"
-	"io"
-	"context"
-	"log"
 )
 
-func StartClef(ctx context.Context, goPath string) (io.WriteCloser, io.ReadCloser, io.ReadCloser, error) {
+func StartClef(ctx context.Context, clefBin string) (io.WriteCloser, io.ReadCloser, io.ReadCloser, error) {
 	cmd := exec.Command(
-		path.Join(goPath, "bin", "clef"),
+		clefBin,
 		"--rpc",
 		"--4bytedb",
-		path.Join(goPath, "src", "github.com", "ethereum", "go-ethereum", "cmd", "clef", "4byte.json"),
-		"--stdio-ui",
+		path.Join("/home/user/go/src/github.com/ethereum/go-ethereum/cmd/clef", "4byte.json"),
+		"--stdio-ui", "--stdio-ui-test", "--advanced",
 		"--ipcdisable",
 	)
 

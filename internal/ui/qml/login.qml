@@ -197,7 +197,7 @@ Item {
             x: 37
             y: 284
             color: "#646464"
-            text: qsTr("Enter your go-ethereum directory")
+            text: qsTr("Enter path to clef")
             font.capitalization: Font.AllUppercase
             font.pixelSize: 12
         }

@@ -1,7 +1,5 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource>
-<file>qml/approve_export.qml</file>
-<file>qml/approve_import.qml</file>
 <file>qml/approve_listing.qml</file>
 <file>qml/approve_new_account.qml</file>
 <file>qml/approve_sign_data.qml</file>
