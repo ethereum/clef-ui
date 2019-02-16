@@ -2,81 +2,49 @@ package ui
 
 import (
 	"context"
-	"github.com/kyokan/clef-ui/internal/identicon"
-	"github.com/kyokan/clef-ui/internal/params"
-	"github.com/kyokan/clef-ui/internal/utils"
+	core2 "github.com/ethereum/go-ethereum/signer/core"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quick"
 	"github.com/therecipe/qt/quickcontrols2"
 	"github.com/therecipe/qt/widgets"
-	"log"
 	"os"
 )
 
-type RpcRequest struct {
-	Params 		map[string]string
-	Response 	chan map[string]string
-	Method 		string
-}
-
 type ApproveSignDataRequest struct {
-	Params 		[]*params.ApproveSignDataParams
-	Response 	chan bool
-	Reply 		*params.ApproveSignDataResponse
+	Params   *core2.SignDataRequest
+	Response chan *core2.SignDataResponse
 }
 
 type ApproveListingRequest struct {
-	Params 		[]*params.ApproveListingParams
-	Response 	chan bool
-	Reply 		*params.ApproveListingResponse
+	Params   core2.ListRequest
+	ResponseCh chan *core2.ListResponse
 }
 
 type ApproveTxRequest struct {
-	Params 		[]*params.ApproveTxParams
-	Response 	chan bool
-	Reply 		*params.ApproveTxResponse
+	Params   *core2.SignTxRequest
+	ResponseCh chan *core2.SignTxResponse
 }
 
 type ApproveNewAccountRequest struct {
-	Params 		[]*params.ApproveNewAccountParams
-	Reply 		*params.ApproveNewAccountResponse
-	Response 	chan bool
-}
-
-type ApproveImportRequest struct {
-	Params 		[]*params.ApproveImportParams
-	Reply 		*params.ApproveImportResponse
-	Response 	chan bool
-}
-
-type ApproveExportRequest struct {
-	Params 		[]*params.ApproveExportParams
-	Reply 		*params.ApproveExportResponse
-	Response 	chan bool
+	Params     *core2.NewAccountRequest
+	ResponseCh chan *core2.NewAccountResponse
 }
 
 type ClefUI struct {
-	App 						*widgets.QApplication
-	Mainw 						*widgets.QWidget
-	currentView 				string
-	IncomingRequest	 			chan *TxListItem
-	BackToMain 					chan bool
-	ApproveListingRequest 		chan ApproveListingRequest
-	ApproveSignDataRequest 		chan ApproveSignDataRequest
-	ApproveTxRequest 			chan ApproveTxRequest
-	ApproveNewAccountRequest 	chan ApproveNewAccountRequest
-	ApproveImportRequest 		chan ApproveImportRequest
-	ApproveExportRequest 		chan ApproveExportRequest
-	ErrorDialog 				chan string
+	App             *widgets.QApplication
+	Mainw           *widgets.QWidget
+	currentView     string
+	BackToMain      chan bool
+	IncomingRequest chan *IncomingRequestItem
+	operationCh     chan requestInvocation // When user clicks an op in the list, it gets sent over this chan
+	ErrorDialog     chan string
 
-	approvesigndata 			*quick.QQuickWidget
-	approvetx	 	 			*quick.QQuickWidget
-	approvelisting 				*quick.QQuickWidget
-	approvenewaccount 			*quick.QQuickWidget
-	approveimport 				*quick.QQuickWidget
-	approveexport 				*quick.QQuickWidget
-	txlist 						*quick.QQuickWidget
-	login 						*quick.QQuickWidget
+	approvesigndata   *quick.QQuickWidget
+	approvetx         *ApproveTxUI
+	approvelisting    *ApproveListingUI
+	approvenewaccount *ApproveNewAccount
+	txlist            *quick.QQuickWidget
+	login             *quick.QQuickWidget
 }
 
 func (c *ClefUI) initApp() {
@@ -96,7 +64,7 @@ func (c *ClefUI) initApp() {
 	widget := widgets.NewQWidget(nil, 0)
 	box := widgets.NewQVBoxLayout()
 	box.SetSpacing(0)
-	box.SetContentsMargins(0,0,0,0)
+	box.SetContentsMargins(0, 0, 0, 0)
 	widget.SetLayout(box)
 	mainw.SetCentralWidget(widget)
 
@@ -109,26 +77,57 @@ func (c *ClefUI) initApp() {
 
 	c.App = app
 	c.Mainw = widget
-	c.IncomingRequest = make(chan *TxListItem)
-	c.ApproveListingRequest = make(chan ApproveListingRequest)
-	c.ApproveSignDataRequest = make(chan ApproveSignDataRequest)
-	c.ApproveTxRequest = make(chan ApproveTxRequest)
-	c.ApproveNewAccountRequest = make(chan ApproveNewAccountRequest)
-	c.ApproveImportRequest = make(chan ApproveImportRequest)
-	c.ApproveExportRequest = make(chan ApproveExportRequest)
+	c.IncomingRequest = make(chan *IncomingRequestItem)
+	c.operationCh = make(chan requestInvocation)
 	c.BackToMain = make(chan bool)
 	c.ErrorDialog = make(chan string)
 }
 
 func (c *ClefUI) hideAll() {
 	c.approvesigndata.Hide()
-	c.approvelisting.Hide()
-	c.approvetx.Hide()
-	c.approveimport.Hide()
-	c.approveexport.Hide()
-	c.approvenewaccount.Hide()
+	c.approvelisting.UI.Hide()
+	c.approvetx.UI.Hide()
+	c.approvenewaccount.UI.Hide()
 	c.txlist.Hide()
 	c.login.Hide()
+}
+type contextInfo interface{
+	SetTransport(string)
+	SetRemote(string)
+	SetEndpoint(string)
+}
+func setMeta(co contextInfo, metadata core2.Metadata){
+	co.SetTransport(metadata.Scheme)
+	co.SetRemote(metadata.Remote)
+	co.SetEndpoint(metadata.Local)
+}
+
+func (msg *ApproveListingRequest) handle(ui *ClefUI) {
+	co := ui.approvelisting.ContextObject
+	setMeta(co, msg.Params.Meta)
+
+	for _, account := range msg.Params.Accounts {
+		co.accounts.Add(account)
+	}
+	co.ClickResponse( msg.ResponseCh)
+	ui.approvelisting.UI.Show()
+}
+func (msg *ApproveTxRequest) handle(ui *ClefUI) {
+	co := ui.approvetx.ContextObject
+	setMeta(co, msg.Params.Meta)
+
+	co.SetTransaction(msg.Params.Transaction)
+	co.ClickResponse( msg.ResponseCh)
+	ui.approvetx.UI.Show()
+}
+
+func (msg *ApproveNewAccountRequest) handle(ui *ClefUI) {
+	co := ui.approvenewaccount.ContextObject
+	setMeta(co, msg.Params.Meta)
+
+	co.ClickResponse( msg.ResponseCh)
+	ui.approvenewaccount.UI.Show()
+
 }
 
 func NewClefUI(ctx context.Context, uiClose chan bool, readyToStart chan string) *ClefUI {
@@ -139,19 +138,15 @@ func NewClefUI(ctx context.Context, uiClose chan bool, readyToStart chan string)
 	approvelisting := NewApproveListingUI(c)
 	approvetx := NewApproveTxUI(c)
 	approvenewaccount := NewApproveNewAccountUI(c)
-	approveimport := NewApproveImportUI(c)
-	approveexport := NewApproveExportUI(c)
 	txlist := NewTxListUI(c)
 	login := NewLoginUI(c, readyToStart)
 	errordialog := widgets.NewQErrorMessage(nil)
 	errordialog.SetFixedSize2(350, 200)
 
+	c.approvelisting = approvelisting
+	c.approvetx = approvetx
 	c.approvesigndata = approvesigndata.UI
-	c.approvelisting = approvelisting.UI
-	c.approvetx = approvetx.UI
-	c.approvenewaccount = approvenewaccount.UI
-	c.approveimport = approveimport.UI
-	c.approveexport = approveexport.UI
+	c.approvenewaccount = approvenewaccount
 	c.login = login.UI
 	c.txlist = txlist.UI
 
@@ -159,11 +154,9 @@ func NewClefUI(ctx context.Context, uiClose chan bool, readyToStart chan string)
 	c.Mainw.Layout().AddWidget(approvelisting.UI)
 	c.Mainw.Layout().AddWidget(approvetx.UI)
 	c.Mainw.Layout().AddWidget(approvenewaccount.UI)
-	c.Mainw.Layout().AddWidget(approveimport.UI)
-	c.Mainw.Layout().AddWidget(approveexport.UI)
 	c.Mainw.Layout().AddWidget(txlist.UI)
 	c.Mainw.Layout().AddWidget(login.UI)
-	c.Mainw.SetFixedSize2(400, 680	)
+	c.Mainw.SetFixedSize2(400, 680)
 
 	c.hideAll()
 	login.UI.Show()
@@ -175,110 +168,17 @@ func NewClefUI(ctx context.Context, uiClose chan bool, readyToStart chan string)
 			case text := <-c.ErrorDialog:
 				errordialog.ShowMessage(text)
 			case <-c.BackToMain:
-				log.Println("Back to Main")
+				// User clicked 'back' to the main listing
 				c.hideAll()
-				txlist.CtxObject.RequestAccounts()
 				txlist.UI.Show()
 			case req := <-c.IncomingRequest:
-				log.Println("New Request")
+				// New request came in from the 'network'
 				txlist.CtxObject.transactions.Add(req)
-			case req := <-c.ApproveListingRequest:
-				log.Println("Approve Listing")
+			case op := <-c.operationCh:
+				// User selected an item for processing
 				c.hideAll()
-				param := req.Params[0]
-
-				co := approvelisting.ContextObject
-				co.SetTransport(param.Meta.Transport)
-				co.SetRemote(param.Meta.Remote)
-				co.SetEndpoint(param.Meta.Local)
-
-				model := co.accounts
-
-				for _, account := range param.Accounts {
-					model.Add(account)
-				}
-
-				co.ClickResponse(req.Reply, req.Response)
-
-				approvelisting.UI.Show()
-			case req := <-c.ApproveSignDataRequest:
-				c.hideAll()
-				data := req.Params
-				param := data[0]
-
-				co := approvesigndata.ContextObject
-
-				co.SetTransport(param.Meta.Transport)
-				co.SetRemote(param.Meta.Remote)
-				co.SetEndpoint(param.Meta.Local)
-
-				co.SetHash(param.Hash)
-				co.SetMessage(param.Message)
-				co.SetRawData(param.Raw_data)
-
-				address, _ := clefutils.ToChecksumAddress(param.Address)
-				co.SetFrom(address)
-				co.SetFromSrc(identicon.ToBase64Img(param.Address))
-
-				co.ClickResponse(req.Reply, req.Response)
-
-				approvesigndata.UI.Show()
-			case req := <-c.ApproveTxRequest:
-				c.hideAll()
-				data := req.Params
-				param := data[0]
-
-				co := approvetx.ContextObject
-				co.SetTransport(param.Meta.Transport)
-				co.SetRemote(param.Meta.Remote)
-				co.SetEndpoint(param.Meta.Local)
-				co.SetTransaction(param.Transaction)
-				co.ClickResponse(req.Reply, req.Response)
-
-				approvetx.UI.Show()
-			case req := <-c.ApproveNewAccountRequest:
-				c.hideAll()
-				data := req.Params
-				param := data[0]
-
-				co := approvenewaccount.ContextObject
-				co.SetTransport(param.Meta.Transport)
-				co.SetRemote(param.Meta.Remote)
-				co.SetEndpoint(param.Meta.Local)
-				co.ClickResponse(req.Reply, req.Response)
-
-				approvenewaccount.UI.Show()
-			case req := <-c.ApproveImportRequest:
-				c.hideAll()
-				data := req.Params
-				param := data[0]
-
-				co := approveimport.ContextObject
-				co.SetTransport(param.Meta.Transport)
-				co.SetRemote(param.Meta.Remote)
-				co.SetEndpoint(param.Meta.Local)
-				co.ClickResponse(req.Reply, req.Response)
-
-				approveimport.UI.Show()
-			case req := <-c.ApproveExportRequest:
-				c.hideAll()
-				data := req.Params
-				param := data[0]
-
-				co := approveexport.ContextObject
-				co.SetTransport(param.Meta.Transport)
-				co.SetRemote(param.Meta.Remote)
-				co.SetEndpoint(param.Meta.Local)
-
-				address, _ := clefutils.ToChecksumAddress(param.Address)
-
-				co.SetAddress(address)
-				co.SetFromSrc(identicon.ToBase64Img(address))
-				co.ClickResponse(req.Reply, req.Response)
-
-				approveexport.UI.Show()
+				op.handle(c)
 			}
-
 		}
 	}()
 

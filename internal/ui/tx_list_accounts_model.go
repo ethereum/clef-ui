@@ -4,7 +4,7 @@ import (
 	"github.com/therecipe/qt/core"
 )
 
-func init() {CustomListModel_QmlRegisterType2("CustomQmlTypes", 1, 0, "TxListAccountsModel")}
+func init() { CustomListModel_QmlRegisterType2("CustomQmlTypes", 1, 0, "TxListAccountsModel") }
 
 const (
 	Text = int(core.Qt__UserRole) + 1<<iota
@@ -13,12 +13,11 @@ const (
 type TxListAccountsModel struct {
 	core.QAbstractListModel
 
-	_ func() 							`constructor:"init"`
-	_ func(tx string)    				`signal:"add,auto"`
+	_ func()          `constructor:"init"`
+	_ func(tx string) `signal:"add,auto"`
 
-	modelData 							[]string
+	modelData []string
 }
-
 
 func (m *TxListAccountsModel) init() {
 	m.modelData = []string{}

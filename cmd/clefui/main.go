@@ -2,13 +2,13 @@ package main
 
 import (
 	"context"
-	"github.com/kyokan/clef-ui/internal/ui"
-	"github.com/kyokan/clef-ui/pkg/clefclient"
-	"github.com/kyokan/clef-ui/pkg/rpc"
 	"io"
 	"log"
 	"os"
 	"os/signal"
+
+	"github.com/kyokan/clef-ui/external"
+	"github.com/kyokan/clef-ui/internal/ui"
 )
 
 func main() {
@@ -28,10 +28,10 @@ func main() {
 
 	go func() {
 		select {
-		case gopath := <- readyToStart:
+		case gopath := <-readyToStart:
 			log.Println(gopath)
 			// Start Clef Client
-			stdin, stdout, stderr, err := clefclient.StartClef(ctx, gopath)
+			stdin, stdout, stderr, err := external.StartClef(ctx, gopath)
 			if err != nil {
 				log.Panicf("Cannot start clef: %s", err)
 				return
@@ -41,12 +41,10 @@ func main() {
 			// TODO: Handle Standard Error properly
 			go io.Copy(os.Stderr, stderr)
 
-
-			server := rpc.NewServer(ctx, stdin, stdout)
+			server := external.NewServer(ctx, stdin, stdout)
 			server.Start(*clefUi)
 		}
 	}()
-
 
 	// Watch for os interrupt
 	go func() {

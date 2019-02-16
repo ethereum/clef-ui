@@ -8,12 +8,11 @@ import (
 	"io"
 	"log"
 	"os"
-	"path"
 )
 
 type LoginUI struct {
-	UI 					*quick.QQuickWidget
-	ContextObject		*LoginCtx
+	UI            *quick.QQuickWidget
+	ContextObject *LoginCtx
 }
 
 type LoginCtx struct {
@@ -24,14 +23,14 @@ type LoginCtx struct {
 	_ string `property:"endpoint"`
 	_ string `property:"gopath"`
 	_ string `property:"binaryHash"`
-	_ bool 	 `property:"isValid"`
+	_ bool   `property:"isValid"`
 
-	_ func() 			`signal:"clicked,auto"`
-	_ func(b string) 	`signal:"edited,auto"`
+	_ func()         `signal:"clicked,auto"`
+	_ func(b string) `signal:"edited,auto"`
 
-	answer 				int
-	ClefUI 				*ClefUI
-	ReadyToStart 		chan string
+	answer       int
+	ClefUI       *ClefUI
+	ReadyToStart chan string
 }
 
 func (t *LoginCtx) clicked() {
@@ -42,11 +41,11 @@ func (t *LoginCtx) clicked() {
 	t.ReadyToStart <- gopath
 }
 
+func (t *LoginCtx) edited(clefbin string) {
+	clefbin = "/home/user/QubesIncoming/work/clef" // TODO! fixme
+	t.SetGopath(clefbin)
 
-func (t *LoginCtx) edited(dir string) {
-	t.SetGopath(dir)
-
-	f, err := os.Open(path.Join(dir, "bin", "clef"))
+	f, err := os.Open(clefbin)
 	if err != nil {
 		t.SetBinaryHash(err.Error())
 		t.SetIsValid(false)
@@ -86,7 +85,7 @@ func NewLoginUI(clefUi *ClefUI, readyToStart chan string) *LoginUI {
 	c.ReadyToStart = readyToStart
 	c.ClefUI = clefUi
 	v := &LoginUI{
-		UI: widget,
+		UI:            widget,
 		ContextObject: c,
 	}
 

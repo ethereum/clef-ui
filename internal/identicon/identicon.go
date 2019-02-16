@@ -31,12 +31,13 @@ import (
 	"bytes"
 	"encoding/base64"
 	"fmt"
-	"github.com/dchest/siphash"
-	"github.com/kyokan/clef-ui/internal/utils"
 	"hash"
 	"image"
 	"image/color"
 	"image/png"
+
+	"github.com/dchest/siphash"
+	"github.com/ethereum/go-ethereum/common"
 )
 
 // Renderer allows rendering of data as a PNG identicon
@@ -44,6 +45,12 @@ type Renderer interface {
 	// Render generates a PNG from data
 	Render(data []byte) []byte
 }
+
+var(
+	renderer = New7x7([]byte("0x4b594f4b414e20495320415745534f4d45"))
+	cache = make(map[common.Address]string)
+)
+
 
 type identicon struct {
 	key    []byte
@@ -53,11 +60,12 @@ type identicon struct {
 	h      hash.Hash64
 }
 
-const xborder = 35
-const yborder = 35
-const maxX = 420
-const maxY = 420
-
+const (
+	xBorder = 35
+	yBorder = 35
+	maxX    = 420
+	maxY    = 420
+)
 // New5x5 creates a new 5-by-5 identicon renderer using 'key' as the hash salt
 func New5x5(key []byte) Renderer {
 	return &identicon{
@@ -78,6 +86,8 @@ func New7x7(key []byte) Renderer {
 	}
 }
 
+
+
 func (icon *identicon) Render(data []byte) []byte {
 
 	icon.h.Reset()
@@ -93,7 +103,6 @@ func (icon *identicon) Render(data []byte) []byte {
 	h >>= 24
 
 	img := image.NewPaletted(image.Rect(0, 0, maxX, maxY), color.Palette{color.NRGBA{0xf0, 0xf0, 0xf0, 0xff}, nrgba})
-
 	sqx := 0
 	sqy := 0
 
@@ -103,21 +112,18 @@ func (icon *identicon) Render(data []byte) []byte {
 	}
 
 	for i := 0; i < icon.rows*(icon.cols+1)/2; i++ {
-
 		if h&1 == 1 {
-
 			for i := 0; i < icon.sqSize; i++ {
-				x := xborder + sqx*icon.sqSize
-				y := yborder + sqy*icon.sqSize + i
+				x := xBorder + sqx*icon.sqSize
+				y := yBorder + sqy*icon.sqSize + i
 				offs := img.PixOffset(x, y)
 				copy(img.Pix[offs:], pixels)
 
-				x = xborder + (icon.cols-1-sqx)*icon.sqSize
+				x = xBorder + (icon.cols-1-sqx)*icon.sqSize
 				offs = img.PixOffset(x, y)
 				copy(img.Pix[offs:], pixels)
 			}
 		}
-
 		h >>= 1
 		sqy++
 		if sqy == icon.rows {
@@ -127,34 +133,16 @@ func (icon *identicon) Render(data []byte) []byte {
 	}
 
 	var buf bytes.Buffer
-
 	png.Encode(&buf, img)
-
 	return buf.Bytes()
 }
 
-var renderer = New7x7([]byte("0x4b594f4b414e20495320415745534f4d45"))
-var identicons = make(map[string]string)
-
-func ToBase64Img(ad string) (b string) {
-	address, err := clefutils.ToChecksumAddress(ad)
-	if err != nil {
-		return ""
-	}
-
-	cached := identicons[address]
-	if len(cached) > 0 {
+func ToBase64Img(address common.Address) (b string) {
+	if cached, ok := cache[address]; ok{
 		return cached
 	}
-
-	icon := renderer.Render([]byte(address))
-	b64str := base64.StdEncoding.EncodeToString(icon)
-	img := fmt.Sprintf("data:image/png;base64,%v", b64str)
-
-	identicons[address] = img
+	icon := renderer.Render(address.Bytes())
+	img := fmt.Sprintf("data:image/png;base64,%v", base64.StdEncoding.EncodeToString(icon))
+	cache[address] = img
 	return img
 }
-
-//fromIcon := renderer.Render([]byte(tx.From))
-//fromb64str := base64.StdEncoding.EncodeToString(fromIcon)
-//fromImgSrc := fmt.Sprintf("data:image/png;base64,%v", fromb64str)

@@ -1,25 +1,26 @@
 package ui
 
 import (
-	"github.com/kyokan/clef-ui/internal/params"
+	"github.com/ethereum/go-ethereum/accounts"
+	core2 "github.com/ethereum/go-ethereum/signer/core"
 	"github.com/kyokan/clef-ui/internal/utils"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quick"
 )
 
 type ApproveListingUI struct {
-	UI 					*quick.QQuickWidget
-	ContextObject		*ApproveListingCtx
-	AccountListModel 	*CustomListModel
+	UI               *quick.QQuickWidget
+	ContextObject    *ApproveListingCtx
+	AccountListModel *CustomListModel
 }
 
 type ApproveListingCtx struct {
 	core.QObject
 
-	_ func() 										`constructor:"init"`
-	_ func(b int) 									`signal:"clicked,auto"`
-	_ func() 										`signal:"back,auto"`
-	_ func(i int, checked bool) 					`signal:"onCheckStateChanged,auto"`
+	_ func()                    `constructor:"init"`
+	_ func(b int)               `signal:"clicked,auto"`
+	_ func()                    `signal:"back,auto"`
+	_ func(i int, checked bool) `signal:"onCheckStateChanged,auto"`
 
 	_ string `property:"remote"`
 	_ string `property:"transport"`
@@ -29,32 +30,24 @@ type ApproveListingCtx struct {
 	_ string `property:"rawData"`
 	_ string `property:"hash"`
 
-	answer 		int
-	accounts 	*CustomListModel
-	ClefUI 		*ClefUI
-	doneCh      chan(bool)
+	accounts *CustomListModel
+	ClefUI   *ClefUI
+	answerCh chan (int)
 }
 
 func (ctx *ApproveListingCtx) init() {
-	ctx.accounts = NewCustomListModel(nil	)
-}
-
-
-func (t *ApproveListingCtx) back() {
-	t.Reset()
-	t.ClefUI.BackToMain <- true
+	ctx.accounts = NewCustomListModel(nil)
 }
 
 func (ctx *ApproveListingCtx) Reset() {
 	ctx.SetRemote("")
 	ctx.SetTransport("")
 	ctx.SetEndpoint("")
-	ctx.answer = 0
 	ctx.accounts.Clear()
 	ctx.ClefUI.BackToMain <- true
 }
 
-func init() {CustomListModel_QmlRegisterType2("CustomQmlTypes", 1, 0, "CustomListModel")}
+func init() { CustomListModel_QmlRegisterType2("CustomQmlTypes", 1, 0, "CustomListModel") }
 
 const (
 	Address = int(core.Qt__UserRole) + 1<<iota
@@ -62,24 +55,23 @@ const (
 )
 
 type AccountListItem struct {
-	address string
+	address  string
 	selected bool
 }
 
 type CustomListModel struct {
 	core.QAbstractListModel
 
-	_ func() 										`constructor:"init"`
-	_ func()                                 		`signal:"clear,auto"`
-	_ func(account params.ApproveListingAccount)    `signal:"add,auto"`
+	_ func()                         `constructor:"init"`
+	_ func()                         `signal:"clear,auto"`
+	_ func(account accounts.Account) `signal:"add,auto"`
 
-	modelData 										[]params.ApproveListingAccount
-	checkState										map[int]bool
-
+	modelData  []accounts.Account
+	checkState map[int]bool
 }
 
 func (m *CustomListModel) init() {
-	m.modelData = []params.ApproveListingAccount{}
+	m.modelData = []accounts.Account{}
 	m.checkState = map[int]bool{}
 
 	m.ConnectRoleNames(m.roleNames)
@@ -99,7 +91,7 @@ func (m *CustomListModel) columnCount(*core.QModelIndex) int {
 func (m *CustomListModel) roleNames() map[int]*core.QByteArray {
 	return map[int]*core.QByteArray{
 		Address: core.NewQByteArray2("address", -1),
-		Checked:  core.NewQByteArray2("selected", -1),
+		Checked: core.NewQByteArray2("selected", -1),
 	}
 }
 
@@ -107,7 +99,7 @@ func (m *CustomListModel) data(index *core.QModelIndex, role int) *core.QVariant
 	item := m.modelData[index.Row()]
 
 	if role == int(Address) {
-		address, _ := clefutils.ToChecksumAddress(item.Address)
+		address, _ := clefutils.ToChecksumAddress(item.Address.String())
 		return core.NewQVariant14(address)
 	}
 
@@ -118,65 +110,69 @@ func (m *CustomListModel) data(index *core.QModelIndex, role int) *core.QVariant
 	return core.NewQVariant()
 }
 
-func (m*CustomListModel) clear() {
+func (m *CustomListModel) clear() {
 	m.BeginResetModel()
-	m.modelData = []params.ApproveListingAccount{}
+	m.modelData = []accounts.Account{}
 	m.checkState = map[int]bool{}
 	m.EndResetModel()
 }
 
-func (m *CustomListModel) add(account params.ApproveListingAccount) {
+func (m *CustomListModel) add(account accounts.Account) {
 	m.BeginInsertRows(core.NewQModelIndex(), len(m.modelData), len(m.modelData))
 	m.modelData = append(m.modelData, account)
 	m.EndInsertRows()
 }
 
 func (t *ApproveListingCtx) clicked(b int) {
-	t.answer = b
-	t.doneCh <- true
-
+	t.answerCh <- b
 }
 
 func (t *ApproveListingCtx) onCheckStateChanged(i int, checked bool) {
 	t.accounts.checkState[i] = checked
 }
 
-func (t *ApproveListingCtx) ClickResponse(reply *params.ApproveListingResponse, res chan bool) {
+func (t *ApproveListingCtx) back() {
+	select {
+	case t.answerCh <- -1:
+	default:
+	}
+}
+
+func (t *ApproveListingCtx) ClickResponse(res chan *core2.ListResponse) {
 	go func() {
 		// Wait for user to complete the form
-		<-t.doneCh
-		if t.answer == 2 { // TODO make this atomic
-			accounts := make([]params.ApproveListingAccount, 0)
-			for i, account := range t.accounts.modelData {
-				if t.accounts.checkState[i] {
-					accounts = append(accounts, account)
+		answer := <-t.answerCh
+		if answer != -1 { // Go back
+			reply := new(core2.ListResponse)
+			if answer == 2 { // Approve at least some accounts
+				accounts := make([]accounts.Account, 0)
+				for i, account := range t.accounts.modelData {
+					if t.accounts.checkState[i] {
+						accounts = append(accounts, account)
+					}
 				}
+				reply.Accounts = accounts
 			}
-			reply.Accounts = accounts
-			res <- true
-		}else{
-			res <- false
+			res <- reply
 		}
 		t.Reset()
 	}()
 }
-
 
 func NewApproveListingUI(clefUi *ClefUI) *ApproveListingUI {
 	widget := quick.NewQQuickWidget(nil)
 	widget.SetSource(core.NewQUrl3("qrc:/qml/approve_listing.qml", 0))
 	c := NewApproveListingCtx(nil)
 	c.ClefUI = clefUi
-	c.doneCh = make(chan bool)
+	c.answerCh = make(chan int)
 	v := &ApproveListingUI{
-		UI: widget,
+		UI:            widget,
 		ContextObject: c,
 	}
 	widget.SetStyleSheet("margin: 0;")
 	widget.RootContext().SetContextProperty("ctxObject", c)
-	widget.RootContext().SetContextProperty(	"accounts", c.accounts)
+	widget.RootContext().SetContextProperty("accounts", c.accounts)
 	widget.SetResizeMode(quick.QQuickWidget__SizeRootObjectToView)
 	widget.Hide()
 	return v
 }
-
