@@ -44,16 +44,29 @@ func (c *clefUIAPI) OnSignerStartup(info core.StartupInfo) {
 	c.ui.BackToMain <- true
 }
 
-func (c *clefUIAPI) ShowError(msg string) {
-	text := strings.Replace(msg, "\u003c", "less than ", -1)
+func (c *clefUIAPI) ShowError(message core.Message) {
+
+	text := strings.Replace(message.Text, "\u003c", "less than ", -1)
 	c.ui.ErrorDialog <- text
 }
 
-func (c *clefUIAPI) ShowInfo(msg string) {
+func (c *clefUIAPI) ShowInfo(message core.Message) {
 	// TODO! Separate info and error
-	text := strings.Replace(msg, "\u003c", "less than ", -1)
+	text := strings.Replace(message.Text, "\u003c", "less than ", -1)
 	c.ui.ErrorDialog <- text
 }
+
+func (c *clefUIAPI) OnUserInputrequest(message core.UserInputRequest) (*core.UserInputResponse, error) {
+	response, err := c.ui.RequestUserInput(message.Title, message.Prompt, message.IsPassword)
+	if err != nil{
+		return nil, err
+	}
+	return &core.UserInputResponse{
+		Text:response,
+	}, nil
+
+}
+
 
 func (c *clefUIAPI) ApproveNewAccount(p core.NewAccountRequest) (response *core.NewAccountResponse, err error) {
 	ch := make(chan *core.NewAccountResponse)
@@ -119,6 +132,10 @@ func (c *clefUIAPI) ApproveListing(p core.ListRequest) (*core.ListResponse, erro
 	c.ui.IncomingRequest <- item
 	response := <-ch
 	item.Remove()
+	// debug print TODO remove
+	d, e := json.Marshal(&response)
+	fmt.Printf("<-- %s (%v)\n", d, e)
+	//
 	return response, nil
 }
 

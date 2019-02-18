@@ -2,6 +2,7 @@ package ui
 
 import (
 	"context"
+	"fmt"
 	core2 "github.com/ethereum/go-ethereum/signer/core"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quick"
@@ -10,18 +11,24 @@ import (
 	"os"
 )
 
+const (
+	USR_BACK    = iota // User selecting menu 'back'
+	USR_APPROVE = iota // User select menu 'approve'
+	USR_REJECT  = iota // User select menu 'Reject'
+)
+
 type ApproveSignDataRequest struct {
 	Params   *core2.SignDataRequest
 	Response chan *core2.SignDataResponse
 }
 
 type ApproveListingRequest struct {
-	Params   core2.ListRequest
+	Params     core2.ListRequest
 	ResponseCh chan *core2.ListResponse
 }
 
 type ApproveTxRequest struct {
-	Params   *core2.SignTxRequest
+	Params     *core2.SignTxRequest
 	ResponseCh chan *core2.SignTxResponse
 }
 
@@ -91,12 +98,29 @@ func (c *ClefUI) hideAll() {
 	c.txlist.Hide()
 	c.login.Hide()
 }
-type contextInfo interface{
+
+// RequestUserInput synchronously asks for user input
+func (c *ClefUI) RequestUserInput(title, message string, isPassword bool) (string, error) {
+	ok := false
+	echoMode := widgets.QLineEdit__Password
+	if !isPassword {
+		echoMode = widgets.QLineEdit__Normal
+	}
+	response := widgets.QInputDialog_GetText(nil, title, message, echoMode, "",
+		&ok, core.Qt__Dialog, core.Qt__ImhNone)
+	if ok {
+		return response, nil
+	}
+	return "", fmt.Errorf("no input provided")
+}
+
+type contextInfo interface {
 	SetTransport(string)
 	SetRemote(string)
 	SetEndpoint(string)
 }
-func setMeta(co contextInfo, metadata core2.Metadata){
+
+func setMeta(co contextInfo, metadata core2.Metadata) {
 	co.SetTransport(metadata.Scheme)
 	co.SetRemote(metadata.Remote)
 	co.SetEndpoint(metadata.Local)
@@ -106,10 +130,8 @@ func (msg *ApproveListingRequest) handle(ui *ClefUI) {
 	co := ui.approvelisting.ContextObject
 	setMeta(co, msg.Params.Meta)
 
-	for _, account := range msg.Params.Accounts {
-		co.accounts.Add(account)
-	}
-	co.ClickResponse( msg.ResponseCh)
+	co.ExternalSetAccounts(msg.Params.Accounts)
+	co.ClickResponse(msg.ResponseCh)
 	ui.approvelisting.UI.Show()
 }
 func (msg *ApproveTxRequest) handle(ui *ClefUI) {
@@ -117,7 +139,7 @@ func (msg *ApproveTxRequest) handle(ui *ClefUI) {
 	setMeta(co, msg.Params.Meta)
 
 	co.SetTransaction(msg.Params.Transaction)
-	co.ClickResponse( msg.ResponseCh)
+	co.ClickResponse(msg.ResponseCh)
 	ui.approvetx.UI.Show()
 }
 
@@ -125,7 +147,7 @@ func (msg *ApproveNewAccountRequest) handle(ui *ClefUI) {
 	co := ui.approvenewaccount.ContextObject
 	setMeta(co, msg.Params.Meta)
 
-	co.ClickResponse( msg.ResponseCh)
+	co.ClickResponse(msg.ResponseCh)
 	ui.approvenewaccount.UI.Show()
 
 }
@@ -160,7 +182,6 @@ func NewClefUI(ctx context.Context, uiClose chan bool, readyToStart chan string)
 
 	c.hideAll()
 	login.UI.Show()
-	login.ContextObject.SetGopath(os.Getenv("GOPATH"))
 
 	go func() {
 		for {

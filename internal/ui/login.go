@@ -79,17 +79,18 @@ func (t *LoginCtx) Reset() {
 }
 
 func NewLoginUI(clefUi *ClefUI, readyToStart chan string) *LoginUI {
-	widget := quick.NewQQuickWidget(nil)
-	widget.SetSource(core.NewQUrl3("qrc:/qml/login.qml", 0))
+
 	c := NewLoginCtx(nil)
 	c.ReadyToStart = readyToStart
+
+	widget := quick.NewQQuickWidget(nil)
+	widget.RootContext().SetContextProperty("ctxObject", c)
+	widget.SetSource(core.NewQUrl3("qrc:/qml/login.qml", 0))
 	c.ClefUI = clefUi
 	v := &LoginUI{
 		UI:            widget,
 		ContextObject: c,
 	}
-
-	widget.RootContext().SetContextProperty("ctxObject", c)
 	widget.SetResizeMode(quick.QQuickWidget__SizeRootObjectToView)
 	widget.Show()
 	return v

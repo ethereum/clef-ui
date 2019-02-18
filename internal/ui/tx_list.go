@@ -193,19 +193,21 @@ func (c *TxListCtx) clicked(index int) {
 }
 
 func NewTxListUI(clefUi *ClefUI) *TxListUI {
-	widget := quick.NewQQuickWidget(nil)
-	widget.SetSource(core.NewQUrl3("qrc:/qml/tx_list.qml", 0))
 	c := NewTxListCtx(nil)
 	c.ClefUI = clefUi
-	v := &TxListUI{
-		UI:        widget,
-		CtxObject: c,
-	}
-	widget.SetStyleSheet("margin: 0;")
+
+	widget := quick.NewQQuickWidget(nil)
 	widget.RootContext().SetContextProperty("ctxObject", c)
 	widget.RootContext().SetContextProperty("transactions", c.transactions)
 	widget.RootContext().SetContextProperty("accounts", c.accounts)
+
+	widget.SetSource(core.NewQUrl3("qrc:/qml/tx_list.qml", 0))
+	widget.SetStyleSheet("margin: 0;")
 	widget.SetResizeMode(quick.QQuickWidget__SizeRootObjectToView)
 	widget.Hide()
-	return v
+	return 	&TxListUI{
+		UI:        widget,
+		CtxObject: c,
+	}
+
 }

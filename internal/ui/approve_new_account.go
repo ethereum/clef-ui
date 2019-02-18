@@ -101,17 +101,17 @@ func (t *ApproveNewAccountCtx) ClickResponse(replyCh chan *core2.NewAccountRespo
 }
 
 func NewApproveNewAccountUI(clefUi *ClefUI) *ApproveNewAccount {
-	widget := quick.NewQQuickWidget(nil)
-	widget.SetSource(core.NewQUrl3("qrc:/qml/approve_new_account.qml", 0))
 	c := NewApproveNewAccountCtx(nil)
 	c.ClefUI = clefUi
-	v := &ApproveNewAccount{
+	c.answerCh = make(chan int)
+
+	widget := quick.NewQQuickWidget(nil)
+	widget.RootContext().SetContextProperty("ctxObject", c)
+	widget.SetSource(core.NewQUrl3("qrc:/qml/approve_new_account.qml", 0))
+	widget.SetResizeMode(quick.QQuickWidget__SizeRootObjectToView)
+	widget.Hide()
+	return &ApproveNewAccount{
 		UI:            widget,
 		ContextObject: c,
 	}
-	c.answerCh = make(chan int)
-	widget.RootContext().SetContextProperty("ctxObject", c)
-	widget.SetResizeMode(quick.QQuickWidget__SizeRootObjectToView)
-	widget.Hide()
-	return v
 }
