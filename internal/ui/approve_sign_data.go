@@ -1,6 +1,7 @@
 package ui
 
 import (
+	"fmt"
 	core2 "github.com/ethereum/go-ethereum/signer/core"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quick"
@@ -25,7 +26,9 @@ type ApproveSignDataCtx struct {
 	_ string `property:"fromSrc"`
 
 	_ func(b int)                  `signal:"clicked,auto"`
-	_ func()                       `signal:"back,auto"`
+	_ func()                       `signal:"onBack,auto"`
+	_ func()                       `signal:"onApprove,auto"`
+	_ func()                       `signal:"onReject,auto"`
 	_ func(b string, value string) `signal:"edited,auto"`
 
 	answerCh chan int
@@ -38,8 +41,15 @@ func (t *ApproveSignDataCtx) clicked(b int) {
 	default:
 	}
 }
+func (t *ApproveSignDataCtx) onApprove(){
+	fmt.Printf("onApprove called")
+}
+func (t *ApproveSignDataCtx) onReject(){
+	fmt.Printf("onReject called")
+}
 
-func (t *ApproveSignDataCtx) back() {
+func (t *ApproveSignDataCtx) onBack() {
+	fmt.Printf("Back() called")
 	select {
 	case t.answerCh <- -1:
 	default:
@@ -86,17 +96,19 @@ func (t *ApproveSignDataCtx) ClickResponse(res chan *core2.SignDataResponse) {
 }
 
 func NewApproveSignDataUI(clefUi *ClefUI) *ApproveSignDataUI {
-	widget := quick.NewQQuickWidget(nil)
-	widget.SetSource(core.NewQUrl3("qrc:/qml/approve_sign_data.qml", 0))
 	c := NewApproveSignDataCtx(nil)
 	c.ClefUI = clefUi
-	v := &ApproveSignDataUI{
+	c.answerCh = make(chan int)
+
+	widget := quick.NewQQuickWidget(nil)
+
+	widget.RootContext().SetContextProperty("ctxObject", c)
+	widget.SetSource(core.NewQUrl3("qrc:/qml/approve_sign_data.qml", 0))
+	widget.SetResizeMode(quick.QQuickWidget__SizeRootObjectToView)
+	widget.Hide()
+
+	return &ApproveSignDataUI{
 		UI:            widget,
 		ContextObject: c,
 	}
-	c.answerCh = make(chan int)
-	widget.RootContext().SetContextProperty("ctxObject", c)
-	widget.SetResizeMode(quick.QQuickWidget__SizeRootObjectToView)
-	widget.Hide()
-	return v
 }

@@ -136,7 +136,7 @@ Item {
                     border.width: 0
                     PropertyAnimation on opacity {
                         duration: 200
-                        easing: Easing.InOutElastic
+                        easing.type: Easing.InOutElastic
                     }
                 }
             }

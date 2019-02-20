@@ -59,12 +59,14 @@ type ApproveTxCtx struct {
 	_ string `property:"toSrc"`
 	_ string `property:"diff"`
 
-	_ func(b int)              `signal:"clicked,auto"`
+	_ func()                    `signal:"approve,auto"`
+	_ func()                    `signal:"reject,auto"`
 	_ func()                   `signal:"checkTxDiff,auto"`
 	_ func()                   `signal:"back,auto"`
 	_ func(s string, v string) `signal:"edited,auto"`
 	_ func(v int)              `signal:"changeValueUnit,auto"`
 	_ func(v int)              `signal:"changeGasPriceUnit,auto"`
+
 
 	answerCh chan (int)
 	formData core2.SendTxArgs
@@ -308,21 +310,23 @@ func (t *ApproveTxCtx) checkTxDiffWithError() error {
 	return nil
 }
 
-// back is invoked when user clicks back
-func (t *ApproveTxCtx) back() {
+func (ctx *ApproveTxCtx) back() {
 	select {
-	case t.answerCh <- -1:
+	case ctx.answerCh <- USR_BACK:
 	default:
 	}
 }
-
-// clicked means user clicked either Approve or Reject
-func (t *ApproveTxCtx) clicked(b int) {
+func (ctx *ApproveTxCtx) reject() {
 	select {
-	case t.answerCh <- b:
+	case ctx.answerCh <-USR_REJECT:
 	default:
 	}
-
+}
+func (ctx *ApproveTxCtx) approve() {
+	select {
+	case ctx.answerCh <-USR_APPROVE:
+	default:
+	}
 }
 
 func (t *ApproveTxCtx) ClickResponse(responseCh chan *core2.SignTxResponse) {
@@ -374,17 +378,18 @@ func compareTransactions(o core2.SendTxArgs, n core2.SendTxArgs) []diff {
 }
 
 func NewApproveTxUI(clefUi *ClefUI) *ApproveTxUI {
-	widget := quick.NewQQuickWidget(nil)
-	widget.SetSource(core.NewQUrl3("qrc:/qml/approve_tx.qml", 0))
 	c := NewApproveTxCtx(nil)
 	c.ClefUI = clefUi
-	v := &ApproveTxUI{
+	c.answerCh = make(chan int)
+
+	widget := quick.NewQQuickWidget(nil)
+	widget.RootContext().SetContextProperty("ctxObject", c)
+	widget.SetSource(core.NewQUrl3("qrc:/qml/approve_tx.qml", 0))
+	widget.SetResizeMode(quick.QQuickWidget__SizeRootObjectToView)
+	widget.Hide()
+	return 	&ApproveTxUI{
 		UI:            widget,
 		ContextObject: c,
 	}
-	c.answerCh = make(chan int)
-	widget.RootContext().SetContextProperty("ctxObject", c)
-	widget.SetResizeMode(quick.QQuickWidget__SizeRootObjectToView)
-	widget.Hide()
-	return v
+
 }

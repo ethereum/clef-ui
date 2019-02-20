@@ -4,6 +4,9 @@
 <file>qml/approve_new_account.qml</file>
 <file>qml/approve_sign_data.qml</file>
 <file>qml/approve_tx.qml</file>
+<file>qml/Footer.qml</file>
+<file>qml/Headerfield.qml</file>
+<file>qml/HeaderFieldImport.qml</file>
 <file>qml/identicon.png</file>
 <file>qml/login.qml</file>
 <file>qml/tx_list.qml</file>
