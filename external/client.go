@@ -13,8 +13,6 @@ func StartClef(ctx context.Context, clefBin string) (io.WriteCloser, io.ReadClos
 	cmd := exec.Command(
 		clefBin,
 		"--rpc",
-		"--4bytedb",
-		path.Join("/home/user/go/src/github.com/ethereum/go-ethereum/cmd/clef", "4byte.json"),
 		"--stdio-ui", "--stdio-ui-test", "--advanced",
 		"--ipcdisable",
 	)
