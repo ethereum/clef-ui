@@ -340,13 +340,13 @@ func (t *ApproveTxCtx) ClickResponse(responseCh chan *core2.SignTxResponse) {
 			reply.Approved = false
 		} else { // Approve
 			// TODO handle errors here
+			// TODO, remove PASSWORD from UI
 			// We might want to validate already in the clicked() method, and pass the
 			// replyTx over the channel
 			replyTx, _ := t.getNewTx()
 			reply.Transaction = replyTx
 			reply.Approved = true
 
-			reply.Password = t.Password()
 		}
 		t.Reset()
 		responseCh <- reply

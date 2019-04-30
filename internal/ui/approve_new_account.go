@@ -82,6 +82,7 @@ func (t *ApproveNewAccountCtx) ClickResponse(replyCh chan *core2.NewAccountRespo
 				return
 			}
 			// Approval, check that passwords match
+			// TODO! Remove passwords from here
 			pw := t.Password()
 			cpw := t.ConfirmPassword()
 			if len(pw) == 0 || len(cpw) == 0 {
@@ -91,7 +92,6 @@ func (t *ApproveNewAccountCtx) ClickResponse(replyCh chan *core2.NewAccountRespo
 				log.Println("Passwords do not match")
 			} else {
 				reply.Approved = true
-				reply.Password = pw
 				t.Reset()
 				replyCh <- reply
 				return
