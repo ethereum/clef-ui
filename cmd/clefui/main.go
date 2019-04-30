@@ -7,8 +7,8 @@ import (
 	"os"
 	"os/signal"
 
-	"github.com/kyokan/clef-ui/external"
-	"github.com/kyokan/clef-ui/internal/ui"
+	"github.com/ethereum/clef-ui/external"
+	"github.com/ethereum/clef-ui/internal/ui"
 )
 
 func main() {

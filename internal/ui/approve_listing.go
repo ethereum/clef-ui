@@ -2,10 +2,10 @@ package ui
 
 import (
 	"fmt"
+
+	"github.com/ethereum/clef-ui/internal/utils"
 	"github.com/ethereum/go-ethereum/accounts"
-	//"github.com/ethereum/go-ethereum/common"
 	core2 "github.com/ethereum/go-ethereum/signer/core"
-	"github.com/kyokan/clef-ui/internal/utils"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quick"
 )
@@ -187,7 +187,7 @@ func (model *CustomListModel) add(account accounts.Account) {
 	model.BeginInsertRows(core.NewQModelIndex(), len(model.modelData), 1+len(model.modelData))
 	model.modelData = append(model.modelData, account)
 	model.EndInsertRows()
-	}
+}
 
 func NewApproveListingUI(clefUi *ClefUI) *ApproveListingUI {
 	ctx := NewApproveListingCtx(nil)

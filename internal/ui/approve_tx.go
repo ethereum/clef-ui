@@ -2,16 +2,16 @@ package ui
 
 import (
 	"fmt"
-	"github.com/kyokan/clef-ui/internal/identicon"
 	"log"
 	"math/big"
 	"strconv"
 	"strings"
 
+	"github.com/ethereum/clef-ui/internal/identicon"
+	"github.com/ethereum/clef-ui/internal/utils"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	core2 "github.com/ethereum/go-ethereum/signer/core"
-	"github.com/kyokan/clef-ui/internal/utils"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quick"
 )
@@ -59,14 +59,13 @@ type ApproveTxCtx struct {
 	_ string `property:"toSrc"`
 	_ string `property:"diff"`
 
-	_ func()                    `signal:"approve,auto"`
-	_ func()                    `signal:"reject,auto"`
+	_ func()                   `signal:"approve,auto"`
+	_ func()                   `signal:"reject,auto"`
 	_ func()                   `signal:"checkTxDiff,auto"`
 	_ func()                   `signal:"back,auto"`
 	_ func(s string, v string) `signal:"edited,auto"`
 	_ func(v int)              `signal:"changeValueUnit,auto"`
 	_ func(v int)              `signal:"changeGasPriceUnit,auto"`
-
 
 	answerCh chan (int)
 	formData core2.SendTxArgs
@@ -318,13 +317,13 @@ func (ctx *ApproveTxCtx) back() {
 }
 func (ctx *ApproveTxCtx) reject() {
 	select {
-	case ctx.answerCh <-USR_REJECT:
+	case ctx.answerCh <- USR_REJECT:
 	default:
 	}
 }
 func (ctx *ApproveTxCtx) approve() {
 	select {
-	case ctx.answerCh <-USR_APPROVE:
+	case ctx.answerCh <- USR_APPROVE:
 	default:
 	}
 }
@@ -387,7 +386,7 @@ func NewApproveTxUI(clefUi *ClefUI) *ApproveTxUI {
 	widget.SetSource(core.NewQUrl3("qrc:/qml/approve_tx.qml", 0))
 	widget.SetResizeMode(quick.QQuickWidget__SizeRootObjectToView)
 	widget.Hide()
-	return 	&ApproveTxUI{
+	return &ApproveTxUI{
 		UI:            widget,
 		ContextObject: c,
 	}

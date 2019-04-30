@@ -3,12 +3,13 @@ package ui
 import (
 	"context"
 	"fmt"
+	"os"
+
 	core2 "github.com/ethereum/go-ethereum/signer/core"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quick"
 	"github.com/therecipe/qt/quickcontrols2"
 	"github.com/therecipe/qt/widgets"
-	"os"
 )
 
 const (

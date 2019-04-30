@@ -9,10 +9,10 @@ import (
 	"math/big"
 	"strings"
 
+	"github.com/ethereum/clef-ui/internal/ui"
+	"github.com/ethereum/clef-ui/internal/utils"
 	"github.com/ethereum/go-ethereum/rpc"
 	"github.com/ethereum/go-ethereum/signer/core"
-	"github.com/kyokan/clef-ui/internal/ui"
-	"github.com/kyokan/clef-ui/internal/utils"
 )
 
 type Server struct {
@@ -58,15 +58,14 @@ func (c *clefUIAPI) ShowInfo(message core.Message) {
 
 func (c *clefUIAPI) OnUserInputrequest(message core.UserInputRequest) (*core.UserInputResponse, error) {
 	response, err := c.ui.RequestUserInput(message.Title, message.Prompt, message.IsPassword)
-	if err != nil{
+	if err != nil {
 		return nil, err
 	}
 	return &core.UserInputResponse{
-		Text:response,
+		Text: response,
 	}, nil
 
 }
-
 
 func (c *clefUIAPI) ApproveNewAccount(p core.NewAccountRequest) (response *core.NewAccountResponse, err error) {
 	ch := make(chan *core.NewAccountResponse)
