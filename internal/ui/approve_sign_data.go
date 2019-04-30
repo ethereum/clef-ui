@@ -88,7 +88,6 @@ func (t *ApproveSignDataCtx) ClickResponse(res chan *core2.SignDataResponse) {
 			reply.Approved = false
 		} else if answer == 2 {
 			reply.Approved = true
-			reply.Password = t.Password()
 		}
 		res <- reply
 		t.Reset()
