@@ -6,7 +6,6 @@ import (
 	"log"
 	"os"
 	"os/exec"
-	"path"
 )
 
 func StartClef(ctx context.Context, clefBin string) (io.WriteCloser, io.ReadCloser, io.ReadCloser, error) {

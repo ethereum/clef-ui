@@ -2,6 +2,7 @@ package ui
 
 import (
 	"fmt"
+
 	core2 "github.com/ethereum/go-ethereum/signer/core"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quick"
@@ -32,7 +33,7 @@ type ApproveSignDataCtx struct {
 	_ func(b string, value string) `signal:"edited,auto"`
 
 	answerCh chan int
-	ClefUI *ClefUI
+	ClefUI   *ClefUI
 }
 
 func (t *ApproveSignDataCtx) clicked(b int) {
@@ -41,10 +42,10 @@ func (t *ApproveSignDataCtx) clicked(b int) {
 	default:
 	}
 }
-func (t *ApproveSignDataCtx) onApprove(){
+func (t *ApproveSignDataCtx) onApprove() {
 	fmt.Printf("onApprove called")
 }
-func (t *ApproveSignDataCtx) onReject(){
+func (t *ApproveSignDataCtx) onReject() {
 	fmt.Printf("onReject called")
 }
 

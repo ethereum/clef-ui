@@ -3,8 +3,8 @@ package ui
 import (
 	"strings"
 
+	"github.com/ethereum/clef-ui/internal/identicon"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/kyokan/clef-ui/internal/identicon"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quick"
 )
@@ -205,7 +205,7 @@ func NewTxListUI(clefUi *ClefUI) *TxListUI {
 	widget.SetStyleSheet("margin: 0;")
 	widget.SetResizeMode(quick.QQuickWidget__SizeRootObjectToView)
 	widget.Hide()
-	return 	&TxListUI{
+	return &TxListUI{
 		UI:        widget,
 		CtxObject: c,
 	}

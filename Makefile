@@ -7,13 +7,13 @@ deps: dep-tools
 	@echo "Un-vendoring QT bindings..."
 	@rm -rf vendor/github.com/therecipe
 
+
+
 dep-tools:
-	go get -u github.com/ethereum/go-ethereum
-	go get -u github.com/therecipe/qt
-	go get -u github.com/sirupsen/logrus
-	go get -u github.com/dchest/siphash
-	go get -u github.com/powerman/rpc-codec/jsonrpc2
-	go get -u golang.org/x/tools/imports
+#	go get -u github.com/ethereum/go-ethereum
+#	go get -u github.com/therecipe/qt
+#	go get -u github.com/sirupsen/logrus
+#	go get -u github.com/dchest/siphash
 	go install github.com/ethereum/go-ethereum/cmd/clef
 	go install github.com/therecipe/qt
 	go install github.com/therecipe/qt/cmd/qtdeploy

@@ -64,7 +64,7 @@ func TestBigToText(t *testing.T) {
 	} {
 		got := WeiToString(tt.weival, tt.unit)
 
-		if strings.Compare(got, tt.exp) != 0{
+		if strings.Compare(got, tt.exp) != 0 {
 			t.Errorf("test %d: got %v expected %v", i, got, tt.exp)
 		}
 
@@ -77,14 +77,14 @@ func TestWeiToDefault(t *testing.T) {
 		weival *big.Int
 		exp    string
 	}{
-		{big.NewInt(1),  "1 wei"},
-		{big.NewInt(1000000000),  "1 Gwei"},
-		{big.NewInt(1987654321),  "1.99 Gwei"},
-		{new(big.Int).Mul(big.NewInt(1000000000), big.NewInt(1000000000)),  "1 eth"},
-		{big.NewInt(1500000000),  "1.5 Gwei"},
-		{big.NewInt(100000000),  "0.1 Gwei"},
-		{big.NewInt(0),  "0 wei"},
-		{big.NewInt(1),  "1 wei"},
+		{big.NewInt(1), "1 wei"},
+		{big.NewInt(1000000000), "1 Gwei"},
+		{big.NewInt(1987654321), "1.99 Gwei"},
+		{new(big.Int).Mul(big.NewInt(1000000000), big.NewInt(1000000000)), "1 eth"},
+		{big.NewInt(1500000000), "1.5 Gwei"},
+		{big.NewInt(100000000), "0.1 Gwei"},
+		{big.NewInt(0), "0 wei"},
+		{big.NewInt(1), "1 wei"},
 		{big.NewInt(291), "291 wei"},
 		{big.NewInt(2910), "2.91e+03 wei"},
 		{big.NewInt(29100), "2.91e+04 wei"},
@@ -97,7 +97,7 @@ func TestWeiToDefault(t *testing.T) {
 	} {
 		got := DefaultFormat(tt.weival)
 
-		if strings.Compare(got, tt.exp) != 0{
+		if strings.Compare(got, tt.exp) != 0 {
 			t.Errorf("test %d: got %v expected %v", i, got, tt.exp)
 		}
 
