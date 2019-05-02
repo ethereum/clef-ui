@@ -42,7 +42,8 @@ func (t *LoginCtx) clicked() {
 }
 
 func (t *LoginCtx) edited(clefbin string) {
-	clefbin = "/home/user/QubesIncoming/work/clef" // TODO! fixme
+	// TODO!
+	// Remember where the binary was 'last' time, and reuse that location
 	t.SetGopath(clefbin)
 
 	f, err := os.Open(clefbin)
