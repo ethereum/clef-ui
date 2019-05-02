@@ -128,6 +128,9 @@ func (m *TxListModel) clear() {
 }
 
 func (m *TxListModel) add(tx *IncomingRequestItem) {
+	if tx == nil {
+		return
+	}
 	address := strings.ToLower(tx.From)
 	m.BeginInsertRows(core.NewQModelIndex(), len(m.modelData), len(m.modelData))
 	tx.ID = m.idCounter
