@@ -16,6 +16,12 @@
 # Project-local glide cache, RE: https://github.com/Masterminds/glide/issues/736
 .glide/
 
+# Moc (Qt Meta Object Compiler) generated files
+*moc*.*
+
+# Qt Resource Compiler generated files
+*rcc*.*
+
 build
 vendor
 cmd/clefui/darwin/
