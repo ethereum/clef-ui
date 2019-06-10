@@ -43,7 +43,7 @@ type ClefUI struct {
 	Mainw           *widgets.QWidget
 	currentView     string
 	BackToMain      chan bool
-	IncomingRequest chan *IncomingRequestItem
+	IncomingRequest chan IncomingRequestItem
 	operationCh     chan requestInvocation // When user clicks an op in the list, it gets sent over this chan
 	ErrorDialog     chan string
 
@@ -85,7 +85,7 @@ func (c *ClefUI) initApp() {
 
 	c.App = app
 	c.Mainw = widget
-	c.IncomingRequest = make(chan *IncomingRequestItem)
+	c.IncomingRequest = make(chan IncomingRequestItem)
 	c.operationCh = make(chan requestInvocation)
 	c.BackToMain = make(chan bool)
 	c.ErrorDialog = make(chan string)
