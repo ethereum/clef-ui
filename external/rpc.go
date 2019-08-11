@@ -69,7 +69,7 @@ func (c *clefUIAPI) OnUserInputrequest(message core.UserInputRequest) (*core.Use
 
 func (c *clefUIAPI) ApproveNewAccount(p core.NewAccountRequest) (response *core.NewAccountResponse, err error) {
 	ch := make(chan *core.NewAccountResponse)
-	item := &ui.IncomingRequestItem{
+	item := ui.IncomingRequestItem{
 		From:        " - ",
 		Description: "Request for new account creation",
 		RPC: &ui.ApproveNewAccountRequest{
@@ -90,7 +90,7 @@ func (c *clefUIAPI) ApproveTx(p core.SignTxRequest) (*core.SignTxResponse, error
 		p.Transaction.To.Address().Bytes()[:4])
 
 	ch := make(chan *core.SignTxResponse)
-	item := &ui.IncomingRequestItem{
+	item := ui.IncomingRequestItem{
 		From:        p.Transaction.From.Original(),
 		Description: desc,
 		RPC: &ui.ApproveTxRequest{
@@ -120,7 +120,7 @@ func (c *clefUIAPI) ApproveListing(p core.ListRequest) (*core.ListResponse, erro
 	} else if len(p.Meta.UserAgent) > 0 {
 		desc = fmt.Sprintf("Request to list accounts (ua: %s)", p.Meta.UserAgent)
 	}
-	item := &ui.IncomingRequestItem{
+	item := ui.IncomingRequestItem{
 		From:        " - ",
 		Description: desc,
 		RPC: &ui.ApproveListingRequest{

@@ -51,16 +51,16 @@ type TxListModel struct {
 
 	_ func()                        `constructor:"init"`
 	_ func()                        `signal:"clear,auto"`
-	_ func(tx *IncomingRequestItem) `signal:"add,auto"`
+	_ func(tx IncomingRequestItem) `signal:"add,auto"`
 	_ func(i int)                   `signal:"remove,auto"`
 
-	modelData    []*IncomingRequestItem
+	modelData    []IncomingRequestItem
 	idCounter    int
 	removeItemCh chan int
 }
 
 func (m *TxListModel) init() {
-	m.modelData = []*IncomingRequestItem{}
+	m.modelData = []IncomingRequestItem{}
 	m.idCounter = 0
 	m.removeItemCh = make(chan int)
 
@@ -123,14 +123,11 @@ func (m *TxListModel) data(index *core.QModelIndex, role int) *core.QVariant {
 
 func (m *TxListModel) clear() {
 	m.BeginResetModel()
-	m.modelData = []*IncomingRequestItem{}
+	m.modelData = []IncomingRequestItem{}
 	m.EndResetModel()
 }
 
-func (m *TxListModel) add(tx *IncomingRequestItem) {
-	if tx == nil {
-		return
-	}
+func (m *TxListModel) add(tx IncomingRequestItem) {
 	address := strings.ToLower(tx.From)
 	m.BeginInsertRows(core.NewQModelIndex(), len(m.modelData), len(m.modelData))
 	tx.ID = m.idCounter
