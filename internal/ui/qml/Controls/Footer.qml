@@ -9,7 +9,15 @@ Item {
     implicitHeight: 55
     implicitWidth: row.implicitWidth
 
-    // StackView?
+    property bool rejectButtonVisible: false
+    property bool approveButtonVisible: false
+    property bool startButtonVisible: false
+
+    property alias startButtonEnabled: start.enabled
+
+    signal rejectClicked()
+    signal approveClicked()
+    signal startClicked()
 
     Rectangle {
         anchors.left: parent.left
@@ -26,12 +34,23 @@ Item {
 
         ClefUI.Button {
             text: qsTr("reject") // + Translation.trigger
-//            onReleased: console.log("test")
+            visible: rejectButtonVisible
+            onClicked: root.rejectClicked()
         }
 
         ClefUI.Button {
             text: qsTr("approve") // + Translation.trigger
             color: Style.buttons.validationColor
+            visible: approveButtonVisible
+            onClicked: root.approveClicked()
+        }
+
+        ClefUI.Button {
+            id: start
+            text: qsTr("start") // + Translation.trigger
+            color: Style.buttons.validationColor
+            visible: startButtonVisible
+            onClicked: root.startClicked()
         }
     }
 }

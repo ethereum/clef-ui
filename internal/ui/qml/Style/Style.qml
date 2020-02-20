@@ -9,6 +9,7 @@ QtObject {
     readonly property int defaultRadius: 2
 
     readonly property QtObject buttons: QtObject {
+        readonly property color disabledColor: "#efefef"
         readonly property color backgroundColor: "#5b5b5b"
         readonly property color validationColor: "#48b877"
         readonly property color textColor: "white"

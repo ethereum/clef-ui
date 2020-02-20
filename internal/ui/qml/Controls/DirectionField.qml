@@ -48,6 +48,7 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 height: font.pixelSize
                 font: Style.textFields.font
+                selectByMouse: true
 
                 echoMode: root.password ? TextInput.Password : TextInput.Normal
                 passwordMaskDelay: 1000

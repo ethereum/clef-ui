@@ -10,6 +10,7 @@ Item {
 
     property string text: "click me"
     property color color: Style.buttons.backgroundColor
+    property alias enabled: button.enabled
 
     signal clicked()
     signal pressed()
@@ -17,10 +18,11 @@ Item {
     signal released()
 
     Button {
+        id: button
         anchors.fill: parent
         background: Rectangle {
             anchors.fill: parent
-            color: root.color
+            color: button.enabled ? root.color : Style.buttons.disabledColor
             radius: height / 2
         }
         contentItem: Text {

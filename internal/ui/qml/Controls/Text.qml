@@ -19,6 +19,7 @@ Item {
 
         Text {
             anchors.left: parent.left
+            anchors.right: parent.right
             anchors.margins: 8
             height: visible ? contentHeight : 0
             text: root.title
@@ -40,10 +41,12 @@ Item {
                 anchors.right: parent.right
                 anchors.margins: 8
                 anchors.verticalCenter: parent.verticalCenter
+                verticalAlignment: Text.AlignVCenter
                 height: root.text !== "" ? font.pixelSize : 0
                 font: Style.texts.font
                 text: root.text
                 color: Style.texts.color
+                wrapMode: Text.WrapAnywhere
             }
         }
     }
