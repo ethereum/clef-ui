@@ -80,7 +80,7 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        enabled: LoginContext.error === "" && input.text !== ""
+        enabled: LoginContext.error === "" && LoginContext.clefPath !== ""
         startButtonVisible: true
         onStartClicked: LoginContext.start()
     }

@@ -33,6 +33,10 @@ func (t *LoginContext) setServer(server external.Server) {
 }
 
 func (t *LoginContext) start() {
+	if (t.Error() != "") {
+		return
+	}
+
 	t.InitiateServerRequest <- t.ClefPath()
 }
 
@@ -61,17 +65,13 @@ func (t *LoginContext) checkPath(pathToClef string) {
 	t.SetError("")
 }
 
-func NewLogin(rootContext *qml.QQmlContext, name string) *LoginContext {
-	if name == "" {
-		name = "LoginContext"
-	}
-
+func NewLogin(rootContext *qml.QQmlContext) *LoginContext {
 	c := NewLoginContext(nil)
 	c.SetError("")
 	c.InitiateServerRequest = make(chan string)
 	c.ConnectClefPathChanged(c.checkPath)
 
-	rootContext.SetContextProperty(name, c)
+	rootContext.SetContextProperty("LoginContext", c)
 
 	return c
 }
