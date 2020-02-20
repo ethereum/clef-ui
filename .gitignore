@@ -18,9 +18,11 @@
 
 # Moc (Qt Meta Object Compiler) generated files
 *moc*.*
+internal/ui/*moc*.*
 
 # Qt Resource Compiler generated files
 *rcc*.*
+internal/ui/*rcc*.*
 
 build
 vendor

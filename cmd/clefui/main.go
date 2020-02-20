@@ -61,8 +61,8 @@ func main() {
 
 	//ui.Start(ctx, stopChan)
 
-	clefUi.App.Exec()
+	// clefUi.App.Exec()
 	// Exit when done
-	<-readyToClose
+	// <-readyToClose
 	log.Println("Clef UI is terminated.")
 }
