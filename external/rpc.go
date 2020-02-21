@@ -2,21 +2,23 @@ package external
 
 import (
 	"context"
-	"encoding/json"
+	// "encoding/json"
 	"fmt"
 	"io"
 	"log"
-	"math/big"
-	"strings"
+	// "math/big"
+	// "strings"
 
-	"github.com/ethereum/clef-ui/internal/ui"
-	"github.com/ethereum/clef-ui/internal/utils"
+	// todo: gfz move out all calls to UI
+	// "github.com/ethereum/clef-ui/internal/ui"
+	// "github.com/ethereum/clef-ui/internal/utils"
 	"github.com/ethereum/go-ethereum/rpc"
 	"github.com/ethereum/go-ethereum/signer/core"
 )
 
 type Server struct {
 	client *rpc.Client
+	api ClefUIAPI
 }
 
 // NewServer starts up a listener for RPC messages from the given channels
@@ -30,114 +32,124 @@ func NewServer(ctx context.Context, remoteIn io.Writer, remoteOut io.Reader) *Se
 	}
 }
 
-func (s *Server) Start(clefUI ui.ClefUI) {
-	s.client.RegisterName("ui", &clefUIAPI{ui: clefUI})
+// todo: gfz move out all calls to UI
+func (s *Server) Start() {
+	s.api = ClefUIAPI{ test: "test" }
+	s.client.RegisterName("ui", s.api)
 }
 
-// clefUIAPI implemnents the handlers for json-rpc invocations
-type clefUIAPI struct {
-	ui ui.ClefUI
+// clefUIAPI implemnents the handlers for json-rpc invocations, gfz: not sure where this is defined
+type ClefUIAPI struct {
+	test string
+	// todo: gfz move out all calls to UI
+	// ui ui.ClefUI
 }
 
-func (c *clefUIAPI) OnSignerStartup(info core.StartupInfo) {
+func (c *ClefUIAPI) OnSignerStartup(info core.StartupInfo) {
 	fmt.Printf("clefService.OnSignerStartup sending signal \n")
-	c.ui.BackToMain <- true
+	// todo: gfz move out all calls to UI
+// 	// c.ui.BackToMain <- true
 }
 
-func (c *clefUIAPI) ShowError(message core.Message) {
-
-	text := strings.Replace(message.Text, "\u003c", "less than ", -1)
-	c.ui.ErrorDialog <- text
+func (c *ClefUIAPI) ShowError(message core.Message) {
+	// text := strings.Replace(message.Text, "\u003c", "less than ", -1)
+	// todo: gfz move out all calls to UI
+	// c.ui.ErrorDialog <- text
 }
 
-func (c *clefUIAPI) ShowInfo(message core.Message) {
+func (c *ClefUIAPI) ShowInfo(message core.Message) {
 	// TODO! Separate info and error
-	text := strings.Replace(message.Text, "\u003c", "less than ", -1)
-	c.ui.ErrorDialog <- text
+	// text := strings.Replace(message.Text, "\u003c", "less than ", -1)
+	// todo: gfz move out all calls to UI
+	// c.ui.ErrorDialog <- text
 }
 
-func (c *clefUIAPI) OnUserInputrequest(message core.UserInputRequest) (*core.UserInputResponse, error) {
-	response, err := c.ui.RequestUserInput(message.Title, message.Prompt, message.IsPassword)
-	if err != nil {
-		return nil, err
-	}
+func (c *ClefUIAPI) OnUserInputrequest(message core.UserInputRequest) (*core.UserInputResponse, error) {
+	// response, err := c.ui.RequestUserInput(message.Title, message.Prompt, message.IsPassword)
+	// if err != nil {
+	// 	return nil, err
+	// }
 	return &core.UserInputResponse{
-		Text: response,
+		// Text: response,
 	}, nil
-
 }
 
-func (c *clefUIAPI) ApproveNewAccount(p core.NewAccountRequest) (response *core.NewAccountResponse, err error) {
+func (c *ClefUIAPI) ApproveNewAccount(p core.NewAccountRequest) (response *core.NewAccountResponse, err error) {
 	ch := make(chan *core.NewAccountResponse)
-	item := &ui.IncomingRequestItem{
-		From:        " - ",
-		Description: "Request for new account creation",
-		RPC: &ui.ApproveNewAccountRequest{
-			Params:     &p,
-			ResponseCh: ch,
-		},
-	}
-	c.ui.IncomingRequest <- item
+	// item := ui.IncomingRequestItem{
+	// 	From:        " - ",
+	// 	Description: "Request for new account creation",
+	// 	RPC: &ui.ApproveNewAccountRequest{
+	// 		Params:     &p,
+	// 		ResponseCh: ch,
+	// 	},
+	// }
+
+	// // todo: gfz move out all calls to UI
+	// c.ui.IncomingRequest <- item
 	r := <-ch
-	item.Remove()
+	// item.Remove()
 	return r, nil
 }
 
-func (c *clefUIAPI) ApproveTx(p core.SignTxRequest) (*core.SignTxResponse, error) {
-	val := big.Int(p.Transaction.Value)
-	desc := fmt.Sprintf("Transaction: %s to 0x%x... ",
-		clefutils.DefaultFormat(&val),
-		p.Transaction.To.Address().Bytes()[:4])
+func (c *ClefUIAPI) ApproveTx(p core.SignTxRequest) (*core.SignTxResponse, error) {
+	// val := big.Int(p.Transaction.Value)
+	// desc := fmt.Sprintf("Transaction: %s to 0x%x... ",
+	// 	clefutils.DefaultFormat(&val),
+	// 	p.Transaction.To.Address().Bytes()[:4])
 
 	ch := make(chan *core.SignTxResponse)
-	item := &ui.IncomingRequestItem{
-		From:        p.Transaction.From.Original(),
-		Description: desc,
-		RPC: &ui.ApproveTxRequest{
-			Params:     &p,
-			ResponseCh: ch,
-		},
-	}
-	// Send to UI
-	c.ui.IncomingRequest <- item
-	// Wait for response
+	// item := ui.IncomingRequestItem{
+	// 	From:        p.Transaction.From.Original(),
+	// 	Description: desc,
+	// 	RPC: &ui.ApproveTxRequest{
+	// 		Params:     &p,
+	// 		ResponseCh: ch,
+	// 	},
+	// }
+	// // todo: gfz move out all calls to UI
+	// // Send to UI
+	// c.ui.IncomingRequest <- item
+	// // Wait for response
 	response := <-ch
-	// Remove from UI
-	item.Remove()
+	// // Remove from UI
+	// item.Remove()
 
-	// debug print TODO remove
-	d, e := json.Marshal(&response)
-	fmt.Printf("<-- %s (%v)\n", d, e)
-	//
+	// // debug print TODO remove
+	// d, e := json.Marshal(&response)
+	// fmt.Printf("<-- %s (%v)\n", d, e)
+	// //
 	return response, nil
 }
 
-func (c *clefUIAPI) ApproveListing(p core.ListRequest) (*core.ListResponse, error) {
+func (c *ClefUIAPI) ApproveListing(p core.ListRequest) (*core.ListResponse, error) {
 	ch := make(chan *core.ListResponse)
-	desc := "Request to list accounts"
-	if len(p.Meta.Origin) > 0 {
-		desc = fmt.Sprintf("Request to list accounts (orgin %s)", p.Meta.Origin)
-	} else if len(p.Meta.UserAgent) > 0 {
-		desc = fmt.Sprintf("Request to list accounts (ua: %s)", p.Meta.UserAgent)
-	}
-	item := &ui.IncomingRequestItem{
-		From:        " - ",
-		Description: desc,
-		RPC: &ui.ApproveListingRequest{
-			Params:     p,
-			ResponseCh: ch,
-		},
-	}
-	c.ui.IncomingRequest <- item
+	// desc := "Request to list accounts"
+	// if len(p.Meta.Origin) > 0 {
+	// 	desc = fmt.Sprintf("Request to list accounts (orgin %s)", p.Meta.Origin)
+	// } else if len(p.Meta.UserAgent) > 0 {
+	// 	desc = fmt.Sprintf("Request to list accounts (ua: %s)", p.Meta.UserAgent)
+	// }
+	// item := ui.IncomingRequestItem{
+	// 	From:        " - ",
+	// 	Description: desc,
+	// 	RPC: &ui.ApproveListingRequest{
+	// 		Params:     p,
+	// 		ResponseCh: ch,
+	// 	},
+	// }
+
+	// // todo: gfz move out all calls to UI
+	// c.ui.IncomingRequest <- item
 	response := <-ch
-	item.Remove()
-	// debug print TODO remove
-	d, e := json.Marshal(&response)
-	fmt.Printf("<-- %s (%v)\n", d, e)
-	//
+	// item.Remove()
+	// // debug print TODO remove
+	// d, e := json.Marshal(&response)
+	// fmt.Printf("<-- %s (%v)\n", d, e)
+	// //
 	return response, nil
 }
 
-func (c *clefUIAPI) ApproveSignData(p *core.SignDataRequest) (*core.SignDataResponse, error) {
+func (c *ClefUIAPI) ApproveSignData(p *core.SignDataRequest) (*core.SignDataResponse, error) {
 	return nil, fmt.Errorf("Not implemented")
 }

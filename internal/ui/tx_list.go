@@ -49,18 +49,18 @@ type TxListModel struct {
 
 	_ bool `property:"isEmpty"`
 
-	_ func()                        `constructor:"init"`
-	_ func()                        `signal:"clear,auto"`
-	_ func(tx *IncomingRequestItem) `signal:"add,auto"`
-	_ func(i int)                   `signal:"remove,auto"`
+	_ func()                       `constructor:"init"`
+	_ func()                       `signal:"clear,auto"`
+	_ func(tx IncomingRequestItem) `signal:"add,auto"`
+	_ func(i int)                  `signal:"remove,auto"`
 
-	modelData    []*IncomingRequestItem
+	modelData    []IncomingRequestItem
 	idCounter    int
 	removeItemCh chan int
 }
 
 func (m *TxListModel) init() {
-	m.modelData = []*IncomingRequestItem{}
+	m.modelData = []IncomingRequestItem{}
 	m.idCounter = 0
 	m.removeItemCh = make(chan int)
 
@@ -99,38 +99,35 @@ func (m *TxListModel) data(index *core.QModelIndex, role int) *core.QVariant {
 
 	if role == int(From) {
 		if address, err := common.NewMixedcaseAddressFromString(item.From); err != nil {
-			return core.NewQVariant14(item.From)
+			return core.NewQVariant15(item.From)
 		} else {
-			return core.NewQVariant14(address.Original())
+			return core.NewQVariant15(address.Original())
 
 		}
 	}
 	if role == int(Method) {
-		return core.NewQVariant14(item.Description)
+		return core.NewQVariant15(item.Description)
 	}
 	if role == int(FromSrc) {
 		if addr, err := common.NewMixedcaseAddressFromString(item.From); err != nil {
-			return core.NewQVariant14("")
+			return core.NewQVariant15("")
 		} else {
-			return core.NewQVariant14(identicon.ToBase64Img(addr.Address()))
+			return core.NewQVariant15(identicon.ToBase64Img(addr.Address()))
 		}
 	}
 	if role == int(IsUnknown) {
-		return core.NewQVariant7(item.IsUnknown)
+		return core.NewQVariant5(item.IsUnknown)
 	}
 	return core.NewQVariant()
 }
 
 func (m *TxListModel) clear() {
 	m.BeginResetModel()
-	m.modelData = []*IncomingRequestItem{}
+	m.modelData = []IncomingRequestItem{}
 	m.EndResetModel()
 }
 
-func (m *TxListModel) add(tx *IncomingRequestItem) {
-	if tx == nil {
-		return
-	}
+func (m *TxListModel) add(tx IncomingRequestItem) {
 	address := strings.ToLower(tx.From)
 	m.BeginInsertRows(core.NewQModelIndex(), len(m.modelData), len(m.modelData))
 	tx.ID = m.idCounter
