@@ -168,10 +168,10 @@ func (model *CustomListModel) data(index *core.QModelIndex, role int) *core.QVar
 	item := model.modelData[index.Row()]
 	if role == int(Address) {
 		address, _ := clefutils.ToChecksumAddress(item.Address.String())
-		return core.NewQVariant15(address)
+		return core.NewQVariant14(address)
 	}
 	if role == int(Checked) {
-		return core.NewQVariant9(true)
+		return core.NewQVariant11(true)
 	}
 	return core.NewQVariant()
 }

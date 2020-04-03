@@ -62,7 +62,7 @@ Item {
                 y: 11
                 width: 150
                 height: 36
-//                opacity: ctxObject.isValid ? 1 : 0.5
+                opacity: ctxObject.isValid ? 1 : 0.5
 
                 MouseArea {
                     id: ctama
@@ -72,7 +72,7 @@ Item {
                     height: parent.height
                     hoverEnabled: true
                     cursorShape: Qt.PointingHandCursor
-//                    onClicked: ctxObject.clicked()
+                    onClicked: ctxObject.clicked()
                     onHoveredChanged: cta.state = containsMouse ? "hover" : "normal"
                     onPressed: cta.state = "active"
                     onReleased: cta.state = "normal"
@@ -175,7 +175,6 @@ Item {
                 ColorAnimation { duration: 200 }
             }
 
-            // here!!!
             Text {
                 id: text1
                 x: -2
@@ -213,9 +212,9 @@ Item {
             radius: 2
 
             function onChange(text) {
-//                ctxObject.edited(text)
-//                logo.state = ctxObject.isValid ? "valid" : "invalid"
-//                cta.state = ctxObject.isValid ? "valid" : "invalid"
+                ctxObject.edited(text)
+                logo.state = ctxObject.isValid ? "valid" : "invalid"
+                cta.state = ctxObject.isValid ? "valid" : "invalid"
             }
 
             TextInput {
@@ -225,7 +224,7 @@ Item {
                 width: 329
                 height: 14
                 color: "#646464"
-//                text: ctxObject.gopath
+                text: ctxObject.gopath
                 font.family: "Verdana"
                 cursorVisible: true
                 onTextChanged: rectangle3.onChange(text)
@@ -260,7 +259,7 @@ Item {
                 width: 327
                 height: 53
                 color: "#646464"
-//                text: ctxObject.binaryHash
+                text: ctxObject.binaryHash
                 font.family: "Courier"
                 activeFocusOnPress: false
                 readOnly: true
