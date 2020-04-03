@@ -47,11 +47,11 @@ func (m *TxListAccountsModel) data(index *core.QModelIndex, role int) *core.QVar
 	item := m.modelData[row]
 
 	if row == 0 {
-		return core.NewQVariant15(item)
+		return core.NewQVariant14(item)
 	}
 
 	if role == int(Text) {
-		return core.NewQVariant15(item)
+		return core.NewQVariant14(item)
 	}
 
 	return core.NewQVariant()
