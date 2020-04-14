@@ -9,6 +9,7 @@ Item {
 
     property string title: "" // better property name?
     property string text: ""
+    property var wrapMode: Text.NoWrap
 
     Column {
         id: column
@@ -40,10 +41,10 @@ Item {
                 anchors.right: parent.right
                 anchors.margins: 8
                 anchors.verticalCenter: parent.verticalCenter
-                height: root.text !== "" ? font.pixelSize : 0
                 font: Style.texts.font
                 text: root.text
                 color: Style.texts.color
+                wrapMode: root.wrapMode
             }
         }
     }

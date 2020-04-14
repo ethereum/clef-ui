@@ -15,7 +15,6 @@ func main() {
 	// Make all the channels
 	uiClose := make(chan bool)
 	appCancel := make(chan os.Signal, 1)
-	readyToClose := make(chan bool)
 	readyToStart := make(chan string)
 
 	// notify appCancel channel on Ctrl + C
@@ -23,12 +22,14 @@ func main() {
 
 	// trap Ctrl+C and call cancel on the context
 	ctx, cancel := context.WithCancel(context.Background())
+	_ = cancel
 
 	clefUi := ui.NewClefUI(ctx, uiClose, readyToStart)
 
 	go func() {
 		select {
 		case gopath := <-readyToStart:
+			log.Println("ready to start")
 			log.Println(gopath)
 			// Start Clef Client
 			stdin, stdout, stderr, err := external.StartClef(ctx, gopath)
@@ -46,23 +47,7 @@ func main() {
 		}
 	}()
 
-	// Watch for os interrupt
-	go func() {
-		select {
-		case <-appCancel:
-			cancel()
-			signal.Stop(appCancel)
-			readyToClose <- true
-		case <-uiClose:
-			cancel()
-			readyToClose <- true
-		}
-	}()
+	clefUi.Start()
 
-	//ui.Start(ctx, stopChan)
-
-	// clefUi.App.Exec()
-	// Exit when done
-	// <-readyToClose
 	log.Println("Clef UI is terminated.")
 }
