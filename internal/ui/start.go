@@ -6,7 +6,10 @@ import (
 	"os"
 
 	core2 "github.com/ethereum/go-ethereum/signer/core"
+
 	"github.com/therecipe/qt/core"
+	"github.com/therecipe/qt/gui"
+	"github.com/therecipe/qt/qml"
 	"github.com/therecipe/qt/quick"
 	"github.com/therecipe/qt/quickcontrols2"
 	"github.com/therecipe/qt/widgets"
@@ -43,7 +46,7 @@ type ClefUI struct {
 	Mainw           *widgets.QWidget
 	currentView     string
 	BackToMain      chan bool
-	IncomingRequest chan *IncomingRequestItem
+	IncomingRequest chan IncomingRequestItem
 	operationCh     chan requestInvocation // When user clicks an op in the list, it gets sent over this chan
 	ErrorDialog     chan string
 
@@ -52,43 +55,7 @@ type ClefUI struct {
 	approvelisting    *ApproveListingUI
 	approvenewaccount *ApproveNewAccount
 	txlist            *quick.QQuickWidget
-	login             *quick.QQuickWidget
-}
-
-func (c *ClefUI) initApp() {
-	//incomingRequest := make(chan RpcRequest)
-
-	// enable high dpi scaling
-	// useful for devices with high pixel density displays
-	// such as smartphones, retina displays, ...
-	core.QCoreApplication_SetAttribute(core.Qt__AA_EnableHighDpiScaling, true)
-	core.QCoreApplication_SetApplicationName("Clef")
-
-	app := widgets.NewQApplication(len(os.Args), os.Args)
-	mainw := widgets.NewQMainWindow(nil, 0)
-	mainw.SetWindowTitle(core.QCoreApplication_ApplicationName())
-	mainw.SetStyleSheetDefault("background-color: #ecf0f1;")
-
-	widget := widgets.NewQWidget(nil, 0)
-	box := widgets.NewQVBoxLayout()
-	box.SetSpacing(0)
-	box.SetContentsMargins(0, 0, 0, 0)
-	widget.SetLayout(box)
-	mainw.SetCentralWidget(widget)
-
-	mainw.Show()
-
-	// use the material style
-	// the other inbuild styles are:
-	// Default, Fusion, Imagine, Universal
-	quickcontrols2.QQuickStyle_SetStyle("Default")
-
-	c.App = app
-	c.Mainw = widget
-	c.IncomingRequest = make(chan *IncomingRequestItem)
-	c.operationCh = make(chan requestInvocation)
-	c.BackToMain = make(chan bool)
-	c.ErrorDialog = make(chan string)
+	// login             *quick.QQuickWidget
 }
 
 func (c *ClefUI) hideAll() {
@@ -97,7 +64,7 @@ func (c *ClefUI) hideAll() {
 	c.approvetx.UI.Hide()
 	c.approvenewaccount.UI.Hide()
 	c.txlist.Hide()
-	c.login.Hide()
+	// c.login.Hide()
 }
 
 // RequestUserInput synchronously asks for user input
@@ -153,68 +120,25 @@ func (msg *ApproveNewAccountRequest) handle(ui *ClefUI) {
 
 }
 
+func (c *ClefUI) Start() {
+	gui.QGuiApplication_Exec()
+}
+
 func NewClefUI(ctx context.Context, uiClose chan bool, readyToStart chan string) *ClefUI {
 	c := &ClefUI{}
-	c.initApp()
 
-	approvesigndata := NewApproveSignDataUI(c)
-	approvelisting := NewApproveListingUI(c)
-	approvetx := NewApproveTxUI(c)
-	approvenewaccount := NewApproveNewAccountUI(c)
-	txlist := NewTxListUI(c)
-	login := NewLoginUI(c, readyToStart)
-	errordialog := widgets.NewQErrorMessage(nil)
-	errordialog.SetFixedSize2(350, 200)
+	core.QCoreApplication_SetAttribute(core.Qt__AA_EnableHighDpiScaling, true)
+	app := gui.NewQGuiApplication(len(os.Args), os.Args)
+	quickcontrols2.QQuickStyle_SetStyle("Material")
+	engine := qml.NewQQmlApplicationEngine(nil)
 
-	c.approvelisting = approvelisting
-	c.approvetx = approvetx
-	c.approvesigndata = approvesigndata.UI
-	c.approvenewaccount = approvenewaccount
-	c.login = login.UI
-	c.txlist = txlist.UI
+	NewLogin(engine.RootContext(), readyToStart)
 
-	c.Mainw.Layout().AddWidget(approvesigndata.UI)
-	c.Mainw.Layout().AddWidget(approvelisting.UI)
-	c.Mainw.Layout().AddWidget(approvetx.UI)
-	c.Mainw.Layout().AddWidget(approvenewaccount.UI)
-	c.Mainw.Layout().AddWidget(txlist.UI)
-	c.Mainw.Layout().AddWidget(login.UI)
-	c.Mainw.SetFixedSize2(400, 680)
+	// engine.Load(core.NewQUrl3("qrc:/qml/main.qml", 0))
+	engine.Load(core.NewQUrl3("internal/ui/qml/main.qml", 0))
 
-	c.hideAll()
-	login.UI.Show()
-
-	go func() {
-		for {
-			select {
-			case text := <-c.ErrorDialog:
-				errordialog.ShowMessage(text)
-			case <-c.BackToMain:
-				// User clicked 'back' to the main listing
-				c.hideAll()
-				txlist.UI.Show()
-			case req := <-c.IncomingRequest:
-				// New request came in from the 'network'
-				txlist.CtxObject.transactions.Add(req)
-			case op := <-c.operationCh:
-				// User selected an item for processing
-				c.hideAll()
-				op.handle(c)
-			}
-		}
-	}()
-
-	var didQuit bool
-	go func() {
-		<-ctx.Done()
-		if didQuit {
-			return
-		}
-		c.App.Quit()
-	}()
-	c.App.ConnectLastWindowClosed(func() {
-		didQuit = true
-		uiClose <- true
+	app.ConnectLastWindowClosed(func() {
+		app.Quit()
 	})
 
 	return c
