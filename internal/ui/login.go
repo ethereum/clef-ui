@@ -3,53 +3,45 @@ package ui
 import (
 	"crypto/sha256"
 	"fmt"
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/quick"
 	"io"
 	"log"
 	"os"
+
+	"github.com/therecipe/qt/core"
+	"github.com/therecipe/qt/qml"
 )
 
-type LoginUI struct {
-	UI            *quick.QQuickWidget
-	ContextObject *LoginCtx
-}
-
-type LoginCtx struct {
+type LoginContext struct {
 	core.QObject
 
-	_ string `property:"remote"`
-	_ string `property:"transport"`
-	_ string `property:"endpoint"`
-	_ string `property:"gopath"`
+	_ string `property:"clefPath"`
 	_ string `property:"binaryHash"`
-	_ bool   `property:"isValid"`
+	_ string `property:"error"`
 
-	_ func()         `signal:"clicked,auto"`
-	_ func(b string) `signal:"edited,auto"`
+	_ func()         `signal:"start,auto"`
+	_ func(b string) `signal:"checkPath,auto"`
 
 	answer       int
 	ClefUI       *ClefUI
 	ReadyToStart chan string
 }
 
-func (t *LoginCtx) clicked() {
-	if !t.IsValid() {
+func (t *LoginContext) start() {
+	if t.Error() != "" {
 		return
 	}
-	gopath := t.Gopath()
-	t.ReadyToStart <- gopath
+
+	t.ReadyToStart <- t.ClefPath()
 }
 
-func (t *LoginCtx) edited(clefbin string) {
-	// TODO!
-	// Remember where the binary was 'last' time, and reuse that location
-	t.SetGopath(clefbin)
+func (t *LoginContext) checkPath(pathToClef string) {
+	// todo: remember where the binary was 'last' time, and reuse that location
+	log.Println(pathToClef)
+	t.SetClefPath(pathToClef)
 
-	f, err := os.Open(clefbin)
+	f, err := os.Open(pathToClef)
 	if err != nil {
-		t.SetBinaryHash(err.Error())
-		t.SetIsValid(false)
+		t.SetError(err.Error())
 		log.Println(err)
 		return
 	}
@@ -57,42 +49,23 @@ func (t *LoginCtx) edited(clefbin string) {
 
 	h := sha256.New()
 	if _, err := io.Copy(h, f); err != nil {
-		t.SetBinaryHash(err.Error())
-		t.SetIsValid(false)
+		t.SetError(err.Error())
 		log.Println(err)
 		return
 	}
 
 	binaryHash := fmt.Sprintf("%x", h.Sum(nil))
 	t.SetBinaryHash(binaryHash)
-	t.SetIsValid(len(binaryHash) > 0)
+	t.SetError("")
 }
 
-func (t *LoginCtx) Reset() {
-	t.answer = 0
-	t.SetRemote("")
-	t.SetTransport("")
-	t.SetEndpoint("")
-	t.SetGopath("")
-	t.SetBinaryHash("")
-	t.SetIsValid(false)
-	t.ClefUI.BackToMain <- true
-}
+func NewLogin(rootContext *qml.QQmlContext, readytoStart chan string) *LoginContext {
+	c := NewLoginContext(nil)
+	c.SetError("")
+	c.ConnectClefPathChanged(c.checkPath)
+	c.ReadyToStart = readytoStart
 
-func NewLoginUI(clefUi *ClefUI, readyToStart chan string) *LoginUI {
+	rootContext.SetContextProperty("LoginContext", c)
 
-	c := NewLoginCtx(nil)
-	c.ReadyToStart = readyToStart
-
-	widget := quick.NewQQuickWidget(nil)
-	widget.RootContext().SetContextProperty("ctxObject", c)
-	widget.SetSource(core.NewQUrl3("qrc:/qml/login.qml", 0))
-	c.ClefUI = clefUi
-	v := &LoginUI{
-		UI:            widget,
-		ContextObject: c,
-	}
-	widget.SetResizeMode(quick.QQuickWidget__SizeRootObjectToView)
-	widget.Show()
-	return v
+	return c
 }
